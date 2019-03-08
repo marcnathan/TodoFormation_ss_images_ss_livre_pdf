@@ -1,0 +1,316 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+	- 
+
+
+> proc install
+	- sudo apt-get update
+	- sudo apt install apache2 php libapache2-mod-php mysql-server php-mysql
+	- " ou " sudo apt install apache2 php libapache2-mod-php mariadb-server php-mysql
+	- sudo apt-get intall php-curl php-gd php-intl php-json php-mbstring php-xml php-zip
+	- sudo apt-get install phpmyadmin
+	- sudo gedit
+		- ajout du conf de phpmyadmin au conf de apache
+	- sudo service apache2 restart
+	- sudo mysql
+	- mysql> CREATE USER marc IDENTIFIED BY 'marc@100%';
+	- mysql> RENAME USER 'marc'@'%' TO 'marc'@'localhost';
+	- mysql> SELECT user, authentication_string, plugin, host FROM mysql.user;
+	- mysql> GRANT ALL PRIVILEGES ON *.* TO 'marc'@'localhost';
+	- mysql> FLUSH PRIVILEGES;
+	- mysql> CREATE DATABASE dataskevlin;
+	- GRANT ALL PRIVILEGES ON dataskevlin.* TO 'userName'@'localhost' IDENTIFIED BY 'password';
+	- FLUSH PRIVILEGES;
+	- QUIT; 
+
+> proc composant de support
+	- sudo apt-get install git
+	- sudo apt-get install composer
+	- sudo apt-get install npm
+
+> proc mail
+	- ls -al /usr/sbin/sendmail
+	- lrwxrwxrwx 1 root root 5 Jul 15  2014 /usr/sbin/sendmail -> ssmtp
+	- https://doc.ubuntu-fr.org/ssmtp
+	
+> proc userdir
+	- a2enmod userdir
+	- /etc/apache2/mods-enabled/userdir.conf
+		<IfModule mod_user.c>
+			UserDir public_htlm
+			UserDir disabled root
+			
+			<Directory /home/*/public_html>
+				AllowOverride All
+				Options MultiViews Indexes SymLinksIfOwnerMatch
+				<Limit GET POST OPTIONS>
+					Order allow, deny
+					Allow from all
+				</Limit>
+				<LimitExcept GET POST OPTIONS>
+					Order deny, allow
+					Deny from all
+				</LimitExcept>
+			</Directory>
+		</IfModule>
+	- créer un dossier en tant qu'utilisateur pas root
+		mkdir /home/$USER/public_html
+	- en tant que root
+		chgrp www-data /home/<username>/public_html
+		service apache2 restart
+		chmod 755 /home/<username>
+	- checker si PHP activé sur filesystem /etc/apache2/mods-available/php7.2.conf
+		<IfModule mod_php7.2.c>
+			<FilesMatch "\.ph(p3|tml)$">
+				SetHandler application/x-httpd-php
+				Require all granted
+			</FilesMatch>
+			<FilesMatch "\.phps$">
+				SetHandler application/x-httpd-php-source
+				Require all denied
+			</FilesMatch>
+			# To re-enable php in user directories comment the following lines
+			# (from <IfModule ...> to </IfModule>.) Do NOT set it to On as it
+			# prevents .htaccess files from diabling it.
+			# <IfModule mod_userdir.c>
+			# 	<Directory /homr/*/public_html>
+			#		php_admin_value engine Off
+			#	</Directory>
+			# </IfModule>
+		</IfModule>
+	- sudo systemctl restart apache2
+	
+> proc vhost
+	- /etc/apache2/sites-available/mon-vhost.com.conf
+		<VirtualHost *:80>
+			ServerName mon-vhost.com
+			ServerAlias www.mon-vhost.com
+			DocumentRoot "/var/www/mon-vhost"
+			<Directory "">
+				Option FollowSymLinks
+				AllowOverride all
+				Require all granted
+			</Directory>
+			ErrorLog /var/log/apache2/error.mon-vhost.com.log
+			CustomLog /var/log/apache2/access.mon-vhost.com.log combined
+		</VirtualHost>
+	- sudo a2ensite mon-vhost.com
+	- sudo systemctl reload apache2
+	
+> proc démarrage automatique
+	- désactivage
+		- sudo systemctl disable apache2
+		- sudo systemctl disable mysql
+	- lancement manuel
+		- sudo systemctl start apache2
+		- sudo systemctl start mysql
+	- réactivation
+		- sudo systemctl enable apache2
+		- sudo systemctl enable mysql
+
+> proc ssl apache + navigateur
+	- Vérifier que les paquets nécessaires sont déjà installés 
+		- dpkg -l | grep ssl
+	- Chaque paquet doit apparaitre avec les deux lettres ii en suffixe si c’est déjà le cas. 
+		Il sont normalement sensés déjà être installés.
+		Dans le cas contraire, installer openSSL
+		- sudo apt-get install openssl
+	- Création d’un certificat auto-signé
+		- On va créer le certificat nécessaire dans le répertoire /etc/apache2/ssl que l’on crée s’il n’existe pas :
+			- sudo mkdir /etc/apache2/ssl
+		- Puis nous allons y créer notre certificat :
+			- sudo /usr/sbin/make-ssl-cert /usr/share/ssl-cert/ssleay.cnf /etc/apache2/ssl/apache.pem
+		- Il faut alors répondre à une question demandant le nom d’hôte du serveur.
+			Votre certificat se trouve donc à l’emplacement /etc/apache2/ssl/apache.pem.
+	- Configuration spécifique d’apache
+		- Dans un premier temps il est nécessaire que le serveur apache écoute sur le port 443. 
+			Pour cela il suffit d’éditer le ficher /etc/apache2/ports.conf et vérifier que la ligne Listen 443 y soit présente.
+			La meilleur manière de l’intégrer est de l’écrire de la sorte :
+				- 
+				<IfModule mod_ssl.c>
+					Listen 443
+				</IfModule>
+		- Ainsi, lors de la désactivation (volontaire ou non) du module SSL d’Apache, la configuration restera correcte et ne plantera pas le serveur.
+			Dans un second temps il est nécessaire de créer un virtualhost Apache prenant en compte notre certificat ssl. 
+			Debian et Ubuntu en fournisse un par défaut (/etc/apache2/sites-available/default-ssl) que nous allons modifier pour tester.
+				- sudo nano /etc/apache2/sites-available/default-ssl
+		- On vérifie que le contenu suivant au moins y soit présent (commentez avec le caractère dièse "#" toute référence à d’autres certificats :
+		<IfModule mod_ssl.c>
+			<VirtualHost _default_:443>
+					ServerAdmin webmaster@localhost
+			 
+					DocumentRoot /var/www
+					<Directory />
+							Options FollowSymLinks
+							AllowOverride None
+					</Directory>
+					<Directory /var/www/>
+							Options Indexes FollowSymLinks MultiViews
+							AllowOverride None
+							Order allow,deny
+							allow from all
+					</Directory>
+			 
+					ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+					<Directory "/usr/lib/cgi-bin">
+							AllowOverride None
+							Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+							Order allow,deny
+							Allow from all
+					</Directory>
+			 
+					ErrorLog /var/log/apache2/error.log
+			 
+					# Possible values include: debug, info, notice, warn, error, crit,
+					# alert, emerg.
+					LogLevel warn
+			 
+					CustomLog /var/log/apache2/ssl_access.log combined
+			 
+					#   SSL Engine Switch:
+					#   Enable/Disable SSL for this virtual host.
+					SSLEngine on
+					SSLCertificateFile /etc/apache2/ssl/apache.pem
+			</VirtualHost>
+		</IfModule>
+	- Activation finale et redémarrage du serveur apache
+		- Puis vous pouvez activer le module ssl pour Apache, le virtualhost ssl et redémarrer Apache :
+		- 
+			a2enmod ssl
+			a2ensite default-ssl
+			sudo /etc/init.d/apache2 restart
+	- Il est ensuite possible de tester que cela fonctionne en allant à l’adresse : https://www.domaine.tld:443 ou https://www.domaine.tld.
+		Votre navigateur devrait spécifier que le certificat n’est pas considéré comme sûr mais vous 
+		permettre de voir et d’accepter le certificat afin de pouvoir avoir accès à la page en question 
+		(qui devrait être la même sans le "s" à http et sans le :443 en fin d’adresse).
+
+
+> 	Connexion distante au serveur : ssh
+	- Installation des prérequis
+	- La connexion au serveur
+	- Sécurisation SSH basique
+	- Sécurisation SSH poussée : authentification par clé RSA
+	- Utilisation et configuration spécifiques coté client
+	- Connexion et authentification par clé publique en PHP
+
+
+> Autres ressources
+
+	- https://technique.arscenic.org/lamp-linux-apache-mysql-php/apache-le-serveur-http/modules-complementaires/article/installer-et-configurer-le-module-ssl-pour-apache2
+	
+	Commandes Linux de base
+		Les commandes réseau
+		La gestion des processus
+		Cron : gestion des tâches planifiées
+		Gestionnaires de version
+			git : quelques commandes de base
+		La gestion des utilisateurs
+			Ajout et suppression d’utilisateurs
+			Gestion simple des accès superutilisateurs : sudo
+		La gestion des fichiers et dossiers
+			Se déplacer dans l’arborescence du système de fichier
+			Lister les fichiers et répertoires et connaître leur taille
+			Création et suppression de fichiers et répertoires
+			La recherche de fichier ou dans les fichiers
+			La gestion des archives compressées
+		La gestion des paquets deb
+			APT : La gestion des paquets
+			Ajouter des dépôts supplémentaires à APT
+			Deborphan : nettoyer le système des paquets orphelins
+			apt-file / dpkg : trouver de quel paquet provient un fichier
+	Programmation Bash
+		Les variables
+	Connexion distante au serveur : ssh
+		Installation des prérequis
+		La connexion au serveur
+		Sécurisation SSH basique
+		Sécurisation SSH poussée : authentification par clé RSA
+		Utilisation et configuration spécifiques coté client
+		Connexion et authentification par clé publique en PHP
+	LAMP : Linux - Apache - MySQL - PHP
+		Installation basique de LAMP
+		Apache - Le serveur HTTP
+			La gestion des modules
+			La gestion des sites par virtualhosts
+			Apache et un petit peu de sécurité
+			Modules complémentaires
+				Installer et configurer le module ssl pour Apache2
+				mod_geoip pour Apache 2
+				Installer et configurer le module gnutls pour Apache
+				mod_proxy : rediriger en tout transparence Apache vers un port spécifique
+			Optimisations
+				Expire headers
+				mod_deflate : Compression Gzip du contenu
+		MySQL - Le serveur de bases de données
+			Utiliser mysql en ligne de commande
+			Accès distant à un serveur Mysql (Remote access)
+			Optimisations de MySQL
+				Optimisation de MySQL
+				Visualiser les requêtes lentes pour une base spécifique
+		PHP - Le language de programmation
+			Installation de php5 et de ses modules supplémentaires
+	Compilation de logiciel
+		Compiler les librairies multimedia utiles pour ffmpeg
+		Compiler FFmpeg et qt-faststart
+		Installer ffmpeg2theora depuis ses sources
+		Gestion des métadonnées vidéos : FLVTool2, flvtool++, yamdi, MediaInfo
+	Transfert de données vers le serveurs ou entre serveurs
+		Récupération de fichiers sur un serveur (via http, https, ftp)
+		scp : transfert de fichier à travers une connexion ssh
+		Rsync : synchronisation distante de fichiers
+	SSL : Sécurisation des communications serveur / client
+		Création d’un Certificate Signing Request (CSR)
+		Installer et configurer un certificat Let’s Encrypt
+		StartSSL : Utiliser un certificat valide et gratuit pour son domaine
+		Rediriger HTTP vers HTTPS (SSL) automatiquement
+	Réseau
+		Noms d’hôte (hostname) et noms de domaine
+		Attribuer une IP fixe à un serveur
+		OpenVPN : un réseau privé virtuel
+			Installation et configuration d’OpenVPN
+			Monitorer openvpn
+	Sécurité
+		Sécurisation SSH basique
+		Sécurisation SSH poussée : authentification par clé RSA
+		Fail2ban : limitation des tentatives d’intrusion
+	La gestion des emails
+		Postfix : Serveur SMTP
+			Installer et configurer Postfix
+			La file d’attente de Postfix
+			Problèmes de réceptions / envois de mails via Postfix
+		Antispams
+			SpamAssassin et Pyzor
+	Monitoring
+		Awstats
+			Installation et configuration de base d’Awstats
+		Munin
+			Monitoring de machine : Munin
+			Optimisations de Munin
+			Déplacer un serveur Munin sur une autre machine
+			Monitoring spécifiques
+				Monitorer Apache
+				Monitorer fail2ban
+				Monitorer proftpd
+				Monitorer sympa
+				Monitorer Shoutcast avec Munin
+				Monitorer Transmission
+				Monitorer openvpn
+	Alternc
+		Installation des prérequis à Alternc
+		Configurer devscripts
+		Compilation d’Alternc à partir des sources
+		Compilation et installation du plugin Alternc-Munin
+		Compilation du module alternc-awstats à partir des sources
+		Corrections de bugs "mineurs" d’Alternc
+			Réparer phpmyadmin après l’installation d’alternc
+			Réparer une mauvaise configuration par défaut du plugin awstats
+	Services Web
+	Multimedia
+	Installation d’un nouveau serveur
+	
+	
+	
+	

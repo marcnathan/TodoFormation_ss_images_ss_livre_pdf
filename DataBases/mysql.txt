@@ -1,0 +1,31 @@
+> Notes
+	- Sql/PL-Sql/Trasact-Sql/Engine/Trigger/Fonction/Comptes/Connexion/Vues/Objet/...
+	- 
+	- 
+	- 
+
+	
+	
+> MySQL
+	- ressources
+		- net
+			- http://sql.sh/cours/jointures/inner-join
+		- livre
+			- 
+	- lien indexe complet
+		- 
+	- procédées essentiels
+		- Comptes/Connexion
+			- 
+		- Sql/PL-Sql/Trasact-Sql
+			-
+		- Engine
+			- 
+		- Tables/ Indexs/Vues/Objet
+			- 
+		- Trigger/Fonction
+			- 
+		- Cache / Requêtes préparées
+			- 
+	- outils
+		- Workbench

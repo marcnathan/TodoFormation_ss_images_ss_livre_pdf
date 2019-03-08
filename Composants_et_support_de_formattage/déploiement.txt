@@ -1,0 +1,32 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+
+	
+	
+> déploiement
+	- ressources
+		- net
+			- https://buddy.works/guides/5-ways-to-deploy-php-applications
+			- http://jonathannicol.com/blog/2013/11/19/automated-git-deployments-from-bitbucket/
+			- https://www.digitalocean.com/community/tutorials/how-to-automate-php-app-deployment-process-using-capistrano-on-ubuntu-13
+			- https://www.smashingmagazine.com/2015/07/development-to-deployment-workflow/
+			- https://bruno.lsis.univ-tln.fr/git/gitminimal
+		- livre
+			- 
+	- lien indexe complet
+		- 
+	- procédées essentiels
+		- installation
+			- 
+				- 
+		- commandes
+			- 
+			
+			- 
+			
+		- outils
+			- 
+	

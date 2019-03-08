@@ -1,0 +1,1009 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+
+
+- CSS (animate, ...) https://www.w3schools.com/css/default.asp
+	- CSS Tutorial
+		- CSS HOME
+		- CSS Introduction
+			- Librairy
+				- Bootstrap
+					- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+				- W3
+					- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		- CSS Syntax
+		- CSS How To
+			- External Style Sheet
+				<link rel="stylesheet" type="text/css" href="mystyle.css">
+			- Internal Style Sheet
+				<style>
+				body {
+					background-color: linen;
+				}
+
+				h1 {
+					color: maroon;
+					margin-left: 40px;
+				} 
+				</style>
+			- Inline Styles
+				<h1 style="color:blue;margin-left:30px;">This is a heading</h1>
+		- CSS Colors
+			rgba(255, 99, 71, 1)
+			hsla(9, 100%, 64%, 1)
+		- CSS Backgrounds
+			body {
+						background: #ffffff url("img_tree.png") no-repeat right top;
+					}
+		- CSS Borders
+			- All CSS Border Properties
+				Property			Description
+				border				Sets all the border properties in one declaration
+				border-bottom		Sets all the bottom border properties in one declaration
+				border-bottom-color	Sets the color of the bottom border
+				border-bottom-style	Sets the style of the bottom border
+				border-bottom-width	Sets the width of the bottom border
+				border-color		Sets the color of the four borders
+				border-left			Sets all the left border properties in one declaration
+				border-left-color	Sets the color of the left border
+				border-left-style	Sets the style of the left border
+				border-left-width	Sets the width of the left border
+				border-radius		Sets all the four border-*-radius properties for rounded corners
+				border-right		Sets all the right border properties in one declaration
+				border-right-color	Sets the color of the right border
+				border-right-style	Sets the style of the right border
+				border-right-width	Sets the width of the right border
+				border-style		Sets the style of the four borders
+				border-top			Sets all the top border properties in one declaration
+				border-top-color	Sets the color of the top border
+				border-top-style	Sets the style of the top border
+				border-top-width	Sets the width of the top border
+				border-width		Sets the width of the four borders
+		- CSS Margins
+			- margin: 25px 50px 75px 100px;
+			- The inherit Value
+				- This example lets the left margin of the <p class="ex1"> element be inherited (récupéré) from the parent element (<div>)
+			- The auto Value
+				- You can set the margin property to auto to horizontally center the element within its container.
+			- Margin Collapse
+				- Top and bottom margins of elements are sometimes collapsed into a single margin that is equal to the largest of the two margins.
+					- This does not happen on left and right margins! Only top and bottom margins!
+						h1 {
+							margin: 0 0 50px 0;
+						}
+
+						h2 {
+							margin: 20px 0 0 0;
+						}
+					- In the example above, the <h1> element has a bottom margin of 50px and the <h2> element has a top margin set to 20px.
+					- Common sense would seem to suggest that the vertical margin between the <h1> and the <h2> would be a total of 70px (50px + 20px). But due to margin collapse, the actual margin ends up being 50px.
+		- CSS Padding
+		- CSS Height/Width
+			- The height and width properties do not include padding, borders, or margins; they set the height/width of the area inside the padding, border, and margin of the element!
+		- CSS Box Model
+		- CSS Outline
+			- All CSS Outline Properties
+				Property		Description
+				outline			A shorthand property for setting outline-width, outline-style, and outline-color in one declaration
+				outline-color	Sets the color of an outline
+				outline-offset	Specifies the space between an outline and the edge or border of an element
+				outline-style	Sets the style of an outline
+				outline-width	Sets the width of an outline
+		- CSS Text
+			- All CSS Text Properties
+				Property		Description
+				color			Sets the color of text
+				direction		Specifies the text direction/writing direction
+				letter-spacing	Increases or decreases the space between characters in a text
+				line-height		Sets the line height
+				text-align		Specifies the horizontal alignment of text
+				text-decoration	Specifies the decoration added to text
+				text-indent		Specifies the indentation of the first line in a text-block
+				text-shadow		Specifies the shadow effect added to text
+				text-transform	Controls the capitalization of text
+				text-overflow	Specifies how overflowed content that is not displayed should be signaled to the user
+				unicode-bidi	Used together with the direction property to set or return whether the text should be overridden to support multiple languages in the same document
+				vertical-align	Sets the vertical alignment of an element
+				white-space		Specifies how white-space inside an element is handled
+				word-spacing	Increases or decreases the space between words in a text
+		- CSS Fonts
+			- All CSS Font Properties
+				Property		Description
+				font			Sets all the font properties in one declaration
+				font-family		Specifies the font family for text
+				font-size		Specifies the font size of text
+				font-style		Specifies the font style for text
+				font-variant	Specifies whether or not a text should be displayed in a small-caps font
+				font-weight		Specifies the weight of a font
+		- CSS Icons
+			- Font Awesome Icons
+				- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+					<i class="fa fa-cloud"></i>
+					<i class="fa fa-heart"></i>
+					<i class="fa fa-car"></i>
+					<i class="fa fa-file"></i>
+					<i class="fa fa-bars"></i>
+			- Bootstrap Icons
+				- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+					<i class="glyphicon glyphicon-cloud"></i>
+					<i class="glyphicon glyphicon-remove"></i>
+					<i class="glyphicon glyphicon-user"></i>
+					<i class="glyphicon glyphicon-envelope"></i>
+					<i class="glyphicon glyphicon-thumbs-up"></i>
+			- Google Icons
+				- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+					<i class="material-icons">cloud</i>
+					<i class="material-icons">favorite</i>
+					<i class="material-icons">attachment</i>
+					<i class="material-icons">computer</i>
+					<i class="material-icons">traffic</i>
+		- CSS Links
+			- a:link, a:visited {
+					background-color: #f44336;
+					color: white;
+					padding: 14px 25px;
+					text-align: center; 
+					text-decoration: none;
+					display: inline-block;
+				}
+
+				a:hover, a:active {
+					background-color: red;
+				}
+		- CSS Lists
+			- All CSS List Properties
+				Property			Description
+				list-style			Sets all the properties for a list in one declaration
+				list-style-image	Specifies an image as the list-item marker
+				list-style-position	Specifies if the list-item markers should appear inside or outside the content flow
+				list-style-type		Specifies the type of list-item marker
+		- CSS Tables
+			- CSS Table Properties
+				Property		Description
+				border			Sets all the border properties in one declaration
+				border-collapse	Specifies whether or not table borders should be collapsed
+				border-spacing	Specifies the distance between the borders of adjacent cells
+				caption-side	Specifies the placement of a table caption
+				empty-cells		Specifies whether or not to display borders and background on empty cells in a table
+				table-layout	Sets the layout algorithm to be used for a table
+		- CSS Display
+			- Block-level Elements
+				- <div>
+				- <h1> - <h6>
+				- <p>
+				- <form>
+				- <header>
+				- <footer>
+				- <section>
+			- Inline Elements
+				- <span>
+				- <a>
+				- <img>
+			- CSS Display/Visibility Properties
+				Property	Description
+				display		Specifies how an element should be displayed
+				visibility	Specifies whether or not an element should be visible
+		- CSS Max-width
+			- The problem with the <div> above occurs when the browser window is smaller than the width of the element. The browser then adds a horizontal scrollbar to the page.
+			- Using max-width instead, in this situation, will improve the browser's handling of small windows.
+		- CSS Position
+			- All CSS Positioning Properties
+				Property	Description
+				bottom		Sets the bottom margin edge for a positioned box
+				clip		Clips an absolutely positioned element
+				left		Sets the left margin edge for a positioned box
+				position	Specifies the type of positioning for an element
+					- static
+					- relative
+					- fixed
+					- absolute
+					- sticky
+				right		Sets the right margin edge for a positioned box
+				top			Sets the top margin edge for a positioned box
+				z-index		Sets the stack order of an element
+		- CSS Overflow
+		- CSS Float
+			- All CSS Float Properties
+				Property	Description
+				clear		Specifies on which sides of an element where floating elements are not allowed to float
+				float		Specifies whether or not an element should float
+				overflow	Specifies what happens if content overflows an element's box
+				overflow-x	Specifies what to do with the left/right edges of the content if it overflows the element's content area
+				overflow-y	Specifies what to do with the top/bottom edges of the content if it overflows the element's content area
+			- The clearfix Hack
+				.clearfix::after {
+					content: "";
+					clear: both;
+					display: table;
+				}
+		- CSS Inline-block
+		- CSS Align
+		- CSS Combinators
+			- Descendant Selector
+				- The descendant selector matches all elements that are descendants of a specified element.
+				- div p { ... }
+			- Child Selector
+				- The child selector selects all elements that are the immediate children of a specified element.
+				- div > p { ... }
+			- Adjacent Sibling Selector
+				- The adjacent sibling selector selects all elements that are the adjacent siblings of a specified element.
+				- Sibling elements must have the same parent element, and "adjacent" means "immediately following".
+				- div + p { ... }
+			- General Sibling Selector
+				- The general sibling selector selects all elements that are siblings of a specified element.
+				- div ~ p { ... }
+		- CSS Pseudo-class
+			- All CSS Pseudo Classes
+				Selector				Example					Example description
+				:active					a:active				Selects the active link
+				:checked				input:checked			Selects every checked <input> element
+				:disabled				input:disabled			Selects every disabled <input> element
+				:empty					p:empty					Selects every <p> element that has no children
+				:enabled				input:enabled			Selects every enabled <input> element
+				:first-child			p:first-child			Selects every <p> elements that is the first child of its parent
+				:first-of-type			p:first-of-type			Selects every <p> element that is the first <p> element of its parent
+				:focus					input:focus				Selects the <input> element that has focus
+				:hover					a:hover					Selects links on mouse over
+				:in-range				input:in-range			Selects <input> elements with a value within a specified range
+				:invalid				input:invalid			Selects all <input> elements with an invalid value
+				:lang(language)			p:lang(it)				Selects every <p> element with a lang attribute value starting with "it"
+				:last-child				p:last-child			Selects every <p> elements that is the last child of its parent
+				:last-of-type			p:last-of-type			Selects every <p> element that is the last <p> element of its parent
+				:link					a:link					Selects all unvisited links
+				:not(selector)			:not(p)					Selects every element that is not a <p> element
+				:nth-child(n)			p:nth-child(2)			Selects every <p> element that is the second child of its parent
+				:nth-last-child(n)		p:nth-last-child(2)		Selects every <p> element that is the second child of its parent, counting from the last child
+				:nth-last-of-type(n)	p:nth-last-of-type(2)	Selects every <p> element that is the second <p> element of its parent, counting from the last child
+				:nth-of-type(n)			p:nth-of-type(2)		Selects every <p> element that is the second <p> element of its parent
+				:only-of-type			p:only-of-type			Selects every <p> element that is the only <p> element of its parent
+				:only-child				p:only-child			Selects every <p> element that is the only child of its parent
+				:optional				input:optional			Selects <input> elements with no "required" attribute
+				:out-of-range			input:out-of-range		Selects <input> elements with a value outside a specified range
+				:read-only				input:read-only			Selects <input> elements with a "readonly" attribute specified
+				:read-write				input:read-write		Selects <input> elements with no "readonly" attribute
+				:required				input:required			Selects <input> elements with a "required" attribute specified
+				:root					root					Selects the document's root element
+				:target					#news:target			Selects the current active #news element (clicked on a URL containing that anchor name)
+				:valid					input:valid				Selects all <input> elements with a valid value
+				:visited				a:visited				Selects all visited links
+				
+			- All CSS Pseudo Elements
+				Selector		Example			Example description
+				::after			p::after		Insert content after every <p> element
+					- pseudo-element can be used to insert some content after the content of an element.
+						- h1::after { content: url(smiley.gif); }
+				::before		p::before		Insert content before every <p> element
+					- pseudo-element can be used to insert some content before the content of an element.
+						- h1::before { content: url(smiley.gif); }
+				::first-letter	p::first-letter	Selects the first letter of every <p> element
+					- font properties
+					- color properties 
+					- background properties
+					- margin properties
+					- padding properties
+					- border properties
+					- text-decoration
+					- vertical-align (only if "float" is "none")
+					- text-transform
+					- line-height
+					- float
+					- clear
+				::first-line	p::first-line	Selects the first line of every <p> element
+					- font properties
+					- color properties
+					- background properties
+					- word-spacing
+					- letter-spacing
+					- text-decoration
+					- vertical-align
+					- text-transform
+					- line-height
+					- clear
+				::selection		p::selection	Selects the portion of an element that is selected by a user
+					- ::selection pseudo-element matches the portion of an element that is selected by a user.
+						- ::selection { color: red; background: yellow; }
+		- CSS Pseudo-element
+		- CSS Opacity
+			- opacity: 0.5;
+			- filter: alpha(opacity=50); /* For IE8 and earlier */
+			- background: rgba(76, 175, 80, 0.3) /* Green background with 30% opacity */
+		- CSS Navigation Bar
+			- Responsive Topnav
+				- @media screen and (max-width: 600px){ ... }
+			- Responsive Sidenav
+				- @media screen and (max-width: 900px) { ... }
+				- @media screen and (max-width: 400px) { ... }
+		- CSS Dropdowns
+		- CSS Tooltips
+			- A tooltip is often used to specify extra information about something when the user moves the mouse pointer over an element
+				- <div class="tooltip">Hover over me
+					  <span class="tooltiptext">Tooltip text</span>
+					</div>
+				- .tooltip {
+						position: relative;
+						display: inline-block;
+						border-bottom: 1px dotted black;
+					}
+
+					.tooltip .tooltiptext {
+						visibility: hidden;
+						width: 120px;
+						background-color: black;
+						color: #fff;
+						text-align: center;
+						border-radius: 6px;
+						padding: 5px 0;
+						position: absolute;
+						z-index: 1;
+						bottom: 100%;
+						left: 50%;
+						margin-left: -60px;
+						
+						/* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+						opacity: 0;
+						transition: opacity 1s;
+					}
+
+					.tooltip:hover .tooltiptext {
+						visibility: visible;
+						opacity: 1;
+					}
+		- CSS Image Gallery
+			- Responsive Image Gallery
+				- les blocs sont en float avec un clearfix
+				- @media only screen and (max-width: 700px){ ... }
+				- @media only screen and (max-width: 500px){ ... }
+		- CSS Image Sprites
+			- background: url('img_navsprites_hover.gif') -91px -45px;
+		- CSS Attr Selectors
+			- CSS [attribute] Selector
+				- CSS [attribute="value"] Selector
+					- The [attribute="value"] selector is used to select elements with a specified attribute and value.
+						- a[target="_blank"] { ... }
+				- CSS [attribute~="value"] Selector
+					- The [attribute~="value"] selector is used to select elements with an attribute value containing a specified word.
+						- [title~="flower"] { ... }
+				- CSS [attribute|="value"] Selector
+					- The [attribute|="value"] selector is used to select elements with the specified attribute starting with the specified value.
+						- The following example selects all elements with a class attribute value that begins with "top":
+						- The value has to be a whole word, either alone, like class="top", or followed by a hyphen( - ), like class="top-text"! 
+						- [class|="top"] { ... }
+				- CSS [attribute^="value"] Selector
+					- The [attribute^="value"] selector is used to select elements whose attribute value begins with a specified value.
+					- The following example selects all elements with a class attribute value that begins with "top":
+					- The value does not have to be a whole word! 
+					- [class^="top"] { ... }
+				- CSS [attribute$="value"] Selector
+					- The [attribute$="value"] selector is used to select elements whose attribute value ends with a specified value.
+					- The following example selects all elements with a class attribute value that ends with "test":
+					- The value does not have to be a whole word!  
+					- [class$="test"] { ... }
+				- CSS [attribute*="value"] Selector
+					- The [attribute*="value"] selector is used to select elements whose attribute value contains a specified value.
+					- The following example selects all elements with a class attribute value that contains "te":
+					- The value does not have to be a whole word!  
+					- [class*="te"] { ... }
+			- Styling Forms
+				- input[type="text"] { ... }
+				- input[type="button"] { ... }
+		- CSS Forms
+			- Focused Inputs
+				- By default, some browsers will add a blue outline around the input when it gets focus (clicked on). You can remove this behavior by adding outline: none; to the input.
+				- input[type=text]:focus { ... }
+			- Input with icon/image
+				- If you want an icon inside the input, use the background-image property and position it with the background-position property. Also notice that we add a large left padding to reserve the space of the icon
+				- input[type=text] {
+						background-color: white;
+						background-image: url('searchicon.png');
+						background-position: 10px 10px; 
+						background-repeat: no-repeat;
+						padding-left: 40px;
+					}
+			- Animated Search Input
+				- In this example we use the CSS3 transition property to animate the width of the search input when it gets focus.
+				- input[type=text] {
+						-webkit-transition: width 0.4s ease-in-out;
+						transition: width 0.4s ease-in-out;
+					}
+
+					input[type=text]:focus {
+						width: 100%;
+					}
+		- CSS Counters
+			- CSS counters are "variables" maintained by CSS whose values can be incremented by CSS rules (to track how many times they are used). Counters let you adjust the appearance of content based on its placement in the document.
+			- CSS Counter Properties
+				Property			Description
+				content				Used with the ::before and ::after pseudo-elements, to insert generated content
+				counter-increment	Increments one or more counter values
+				counter-reset		Creates or resets one or more counters
+			- Automatic Numbering With Counters
+				- CSS counters are like "variables". The variable values can be incremented by CSS rules (which will track how many times they are used).
+					- To work with CSS counters we will use the following properties:
+						- counter-reset - Creates or resets a counter
+						- counter-increment - Increments a counter value
+						- content - Inserts generated content
+						- counter() or counters() function - Adds the value of a counter to an element
+					- To use a CSS counter, it must first be created with counter-reset.
+					- body {
+							counter-reset: section;
+						}
+
+						h2::before {
+							counter-increment: section;
+							content: "Section " counter(section) ": ";
+						}
+				- Nesting Counters
+					- The following example creates one counter for the page (section) and one counter for each <h1> element (subsection). The "section" counter will be counted for each <h1> element with "Section <value of the section counter>.", and the "subsection" counter will be counted for each <h2> element with "<value of the section counter>.<value of the subsection counter>"
+						- body {
+								counter-reset: section;
+							}
+
+							h1 {
+								counter-reset: subsection;
+							}
+
+							h1::before {
+								counter-increment: section;
+								content: "Section " counter(section) ". ";
+							}
+
+							h2::before {
+								counter-increment: subsection;
+								content: counter(section) "." counter(subsection) " ";
+							}
+					- A counter can also be useful to make outlined lists because a new instance of a counter is automatically created in child elements. Here we use the counters() function to insert a string between different levels of nested counters:
+						- ol {
+								counter-reset: section;
+								list-style-type: none;
+							}
+
+							li::before {
+								counter-increment: section;
+								content: counters(section,".") " ";
+							}
+		- CSS Website Layout
+
+		CSS3
+		- CSS3 Introduction
+			- CSS3 Modules
+				CSS3 has been split into "modules". It contains the "old CSS specification" (which has been split into smaller pieces). In addition, new modules are added.
+
+				Some of the most important CSS3 modules are:
+
+					Selectors
+					Box Model
+					Backgrounds and Borders
+					Image Values and Replaced Content
+					Text Effects
+					2D/3D Transformations
+					Animations
+					Multiple Column Layout
+					User Interface
+					
+				Most of the new CSS3 properties are implemented in modern browsers.
+		- CSS3 Rounded Corners
+			- CSS3 Rounded Corners Properties
+				Property					Description
+				border-radius				A shorthand property for setting all the four border-*-*-radius properties
+				border-top-left-radius		Defines the shape of the border of the top-left corner
+				border-top-right-radius		Defines the shape of the border of the top-right corner
+				border-bottom-right-radius	Defines the shape of the border of the bottom-right corner
+				border-bottom-left-radius	Defines the shape of the border of the bottom-left corner
+		- CSS3 Border Images
+			- CSS3 Border Properties
+				Property			Description
+				border-image		A shorthand property for setting all the border-image-* properties
+				border-image-source	Specifies the path to the image to be used as a border
+				border-image-slice	Specifies how to slice the border image
+				border-image-width	Specifies the widths of the border image
+				border-image-outset	Specifies the amount by which the border image area extends beyond the border box
+				border-image-repeat	Specifies whether the border image should be repeated, rounded or stretched
+		- CSS3 Backgrounds
+			- CSS3 Multiple Backgrounds
+				- #example1 {
+					background: url(img_flwr.gif) right bottom no-repeat, url(paper.gif) left top repeat;
+				}
+			- CSS3 Background Size
+				- #div1 {
+					background: url(img_flower.jpg);
+					background-size: 100px 80px;
+					background-repeat: no-repeat;
+				}
+				- The contain keyword scales the background image to be as large as possible (but both its width and its height must fit inside the content area). As such, depending on the proportions of the background image and the background positioning area, there may be some areas of the background which are not covered by the background image.
+					- #div1 {
+						background: url(img_flower.jpg);
+						background-size: contain;
+						background-repeat: no-repeat;
+					}
+				- The cover keyword scales the background image so that the content area is completely covered by the background image (both its width and height are equal to or exceed the content area). As such, some parts of the background image may not be visible in the background positioning area.
+					- #div2 {
+						background: url(img_flower.jpg);
+						background-size: cover;
+						background-repeat: no-repeat;
+					}
+			- Define Sizes of Multiple Background Images
+				- #example1 {
+					background: url(img_flwr.gif) left top no-repeat, url(img_flwr.gif) right bottom no-repeat, url(paper.gif) left top repeat;
+					background-size: 50px, 130px, auto;
+				}
+			- Full Size Background Image
+				- html {
+					background: url(img_flower.jpg) no-repeat center fixed; 
+					background-size: cover;
+				}
+			- CSS3 background-origin Property
+				- The CSS3 background-origin property specifies where the background image is positioned.
+				- The property takes three different values:
+					border-box - the background image starts from the upper left corner of the border
+					padding-box - (default) the background image starts from the upper left corner of the padding edge
+					content-box - the background image starts from the upper left corner of the content
+			- CSS3 background-clip Property
+				- The CSS3 background-clip property specifies the painting area of the background.
+				- The property takes three different values:
+					border-box - (default) the background is painted to the outside edge of the border
+					padding-box - the background is painted to the outside edge of the padding
+					content-box - the background is painted within the content box
+		- CSS3 Colors
+		- CSS3 Gradients
+			- CSS3 Linear Gradients
+				- Top to Bottom (this is default)
+					- #grad {
+						background: red; /* For browsers that do not support gradients */
+						background: -webkit-linear-gradient(red, yellow); /* For Safari 5.1 to 6.0 */
+						background: -o-linear-gradient(red, yellow); /* For Opera 11.1 to 12.0 */
+						background: -moz-linear-gradient(red, yellow); /* For Firefox 3.6 to 15 */
+						background: linear-gradient(red, yellow); /* Standard syntax */
+					}
+				- Left to Right
+					- #grad {
+					  background: red; /* For browsers that do not support gradients */
+					  background: -webkit-linear-gradient(left, red , yellow); /* For Safari 5.1 to 6.0 */
+					  background: -o-linear-gradient(right, red, yellow); /* For Opera 11.1 to 12.0 */
+					  background: -moz-linear-gradient(right, red, yellow); /* For Firefox 3.6 to 15 */
+					  background: linear-gradient(to right, red , yellow); /* Standard syntax */
+					}
+				- Diagonal
+					- #grad {
+					  background: red; /* For browsers that do not support gradients */
+					  background: -webkit-linear-gradient(left top, red, yellow); /* For Safari 5.1 to 6.0 */
+					  background: -o-linear-gradient(bottom right, red, yellow); /* For Opera 11.1 to 12.0 */
+					  background: -moz-linear-gradient(bottom right, red, yellow); /* For Firefox 3.6 to 15 */
+					  background: linear-gradient(to bottom right, red, yellow); /* Standard syntax */
+					}
+				- Using Angles
+					- #grad {
+					  background: red; /* For browsers that do not support gradients */
+					  background: -webkit-linear-gradient(-90deg, red, yellow); /* For Safari 5.1 to 6.0 */
+					  background: -o-linear-gradient(-90deg, red, yellow); /* For Opera 11.1 to 12.0 */
+					  background: -moz-linear-gradient(-90deg, red, yellow); /* For Firefox 3.6 to 15 */
+					  background: linear-gradient(-90deg, red, yellow); /* Standard syntax */
+					}
+				- Using Multiple Color Stops
+					- from top to bottom
+						- #grad {
+						  background: red; /* For browsers that do not support gradients */
+						  background: -webkit-linear-gradient(red, yellow, green); /* For Safari 5.1 to 6.0 */
+						  background: -o-linear-gradient(red, yellow, green); /* For Opera 11.1 to 12.0 */
+						  background: -moz-linear-gradient(red, yellow, green); /* For Firefox 3.6 to 15 */
+						  background: linear-gradient(red, yellow, green); /* Standard syntax */
+						}
+					- from left to right
+						- #grad {
+						  background: red; /* For browsers that do not support gradients */
+						  /* For Safari 5.1 to 6.0 */
+						  background: -webkit-linear-gradient(left,red,orange,yellow,green,blue,indigo,violet);
+						  /* For Opera 11.1 to 12.0 */
+						  background: -o-linear-gradient(left,red,orange,yellow,green,blue,indigo,violet);
+						  /* For Fx 3.6 to 15 */
+						  background: -moz-linear-gradient(left,red,orange,yellow,green,blue,indigo,violet);
+						  /* Standard syntax */
+						  background: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet); 
+						}
+				- Using Transparency
+					- #grad {
+					  background: red; /* For browsers that do not support gradients */
+					  background: -webkit-linear-gradient(left,rgba(255,0,0,0),rgba(255,0,0,1)); /*Safari 5.1-6*/
+					  background: -o-linear-gradient(right,rgba(255,0,0,0),rgba(255,0,0,1)); /*Opera 11.1-12*/
+					  background: -moz-linear-gradient(right,rgba(255,0,0,0),rgba(255,0,0,1)); /*Fx 3.6-15*/
+					  background: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1)); /*Standard*/
+					}
+				- Repeating a linear-gradient
+					- #grad {
+					  background: red; /* For browsers that do not support gradients */
+					  /* Safari 5.1 to 6.0 */
+					  background: -webkit-repeating-linear-gradient(red, yellow 10%, green 20%);
+					  /* Opera 11.1 to 12.0 */
+					  background: -o-repeating-linear-gradient(red, yellow 10%, green 20%);
+					  /* Firefox 3.6 to 15 */
+					  background: -moz-repeating-linear-gradient(red, yellow 10%, green 20%);
+					  /* Standard syntax */
+					  background: repeating-linear-gradient(red, yellow 10%, green 20%);
+					}
+			- CSS3 Radial Gradients
+				- Evenly Spaced Color Stops (this is default)
+					- #grad {
+					  background: red; /* For browsers that do not support gradients */
+					  background: -webkit-radial-gradient(red, yellow, green); /* Safari 5.1 to 6.0 */
+					  background: -o-radial-gradient(red, yellow, green); /* For Opera 11.6 to 12.0 */
+					  background: -moz-radial-gradient(red, yellow, green); /* For Firefox 3.6 to 15 */
+					  background: radial-gradient(red, yellow, green); /* Standard syntax */
+					}
+				- Differently Spaced Color Stops
+					- #grad {
+					  background: red; /* For browsers that do not support gradients */
+					  background: -webkit-radial-gradient(red 5%, yellow 15%, green 60%); /* Safari 5.1-6.0 */
+					  background: -o-radial-gradient(red 5%, yellow 15%, green 60%); /* For Opera 11.6-12.0 */
+					  background: -moz-radial-gradient(red 5%, yellow 15%, green 60%); /* For Firefox 3.6-15 */
+					  background: radial-gradient(red 5%, yellow 15%, green 60%); /* Standard syntax */
+					}
+				- Set Shape
+					- #grad {
+						  background: red; /* For browsers that do not support gradients */
+						  background: -webkit-radial-gradient(circle, red, yellow, green); /* Safari */
+						  background: -o-radial-gradient(circle, red, yellow, green); /* Opera 11.6 to 12.0 */
+						  background: -moz-radial-gradient(circle, red, yellow, green); /* Firefox 3.6 to 15 */
+						  background: radial-gradient(circle, red, yellow, green); /* Standard syntax */
+						}
+				- Use of Different Size Keywords
+					- The size parameter defines the size of the gradient. It can take four values:
+						closest-side
+						farthest-side
+						closest-corner
+						farthest-corner
+					- #grad1 {
+					  background: red; /* For browsers that do not support gradients */
+					  /* Safari 5.1 to 6.0 */
+					  background: -webkit-radial-gradient(60% 55%, closest-side, red, yellow, black); 
+					  /* For Opera 11.6 to 12.0 */
+					  background: -o-radial-gradient(60% 55%, closest-side, red, yellow, black);
+					  /* For Firefox 3.6 to 15 */
+					  background: -moz-radial-gradient(60% 55%, closest-side, red, yellow, black);
+					  /* Standard syntax */
+					  background: radial-gradient(closest-side at 60% 55%, red, yellow, black);
+					}
+
+					#grad2 {
+					  /* Safari 5.1 to 6.0 */
+					  background: -webkit-radial-gradient(60% 55%, farthest-side, red, yellow, black);
+					  /* Opera 11.6 to 12.0 */ 
+					  background: -o-radial-gradient(60% 55%, farthest-side, red, yellow, black);
+					  /* For Firefox 3.6 to 15 */
+					  background: -moz-radial-gradient(60% 55%, farthest-side, red, yellow, black);
+					  /* Standard syntax */
+					  background: radial-gradient(farthest-side at 60% 55%, red, yellow, black);
+					}
+				- Repeating a radial-gradient
+					- #grad {
+					  background: red; /* For browsers that do not support gradients */
+					  /* For Safari 5.1 to 6.0 */
+					  background: -webkit-repeating-radial-gradient(red, yellow 10%, green 15%);
+					  /* For Opera 11.6 to 12.0 */
+					  background: -o-repeating-radial-gradient(red, yellow 10%, green 15%);
+					  /* For Firefox 3.6 to 15 */
+					  background: -moz-repeating-radial-gradient(red, yellow 10%, green 15%);
+					  /* Standard syntax */
+					  background: repeating-radial-gradient(red, yellow 10%, green 15%);
+					}
+		- CSS3 Shadows
+			- text-shadow
+				- h1 {
+					color: white;
+					text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+				}
+			- box-shadow
+				- <div id="boxshadow">
+					<img src="rock600x400.jpg" alt="Norway" width="600" height="400">
+				  </div>
+				- #boxshadow {
+					position: relative;
+					-moz-box-shadow: 1px 2px 4px rgba(0, 0, 0,0.5);
+					-webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+					box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+					padding: 10px;
+					background: white;
+				}
+
+				/* Make the image fit the box */
+				#boxshadow img {
+					width: 100%;
+					border: 1px solid #8a4419;
+					border-style: inset;
+				}
+
+				#boxshadow::after {
+					content: '';
+					position: absolute;
+					z-index: -1; /* hide shadow behind image */
+					-webkit-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+					-moz-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+					box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);                
+					width: 70%; 
+					left: 15%; /* one half of the remaining 30% */
+					height: 100px;
+					bottom: 0;
+				}
+		- CSS3 Text
+			- CSS3 Text Properties
+				The following table lists the new CSS3 text properties:
+
+				Property		Description
+				text-align-last	Specifies how to align the last line of a text
+				text-justify	Specifies how justified text should be aligned and spaced
+				text-overflow	Specifies how overflowed content that is not displayed should be signaled to the user
+				word-break		Specifies line breaking rules for non-CJK scripts
+				word-wrap		Allows long words to be able to be broken and wrap onto the next line
+		- CSS3 Fonts
+			- Different Font Formats
+				TrueType Fonts (TTF)
+					TrueType is a font standard developed in the late 1980s, by Apple and Microsoft. TrueType is the most common font format for both the Mac OS and Microsoft Windows operating systems.
+				OpenType Fonts (OTF)
+					OpenType is a format for scalable computer fonts. It was built on TrueType, and is a registered trademark of Microsoft. OpenType fonts are used commonly today on the major computer platforms.
+				The Web Open Font Format (WOFF)
+					WOFF is a font format for use in web pages. It was developed in 2009, and is now a W3C Recommendation. WOFF is essentially OpenType or TrueType with compression and additional metadata. The goal is to support font distribution from a server to a client over a network with bandwidth constraints.
+				The Web Open Font Format (WOFF 2.0)
+					TrueType/OpenType font that provides better compression than WOFF 1.0.
+				SVG Fonts/Shapes
+					SVG fonts allow SVG to be used as glyphs when displaying text. The SVG 1.1 specification define a font module that allows the creation of fonts within an SVG document. You can also apply CSS to SVG documents, and the @font-face rule can be applied to text in SVG documents.
+				Embedded OpenType Fonts (EOT)
+					EOT fonts are a compact form of OpenType fonts designed by Microsoft for use as embedded fonts on web pages.
+			- Browser Support for Font Formats
+				The numbers in the table specifies the first browser version that fully supports the font format.
+
+				Font format		IE				chrome			firefox			safari			opera		
+				TTF/OTF			9.0*			4.0				3.5				3.1				10.0
+				WOFF			9.0				5.0				3.6				5.1				11.1
+				WOFF2			Not supported	36.0			35.0*			Not supported	26.0
+				SVG				Not supported	4.0				Not supported	3.2				9.0
+				EOT				6.0				Not supported	Not supported	Not supported	Not supported
+				*IE: The font format only works when set to be "installable".
+				*Firefox: Not supported by default, but can be enabled (need to set a flag to "true" to use WOFF2).
+			- Using The Font You Want
+				- @font-face {
+						font-family: myFirstFont;
+						src: url(sansation_light.woff);
+					}
+					div {
+						font-family: myFirstFont;
+					}
+			- Using Bold Text
+				- @font-face {
+					font-family: myFirstFont;
+					src: url(sansation_bold.woff);
+					font-weight: bold;
+				}
+			- CSS3 Font Descriptors
+				The following table lists all the font descriptors that can be defined inside the @font-face rule:
+
+				Descriptor		Values			Description
+				font-family		name			Required. Defines a name for the font
+				src				URL				Required. Defines the URL of the font file
+				font-stretch	normal
+								condensed
+								ultra-condensed
+								extra-condensed
+								semi-condensed
+								expanded
+								semi-expanded
+								extra-expanded
+								ultra-expanded	Optional. Defines how the font should be stretched. Default is "normal"
+				font-style		normal
+								italic
+								oblique			Optional. Defines how the font should be styled. Default is "normal"
+				font-weight		normal
+								bold
+								100
+								200
+								300
+								400
+								500
+								600
+								700
+								800
+								900				Optional. Defines the boldness of the font. Default is "normal"
+				unicode-range	unicode-range	Optional. Defines the range of UNICODE characters the font supports. Default is "U+0-10FFFF"
+		- CSS3 2D Transforms
+			- CSS3 Transform Properties
+				The following table lists all the 2D transform properties:
+
+				Property			Description
+				transform			Applies a 2D or 3D transformation to an element
+				transform-origin	Allows you to change the position on transformed elements
+				
+			- 2D Transform Methods
+				Function				Description
+				matrix(n,n,n,n,n,n)		Defines a 2D transformation, using a matrix of six values
+				translate(x,y)			Defines a 2D translation, moving the element along the X- and the Y-axis
+				translateX(n)			Defines a 2D translation, moving the element along the X-axis
+				translateY(n)			Defines a 2D translation, moving the element along the Y-axis
+				scale(x,y)				Defines a 2D scale transformation, changing the elements width and height
+				scaleX(n)				Defines a 2D scale transformation, changing the element's width
+				scaleY(n)				Defines a 2D scale transformation, changing the element's height
+				rotate(angle)			Defines a 2D rotation, the angle is specified in the parameter
+				skew(x-angle,y-angle)	Defines a 2D skew transformation along the X- and the Y-axis
+				skewX(angle)			Defines a 2D skew transformation along the X-axis
+				skewY(angle)			Defines a 2D skew transformation along the Y-axis
+		- CSS3 3D Transforms
+			- CSS3 Transform Properties
+				The following table lists all the 3D transform properties:
+
+				Property			Description
+				transform			Applies a 2D or 3D transformation to an element
+				transform-origin	Allows you to change the position on transformed elements
+				transform-style		Specifies how nested elements are rendered in 3D space
+				perspective			Specifies the perspective on how 3D elements are viewed
+				perspective-origin	Specifies the bottom position of 3D elements
+				backface-visibility	Defines whether or not an element should be visible when not facing the screen
+			- 3D Transform Methods
+				Function							Description
+				matrix3d
+				(n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n)	Defines a 3D transformation, using a 4x4 matrix of 16 values
+				translate3d(x,y,z)					Defines a 3D translation
+				translateX(x)						Defines a 3D translation, using only the value for the X-axis
+				translateY(y)						Defines a 3D translation, using only the value for the Y-axis
+				translateZ(z)						Defines a 3D translation, using only the value for the Z-axis
+				scale3d(x,y,z)						Defines a 3D scale transformation
+				scaleX(x)							Defines a 3D scale transformation by giving a value for the X-axis
+				scaleY(y)							Defines a 3D scale transformation by giving a value for the Y-axis
+				scaleZ(z)							Defines a 3D scale transformation by giving a value for the Z-axis
+				rotate3d(x,y,z,angle)				Defines a 3D rotation
+				rotateX(angle)						Defines a 3D rotation along the X-axis
+				rotateY(angle)						Defines a 3D rotation along the Y-axis
+				rotateZ(angle)						Defines a 3D rotation along the Z-axis
+				perspective(n)						Defines a perspective view for a 3D transformed element
+		- CSS3 Transitions
+			- CSS3 Transition Properties
+				The following table lists all the transition properties:
+
+				Property					Description
+				transition					A shorthand property for setting the four transition properties into a single property
+				transition-delay			Specifies a delay (in seconds) for the transition effect
+				transition-duration			Specifies how many seconds or milliseconds a transition effect takes to complete
+				transition-property			Specifies the name of the CSS property the transition effect is for
+				transition-timing-function	Specifies the speed curve of the transition effect
+			- div {
+				transition: width 2s linear 1s;
+			}
+		- CSS3 Animations
+			- CSS3 Animation Properties
+				The following table lists the @keyframes rule and all the animation properties:
+
+				Property					Description
+				@keyframes					Specifies the animation code
+				animation					A shorthand property for setting all the animation properties
+				animation-delay				Specifies a delay for the start of an animation
+				animation-direction			Specifies whether an animation should play in reverse direction or alternate cycles
+				animation-duration			Specifies how many seconds or milliseconds an animation takes to complete one cycle
+				animation-fill-mode			Specifies a style for the element when the animation is not playing (when it is finished, or when it has a delay)
+				animation-iteration-count	Specifies the number of times an animation should be played
+				animation-name				Specifies the name of the @keyframes animation
+				animation-play-state		Specifies whether the animation is running or paused
+				animation-timing-function	Specifies the speed curve of the animation
+			- /* The animation code */
+				@keyframes example {
+					from {background-color: red;}
+					to {background-color: yellow;}
+				}
+			- /* The element to apply the animation to */
+				div {
+					width: 100px;
+					height: 100px;
+					background-color: red;
+					animation: example 5s linear 2s infinite alternate;
+				}
+		- CSS3 Images
+			- Image Modal (Advanced) *****
+		- CSS3 object-fit	
+		- CSS3 Buttons
+			- Animated Buttons *****
+		- CSS3 Pagination
+		- CSS3 Multiple Columns
+			- CSS3 Multi-columns Properties
+				The following table lists all the multi-columns properties: 
+
+				Property			Description
+				column-count		Specifies the number of columns an element should be divided into
+				column-fill			Specifies how to fill columns
+				column-gap			Specifies the gap between the columns
+				column-rule			A shorthand property for setting all the column-rule-* properties
+				column-rule-color	Specifies the color of the rule between columns
+				column-rule-style	Specifies the style of the rule between columns
+				column-rule-width	Specifies the width of the rule between columns
+				column-span			Specifies how many columns an element should span across
+				column-width		Specifies a suggested, optimal width for the columns
+				columns				A shorthand property for setting column-width and column-count
+		- CSS3 User Interface
+			- CSS3 User Interface Properties
+				The following table lists all the user interface properties:
+
+				Property		Description
+				box-sizing		Allows you to include the padding and border in an element's total width and height
+				nav-down		Specifies where to navigate when using the arrow-down navigation key
+				nav-index		Specifies the tabbing order for an element
+				nav-left		Specifies where to navigate when using the arrow-left navigation key
+				nav-right		Specifies where to navigate when using the arrow-right navigation key
+				nav-up			Specifies where to navigate when using the arrow-up navigation key
+				outline-offset	Adds space between an outline and the edge or border of an element
+				resize			Specifies whether or not an element is resizable by the user
+		- CSS3 Box Sizing
+		- CSS3 Flexbox
+			- CSS3 Flexbox Properties
+				The following table lists the CSS properties used with flexbox:
+
+				Property		Description
+				display			Specifies the type of box used for an HTML element
+				flex-direction	Specifies the direction of the flexible items inside a flex container
+				justify-content	Horizontally aligns the flex items when the items do not use all available space on the main-axis
+				align-items		Vertically aligns the flex items when the items do not use all available space on the cross-axis
+				flex-wrap		Specifies whether the flex items should wrap or not, if there is not enough room for them on one flex line
+				align-content	Modifies the behavior of the flex-wrap property. It is similar to align-items, but instead of aligning flex items, it aligns flex lines
+				flex-flow		A shorthand property for flex-direction and flex-wrap
+				order			Specifies the order of a flexible item relative to the rest of the flex items inside the same container
+				align-self		Used on flex items. Overrides the container's align-items property
+				flex			Specifies the length of a flex item, relative to the rest of the flex items inside the same container
+		- CSS3 Media Queries
+			- Media Query Syntax
+				A media query consists of a media type and can contain one or more expressions, which resolve to either true or false.
+					@media not|only mediatype and (expressions) {
+						CSS-Code;
+					}
+				The result of the query is true if the specified media type matches the type of device the document is being displayed on and all expressions in the media query are true. When a media query is true, the corresponding style sheet or style rules are applied, following the normal cascading rules.
+
+				Unless you use the not or only operators, the media type is optional and the all type will be implied.
+
+				You can also have different stylesheets for different media:
+
+					<link rel="stylesheet" media="mediatype and|not|only (expressions)" href="print.css">
+			- CSS3 Media Types
+				Value	Description
+				all		Used for all media type devices
+				print	Used for printers
+				screen	Used for computer screens, tablets, smart-phones etc.
+				speech	Used for screenreaders that "reads" the page out loud
+		- CSS3 MQ Examples
+
+		CSS Responsive
+		- RWD Intro
+		- RWD Viewport
+			- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		- RWD Grid View
+		- RWD Media Queries
+			- Always Design for Mobile First
+				- [class*="col-"] { /* For mobile phones: */ width: 100%; }
+				- @media only screen and (min-width: 600px) { /* For tablets: */ .col-m-1 {width: 8.33%;} ... }
+				- @media only screen and (min-width: 768px) { /* For desktop: */ .col-1 {width: 8.33%;} ... }
+			- Orientation: Portrait / Landscape
+				- @media only screen and (orientation: landscape) { body { background-color: lightblue; } }
+		- RWD Images
+			- HTML5 <picture> Element
+				- <picture>
+					  <source srcset="img_smallflower.jpg" media="(max-width: 400px)">
+					  <source srcset="img_flowers.jpg">
+					  <img src="img_flowers.jpg" alt="Flowers">
+				  </picture>
+		- RWD Videos
+		- RWD Frameworks
+		- RWD Templates
+
+		CSS Examples
+		- CSS Templates
+		- CSS Examples
+		- CSS Quiz
+		- CSS Exercises
+		- CSS Certificate
+
+		CSS References
+		- CSS Reference
+		- CSS Selectors
+		- CSS Functions
+		- CSS Reference Aural
+		- CSS Web Safe Fonts
+		- CSS Animatable
+		- CSS Units
+		- CSS PX-EM Converter
+		- CSS Colors
+		- CSS Color Values
+		- CSS Default Values
+		- CSS3 Browser Support

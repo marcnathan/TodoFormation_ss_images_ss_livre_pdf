@@ -1,0 +1,404 @@
+> Dependency Injection
+	- 
+
+
+
+// ------------------------------------------------
+http://designpatternsphp.readthedocs.io/en/latest/Structural/DependencyInjection/README.html
+
+
+2.6. Dependency Injection
+2.6.1. Purpose
+
+To implement a loosely coupled architecture in order to get better testable, maintainable and extendable code.
+2.6.2. Usage
+
+Configuration gets injected and Connection will get all that it needs from $config. Without DI, the configuration would be created directly in Connection, which is not very good for testing and extending Connection.
+
+Notice we are following Inversion of control principle in Connection by asking $config to implement Parameters interface. This decouples our components. We don’t care where the source of information comes from, we only care that $config has certain methods to retrieve that information. Read more about Inversion of control here.
+2.6.3. Examples
+
+    The Doctrine2 ORM uses dependency injection e.g. for configuration that is injected into a Connection object. For testing purposes, one can easily create a mock object of the configuration and inject that into the Connection object
+    Symfony and Zend Framework 2 already have containers for DI that create objects via a configuration array and inject them where needed (i.e. in Controllers)
+
+2.6.4. UML Diagram
+Alt DependencyInjection UML Diagram
+2.6.5. Code
+
+You can also find these code on GitHub
+
+AbstractConfig.php
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+
+	
+
+<?php
+
+namespace DesignPatterns\Structural\DependencyInjection;
+
+/**
+ * class AbstractConfig.
+ */
+abstract class AbstractConfig
+{
+    /**
+     * @var Storage of data
+     */
+    protected $storage;
+
+    public function __construct($storage)
+    {
+        $this->storage = $storage;
+    }
+}
+
+Parameters.php
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+
+	
+
+<?php
+
+namespace DesignPatterns\Structural\DependencyInjection;
+
+/**
+ * Parameters interface.
+ */
+interface Parameters
+{
+    /**
+     * Get parameter.
+     *
+     * @param string|int $key
+     *
+     * @return mixed
+     */
+    public function get($key);
+
+    /**
+     * Set parameter.
+     *
+     * @param string|int $key
+     * @param mixed      $value
+     */
+    public function set($key, $value);
+}
+
+ArrayConfig.php
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+
+	
+
+<?php
+
+namespace DesignPatterns\Structural\DependencyInjection;
+
+/**
+ * class ArrayConfig.
+ *
+ * uses array as data source
+ */
+class ArrayConfig extends AbstractConfig implements Parameters
+{
+    /**
+     * Get parameter.
+     *
+     * @param string|int $key
+     * @param null       $default
+     *
+     * @return mixed
+     */
+    public function get($key, $default = null)
+    {
+        if (isset($this->storage[$key])) {
+            return $this->storage[$key];
+        }
+
+        return $default;
+    }
+
+    /**
+     * Set parameter.
+     *
+     * @param string|int $key
+     * @param mixed      $value
+     */
+    public function set($key, $value)
+    {
+        $this->storage[$key] = $value;
+    }
+}
+
+Connection.php
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+
+	
+
+<?php
+
+namespace DesignPatterns\Structural\DependencyInjection;
+
+/**
+ * Class Connection.
+ */
+class Connection
+{
+    /**
+     * @var Configuration
+     */
+    protected $configuration;
+
+    /**
+     * @var Currently connected host
+     */
+    protected $host;
+
+    /**
+     * @param Parameters $config
+     */
+    public function __construct(Parameters $config)
+    {
+        $this->configuration = $config;
+    }
+
+    /**
+     * connection using the injected config.
+     */
+    public function connect()
+    {
+        $host = $this->configuration->get('host');
+        // connection to host, authentication etc...
+
+        //if connected
+        $this->host = $host;
+    }
+
+    /*
+     * Get currently connected host
+     *
+     * @return string
+     */
+
+    public function getHost()
+    {
+        return $this->host;
+    }
+}
+
+2.6.6. Test
+
+Tests/DependencyInjectionTest.php
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+
+	
+
+<?php
+
+namespace DesignPatterns\Structural\DependencyInjection\Tests;
+
+use DesignPatterns\Structural\DependencyInjection\ArrayConfig;
+use DesignPatterns\Structural\DependencyInjection\Connection;
+
+class DependencyInjectionTest extends \PHPUnit_Framework_TestCase
+{
+    protected $config;
+    protected $source;
+
+    public function setUp()
+    {
+        $this->source = include 'config.php';
+        $this->config = new ArrayConfig($this->source);
+    }
+
+    public function testDependencyInjection()
+    {
+        $connection = new Connection($this->config);
+        $connection->connect();
+        $this->assertEquals($this->source['host'], $connection->getHost());
+    }
+}
+
+Tests/config.php
+
+1
+2
+3
+
+	
+
+<?php
+
+return array('host' => 'github.com');
+
+
+
+
+// ------------------------------------------------
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,231 @@
+> Pool
+	- 
+
+
+
+// ------------------------------------------------
+http://designpatternsphp.readthedocs.io/en/latest/Creational/Pool/README.html
+
+
+
+1.5. Pool
+
+The object pool pattern is a software creational design pattern that uses a set of initialized objects kept ready to use – a “pool” – rather than allocating and destroying them on demand. A client of the pool will request an object from the pool and perform operations on the returned object. When the client has finished, it returns the object, which is a specific type of factory object, to the pool rather than destroying it.
+
+Object pooling can offer a significant performance boost in situations where the cost of initializing a class instance is high, the rate of instantiation of a class is high, and the number of instances in use at any one time is low. The pooled object is obtained in predictable time when creation of the new objects (especially over network) may take variable time.
+
+However these benefits are mostly true for objects that are expensive with respect to time, such as database connections, socket connections, threads and large graphic objects like fonts or bitmaps. In certain situations, simple object pooling (that hold no external resources, but only occupy memory) may not be efficient and could decrease performance.
+1.5.1. UML Diagram
+Alt Pool UML Diagram
+1.5.2. Code
+
+You can also find these code on GitHub
+
+Pool.php
+
+<?php
+
+namespace DesignPatterns\Creational\Pool;
+
+class Pool
+{
+    private $instances = array();
+    private $class;
+
+    public function __construct($class)
+    {
+        $this->class = $class;
+    }
+
+    public function get()
+    {
+        if (count($this->instances) > 0) {
+            return array_pop($this->instances);
+        }
+
+        return new $this->class();
+    }
+
+    public function dispose($instance)
+    {
+        $this->instances[] = $instance;
+    }
+}
+
+Processor.php
+
+<?php
+
+namespace DesignPatterns\Creational\Pool;
+
+class Processor
+{
+    private $pool;
+    private $processing = 0;
+    private $maxProcesses = 3;
+    private $waitingQueue = array();
+
+    public function __construct(Pool $pool)
+    {
+        $this->pool = $pool;
+    }
+
+    public function process($image)
+    {
+        if ($this->processing++ < $this->maxProcesses) {
+            $this->createWorker($image);
+        } else {
+            $this->pushToWaitingQueue($image);
+        }
+    }
+
+    private function createWorker($image)
+    {
+        $worker = $this->pool->get();
+        $worker->run($image, array($this, 'processDone'));
+    }
+
+    public function processDone($worker)
+    {
+        $this->processing--;
+        $this->pool->dispose($worker);
+
+        if (count($this->waitingQueue) > 0) {
+            $this->createWorker($this->popFromWaitingQueue());
+        }
+    }
+
+    private function pushToWaitingQueue($image)
+    {
+        $this->waitingQueue[] = $image;
+    }
+
+    private function popFromWaitingQueue()
+    {
+        return array_pop($this->waitingQueue);
+    }
+}
+
+Worker.php
+
+<?php
+
+namespace DesignPatterns\Creational\Pool;
+
+class Worker
+{
+    public function __construct()
+    {
+        // let's say that constuctor does really expensive work...
+        // for example creates "thread"
+    }
+
+    public function run($image, array $callback)
+    {
+        // do something with $image...
+        // and when it's done, execute callback
+        call_user_func($callback, $this);
+    }
+}
+
+1.5.3. Test
+
+Tests/PoolTest.php
+
+<?php
+
+namespace DesignPatterns\Creational\Pool\Tests;
+
+use DesignPatterns\Creational\Pool\Pool;
+
+class PoolTest extends \PHPUnit_Framework_TestCase
+{
+    public function testPool()
+    {
+        $pool = new Pool('DesignPatterns\Creational\Pool\Tests\TestWorker');
+        $worker = $pool->get();
+
+        $this->assertEquals(1, $worker->id);
+
+        $worker->id = 5;
+        $pool->dispose($worker);
+
+        $this->assertEquals(5, $pool->get()->id);
+        $this->assertEquals(1, $pool->get()->id);
+    }
+}
+
+Tests/TestWorker.php
+
+<?php
+
+namespace DesignPatterns\Creational\Pool\Tests;
+
+class TestWorker
+{
+    public $id = 1;
+}
+
+
+
+
+
+
+// ------------------------------------------------
+https://sourcemaking.com/design_patterns/object_pool
+
+
+Object Pool Design Pattern
+Intent
+
+Object pooling can offer a significant performance boost; it is most effective in situations where the cost of initializing a class instance is high, the rate of instantiation of a class is high, and the number of instantiations in use at any one time is low.
+Problem
+
+Object pools (otherwise known as resource pools) are used to manage the object caching. A client with access to a Object pool can avoid creating a new Objects by simply asking the pool for one that has already been instantiated instead. Generally the pool will be a growing pool, i.e. the pool itself will create new objects if the pool is empty, or we can have a pool, which restricts the number of objects created.
+
+It is desirable to keep all Reusable objects that are not currently in use in the same object pool so that they can be managed by one coherent policy. To achieve this, the Reusable Pool class is designed to be a singleton class.
+Discussion
+
+The Object Pool lets others "check out" objects from its pool, when those objects are no longer needed by their processes, they are returned to the pool in order to be reused.
+
+However, we don't want a process to have to wait for a particular object to be released, so the Object Pool also instantiates new objects as they are required, but must also implement a facility to clean up unused objects periodically.
+Structure
+
+The general idea for the Connection Pool pattern is that if instances of a class can be reused, you avoid creating instances of the class by reusing them.
+
+Object Pool scheme
+
+    Reusable - Instances of classes in this role collaborate with other objects for a limited amount of time, then they are no longer needed for that collaboration.
+    Client - Instances of classes in this role use Reusable objects.
+    ReusablePool - Instances of classes in this role manage Reusable objects for use by Client objects.
+
+Usually, it is desirable to keep all Reusable objects that are not currently in use in the same object pool so that they can be managed by one coherent policy. To achieve this, the ReusablePool class is designed to be a singleton class. Its constructor(s) are private, which forces other classes to call its getInstance method to get the one instance of the ReusablePool class.
+
+A Client object calls a ReusablePool object's acquireReusable method when it needs a Reusable object. A ReusablePool object maintains a collection of Reusable objects. It uses the collection of Reusable objects to contain a pool of Reusable objects that are not currently in use.
+
+If there are any Reusable objects in the pool when the acquireReusable method is called, it removes a Reusable object from the pool and returns it. If the pool is empty, then the acquireReusable method creates a Reusable object if it can. If the acquireReusable method cannot create a new Reusable object, then it waits until a Reusable object is returned to the collection.
+
+Client objects pass a Reusable object to a ReusablePool object's releaseReusable method when they are finished with the object. The releaseReusable method returns a Reusable object to the pool of Reusable objects that are not in use.
+
+In many applications of the Object Pool pattern, there are reasons for limiting the total number of Reusable objects that may exist. In such cases, the ReusablePool object that creates Reusable objects is responsible for not creating more than a specified maximum number of Reusable objects. If ReusablePool objects are responsible for limiting the number of objects they will create, then the ReusablePool class will have a method for specifying the maximum number of objects to be created. That method is indicated in the above diagram as setMaxPoolSize.
+Example
+
+Object pool pattern is similar to an office warehouse. When a new employee is hired, office manager has to prepare a work space for him. She figures whether or not there's a spare equipment in the office warehouse. If so, she uses it. If not, she places an order to purchase new equipment from Amazon. In case if an employee is fired, his equipment is moved to warehouse, where it could be taken when new work place will be needed.
+
+Object Pool example
+Check list
+
+    Create ObjectPool class with private array of Objects inside
+    Create acquare and release methods in ObjectPool class
+    Make sure that your ObjectPool is Singleton
+
+Rules of thumb
+
+    The Factory Method pattern can be used to encapsulate the creation logic for objects. However, it does not manage them after their creation, the object pool pattern keeps track of the objects it creates.
+    Object Pools are usually implemented as Singletons.
+
+
+
+
+
+

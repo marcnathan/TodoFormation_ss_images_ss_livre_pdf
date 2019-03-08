@@ -1,0 +1,21 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+
+	
+	
+> référencement
+	- référencement
+		- ressources 
+			- net
+				- 
+			- livre
+				- Google Analytique
+		- lien indexe complet
+			- 
+		- procédées essentiels
+			- sitemap.txt
+		- base, api et outils 
+			- Google

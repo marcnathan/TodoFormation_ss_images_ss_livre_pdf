@@ -1,0 +1,70 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+
+	
+	
+> linux- linux
+				- ressources
+					- net
+						- https://learnxinyminutes.com/docs/bash/
+						- https://learnxinyminutes.com/docs/vim/
+						- https://learnxinyminutes.com/docs/make/
+					- livre
+						- 
+				- lien indexe complet
+					*- Naviguer des les répertoires
+						- 
+					*- Gérer les droits d'accès
+						- 
+					*- Déplacer, copier, créer, supprimer...
+						- 
+					*- Recherche de fichier
+						- 
+					*- Redirection des flux
+						- 
+					- Comparer / trier des fichiers : diff, cmp, sort, uniq
+						- 
+					*- Afficher le contenu de fichiers : cat, more, less, tail, diff, head...
+						- 
+					*- Recherche de chaînes avec grep
+						- 
+					*- Remplacer des chaînes
+						- 
+					*- Editer des fichiers
+						- 
+					- Scripts de démarrage
+						- 
+					*- Réseau
+						- 
+					*- Connexion à un hôte distant
+						- 
+					*- Archivage, signature, UUencode
+						- 
+					- Structures de contrôle du shell
+						- 
+					- Administration
+						- 
+					*- Gestion des processus
+						- 
+					*- Gestion des disques et partitions
+						- 
+					- Développement
+						- 
+					- Contrôle de version avec CVS et SVN
+						- 
+					*- Utilisateurs
+						- 
+					*- Créer des comptes utilisateur
+						- 
+				- procédées essentiels
+					- *
+				- outils
+					- 
+	
+	
+	
+	
+	

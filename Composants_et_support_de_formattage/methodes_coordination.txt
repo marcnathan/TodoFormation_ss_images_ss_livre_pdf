@@ -1,0 +1,376 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+
+
+- Méthodes 
+		- Coordination générique des parties (à confronter avec méthode de développement) du GL
+			- Scrum de Agile + Redmine|Trello
+				- ressources
+					- net
+						- 
+					- livre
+						- pdf scrum sicave > super super super !!!! (sans i, pauve mot)
+				- lien indexe complet
+					- méthodes agiles
+						- Rapid Application Development (RAD, 1991)
+						- Intégration continue (1991)
+						- Dynamic systems development method (DSDM, 1995, consortium anglais commercialisant le RAD)
+						- Scrum (1996)
+							- Roles
+								- Product owner
+								- Scrum team
+								- Scrum master
+							- Workflow
+								- Sprint planning
+								- Product backlog
+								- Sprint backlog
+								- Sprint
+								- Daily scrum
+								- Shippable product
+								- Sprint review
+								- Sprint retrospective
+							- Artifacts
+								- Product backlog
+								- Sprint backlog
+								- Burndown chart
+								- Release Backlog
+								- Product increment
+						- Extreme programming (XP, 1999)
+						- Adaptive software development (ASD, 2000)
+						- Développement basé sur les fonctionnalités (FDD pour Feature Driven Development, 2003)
+						- Behavior-driven development (BDD, 2003)
+						- Crystal clear (2004)
+				- procédées essentiels
+					- Srcum
+						- Roles
+							- Product owner
+							- Scrum team
+							- Scrum master
+						- Workflow
+							- Sprint planning
+							- Product backlog
+							- Sprint backlog
+							- Sprint
+							- Daily scrum
+							- Release Backlog
+							- Shippable product
+							- Sprint review
+							- Sprint retrospective
+						- Artifacts
+							- Product backlog
+							- Sprint backlog
+							- Burndown chart
+							- Release Backlog
+				- outils
+					- 
+					
+			- méthode classique de développement
+				- cahier des chrges + Gaant et Pert
+			- ressources
+				- net
+					- 
+				- livre
+					- memento
+			- lien indexe complet
+				- cahier des charges
+					- 
+					- modélisation uml
+						- 
+					- 
+				- gantt
+					- 
+				- pert
+					- 
+				- cycles de développements et de tests
+					- V
+				- présentation
+					- 
+				- mise en production
+					- 
+			- procédées essentiels
+				- 
+			- outils
+				- 
+		- Coordination de genre de parties 
+			- Coordination des développeurs (à confronter avec méthode de développement)
+				- uml
+					- ressources
+						- net
+							- 
+						- livre
+							- 
+					- lien indexe complet
+						- diagrammes
+							- Structural UML diagrams
+								*- Class
+									- UML 1.x
+									- Classes, types, interfaces, and the relationships between them.
+										- modélisation
+											*- classe
+												- Visibility
+													- To specify the visibility of a class member (i.e. any attribute or method), these notations must be placed before the member's name
+														- +	Public
+														- -	Private
+														- #	Protected
+														- /	Derived (can be combined with one of the others)
+														- ~	Package
+												- Scopes
+													- The UML specifies two types of scope for members: instance and classifier*, and the latter* is represented by underlined names
+														- Classifier members are commonly recognized as “static” in many programming languages. The scope is the class itself
+															- Attribute values are equal for all instances
+															- Method invocation does not affect the instance’s state
+														- Instance members are scoped to a specific instance.
+															- Attribute values may vary between instances
+															- Method invocation may affect the instance’s state (i.e. change instance’s attributes)
+											*- interactions
+												- Instance-level relationships
+													- Dependency
+														- A dependency is a semantic connection between dependent and independent model elements.[5] It exists between two elements if changes to the definition of one element (the server or target) may cause changes to the other (the client or source). This association is uni-directional.
+														-	----->
+													- Association 
+														- An association represents a family of links. A binary association (with two ends) is normally represented as a line. An association can link any number of classes. An association with three links is called a ternary association. An association can be named, and the ends of an association can be adorned with role names, ownership indicators, multiplicity, visibility, and other properties.
+														There are four different types of association: bi-directional, uni-directional, aggregation (includes composition aggregation) and reflexive. Bi-directional and uni-directional associations are the most common ones.
+														For instance, a flight class is associated with a plane class bi-directionally. Association represents the static relationship shared among the objects of two classes.
+														-	_____|>
+													- Aggregation
+														- Aggregation is a variant of the "has a" association relationship; aggregation is more specific than association. It is an association that represents a part-whole or part-of relationship. As shown in the image, a Professor 'has a' class to teach. As a type of association, an aggregation can be named and have the same adornments that an association can. However, an aggregation may not involve more than two classes; it must be a binary association. Furthermore, there is hardly a difference between aggregations and associations during implementation, and the diagram may skip aggregation relations altogether.[6]
+
+														Aggregation can occur when a class is a collection or container of other classes, but the contained classes do not have a strong lifecycle dependency on the container. The contents of the container still exist when the container is destroyed.
+
+														In UML, it is graphically represented as a hollow diamond shape on the containing class with a single line that connects it to the contained class. The aggregate is semantically an extended object that is treated as a unit in many operations, although physically it is made of several lesser objects.
+
+														Example: Library has Students and books. Here the student can exist without library, the relation between student and library is aggregation.
+														-	_____<>
+													- Composition
+														- The UML graphical representation of a composition relationship shows composition as a filled diamond shape on the containing class end of the lines that connect contained class(es) to the containing class.
+														-	_____<*>
+												- Class-level relationships
+													- Generalization or Ineritance
+														- It indicates that one of the two related classes (the subclass) is considered to be a specialized form of the other (the super type) and the superclass is considered a Generalization of the subclass. In practice, means that any instance of the subtype is also an instance of the superclass. An exemplary tree of generalizations of this form is found in biological classification: humans are a subclass of simian, which is a subclass of mammal, and so on. The relationship is most easily understood by the phrase 'an A is a B' (a human is a mammal, a mammal is an animal).
+
+														The UML graphical representation of a Generalization is a hollow triangle shape on the superclass end of the line (or tree of lines) that connects it to one or more subtypes.
+
+														The generalization relationship is also known as the inheritance or "is a" relationship.
+
+														The superclass (base class) in the generalization relationship is also known as the "parent", superclass, base class, or base type.
+
+														The subtype in the specialization relationship is also known as the "child", subclass, derived class, derived type, inheriting class, or inheriting type.
+
+														Note that this relationship bears no resemblance to the biological parent–child relationship: the use of these terms is extremely common, but can be misleading.
+
+														A is a type of B
+														For example, "an oak is a type of tree", "an automobile is a type of vehicle"
+														Generalization can only be shown on class diagrams and on use case diagrams.
+														-	_____|>
+													- Realization/Implementation
+														- In UML modelling, a realization relationship is a relationship between two model elements, in which one model element (the client) realizes (implements or executes) the behavior that the other model element (the supplier) specifies.
+
+														The UML graphical representation of a Realization is a hollow triangle shape on the interface end of the dashed line (or tree of lines) that connects it to one or more implementers. A plain arrow head is used on the interface end of the dashed line that connects it to its users. In component diagrams, the ball-and-socket graphic convention is used (implementors expose a ball or lollipop, whereas users show a socket).
+
+														Realizations can only be shown on class or component diagrams.
+
+														A realization is a relationship between classes, interfaces, components and packages that connects a client element with a supplier element. A realization relationship between classes and interfaces between components and interfaces shows that the class realizes the operations offered by the interface.
+														-	-----|>
+												- General relationship
+													- Dependency
+														- Dependency is a weaker form of bond that indicates that one class depends on another because it uses it at some point in time. One class depends on another if the independent class is a parameter variable or local variable of a method of the dependent class. This is different from an association, where an attribute of the dependent class is an instance of the independent class. Sometimes the relationship between two classes is very weak. They are not implemented with member variables at all. Rather they might be implemented as member function arguments.
+													- Multiplicity
+														- This association relationship indicates that (at least) one of the two related classes make reference to the other. This relationship is usually described as "A has a B" (a mother cat has kittens, kittens have a mother cat).
+
+														The UML representation of an association is a line connecting the two associated classes. At each end of the line there is optional notation. For example, we can indicate, using an arrowhead that the pointy end is visible from the arrow tail. We can indicate ownership by the placement of a ball, the role the elements of that end play by supplying a name for the role, and the multiplicity of instances of that entity (the range of number of objects that participate in the association from the perspective of the other end).
+														
+															- 0	No instances (rare)
+															- 0..1	No instances, or one instance
+															- 1	Exactly one instance
+															- 0..*	Zero or more instances
+															- *	Zero or more instances
+															- 1..*	One or more instances
+								- Component
+									- UML 1.x, but takes on a new meaning in UML 2.0
+									- Important components within your system and the interfaces they use to interact with each other.
+									- 
+								- Composite Structure
+									- UML 2.0
+									- The internals of a class or component, and can describe class relationships within a given context.
+									- 
+								- Deployment
+									- UML 1.x
+									- How your system is finally deployed in a given real-world situation.
+									- 
+								- Object
+									- Informally UML 1.x
+									- Object instances of the classes defined in class diagrams in configurations that are important to your system.
+									- 
+								- Package
+									- UML 2.0
+									- The hierarchical organization of groups of classes and components.
+									- 
+								- Profile
+									- UML 2.0
+									- It was introduced with UML 2 to display the usage of profiles.
+									- 
+							- Behavioral UML diagrams
+								- Activity
+									- UML 1.x
+									- Sequential and parallel activities within your system.
+									- 
+								- Communication
+									- Renamed from UML 1.x's collaboration diagrams
+									- The ways in which objects interact and the connections that are needed to support that interaction.
+									- 
+								- Interaction Overview
+									- UML 2.0
+									- Used to collect sequence, communication, and timing diagrams together to capture an important interaction that occurs within your system.
+									- 
+								- Sequence
+									- UML 1.x
+									- Interactions between objects where the order of the interactions is important.
+									- 
+								- State Machine
+									- UML 1.x
+									- The state of an object throughout its lifetime and the events that can change that state.
+									- 
+								- Timing
+									- UML 2.0
+									- Interactions between objects where timing is an important concern.
+									- 
+								*- Use Case
+									- UML 1.x
+									- Interactions between your system and users or other external systems. Also helpful in mapping requirements to your systems.
+									- A use case diagram at its simplest is a representation of a user's interaction with the system that shows the relationship between the user and the different use cases in which the user is involved. A use case diagram can identify the different types of users of a system and the different use cases and will often be accompanied by other types of diagrams as well.
+										- profils on zones
+										- cercles of main object with inputs and outputs
+										- with access and relation links
+					- procédées essentiels
+						- diagrammes
+							- classe
+							- cas d'utilisation
+					- outils
+						
+				- Merise bdd
+					- voir synthèse merise et sql
+				- mode de développement TDD, BDD, DDD, DDB
+					- ressources
+						- net
+							- 
+						- livre
+							- 
+					- lien indexe complet
+						- Test-driven development cycle
+							- 1. Add a test
+							- 2. Run all tests and see if the new test fails
+							- 3. Write the code
+							- 4. Run tests
+							- 5. Refactor code
+							- Repeat
+						- Behavior-driven development extension of TDD (software in testing fields, seeds, waterflow and walls of high level programming languages)
+							- Where to start in the process
+							- What to test and what not to test
+							- How much to test in one go
+							- What to call the tests
+							- How to understand why a test fails
+						- Domain-driven design
+							- placing the project's primary focus on the core domain and domain logic;
+							- basing complex designs on a model of the domain;
+							- initiating a creative collaboration between technical and domain experts to iteratively refine a conceptual model that addresses particular domain problems.
+						- Data-driver-business
+							- 
+					- procédées essentiels
+						- Test-driven development cycle
+							- 1. Add a test
+							- 2. Run all tests and see if the new test fails
+							- 3. Write the code
+							- 4. Run tests
+							- 5. Refactor code
+							- Repeat
+						- Behavior-driven development extension of TDD
+							- Where to start in the process
+							- What to test and what not to test
+							- How much to test in one go
+							- What to call the tests
+							- How to understand why a test fails
+					- outils
+						- 
+				- Normes
+					- Poo
+						- théorie
+							- ressources
+								- net
+									- https://openclassrooms.com/courses/programmez-en-oriente-objet-en-php#
+								- livre
+									- 
+							- lien indexe complet
+								- 
+							- procédées essentiels
+								- 
+						- design patterns
+							- ressources
+								- net
+									- https://www.tutorialspoint.com/php/php_design_patterns.htm
+									- https://openclassrooms.com/courses/programmez-en-oriente-objet-en-php#
+								- livre
+									- 
+							- lien indexe complet
+								- 
+							- procédées essentiels
+								- 
+							- outils
+								- 
+					- psr
+						- ressources
+							- net
+								- 
+							- livre
+								- 
+						- lien indexe complet
+							- 1. 	Basic Coding Standard
+							- 2. 	Coding Style Guide
+							- 3. 	Logger Interface
+							- 4. 	Autoloading Standard
+							- 6. 	Caching Interface
+							- 7. 	HTTP Message Interface
+							- 11. 	Container Interface
+							- 13. 	Hypermedia Links
+							- 16. 	Simple Cache
+						- procédées essentiels
+							- 1. 	Basic Coding Standard
+							- 2. 	Coding Style Guide
+							- 3. 	Logger Interface
+							- 4. 	Autoloading Standard
+							- 6. 	Caching Interface
+							- 7. 	HTTP Message Interface
+							- 11. 	Container Interface
+							- 13. 	Hypermedia Links
+							- 16. 	Simple Cache
+						- outils
+							- 
+							
+					- solid
+						- ressources
+							- net
+								- 
+							- livre
+								- 
+						- lien indexe complet
+							- S.	Single responsibility principle[4]
+										a class should have only a single responsibility (i.e. changes to only one part of the software's specification should be able to affect the specification of the class)
+										une classe, une fonction ou une méthode doit avoir une et une seule responsabilité
+							- O.	Open/closed principle[5]
+										“software entities … should be open for extension, but closed for modification.”
+										une classe doit être ouverte à l'extension, mais fermée à la modification
+							- L.	Liskov substitution principle[6]
+										“objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program.” See also design by contract.
+										une instance de type T doit pouvoir être remplacée par une instance de type G, tel que G sous-type de T, sans que cela ne modifie la cohérence du programme
+							- I.	Interface segregation principle[7]
+										“many client-specific interfaces are better than one general-purpose interface.”
+										préférer plusieurs interfaces spécifiques pour chaque client plutôt qu'une seule interface générale
+							- D.	Dependency inversion principle[9]
+										one should “depend upon abstractions, [not] concretions.”
+										il faut dépendre des abstractions, pas des implémentations
+						- procédées essentiels
+							- 
+						- outils
+							- 

@@ -1,0 +1,433 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+
+
+> Capifony
+	- Le déploiement
+		- Capistrano ou Capifony
+			Parmi les nombreux outils qui permettent de déployer automatiquement les applications web
+			(citons par exemple Fabric ou Ansible), Capifony est spécialisé dans les applications Symfony.
+			C’est un dérivé de Capistrano, un outil de déploiement plus générique.
+			
+			- http://capifony.org/
+			- http://capistranorb.com/
+			- http://www.fabfile.org/
+			- http://www.ansible.com/home
+			
+			Il est écrit en Ruby, est facile à installer et utiliser, et il est très extensible. Il va gérer pour nous
+			les versions dans les déploiement et les tâches pré- et post-déploiement.
+			Son installation, sur une machine où Ruby est installé, s’opère de la manière suivante :
+			
+			$ gem install capifony
+			
+			Capifony est configuré avec un fichier deploy.rb , placé dans le répertoire servant à effectuer le
+			déploiement. Le fichier qui suit en est un exemple.
+			
+			Configuration de Capifony : deploy.rb
+				## Configration générale
+				# le nom de l'application
+				set :application, "Nom de votre projet"
+				# le domaine sur lequel capifony se connecte en ssh
+				set :domain, "nom-du-projet.com"
+				# Le nom d’utilisateur du serveur distant
+				set :user, "user"
+				# Le répertoire de destination
+				set
+				:deploy_to,
+				"/var/www/my-app.com"
+				role :web,
+				role :app,
+				set
+				:use_sudo,
+				domain
+				domain, :primary => true
+				false
+				# La configuration du dépôt, ici avec git
+				set :scm, :git
+				set :deploy_via, :copy
+				set :repository, "git@github:vendor/votreprojet.git"
+				set
+				:deploy_via,
+				:copy
+				# Le nombre de releases à garder après un déploiement réussi
+				set
+				:keep_releases, 5
+				## Configration spécifique Symfony2
+				# Les fichiers à conserver entre chaque déploiement
+				set :shared_files, ["app/config/parameters.yml"]
+
+				# Idem, mais pour les dossiers
+				set :shared_children, [app_path + "/logs", "vendor"]
+				set :use_composer, true
+				# Application des droits nécessaires en écriture sur les dossiers
+				set :writable_dirs, ["app/cache", "app/logs"]
+				set :use_set_permissions, true
+				# dumper les assets
+				set :dump_assetic_assets, true
+				# Augmenter le niveau de détail des logs rend le déploiement plus facile à déboguer
+				en cas d'erreurs.
+				logger.level = Logger::MAX_LEVEL
+				
+			La configuration est essentiellement déclarative. Nous définissons la plupart du temps les
+			valeurs des paramètres que nous souhaitons avoir, mais comme c’est du Ruby, il est également
+			possible d’écrire ses propres tâches de déploiement.
+			Dans cet exemple, lors d’un déploiement, Capifony :
+			• se connecte en SSH sur le serveur de production ;
+			• crée un nouveau sous-répertoire dans le dossier releases ;
+			• clone le projet dans ce répertoire ;
+			• exécute les tâches de déploiement (vider et préparer le cache, par exemple) ;
+			• active le déploiement, via un lien symbolique.
+			Pour nous en servir, nous disposons donc de tâches de déploiement. Ce sont des commandes
+			comme la suivante, qu’il faut exécuter la première fois pour préparer le déploiement initial :
+			
+			$ cap deploy:setup
+			
+			Cette commande prépare la configuration globale du serveur de production, ainsi que la
+			structure de répertoires du projet sur le serveur, qui ressemble à la suivante :
+			
+				/var/www/my-app.com
+				current → /var/www/my-app.com/releases/20150209141414
+				releases
+					20150130121212
+					20150209131313
+					20150209141414
+				shared
+					web
+						uploads
+					log
+					config
+						parameters.yml
+						
+			La racine du projet se situe dans /var/www/my-app.com . Différentes informations relatives au
+			déploiement se trouvent dans les sous-répertoires qu’elle contient.
+			
+			Symfony range les différentes versions du code du projet dans autant de sous-répertoires de
+			releases . La version courante est activée grâce à un lien symbolique depuis current vers un de
+			ces sous-répertoires.
+			
+			Le dossier shared contient les répertoires et fichiers qui sont partagés entre les déploiements :
+			cela permet de ranger dans un endroit unique la configuration de l’application, qui est géné-
+			ralement commune à tous les déploiements, et évite de perdre les répertoires de logs, etc. Les
+			fichiers et répertoires partagés sont listés dans le fichier de configuration deploy.rb . Capifony
+			se charge de les inclure au bon endroit grâce à des liens symboliques. Lorsque nous modifions
+			un paramètre de configuration du répertoire shared , cela le modifie dans l’application
+			déployée car c’est le même fichier qui est utilisé.
+			
+			Pour effectuer le déploiement, nous utilisons la commande suivante :
+			
+			$ cap deploy
+			
+			cap deploy réalise un déploiement en intégralité. Il copie tout le code de l’application dans un
+			répertoire dédié, puis joue les tâches de déploiement, comme la mise à jour de la base de don-
+			nées, ou le déploiement des ressources externes, pour peu que nous l’ayons configuré ainsi.
+			Une fois toutes les tâches réalisées, le déploiement est activé en créant un lien symbolique de
+			vers le répertoire qui vient d’être créé. Configurer le serveur web pour faire pointer
+			l’application sur le répertoire current permet de n’activer le déploiement qu’une fois terminé.
+			current
+			Nous pouvons jouer les tâches à la main, ou configurer l’application pour qu’une tâche de
+			déploiement en joue plusieurs à la fois. Parmi les commandes, nous pouvons configurer celle-ci :
+			
+			$ cap deploy:migrations
+			
+			Cette commande déploie les migrations de base de données, qui permettent de jouer les
+			montées ou descentes de version de la structure de la base de données.
+			En cas de problème (par exemple, un bogue critique qui n’avait pas été détecté avant), nous
+			revenons au déploiement précédent grâce à la commande suivante :
+			
+			$ cap deploy:rollback
+			
+			Lorsque nous jouons cette commande, Capifony fait pointer current sur le répertoire de la
+			version précédente et joue si nécessaire les migrations de base de données descendantes.
+			Dans la configuration de Capifony, nous spécifions le nombre de répertoires à conserver : cela
+			correspond également au nombre de retours en arrière qu’il est possible de réaliser.
+			
+		- Processus de déploiement
+		
+			Ce que nous avons vu jusqu’à présent est réducteur car cela parle uniquement de la partie
+			« mécanique » du déploiement, qui consiste à rendre disponible sur un serveur une version
+			d’une application. Sur le schéma suivant, nous observons qu’il y a une portée plus générale
+			dans l’automatisation du déploiement : c’est la notion d’intégration continue.
+			
+			Figure 19–1
+			Les différents éléments
+			du processus de déploiement.
+			
+			développeur			Server de dépôt de code
+								(ex: github, bitbucket)
+								
+								
+								Server d'intégration continue		Tests automatisés,
+								(ex: travis, jenkins)				contrôles automatisés, etc.
+								
+								
+								Outils de déploiement				Servers internes
+								(ex: capofiny)						(staging, intégration)
+								
+																	Serveur de production
+			
+			Sur cette vision du processus, nous constatons que le déploiement commence par le déve-
+			loppeur qui stocke une version du code sur un dépôt de sources. Cette version est transmise à
+			un serveur d’intégration continue, qui peut alors effectuer diverses validations : vérification de
+			règles syntaxiques, exécution des tests automatisés... Cette étape permet de décider si oui ou
+			non nous pouvons effectuer un déploiement. Si les tests automatisés ne passent pas, cela veut
+			dire que des fonctionnalités ont été cassées par des régressions et doivent être corrigées, ou
+			qu’il faut mettre à jour les tests automatisés. Quoi qu’il en soit, il vaut mieux ne pas déployer
+			cette version en l’état.
+			
+			Des programmes comme PHP_CodeSniffer ou PHP-CS-Fixer seront également
+			intéressants ; ils vérifieront que la syntaxe des fichiers respecte les normes en vigueur dans le
+			projet. Comme pour les tests automatisés, il peut être utile de valider le respect de certaines
+			règles de codage dans l’équipe par des outils automatisés et d’interdire un déploiement si des
+			modifications ne les respectent pas.
+			
+				- https://github.com/squizlabs/PHP_CodeSniffer
+				- https://github.com/FriendsOfPHP/PHP-CS-Fixer
+			
+			Lorsque nous avons le feu vert pour diffuser l’application, un outil de déploiement nous
+			permet de le faire sur le serveur de notre choix.
+			Comme pour le cycle de vie d’un projet, le fonctionnement à mettre en place dépend de
+			beaucoup de paramètres (besoins du projet, durée de vie, compétences de l’équipe...).
+
+		- Spécificités du déploiement d’une application Symfony
+			
+			Ce que nous avons vu jusqu’à présent est très générique et ne se limite pas au déploiement
+			d’une application Symfony. Nous allons maintenant nous intéresser à quelques-unes des spé-
+			cificités auxquelles il faut penser lors du déploiement d’une telle application.
+			Le déploiement d’une application Symfony ressemble beaucoup à la première installation du
+			framework : le serveur doit être compatible et correctement configuré. Il y a également une
+			multitude de choses à vérifier, au moins la première fois.
+		
+			- Préparer le serveur de production
+			
+				Avant de pouvoir déployer l’application, il faut s’assurer que le serveur est correctement configuré.
+				
+				- Assurer la compatibilité avec Symfony
+				
+					Déployer en production, c’est comme installer l’application sur son propre serveur : la confi-
+					guration doit être compatible. Il y a donc deux choses essentielles à faire avant le premier
+					déploiement :
+					
+					• vérifier la configuration du serveur ;
+					• donner les droits d’accès aux répertoires de logs et de cache.
+					
+					Après avoir mis le code en ligne, vous pouvez vérifier la compatibilité du serveur en exécutant
+					le script :
+					
+					$ php app/check.php
+					
+					En ce qui concerne les détails de compatibilité et la configuration des droits d’accès aux
+					répertoires, nous vous renvoyons au chapitre sur l’installation de Symfony.
+				
+				- Prévoir le répertoire qui expose le projet
+				
+					N’oubliez pas que la partie émergée du projet se situe dans le répertoire web. Évitez de vous
+					tromper en exposant un niveau de répertoires en trop !
+					Si vous utilisez un hôte virtuel ( vhost ), il faut que la racine du projet pointe sur ce répertoire web.
+
+					- Rotation des logs
+
+						Nous pensons généralement à activer la rotation des logs pour le serveur, ou pour les logs
+						d’erreur de PHP, mais n’oubliez pas que Symfony écrit également ses propres logs dans le
+						répertoire app/logs et qu’ils peuvent vite grossir.
+						Pour les exploiter et gérer leur archivage, il est important de penser à activer un système de
+						rotation de logs, par exemple avec un outil comme logrotate . Ce mécanisme changera le
+						fichier de logs à une fréquence fixée, pour qu’il ne soit pas trop gros.
+			
+				- Préparer le déploiement
+				
+					Une fois le serveur correctement configuré, il faut vérifier que l’application est prête à être
+					déployée.
+
+					- Configurer la clé secrète
+
+						Avant de déployer l’application, pensez à en changer la clé secrète.
+
+						Changement de la clé secrète dans app/config/parameters.yml
+
+						parameters:
+							secret: "Changez moi !"
+
+						Elle sert pour les token de sécurité CSRF des formulaires ; même si le risque est limité, ne
+						laissez pas la valeur par défaut.
+
+					- Remplacer les écrans d’erreur
+
+						Lorsqu’il y a une erreur dans l’environnement de développement, Symfony nous affiche une
+						page avec la pile d’exécution pour que nous puissions facilement remonter jusqu’à l’erreur. En
+						production, il ne faut surtout pas afficher ce genre d’informations, car cela permettrait de
+						découvrir des failles de sécurité dans votre application et cela ne fait pas très pro.
+						Heureusement, en production, Symfony n’affiche pas ces messages d’erreur. Toutefois, il faut
+						afficher quelque chose et idéalement remplacer les écrans par défaut, désespérément blancs !
+						Le plus simple est généralement d’intégrer les pages d’erreurs dans le layout de votre applica-
+						tion, comme nous l’avons fait pour la page d’authentification de FOSUserBundle.
+						Personnaliser les pages d’erreur se fait de la même manière que pour FOSUserBundle : nous
+						les surchargeons dans notre application. Les vues des pages d’erreur sont situées dans Twig-
+						Bundle. À l’intérieur du répertoire de vues de ce bundle ( Resources/views ), elles sont rangées
+						dans le répertoire Exception .
+						Pour surcharger les pages d’erreur, nous devons donc créer le répertoire app/Resources/
+						y placer nos vues. Commencez par mettre dans le répertoire un
+						fichier par défaut, error.html.twig . En cas d’erreur, c’est lui qui sera désormais rendu.
+						TwigBundle/views/Exception et
+						Si vous le souhaitez, vous pouvez également avoir des pages spécifiques pour des codes
+						d’erreur en particulier : il faut alors créer le fichier errorXXX.html.twig , où XXX est le code de
+						retour HTTP de l’erreur. S’il existe une telle page spécifique, c’est elle qui sera utilisée ;
+						sinon, c’est la page par défaut. Prenons un exemple avec les fichiers error500.html.twig et
+						error.html.twig dans le répertoire.
+						• En cas d’erreur 500 , comme le fichier error500.html.twig est présent, c’est lui qui sera
+						rendu.
+						• En cas d’erreur 404 , comme il n’y a pas de fichier error404.html.twig , c’est error.html.twig
+						qui sera rendu.
+					
+					- Configuration de production
+					
+						N’oubliez pas qu’il est possible de configurer différemment l’application en développement et
+						en production. Pour éviter les surprises et les erreurs de configuration, pensez à bien ranger
+						les paramètres.
+						• Dans config.yml , placez les valeurs qui sont partagées.
+						• Dans config_prod.yml se trouvent les valeurs spécifiques à la production.
+						• Dans config_dev.yml , mettez les valeurs spécifiques à l’environnement de développement.
+						Pensez à vérifier que la configuration de production contient bien tous les paramètres néces-
+						saires au fonctionnement de l’application.
+						
+					- Cache Doctrine
+						En production, vous utiliserez le cache de manière plus intensive que dans l’environnement
+						de développement. Si vous disposez d’APC ou d’un autre système de cache, vous pouvez
+						l’utiliser pour optimiser les requêtes Doctrine à l’aide des paramètres de configuration sui-
+						vants, à placer dans app/config/config_prod.yml :
+						
+						doctrine:
+							orm:
+								query_cache_driver: apc
+								metadata_cache_driver: apc
+								
+						La valeur par défaut pour ces deux propriétés est array et les valeurs possibles sont array , apc ,
+						memcache , memcached , xcache .
+						Si vous optez pour APC, il est nécessaire qu’il soit disponible avec PHP en ligne de com-
+						mande. Vous pouvez le spécifier dans le fichier php.ini de la manière suivante :
+						
+						;php.ini
+						apc.enable_cli=1
+						
+						Ces paramètres définissent le service de mise en cache pour deux choses :
+						• la transformation des requêtes DQL en équivalent SQL ;
+						• le stockage de la transformation des métadonnées sur les entités.
+						Cela évite qu’elles soient interprétées trop souvent. C’est en effet une opération qui peut être
+						longue alors que les requêtes et les annotations sur les entités changent relativement rarement.
+						
+					- Accès à l’environnement de développement depuis un serveur distant
+					
+						Pour des raisons de sécurité, il n’est pas recommandé d’installer un accès distant à l’environ-
+						nement de développement sur le serveur de production.
+						En revanche, vous pouvez avoir besoin d’exécuter l’application via app_dev.php depuis un ser-
+						veur distant, celui de staging ou de préproduction par exemple. Un des moyens pour cela est
+						d’ajouter, dans le fichier app_dev.php , l’adresse IP de la machine à autoriser dans le bloc
+						conditionnel :
+						
+							if (isset($_SERVER['HTTP_CLIENT_IP'])
+							|| isset($_SERVER['HTTP_X_FORWARDED_FOR'])
+							|| !(in_array(@$_SERVER['REMOTE_ADDR'], array('127.0.0.1', 'fe80::1', '::1')) ||
+							php_sapi_name() === 'cli-server')
+							) {
+							header('HTTP/1.0 403 Forbidden');
+							exit('You are not allowed to access this file. Check '.basename(__FILE__).' for
+							more information.');
+							}
+						
+						Ainsi, vous accéderez à l’application dans un environnement qui vous permettra de la débo-
+						guer, alors qu’elle est hébergée sur un serveur distant. Cela peut bien sûr servir à d’autres
+						moments du cycle de développement, selon votre processus de travail.
+						
+					- Exécuter la Console depuis une interface web
+					
+						Certains bundles, comme CoreSphereConsoleBundle, donnent accès à la console de Sym-
+						fony depuis une interface web. Cela peut sembler une bonne idée au premier abord, car si
+						vous ne disposez pas des accès SSH, cela vous permettra de déployer votre application, voire
+						d’effectuer sa maintenance (!).
+
+						- https://github.com/CoreSphere/ConsoleBundle
+
+						En fait, c’est une mauvaise solution à un autre problème : vous devez pouvoir exécuter des
+						commandes sur le serveur lors du déploiement. Il n’est d’ailleurs pas forcément nécessaire que
+						vous ayez explicitement les accès SSH au serveur, mais il faut que le système de déploiement
+						– c’est peut-être vous, pas forcément un outil ! – puisse le faire. Utiliser CoreSphereConsole-
+						Bundle, ou une solution similaire, contourne le problème au lieu de le résoudre et il est pro-
+						bable que vous ayez rapidement des soucis de maintenance.
+						De plus, si vous comprenez mal les paramètres de sécurité qu’il faut mettre en œuvre dans vos
+						applications pour utiliser ce genre d’outils, vous prenez le risque de mal les configurer et
+						d’introduire des failles de sécurité dans votre application : acceptez-vous vraiment qu’une per-
+						sonne puisse exécuter à volonté n’importe quelle commande depuis votre interface, à partir du
+						moment où elle a accès à cette interface ?
+						
+				- Effectuer le déploiement
+					
+					Voici une liste de ce qui doit être fait lors de chaque déploiement. Elle n’est pas exhaustive et,
+					en fonction de la complexité de votre projet et des bundles que vous pourrez être amené à uti-
+					liser, vous ajouterez peut-être d’autres tâches.
+					
+					- Déploiement du code
+					
+						C’est la première étape du déploiement : il faut télécharger sur le serveur de destination le
+						code source de l’application.
+						Évitez d’utiliser le FTP pour déployer votre application en copiant les fichiers. Ce fonction-
+						nement, en plus de divers soucis pratiques, ne vous permettra pas de revenir en arrière en cas
+						de problème. Privilégiez une solution comme Capifony ou, a minima, Git pour avoir un con-
+						trôle plus fin de l’historique de déploiement. En cas de problème, vous aurez des moyens de
+						revenir facilement à un certain nombre d’étapes en arrière.
+					
+					- Déploiement des ressources
+					
+						Vous avez peut-être ajouté de nouveaux fichiers JavaScript ou CSS, ou alors vous en avez
+						modifié d’anciens. Pour qu’ils soient accessibles publiquement, il faut les exposer dans le
+						répertoire public :
+
+						$ app/console assets:install web/ --env=prod
+
+						Contrairement à l’environnement de développement, vous n’avez pas besoin de faire de lien
+						symbolique ; une copie plate des fichiers suffit.
+
+						- Mise à jour de la base de données
+
+						$ app/console doctrine:schema:update --force
+
+						Ce fonctionnement est un peu extrême car, en cas de problème, vous aurez du mal à revenir à
+						une version antérieure de la base de données. En effet, malgré l’utilisation de copies de sauve-
+						garde (faites-en !), il peut être compliqué de trouver le moment exact où la base de développe-
+						ment et celle de production ont divergé, suite par exemple à une intervention manuelle.
+						Des solutions plus pérennes existent, comme l’utilisation de scripts de migration de base, qui
+						vous permettront de monter ou descendre de version en cas de problème. Un bundle existe :
+						DoctrineMigrationsBundle.
+
+						- http://symfony.com/doc/current/bundles/DoctrineMigrationsBundle/index.html
+						
+					- Videz le cache
+					
+						Comme l’application a changé, il faut vider le cache, sinon les utilisateurs ne verront pas les
+						changements tant que le contenu du cache sera valide :
+
+						$ app/console cache:clear --env=prod
+						
+						Si vous n’utilisez pas de script de déploiement automatisé, il peut vous arriver de croire que
+						l’application n’a pas changé ou que le déploiement a échoué, alors que c’est peut-être tout
+						simplement que vous avez oublié de vider le cache.
+						Il est également utile de préchauffer le cache, avec la commande suivante :
+
+						$ app/console cache:warmup --env=prod
+
+						Cela consiste à mettre en cache ce qui peut l’être sans navigation dans l’application. C’est le
+						cas, par exemple, des fichiers de routage, qu’il est facile de compiler. Cela améliore un peu les
+						performances de l’application pour les utilisateurs qui accédent aux pages sans cache et sou-
+						lage également un peu le serveur qui a moins de choses à calculer.
+
+					- Bilan
+
+						Et voila, la dernière version de votre application est en ligne ! Avec un peu de méthode, c’est
+						moins compliqué qu’il n’y paraît.
+						Vous constaterez que les actions à réaliser consistent en quelques commandes : c’est facile à
+						faire à la main, mais les opérations manuelles sont sources d’erreur. Ne vous privez pas de
+						l’automatiser.
+						Cette liste d’actions à réaliser n’est pas exhaustive. En fonction des bundles que vous ajou-
+						terez, il y aura peut-être d’autres commandes Console à jouer. Si vous mettez en place un sys-
+						tème de migration de base de données, il faudra par exemple jouer les scripts correspondants.

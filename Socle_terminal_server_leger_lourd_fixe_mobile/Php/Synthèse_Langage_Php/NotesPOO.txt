@@ -1,0 +1,90 @@
+
+
+
+> Abstraction de classes, Interfaces, Traits
+
+
+-------------------- Abstraction de classes
+
+> Implémentation
+- Se définit avec le mot clé Abstract class
+- Ne peuvent être instanciés
+
+> Propriétés
+- On ne peut pas y définir une propriété 
+
+> Méthodes
+- Toute méthode abstraite doit être définit dans la class héritière
+    - Ces méthodes se préfixe avec le mot clé abstract
+    - Et perdent cette affectation de l'implémentation
+- La signature des méthodes implémentés doit correspondre dans l'héritage
+- On peut y implémenter des méthodes non abstraite
+- Leur visibilité peut être étendue de l'héritage
+
+> Héritage
+- S'effectue par le mot clé extends
+- On ne peut hériter que d'une classe abstract (?)
+
+
+-------------------- Interfaces
+
+> Implémentation
+- Se définit par la mot clé interphase
+- Ne peuvent être instanciés
+
+> Propriétés
+- On peut définir des propriétés
+- Les propriétés définit ne peuvent pas être redéfinit
+- On peut appeler les constantes hors de l'interphase
+
+> Méthodes
+- Toutes les méthodes sont déclarées public
+- Mais aucune n'a de contenu de spécifié
+- La signature des méthodes implémentés doit correspondre dans l'héritage
+
+> Héritage
+- On peut étendre des interphases par des interphases par le mot clé extends
+- S'effectue par le mot clé implements
+- On peut hériter de plusieurs interphases si les méthodes sont différentes
+
+
+-------------------- Traits
+
+> Implémentation
+- Se définit par la mot clé trait
+- Ne peuvent être instanciés
+
+> Propriétés
+- On peut définir des propriétés
+- Les propriétés statiques ne peuvent être définit que dans les méthodes
+- Les propriétés définit ne peuvent être redéfinits
+
+> Méthodes
+- Elles pré-valent par rapport à celles de la class parente
+- Elles sous-valent par rapport à celles de la class de référence
+- On peut définir des méthodes abstracts
+- Des méthodes statiques peuvent définits
+- Leurs visibilités peuvent être redéfinit avec le mot clé as
+- Elles peuvent porter des alias
+- En cas de conflit d'héritage on peut définir une sélection par la syntaxe
+use A, B {
+        B::smallTalk insteadof A;
+        A::bigTalk insteadof B;
+        B::bigTalk as talk;
+    }
+
+
+> Héritage
+- S'effectue par le mot clé use et multiple par la juxtaposition
+- On peut étendre des trait par le mot clé use dans le Trait
+- On peut hériter de plusieurs interphases
+
+
+
+
+
+
+
+
+
+

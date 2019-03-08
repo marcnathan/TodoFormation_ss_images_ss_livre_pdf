@@ -1,0 +1,13 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+
+
+> Jasmine
+	- Js testing framwork
+	- https://en.wikipedia.org/wiki/Jasmine_(JavaScript_testing_framework)
+	- https://www.htmlgoodies.com/beyond/javascript/testing-javascript-using-the-jasmine-framework.html
+	- https://jasmine.github.io/api/edge/global
+				

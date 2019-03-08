@@ -1,0 +1,31 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+
+	
+	
+> Node
+	- ressources
+		- net
+			- https://www.w3schools.com/nodejs/nodejs_intro.asp
+				- 
+			- https://openclassrooms.com/courses/des-applications-ultra-rapides-avec-node-js/node-js-mais-a-quoi-ca-sert
+				- 
+		- livre
+			- 
+	- lien indexe complet
+		- 
+	- procédées essentiels
+		- installation
+			- 
+				- 
+		- commandes
+			- 
+			
+			- 
+			
+		- outils
+			- 
+	

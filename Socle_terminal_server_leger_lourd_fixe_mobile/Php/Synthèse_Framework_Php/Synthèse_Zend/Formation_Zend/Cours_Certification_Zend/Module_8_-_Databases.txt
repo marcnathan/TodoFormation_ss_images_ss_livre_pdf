@@ -1,0 +1,42 @@
+> Keys
+- Primary
+- Foreign
+
+> SQL
+- Creat a table
+- Read data
+- Insert data
+- Update data
+- Delete data
+- Order by
+- Group by
+- Distinct
+- Aggragation
+	- AVG()
+	- COUNT()
+	- DISTINCT COUNT()
+	- Min()
+	- Max()
+	- Sum()
+- Inner join be carefull with the <> on keys in a join query
+- Outer join
+- Left join
+- Right join
+- Transaction
+- Prepared Statments
+- PDO
+	- Settings
+	- Connetions
+	- Statements
+	- Transactions
+- Loops to fetch the results
+	- know the result of positions
+
+
+
+
+
+
+
+
+

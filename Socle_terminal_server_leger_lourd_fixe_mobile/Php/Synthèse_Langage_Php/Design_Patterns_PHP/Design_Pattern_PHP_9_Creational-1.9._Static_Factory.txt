@@ -1,0 +1,148 @@
+> Static Factory
+	- 
+
+
+
+// ------------------------------------------------
+http://designpatternsphp.readthedocs.io/en/latest/Creational/StaticFactory/README.html
+
+
+
+1.9. Static Factory
+1.9.1. Purpose
+
+Similar to the AbstractFactory, this pattern is used to create series of related or dependent objects. The difference between this and the abstract factory pattern is that the static factory pattern uses just one static method to create all types of objects it can create. It is usually named factory or build.
+1.9.2. Examples
+
+    Zend Framework: Zend_Cache_Backend or _Frontend use a factory method create cache backends or frontends
+
+1.9.3. UML Diagram
+Alt StaticFactory UML Diagram
+1.9.4. Code
+
+You can also find these code on GitHub
+
+StaticFactory.php
+
+<?php
+
+namespace DesignPatterns\Creational\StaticFactory;
+
+/**
+ * Note1: Remember, static => global => evil
+ * Note2: Cannot be subclassed or mock-upped or have multiple different instances.
+ */
+class StaticFactory
+{
+    /**
+     * the parametrized function to get create an instance.
+     *
+     * @param string $type
+     *
+     * @static
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return FormatterInterface
+     */
+    public static function factory($type)
+    {
+        $className = __NAMESPACE__.'\Format'.ucfirst($type);
+
+        if (!class_exists($className)) {
+            throw new \InvalidArgumentException('Missing format class.');
+        }
+
+        return new $className();
+    }
+}
+
+FormatterInterface.php
+
+<?php
+
+namespace DesignPatterns\Creational\StaticFactory;
+
+/**
+ * Class FormatterInterface.
+ */
+interface FormatterInterface
+{
+}
+
+FormatString.php
+
+<?php
+
+namespace DesignPatterns\Creational\StaticFactory;
+
+/**
+ * Class FormatString.
+ */
+class FormatString implements FormatterInterface
+{
+}
+
+FormatNumber.php
+
+<?php
+
+namespace DesignPatterns\Creational\StaticFactory;
+
+/**
+ * Class FormatNumber.
+ */
+class FormatNumber implements FormatterInterface
+{
+}
+
+1.9.5. Test
+
+Tests/StaticFactoryTest.php
+
+<?php
+
+namespace DesignPatterns\Creational\StaticFactory\Tests;
+
+use DesignPatterns\Creational\StaticFactory\StaticFactory;
+
+/**
+ * Tests for Static Factory pattern.
+ */
+class StaticFactoryTest extends \PHPUnit_Framework_TestCase
+{
+    public function getTypeList()
+    {
+        return array(
+            array('string'),
+            array('number'),
+        );
+    }
+
+    /**
+     * @dataProvider getTypeList
+     */
+    public function testCreation($type)
+    {
+        $obj = StaticFactory::factory($type);
+        $this->assertInstanceOf('DesignPatterns\Creational\StaticFactory\FormatterInterface', $obj);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testException()
+    {
+        StaticFactory::factory('');
+    }
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,65 @@
+> Creat Arrays
+- Numbers as index
+- Strings as index
+- assignment of the next key if one is not the following of the previous
+
+> Functions
+- sort()
+- array_key()
+- rang()
+- array_slice() like sub_str()
+- array_push()*
+- array_unshift()*
+- array_pop()*
+- array_shift()*
+	- * 
+		- Adds to the array
+		- Reduces the array
+		- Returns new count
+		- Returns removed element
+		- Operates at th end of the array
+		- Operates at the begining of the array
+- array_key_exists()
+- in_array()
+- array_keys()
+- array_values()
+- Sorting Array
+	- sort() and it's convertion function of strings to number
+	- asort()
+	- arsort()
+	- ksort()
+	- krsort()
+	- rsort()
+	- usort()
+	- uasort()
+	- uksort()
+	- natsort() asci sort
+	- strnatcmp()
+	- strnatcasecmp()
+- Comparing Arrays
+	- array_diff() to be carefull with octal values
+	- array_diff_assoc()
+	- array_diff_key()
+	- array_uassoc()
+	- array_diff_ukey()
+- Merging Arrays
+	- array_merge() to be carefull with keys
+- SPL Traversable
+- SPL Countable
+		
+> Looping Arrays
+- for
+- foreach
+- 
+
+
+> Looping Functions 
+- array_walk()
+
+
+
+
+
+
+
+

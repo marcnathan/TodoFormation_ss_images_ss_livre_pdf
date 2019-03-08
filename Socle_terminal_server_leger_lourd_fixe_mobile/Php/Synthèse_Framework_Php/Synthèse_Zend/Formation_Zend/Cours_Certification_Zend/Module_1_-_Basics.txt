@@ -1,0 +1,10 @@
+> Language construction
+- 
+
+
+
+> Php.ini
+- iniset()
+
+
+> 

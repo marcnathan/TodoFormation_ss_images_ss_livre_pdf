@@ -1,0 +1,106 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+
+
+> bench marchés
+	- de la segmentation des besoins (documents Atos, ...)
+		- http://www.zdnet.com/article/the-enterprise-technologies-to-watch-in-2016/
+		- https://dionhinchcliffe.com/2015/09/11/whats-coming-next-in-digital-and-social-in-the-enterprise/
+		- termes
+			- data-driver-business
+	- des statistiques des techno de marchés par besion aux possibilités des failles des fiabilités des terminauxOutils Web du marchés
+		- Solution complète
+			- Wordpress, Joomla, Magento, Presta-shop, Drupal
+			
+			- gestion de contenu	
+				http://en.wikipedia.org/wiki/List_of_content_management_systems
+				typolight
+				Drupal
+				Fuzzylime
+				GeekLog
+				Joomla 1.5.x
+				Joomla 1.0.x
+				Mambo
+				Moodle
+				Nucleus
+				Open Realty
+				PHP-Fusion
+				phpWebSite
+				WebSiteBaker
+				XOOPS
+				
+			e-learning	
+				http://en.wikipedia.org/wiki/Learning_Content_Management_System
+				http://archive.e-learningcentre.co.uk/eclipse/vendors/opensource.htm
+				http://www.allaboutelearning.lu/cms/elearning/content.nsf/id/decideur?opendocument&language=fr
+				http://www.cms-zone.com/content/view/202/73/
+				http://moodle.org/
+				
+			e-commerce	
+				http://css4design.com/e-commerce-quel-e-cms-pour-gerer-votre-boutique-en-ligne
+				http://www.comparatif-ecommerce.com/
+				http://www.ilovecolors.com.ar/ecommerce-cms-open-source-commercial/
+				http://php.opensourcecms.com/scripts/show.php?catid=9&category=Lite
+				http://www.cms-zone.com/content/view/6/57/
+				OS Commerce
+				OS CommRes
+				
+			blog	
+				http://www.cms-zone.com/content/view/8/63/
+				
+			forum	
+				http://www.cms-zone.com/content/view/6/57/
+				phpBB2
+				phpBB3
+				Simple Machines Forum
+				
+			gallery	
+				http://www.cms-zone.com/content/view/6/57/
+				4images Gallery
+				Coppermine
+				Gallery2
+				Plogger
+				
+			crm	
+				http://en.wikipedia.org/wiki/Customer_relationship_management
+				http://en.wikipedia.org/wiki/Open_source_CRM_software
+				
+			divers	
+				http://www.cms-zone.com/content/view/4/38/
+				
+			blogs	
+				http://www.blogtap.net/the-best-blogging-sites-and-platforms-top-blog-sites/
+				b2evolution
+				Movable Type
+				WordPress
+				
+			Client Management	
+				phpcoin
+				phpFormGenerator
+				
+			Customer Support	
+				Help Center Live
+				PHPTickets
+				
+			Ad Management	
+				Openads
+				phpList
+				
+			Classified Ads	
+				Classifieds
+				
+			dokuwiki	
+				DokuWiki
+				
+			maian-events	
+				Maian Events
+				
+			Guestbook	
+				MJguest
+				
+			Project Management	
+				DOTproject
+				PHProject

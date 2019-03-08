@@ -1,0 +1,11 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+
+
+> Less (fonctions d'écriture de css)
+	- https://learnxinyminutes.com/docs/less/
+	- https://openclassrooms.com/courses/simplifiez-vous-la-vie-avec-less
+	- http://lesscss.org

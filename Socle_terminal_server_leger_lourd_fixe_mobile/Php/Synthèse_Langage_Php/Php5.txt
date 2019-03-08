@@ -1,0 +1,992 @@
+http://mbo-wdesign.com/formation-dev/index.php
+
+
+> Commentaires
+
+//Commentaire sur une ligne
+
+/*
+Commentaire sur plusieurs lignes
+*/
+
+
+
+> Variables
+
+Une variable PHP est identifiée par le signe dollar ($) suivi d'une lettre puis d'une suite de lettres, chiffres et traits soulignés (_).
+Par convention, un nom de variable ne commence pas par une majuscule. S'il faut plusieurs mots pour composer le nom, ils sont habituellement séparés par des soulignés (_).
+
+>> une variable peut être une chaine de caractère, un entier ou un tableau
+
+<?php
+// Correcte
+$variable; //ok
+$variable_2; //ok
+$Variable; //ok mais pas conventionnel (majuscule)
+
+// Incorecte
+$2; //nom incorrect
+$2 */-+$% = 'essai'; //nom incorrect
+
+Le nom d'une variable est sensible à la casse :
+<?php
+$var = 1;
+$Var = 2;
+// $var et $Var sont deux variables distinctes :
+echo $var; //affiche "1"
+echo '<br>';
+echo $Var; //affiche "2"
+
+
+
+
+> Types
+
+Les types sont définis à la fois pour aider le programmeur à connaître les données qu'il manipule (sécurité) et pour optimiser la gestion de la mémoire par l'interpréteur PHP. Il convient donc de connaître les différents types disponibles en PHP.
+
+Les types PHP sont :
+• boolean : un contraste "vrai" ou bien "faux", "blanc" ou "noir", "1" ou "0", "yin" ou "yang"... ;
+• integer : une valeur numérique entière ;
+• double : une valeur numérique flottante (à virgule) ;
+• string : une chaîne de caractères (texte) ; 
+• array : un tableau (ensemble de valeurs) ;
+• object : un objet (instance de classe) ;
+• resource : une ressource (type abstrait, inutilisable par le programmeur, utilisé uniquement pour des
+fonctions) ;
+• NULL : un type spécial qui désigne l'absence de valeur.
+
+// Détails des types
+- Type String
+(les guillemets ou apostrophe et échappement)
+
+
+- Type numérique (int, float)
+var_dump(1.2);
+var_dump(1.0);
+var_dump(1);
+
+
+- Types spéciaux (null resource object)
+NULL : Valeur/variable vide ou inexistante ;
+resource : Par exemple une variable permettant d'identifier une connexion à une base de données ;
+object : Utilisé en Programmation Orientée Objet (POO, cf. plus loin).
+
+
+
+> Fonctions utiles
+
+La fonction var_dump() affiche le type d'une variable et son contenu (ainsi que sa taille si c'est une chaîne).
+
+Texte :
+<?php
+var_dump("Voici du texte...");
+string(17) "Voici du texte..."
+
+Flottant :
+<?php
+var_dump(1.2);
+float(1.2)
+
+Flottant assimilable à un entier :
+<?php
+var_dump(1.0);
+float(1)
+
+Entier :
+<?php
+var_dump(1);
+int(1)
+
+La fonction print_r()
+
+
+La fonction sprintf()
+
+
+La fonction gettype() permet de déterminer le type d'une valeur.
+Valeurs de retour possibles pour gettype() :
+• boolean
+• integer
+• double
+• string
+• array
+• object
+• resource
+• NULL
+
+
+La fonction settype() permet de modifier le type d'une variable pendant l'exécution du programme.
+<?php
+$x = 5.2;
+var_dump($x);
+settype($x, 'int');
+var_dump($x);
+
+Valeurs possibles pour settype() :
+• bool
+• int
+• float
+• string
+• array
+• object
+• null
+
+
+
+
+> Tableaux
+
+Un tableau est une variable contenant plusieurs valeurs.
+
+On accède au tableau entier en utilisant le nom de la variable, ou bien à un élément concret au moyen des crochets [ et ]. Ce qui se situe entre les crochets est appelé "index" ou encore "clef" de l'élément du tableau, et un index est unique dans un tableau.
+
+Affectation d'un tableau entier :
+<?php
+$nombres = array(3, 6, 9); //ce tableau contient trois valeurs
+echo $nombres[1]; //accès direct à l'élément d'index 1, c'est-à-dire le deuxième élément
+print_r($nombres); //affichage du tableau complet
+
+Ajout de cases à un tableau vide ou existant :
+<?php
+$nombres = array(); //déclaration optionnelle
+$nombres[] = 3; //ajout à la position suivante = zéro
+$nombres[] = 6; //ajout à la position suivante = un
+$nombres[] = 9; //ajout à la position suivante = deux
+var_dump($nombres[1]); //accès direct à l'élément en position 1
+print_r($nombres); //affichage complet
+
+Affectation d'un tableau entier :
+<?php
+$positions = array(
+0 => 'début',
+1 => 'milieu',
+2 => 'fin'
+);
+echo $positions[1]; //accès direct à l'élément en position 1
+print_r($positions); //affichage complet
+
+Ajout de cases à un tableau vide ou existant :
+<?php
+$positions = array();
+$positions[0] = 'début'; //ajout à la position zéro
+$positions[1] = 'milieu'; //ajout à la position un
+$positions[2] = 'fin'; //ajout à la position deux
+var_dump($positions[1]); //accès direct à l'élément en position 1
+print_r($positions); //affichage complet
+
+
+L'index d'un élément permet d'y accéder aussi bien en lecture qu'en modification ou suppression :
+Modification d'un élément :
+<?php
+$nombres = array();
+$nombres[] = 3; //ajout à la position suivante = zéro
+$nombres[] = 6; //ajout à la position suivante = un
+$nombres[] = 9; //ajout à la position suivante = deux
+print_r($nombres); //affichage complet
+$nombres[1] = 12; //modification de l'élément en position 1
+print_r($nombres); //affichage complet
+
+
+Puisque chaque case d'un tableau est une variable à part entière, elle peut être de n'importe quel type (nombre,
+chaîne, ressource, tableau, objet...), ce qui nous permet d'imbriquer les tableaux si nécessaire.
+Lorsqu'un tableau est indexé par des chaînes plutôt que par des nombres, on parle de tableau associatif :
+Ajout de cases à un tableau vide ou existant :
+<?php
+$positions = array();
+$positions['zéro'] = 'début';
+$positions['un'] = 'milieu';
+$positions['deux'] = 'fin';
+var_dump($positions['un']); //accès direct à l'élément en position (string)"un"
+print_r($positions); //affichage complet
+
+
+Pour parcourir un tableau on doit utiliser les boucles que l'on verra plus tard.
+
+
+
+- Superglobales
+
+Les variables superglobales sont mises en place par PHP lors du début du traitement d'une demande par Apache.
+Ces variables n'obéissent pas aux limites habituelles des variables en termes de visibilité à l'intérieur d'une fonction.
+Elles sont accessibles de partout, c'est pourquoi elles portent le nom de "superglobales".
+
+Voici les superglobales :
+• $_GET : Les valeurs provenant de l'URL ;
+• $_POST : Les valeurs envoyées par formulaire ;
+• $_FILE : Les fichiers envoyés par formulaire ;
+• $_SERVER : Les valeurs mises en place par le serveur Web (elles peuvent donc changer d'une configuration
+à l'autre) ;
+• $_ENV : Les variables d'environnement (système d'exploitation) ;
+• $_SESSION : Les valeurs mises dans le magasin des sessions ;
+• $_COOKIE : Les valeurs transmises au moyen de cookies par le navigateur ;
+• $GLOBALS : L'ensemble des variables du script.
+
+
+
+> Constantes
+
+Une constante est un nom qui permet de donner une sémantique à une valeur. Cette valeur est figée pour toute la durée de l'exécution du script PHP. Par convention, on exclut les lettres minuscules dans le nom d'une constante.
+
+<?php
+define('MAX_LIGNES', 5); //constante de type entier
+echo MAX_LIGNES;
+
+L'utilisation des constantes est similaire à des variables. La différence est qu'il ne faut pas utiliser le signe dollar ($) car il s'applique uniquement aux variables.
+
+
+- Constantes magiques (info)
+
+Il existe des "constantes magiques" qui n'obéissent pas totalement aux règles des constantes. 
+Elles existent dans tous les scripts sans qu'il soit nécessaire de les déclarer par programmation. 
+On ne peut bien entendu pas les modifier par programmation, néanmoins leur valeur peut changer au fil de l'exécution du script. 
+De plus, on peut les appeler indifféremment en majuscules ou en minuscules. 
+Chacune de ces constantes contient une valeur qui change selon le contexte dans lequel elle est appelée.
+
+• __LINE__ : La ligne de code en cours ;
+• __FILE__ : Le nom complet du script en cours - chamin ;
+• __DIR__ : Le nom du répertoire du script en cours (depuis les versions 5.3 et 6.0 de PHP) ;
+• __FUNCTION__ : La fonction en cours ;
+• __CLASS__ : La classe en cours, similaire à get_class($this) ;
+• __METHOD__ : La méthode en cours ;
+• __NAMESPACE__ : L'espace de noms en cours (depuis les versions 5.3 et 6.0 de PHP).
+
+
+
+> Parenthèses
+
+echo 1+2*3; //affiche "7"
+echo '<br>';
+echo (1+2)*3; //affiche "9"
+
+
+
+> Accolades
+
+function additionner($x, $y)
+{
+//nous sommes dans le corps de la fonction "additionner"
+return $x + $y;
+}
+//ici, nous ne sommes plus dans le corps de la fonction "additionner"
+
+
+
+> Opérateurs
+
+- Arithmétique (+ - * / %)
+
+echo 1+1; //addition
+echo 1-1; //soustraction
+echo 1*1; //multiplication
+echo 1/1; //division
+echo 1%1; //modulo (reste de la division)
+
+
+- Affectation de variable (= += -= *= /= .=)
+
+Valeurs numériques :
+$x = 5;
+$x += 1; //ajoute à la valeur existante
+$x -= 2; //soustrait à la valeur existante
+$x *= 3; //multiplie la valeur existante
+$x /= 4; //divise la valeur existante
+echo $x; //affiche "3"
+
+Chaînes :
+<?php
+$str = 'texte';
+$str .= ' additionnel'; //concatène à la suite de la chaîne existante
+echo $str; //affiche "texte additionnel"
+
+
+- Comparaison (== === != <> !== > >= < <=)
+
+!= // non vrai ou non égale à
+<> // différent de
+!== // strictement différent de
+> // strictement supérieur à
+< // strictement inférieur à 
+>= supérieur ou égale à
+<= inférieur ou égale à
+
+<?php
+echo 1==1; //affiche "1" - valeur bouléenne : 1 pour vrai et 0 pour faux, soit, si c'est vrai il affiche sinon rien
+echo '<br>';
+echo 1==2; //n'affiche rien puisque c'est faux
+echo '<br>';
+echo 1==1.0; //affiche "1" puisque ce sont deux valeurs entières équivalentes
+echo '<br>';
+echo '1'==1.0; //affiche "1" puisque la chaîne "1" est équivalente à l'entier numérique "1"
+echo '<br>';
+echo '1'=='1.0'; //affiche "1" puisque leur valeur numérique évalue à la même valeur entière
+echo '<br>';
+
+<?php
+echo 1===1; //affiche "1" puisque les deux valeurs sont identiques en valeur et en type
+echo '<br>';
+echo 1===2; //n'affiche rien puisque c'est faux
+echo '<br>';
+echo 1===1.0; //n'affiche rien puisque le type diffère (int et float)
+echo '<br>';
+echo '1'===1.0; //n'affiche rien puisque le type diffère (string et float)
+echo '<br>';
+echo '1'==='1.0'; //n'affiche rien puisque les deux chaînes ne sont pas égales
+
+
+- Condition (?)
+L'opérateur ternaire ?
+
+echo (1==1) ? 'vrai' : 'faux'; // affiche vrai
+echo '<br>';
+echo (1==2) ? 'vrai' : 'faux'; // affiche faux
+
+// on l'utilise souvent pour tester une détection d'envoi de données
+
+$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+//la valeur entière de $_GET['id'] ou zéro si la variable n'existe pas
+
+
+- Incrémentation / diminution (++ --)
+
+++ : Augmenter de 1 ;
+-- : Diminuer de 1.
+
+$x = 5;
+echo ++$x; //incrémente puis affiche 6
+echo $x; //affiche 6
+$x = 5;
+echo $x++; //affiche 5 puis incrémente
+echo $x; //affiche 6
+$x = 5;
+echo --$x; //réduit puis affiche 4
+echo $x; //affiche 4
+$x = 5;
+echo $x--; //affiche 5 puis réduit
+echo $x; //affiche 4
+
+
+- Opérateurs sur les bits (& |)
+
+Ces opérateurs permettent d'effectuer des opérations de bits, très utilisées par exemple pour définir les paramètres de configuration. Les opérations logiques sont bien plus rapides que les opérations décimales, il peut donc dans certains cas être intéressant de les utiliser.
+
+Les opérateurs ayant un équivalent ensembliste :
+$a & $b	And (Et)
+Les bits positionnés à 1 dans $a ET dans $b sont positionnés à 1.
+
+$a | $b	Or (Ou)
+Les bits positionnés à 1 dans $a OU $b sont positionnés à 1.
+
+$a ^ $b	Xor (ou exclusif)
+Les bits positionnés à 1 dans $a OU dans $b mais pas dans les deux sont positionnés à 1.
+
+~ $a	Not (Non)
+Les bits qui sont positionnés à 1 dans $a sont positionnés à 0, et vice-versa.
+
+$a << $b	Décalage à gauche	 Décale les bits de $a, $b fois sur la gauche (chaque décalage équivaut à une multiplication par 2).
+
+$a >> $b	Décalage à droite	 Décalage les bits de $a, $b fois par la droite (chaque décalage équivaut à une division par 2).
+
+
+<?php
+echo 0&0; //affiche "0"
+echo 0&1; //affiche "0"
+echo 1&1; //affiche "1"
+echo 0|0; //affiche "0"
+echo 0|1; //affiche "1"
+echo 1|1; //affiche "1"
+echo 0^0; //affiche "0"
+echo 0^1; //affiche "1"
+echo 1^1; //affiche "0"
+echo 1&5; //affiche "1"
+echo 1|5; //affiche "5"
+
+
+
+- Les opérateurs logiques (&& || and or) ("test de vrai ou faux")
+
+Comme dans tout langage de programmation, ces opérateurs permettent de vérifier plusieurs conditions à la fois
+dans un même test. On peut écrire les opérateurs "and" et "or" en minuscules ou en majuscules.
+<?php
+if($variable > 2 and $variable < 10)
+{
+echo 'valeur entre 2 et 10 (exclus)';
+}
+<?php
+if($variable > 2 && $variable < 10)
+{
+echo 'valeur entre 2 et 10 (exclus)';
+}
+<?php
+if($variable > 2 or $variable < 10)
+{
+echo 'valeur supérieure à 2 ou inférieure à 10 (exclus)';
+}
+<?php
+if($variable > 2 || $variable < 10)
+{
+echo 'valeur supérieure à 2 ou inférieure à 10 (exclus)';
+}
+
+
+"&&" et "and" sont identiques sauf pour la priorité qui leur est attribuée ("&&" a un précédence supérieure à "and").
+"||" et "or" sont identiques sauf pour la priorité qui leur est attribuée 
+("||" a un précédence supérieure à "or").
+
+
+
+- Opérateurs spéciaux (@ ``)
+
+L'arobase @ sert à contrôler l'affichage des erreurs.
+Mauvaise pratique car on ne gère pas les éventuelles erreurs et de faille de sécurité. On utilisera la gestion des erreurs de la programmation objet.
+
+
+
+> Structures de contrôle
+
+- Conditionnelle "if"
+
+if(<expression>)
+{
+<instructions>
+}
+
+La structure conditionnelle if/else est l'une des plus classiques des langages de programmation. Elle permet
+d'effectuer des opérations ou d'autres opérations selon certaines conditions.
+Elle s'écrit avec le mot clef "if" et un paramètre qui peut être une valeur, une variable, une comparaison, la validation de conditions ou une fonction. 
+Si l'instruction est évaluée à TRUE, alors on rentre dans la branche ; sinon, on rentre dans la branche
+du "else" (qui est facultative).
+Le code à exécuter (après la condition entre parenthèses) peut être une simple instruction ou bien un bloc
+d'instructions délimitées par des accolades.
+
+<?php
+if(2*4 > 5)
+{
+echo 'strictement supérieur à 5';
+}
+else
+{
+echo 'inférieur ou égal à 5';
+}
+
+
+- Alternative "switch"
+
+Lorsqu'une variable ou une instruction peut prendre une valeur parmi une liste connue, alors il est préférable d'utiliser
+le mot clef "switch" plutôt que des "if/else".
+
+Équivalent à (mais il est préférable d'éviter cette écriture) :
+<?php
+if($variable == 1)
+{
+	echo 'Choix numéro un';
+}
+else
+{
+	if($variable == 2)
+	{
+		echo 'Choix numéro deux';
+	}
+	else
+	{
+		if($variable == 3)
+		{
+			echo 'Choix numéro trois';
+		}
+		else
+		{
+			echo 'Choix invalide';
+		}
+	}
+}
+
+<?php
+switch(<expression>)
+{
+case <valeur 1>:
+<instructions>
+break;
+case <valeur 2>:
+<instructions>
+break;
+...
+default:
+<instructions>
+}
+
+Le nombre de case peut varier suivant l'utilisation, cela dépend de la situation. Le mot clef "break" oblige PHP à
+sortir du bloc switch.
+
+switch($variable)
+{
+	case 1:
+		echo 'Choix numéro un';
+	break;
+	case 2:
+		echo 'Choix numéro deux';
+	break;
+	case 3:
+		echo 'Choix numéro trois';
+	break;
+	default:
+		echo 'Choix invalide';
+}
+
+Le mot clef default est facultatif, mais toujours le mettre fait partie des bonnes pratiques. Il est le cas par défaut, c'està-
+dire si aucun autre cas n'a été validé.
+
+
+- Boucle "for"
+
+for(<initialisation> ; <continuer tant que> ; <incrémentation>)
+{
+<instructions>
+}
+
+La boucle "for" permet d'effectuer un groupe d'instructions un nombre déterminé de fois. Elle comprend trois
+paramètres qui sont habituellement des instructions :
+
+<?php
+//afficher tous les chiffres de 0 à 9
+for($i=0; $i<10; ++$i)
+{
+echo $i;
+}
+//afficher toutes les lettres de l'alphabet français
+for($lettre='a'; $lettre<='z', ++$lettre)
+{
+echo $lettre;
+}
+
+$users = array('BrYs', 'mathieu', 'Yogui');
+//perte de performances puisque count() est recalculé à chaque itération :
+for($i=0; $i<count($users); ++$i)
+{
+echo $i.' '.$users[$i].'<br/>';
+}
+//ok :
+$nb_users = count($users);
+for($i=0; $i<$nb_users; ++$i)
+{
+echo $i.' '.$users[$i].'<br/>';
+}
+
+
+Exemples de boucles infinies (à éviter) :
+<?php
+for(;;) //aucune condition de fin de boucle
+{
+//...
+}
+for($i=0; $i=-1; ++$i) //$i n'atteindra jamais -1
+{
+//...
+}
+
+
+- Boucle "while"
+
+while(<continuer tant que>)
+{
+<instructions>
+}
+
+Une boucle "while" est prévue pour effectuer un groupe d'instructions un nombre indéfini de fois. La condition de fin
+de boucle dépend souvent du résultat d'une comparaison de valeurs. Un exemple typique d'utilisation est la lecture
+d'un flux, par exemple un fichier.
+
+<?php
+$file = fopen('file.ext', 'r'); //ouverture d'un fichier en lecture
+while(!feof($file)) //tant que ce n'est pas la fin du fichier (End Of File)
+{
+echo fread($file, 8192); //lecture d'une ligne
+}
+fclose($file); //fermeture du descripteur de fichier
+
+Une autre utilisation classique de la boucle "while" est de mettre une ligne d'affectation comme condition :
+//exécution d'une requête définie plus haut dans le script
+$db_result = mysql_query($sql);
+while($row = mysql_fetch_assoc($db_result)) //tant qu'il y a un résultat
+{
+print_r($row);
+}
+
+
+Exemple de boucle infinie :
+<?php
+while(TRUE)
+{
+//...
+}
+
+
+- Boucle "do while"
+
+do
+{
+<instructions>
+} while(<continuer tant que>);
+
+Cette boucle fonctionne sur un principe similaire au "while", mais le premier tour de boucle est effectué avant toute
+chose.
+
+
+- Boucle "each" (info)
+
+Cette instruction n'est pas vraiment une boucle mais on l'utilise généralement conjointement à un type de boucle.
+Elle est prévue spécialement pour parcourir les tableaux :
+
+<?php
+$membres = array('BrYs', 'mathieu', 'Yogui');
+print_r(each($membres));
+print_r(each($membres));
+print_r(each($membres));
+
+Chaque utilisation de la fonction fait avancer le pointeur interne du tableau, c'est-à-dire la position à laquelle PHP
+s'est arrêté la dernière fois qu'il a consulté le tableau.
+Afin de simplifier son utilisation, on la couple souvent avec une boucle "while" :
+
+<?php
+$membres = array('BrYs', 'mathieu', 'Yogui');
+while(list($i, $membre) = each($membres))
+{
+echo $membre;
+}
+
+Le mot clef "each" étant assez complexe à utiliser, PHP propose une boucle très pratique : foreach.
+
+
+- Boucle "foreach"
+
+<?php
+foreach(<tableau> as <element>)
+{
+<instructions>
+}
+<?php
+foreach(<tableau> as <clef> => <element>)
+{
+<instructions>
+}
+
+
+<?php
+$membres = array('BrYs', 'mathieu', 'Yogui');
+//parcours du tableau :
+foreach($membres as $membre)
+{
+echo $membre; //affiche tour à tour "BrYs" puis "mathieu" puis "Yogui"
+}
+//parcours avec clefs :
+foreach($membres as $i => $membre)
+{
+//affiche tour à tour "0 BrYs" puis "1 mathieu" puis "2 Yogui"
+echo $i . ' ' . $membre;
+}
+//alternative :
+foreach($membres as $i => $membre)
+{
+//affiche tour à tour "0 BrYs" puis "1 mathieu" puis "2 Yogui"
+echo $i . ' ' . $membres[$i];
+}
+
+
+- Le parcour des tableaux
+Il existe plusieurs manières de parcourir un tableau :
+<?php
+$nombres = array(3, 6, 9);
+foreach($nombres as $nombre)
+{
+echo $nombre.'<br/>';
+}
+<?php
+$nombres = array(3, 6, 9);
+foreach($nombres as $i => $nombre)
+{
+echo $i.' '.$nombre.'<br/>';
+}
+<?php
+$nombres = array(3, 6, 9);
+for($i=0; $i<count($nombres); ++$i)
+{
+echo $i.' '.$nombres[$i].'<br/>';
+}
+<?php
+$nombres = array(3, 6, 9);
+while(list($i, $nombre) = each($nombres))
+{
+echo $i.' '.$nombre.'<br/>';
+}
+
+
+
+> Fonctions
+	- Syntaxe de base
+
+function <nom de la fonction> (<noms des paramètres>)
+{
+<instructions>
+return <valeur>; (optionnel)
+}
+
+	- Valeure de retour
+<?php
+function ma_fonction()
+{
+echo 'essai 1';
+return TRUE; //PHP sort de la fonction en renvoyant la valeur "vrai"
+echo 'essai 2'; //cette instruction ne sera jamais exécutée
+}
+
+
+	- Passage des arguments
+
+exemple d'application :
+Code répétitif :
+<?php
+var_dump(3 * 100 / 8);
+var_dump(2 * 100 / 72);
+var_dump(5 * 100 / 50);
+
+Code mis en facteur :
+<?php
+function pourcent($x, $y)
+{
+return $x * 100 / $y;
+}
+var_dump(pourcent(3, 8));
+var_dump(pourcent(2, 72));
+var_dump(pourcent(5, 50));
+
+
+
+	- Fonctions et constantes utiles
+
+Fonctions :
+• function_exists() : Est-ce que la fonction existe ?
+• get_defined_functions() : Liste des fonctions définies ;
+• func_num_args() : Nombre de paramètres transmis à la fonction courante ;
+• func_get_arg() : Un paramètre de la fonction courante ;
+• func_get_args() : Tous les paramètres de la fonction courante ;
+• create_function() : Créer une fonction utilisateur à partir du code PHP fourni en commentaires.
+
+L'utilisation de create_function() doit se faire uniquement après mûre réflexion (question
+de sécurité)...
+
+Constantes magiques :
+• __FUNCTION__ : Donne le nom de la fonction en cours.
+
+
+
+
+
+
+
+	- Visibilité des variables
+
+La visibilité (ou "scope") d'une variable dépend de sa première utilisation. Une variable n'est visible que dans la
+fonction dans laquelle elle a été définie :
+
+<?php
+$x = 5;
+echo $x; //affiche "5"
+test(); //affiche une erreur
+echo $x; //affiche "5"
+function test()
+{
+echo $x; //illégal car $x n'est pas défini dans la fonction test()
+}
+
+<?php
+$x = 5;
+echo $x; //affiche "5"
+test();
+echo $x; //affiche "5" car ce $x-ci n'est plus celui de la fonction test()
+function test()
+{
+$x = 7;
+echo $x; //affiche "7" car $x appartient à la fonction test()
+}
+
+
+Il existe cependant un mot clef "global" permettant d'outrepasser cette restriction :
+<?php
+$x = 5;
+echo $x; //affiche "5"
+test(); //affiche "5"
+echo $x; //affiche "5"
+function test()
+{
+global $x;
+echo $x; //reprend le "$x" du scope global
+}
+<?php
+$x = 5;
+echo $x; //affiche "5"
+test(); //affiche "7"
+
+echo $x; //affiche "7"
+function test()
+{
+global $x;
+$x = 7;
+echo $x; //modifie "$x" dans le scope global
+}
+
+
+- Références
+
+Transmettre une variable en "entrée-sortie" à une fonction s'apparente à la passer par référence. En PHP5, il n'y a
+qu'une manière de faire :
+<?php
+$i = 0;
+increment($i);
+increment($i);
+increment($i);
+increment($i);
+echo $i; //affiche "4"
+function increment(&$nb)
+{
+++$nb;
+}
+Cette approche est très efficace en utilisation de mémoire, car elle évite à la fonction de
+recopier la valeur de ses paramètres transmis par référence. En revanche, il faut faire très
+attention lorsque l'on modifie ces valeurs, car les changements sont répercutés dans le
+scope appelant la fonction...
+
+
+
+- La gestion des erreurs
+
+
+La gestion des erreur a pour but de signaler proprement des erreurs au visiteur et d'éviter l'affichage des messages d'erreurs bruts tels que PHP les envoie au navigateur.
+
+La fonction réalisée est une classe prédéfinit de PHP 5 qui propose une gestion évoluée des exceptions.
+
+Un gestionnaire des erreurs a donc la structure suivante :
+
+
+try {
+// bloc de code où peut survenir une erreur
+
+	if(<erreur prévue>){
+		throw new Exception();
+	}else{
+		// code si l'erreur n'est pas détectée
+	}
+
+
+} catch(Exception $except) {
+// bloc qui comporte le code qui va gérer l'erreur si elle se produit
+
+	
+}
+
+
+
+Le constructeur de l'objet Exception créé dans l'instruction throw reçoit deux paramètres, correspondant aux propriétés message et code de l'objet.
+Le premier est une chaîne contenant le message d'erreur et le second un entier qui définit un code d'erreur facultatif.
+Cet objet est utilisé dans le bloc catch en appelant ses méthodes pour afficher des informations sur l'exception.
+
+Liste des méthodes de l'objet Exception
+
+> getMessage()
+Retourne la valeur de la propriété message dans une chaine.
+
+> getCode()
+Retourne la velaur de la propriété code sous la forme d'un entier.
+
+> getFile()
+Retourne la valeur de la propriété file qui contient le nom et le chemin d'accès du fichier dans lequel s'est produite l'erreur.
+
+> getLine()
+Retourne la valeur de la propriété line qui indique le numéro de ligne à laquelle a été créée l'exception.
+
+> __toString()
+Retourne une chaine contenant toutes les informations sur l'exception.
+
+
+Exemple 
+
+<?Php
+
+$a=100;
+$b=0;
+
+try{
+	if($b==0){throw new Exception("Division par 0",8);}
+	else{echo "Résultat de : $a / $b = "$a/$b;}
+}catch(Exception $except){
+	echo "Message d'erreur :",$except->getMessage(),"<hr />";
+	echo "Nom du Fichier :",$except->getFile(),"<hr />";
+	echo "Numéro de ligne :",$except->getLine(),"<hr />";
+	echo "Code d'erreur :",$except->getCode(),"<hr />";
+	echo "__toString :",$except->__toString(),"<hr />";
+}
+echo '<br /><br />Le script s'est bien exécuté.';
+
+
+?>
+
+
+
+
+
+
+	- Gestion de l'UTF-8
+
+- Au niveau du document HTML
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+
+- Au niveau du fichier
+
+Vérifier que l'on code bien le fichier en UTF-8 dans les options.
+
+
+- Au niveau du server
+
+	- Méthode PHP
+
+	header( 'content-type: text/html; charset=utf-8' );
+
+(à mettre après le démarage de la session)
+	
+	
+
+	- Méthode Apache
+
+	AddDefaultCharset utf-8
+	
+Dans le cas d'un serveur dédié, on peut rajouter ce code dans le fichier de configuration Apache httpd.conf.
+
+Dans le cas d'un serveur mutualisé, ce code peut être rajouté dans un fichier .htaccess placé à la racine du domaine.
+
+
+- Au niveau de la base de donnée
+
+	- Aux Champs
+
+- Lors de la création de la base spécifier utf8_générale_ci
+
+Ou
+	CREATE DATABASE `ma_base` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+- Lors de la création de la table
+	
+
+- Après création de la table
+	ALTER TABLE `ma_table` CHANGE `mon_champ` `mon_champ` VARCHAR( 50 ) CHARACTER SET utf8 COLLATE
+utf8_unicode_ci NOT NULL;
+
+
+	- A la connexion
+
+	mysql_set_charset( 'utf8' );
+
+
+
+
+
+
+

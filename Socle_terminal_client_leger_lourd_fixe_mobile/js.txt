@@ -1,0 +1,1728 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+
+
+> Js (Fonction, Animation, Ajax (syncrone et asyncrone), JSONP, ...)
+	- native*
+		- https://learnxinyminutes.com/docs/javascript/
+			- // Single-line comments start with two slashes.
+				/* Multiline comments start with slash-star,
+				   and end with star-slash */
+
+				// Statements can be terminated by ;
+				doStuff();
+
+				// ... but they don't have to be, as semicolons are automatically inserted
+				// wherever there's a newline, except in certain cases.
+				doStuff()
+
+				// Because those cases can cause unexpected results, we'll keep on using
+				// semicolons in this guide.
+
+				///////////////////////////////////
+				// 1. Numbers, Strings and Operators
+
+				// JavaScript has one number type (which is a 64-bit IEEE 754 double).
+				// Doubles have a 52-bit mantissa, which is enough to store integers
+				// up to about 9✕10¹⁵ precisely.
+				3; // = 3
+				1.5; // = 1.5
+
+				// Some basic arithmetic works as you'd expect.
+				1 + 1; // = 2
+				0.1 + 0.2; // = 0.30000000000000004
+				8 - 1; // = 7
+				10 * 2; // = 20
+				35 / 5; // = 7
+
+				// Including uneven division.
+				5 / 2; // = 2.5
+
+				// And modulo division.
+				10 % 2; // = 0
+				30 % 4; // = 2
+				18.5 % 7; // = 4.5
+
+				// Bitwise operations also work; when you perform a bitwise operation your float
+				// is converted to a signed int *up to* 32 bits.
+				1 << 2; // = 4
+
+				// Precedence is enforced with parentheses.
+				(1 + 3) * 2; // = 8
+
+				// There are three special not-a-real-number values:
+				Infinity; // result of e.g. 1/0
+				-Infinity; // result of e.g. -1/0
+				NaN; // result of e.g. 0/0, stands for 'Not a Number'
+
+				// There's also a boolean type.
+				true;
+				false;
+
+				// Strings are created with ' or ".
+				'abc';
+				"Hello, world";
+
+				// Negation uses the ! symbol
+				!true; // = false
+				!false; // = true
+
+				// Equality is ===
+				1 === 1; // = true
+				2 === 1; // = false
+
+				// Inequality is !==
+				1 !== 1; // = false
+				2 !== 1; // = true
+
+				// More comparisons
+				1 < 10; // = true
+				1 > 10; // = false
+				2 <= 2; // = true
+				2 >= 2; // = true
+
+				// Strings are concatenated with +
+				"Hello " + "world!"; // = "Hello world!"
+
+				// ... which works with more than just strings
+				"1, 2, " + 3; // = "1, 2, 3"
+				"Hello " + ["world", "!"] // = "Hello world,!"
+
+				// and are compared with < and >
+				"a" < "b"; // = true
+
+				// Type coercion is performed for comparisons with double equals...
+				"5" == 5; // = true
+				null == undefined; // = true
+
+				// ...unless you use ===
+				"5" === 5; // = false
+				null === undefined; // = false
+
+				// ...which can result in some weird behaviour...
+				13 + !0; // 14
+				"13" + !0; // '13true'
+
+				// You can access characters in a string with `charAt`
+				"This is a string".charAt(0);  // = 'T'
+
+				// ...or use `substring` to get larger pieces.
+				"Hello world".substring(0, 5); // = "Hello"
+
+				// `length` is a property, so don't use ().
+				"Hello".length; // = 5
+
+				// There's also `null` and `undefined`.
+				null;      // used to indicate a deliberate non-value
+				undefined; // used to indicate a value is not currently present (although
+						   // `undefined` is actually a value itself)
+
+				// false, null, undefined, NaN, 0 and "" are falsy; everything else is truthy.
+				// Note that 0 is falsy and "0" is truthy, even though 0 == "0".
+
+				///////////////////////////////////
+				// 2. Variables, Arrays and Objects
+
+				// Variables are declared with the `var` keyword. JavaScript is dynamically
+				// typed, so you don't need to specify type. Assignment uses a single `=`
+				// character.
+				var someVar = 5;
+
+				// If you leave the var keyword off, you won't get an error...
+				someOtherVar = 10;
+
+				// ...but your variable will be created in the global scope, not in the scope
+				// you defined it in.
+
+				// Variables declared without being assigned to are set to undefined.
+				var someThirdVar; // = undefined
+
+				// If you want to declare a couple of variables, then you could use a comma
+				// separator
+				var someFourthVar = 2, someFifthVar = 4;
+
+				// There's shorthand for performing math operations on variables:
+				someVar += 5; // equivalent to someVar = someVar + 5; someVar is 10 now
+				someVar *= 10; // now someVar is 100
+
+				// and an even-shorter-hand for adding or subtracting 1
+				someVar++; // now someVar is 101
+				someVar--; // back to 100
+
+				// Arrays are ordered lists of values, of any type.
+				var myArray = ["Hello", 45, true];
+
+				// Their members can be accessed using the square-brackets subscript syntax.
+				// Array indices start at zero.
+				myArray[1]; // = 45
+
+				// Arrays are mutable and of variable length.
+				myArray.push("World");
+				myArray.length; // = 4
+
+				// Add/Modify at specific index
+				myArray[3] = "Hello";
+
+				// JavaScript's objects are equivalent to "dictionaries" or "maps" in other
+				// languages: an unordered collection of key-value pairs.
+				var myObj = {key1: "Hello", key2: "World"};
+
+				// Keys are strings, but quotes aren't required if they're a valid
+				// JavaScript identifier. Values can be any type.
+				var myObj = {myKey: "myValue", "my other key": 4};
+
+				// Object attributes can also be accessed using the subscript syntax,
+				myObj["my other key"]; // = 4
+
+				// ... or using the dot syntax, provided the key is a valid identifier.
+				myObj.myKey; // = "myValue"
+
+				// Objects are mutable; values can be changed and new keys added.
+				myObj.myThirdKey = true;
+
+				// If you try to access a value that's not yet set, you'll get undefined.
+				myObj.myFourthKey; // = undefined
+
+				///////////////////////////////////
+				// 3. Logic and Control Structures
+
+				// The `if` structure works as you'd expect.
+				var count = 1;
+				if (count == 3){
+					// evaluated if count is 3
+				} else if (count == 4){
+					// evaluated if count is 4
+				} else {
+					// evaluated if it's not either 3 or 4
+				}
+
+				// As does `while`.
+				while (true){
+					// An infinite loop!
+				}
+
+				// Do-while loops are like while loops, except they always run at least once.
+				var input;
+				do {
+					input = getInput();
+				} while (!isValid(input))
+
+				// The `for` loop is the same as C and Java:
+				// initialization; continue condition; iteration.
+				for (var i = 0; i < 5; i++){
+					// will run 5 times
+				}
+
+				// Breaking out of labeled loops is similar to Java
+				outer:
+				for (var i = 0; i < 10; i++) {
+					for (var j = 0; j < 10; j++) {
+						if (i == 5 && j ==5) {
+							break outer;
+							// breaks out of outer loop instead of only the inner one
+						}
+					}
+				}
+
+				// The for/in statement allows iteration over properties of an object.
+				var description = "";
+				var person = {fname:"Paul", lname:"Ken", age:18};
+				for (var x in person){
+					description += person[x] + " ";
+				} // description = 'Paul Ken 18 '
+
+				// && is logical and, || is logical or
+				if (house.size == "big" && house.colour == "blue"){
+					house.contains = "bear";
+				}
+				if (colour == "red" || colour == "blue"){
+					// colour is either red or blue
+				}
+
+				// && and || "short circuit", which is useful for setting default values.
+				var name = otherName || "default";
+
+				// The `switch` statement checks for equality with `===`.
+				// Use 'break' after each case
+				// or the cases after the correct one will be executed too.
+				grade = 'B';
+				switch (grade) {
+				  case 'A':
+					console.log("Great job");
+					break;
+				  case 'B':
+					console.log("OK job");
+					break;
+				  case 'C':
+					console.log("You can do better");
+					break;
+				  default:
+					console.log("Oy vey");
+					break;
+				}
+
+
+				///////////////////////////////////
+				// 4. Functions, Scope and Closures
+
+				// JavaScript functions are declared with the `function` keyword.
+				function myFunction(thing){
+					return thing.toUpperCase();
+				}
+				myFunction("foo"); // = "FOO"
+
+				// Note that the value to be returned must start on the same line as the
+				// `return` keyword, otherwise you'll always return `undefined` due to
+				// automatic semicolon insertion. Watch out for this when using Allman style.
+				function myFunction(){
+					return // <- semicolon automatically inserted here
+					{thisIsAn: 'object literal'}
+				}
+				myFunction(); // = undefined
+
+				// JavaScript functions are first class objects, so they can be reassigned to
+				// different variable names and passed to other functions as arguments - for
+				// example, when supplying an event handler:
+				function myFunction(){
+					// this code will be called in 5 seconds' time
+				}
+				setTimeout(myFunction, 5000);
+				// Note: setTimeout isn't part of the JS language, but is provided by browsers
+				// and Node.js.
+
+				// Another function provided by browsers is setInterval
+				function myFunction(){
+					// this code will be called every 5 seconds
+				}
+				setInterval(myFunction, 5000);
+
+				// Function objects don't even have to be declared with a name - you can write
+				// an anonymous function definition directly into the arguments of another.
+				setTimeout(function(){
+					// this code will be called in 5 seconds' time
+				}, 5000);
+
+				// JavaScript has function scope; functions get their own scope but other blocks
+				// do not.
+				if (true){
+					var i = 5;
+				}
+				i; // = 5 - not undefined as you'd expect in a block-scoped language
+
+				// This has led to a common pattern of "immediately-executing anonymous
+				// functions", which prevent temporary variables from leaking into the global
+				// scope.
+				(function(){
+					var temporary = 5;
+					// We can access the global scope by assigning to the "global object", which
+					// in a web browser is always `window`. The global object may have a
+					// different name in non-browser environments such as Node.js.
+					window.permanent = 10;
+				})();
+				temporary; // raises ReferenceError
+				permanent; // = 10
+
+				// One of JavaScript's most powerful features is closures. If a function is
+				// defined inside another function, the inner function has access to all the
+				// outer function's variables, even after the outer function exits.
+				function sayHelloInFiveSeconds(name){
+					var prompt = "Hello, " + name + "!";
+					// Inner functions are put in the local scope by default, as if they were
+					// declared with `var`.
+					function inner(){
+						alert(prompt);
+					}
+					setTimeout(inner, 5000);
+					// setTimeout is asynchronous, so the sayHelloInFiveSeconds function will
+					// exit immediately, and setTimeout will call inner afterwards. However,
+					// because inner is "closed over" sayHelloInFiveSeconds, inner still has
+					// access to the `prompt` variable when it is finally called.
+				}
+				sayHelloInFiveSeconds("Adam"); // will open a popup with "Hello, Adam!" in 5s
+
+				///////////////////////////////////
+				// 5. More about Objects; Constructors and Prototypes
+
+				// Objects can contain functions.
+				var myObj = {
+					myFunc: function(){
+						return "Hello world!";
+					}
+				};
+				myObj.myFunc(); // = "Hello world!"
+
+				// When functions attached to an object are called, they can access the object
+				// they're attached to using the `this` keyword.
+				myObj = {
+					myString: "Hello world!",
+					myFunc: function(){
+						return this.myString;
+					}
+				};
+				myObj.myFunc(); // = "Hello world!"
+
+				// What this is set to has to do with how the function is called, not where
+				// it's defined. So, our function doesn't work if it isn't called in the
+				// context of the object.
+				var myFunc = myObj.myFunc;
+				myFunc(); // = undefined
+
+				// Inversely, a function can be assigned to the object and gain access to it
+				// through `this`, even if it wasn't attached when it was defined.
+				var myOtherFunc = function(){
+					return this.myString.toUpperCase();
+				}
+				myObj.myOtherFunc = myOtherFunc;
+				myObj.myOtherFunc(); // = "HELLO WORLD!"
+
+				// We can also specify a context for a function to execute in when we invoke it
+				// using `call` or `apply`.
+
+				var anotherFunc = function(s){
+					return this.myString + s;
+				}
+				anotherFunc.call(myObj, " And Hello Moon!"); // = "Hello World! And Hello Moon!"
+
+				// The `apply` function is nearly identical, but takes an array for an argument
+				// list.
+
+				anotherFunc.apply(myObj, [" And Hello Sun!"]); // = "Hello World! And Hello Sun!"
+
+				// This is useful when working with a function that accepts a sequence of
+				// arguments and you want to pass an array.
+
+				Math.min(42, 6, 27); // = 6
+				Math.min([42, 6, 27]); // = NaN (uh-oh!)
+				Math.min.apply(Math, [42, 6, 27]); // = 6
+
+				// But, `call` and `apply` are only temporary. When we want it to stick, we can
+				// use `bind`.
+
+				var boundFunc = anotherFunc.bind(myObj);
+				boundFunc(" And Hello Saturn!"); // = "Hello World! And Hello Saturn!"
+
+				// `bind` can also be used to partially apply (curry) a function.
+
+				var product = function(a, b){ return a * b; }
+				var doubler = product.bind(this, 2);
+				doubler(8); // = 16
+
+				// When you call a function with the `new` keyword, a new object is created, and
+				// made available to the function via the `this` keyword. Functions designed to be
+				// called like that are called constructors.
+
+				var MyConstructor = function(){
+					this.myNumber = 5;
+				}
+				myNewObj = new MyConstructor(); // = {myNumber: 5}
+				myNewObj.myNumber; // = 5
+
+				// Unlike most other popular object-oriented languages, JavaScript has no 
+				// concept of 'instances' created from 'class' blueprints; instead, JavaScript
+				// combines instantiation and inheritance into a single concept: a 'prototype'.
+
+				// Every JavaScript object has a 'prototype'. When you go to access a property
+				// on an object that doesn't exist on the actual object, the interpreter will
+				// look at its prototype.
+
+				// Some JS implementations let you access an object's prototype on the magic
+				// property `__proto__`. While this is useful for explaining prototypes it's not
+				// part of the standard; we'll get to standard ways of using prototypes later.
+				var myObj = {
+					myString: "Hello world!"
+				};
+				var myPrototype = {
+					meaningOfLife: 42,
+					myFunc: function(){
+						return this.myString.toLowerCase()
+					}
+				};
+
+				myObj.__proto__ = myPrototype;
+				myObj.meaningOfLife; // = 42
+
+				// This works for functions, too.
+				myObj.myFunc(); // = "hello world!"
+
+				// Of course, if your property isn't on your prototype, the prototype's
+				// prototype is searched, and so on.
+				myPrototype.__proto__ = {
+					myBoolean: true
+				};
+				myObj.myBoolean; // = true
+
+				// There's no copying involved here; each object stores a reference to its
+				// prototype. This means we can alter the prototype and our changes will be
+				// reflected everywhere.
+				myPrototype.meaningOfLife = 43;
+				myObj.meaningOfLife; // = 43
+
+				// The for/in statement allows iteration over properties of an object,
+				// walking up the prototype chain until it sees a null prototype.
+				for (var x in myObj){
+					console.log(myObj[x]);
+				}
+				///prints:
+				// Hello world!
+				// 43
+				// [Function: myFunc]
+
+				// To only consider properties attached to the object itself
+				// and not its prototypes, use the `hasOwnProperty()` check.
+				for (var x in myObj){
+					if (myObj.hasOwnProperty(x)){
+						console.log(myObj[x]);
+					}
+				}
+				///prints:
+				// Hello world!
+
+				// We mentioned that `__proto__` was non-standard, and there's no standard way to
+				// change the prototype of an existing object. However, there are two ways to
+				// create a new object with a given prototype.
+
+				// The first is Object.create, which is a recent addition to JS, and therefore
+				// not available in all implementations yet.
+				var myObj = Object.create(myPrototype);
+				myObj.meaningOfLife; // = 43
+
+				// The second way, which works anywhere, has to do with constructors.
+				// Constructors have a property called prototype. This is *not* the prototype of
+				// the constructor function itself; instead, it's the prototype that new objects
+				// are given when they're created with that constructor and the new keyword.
+				MyConstructor.prototype = {
+					myNumber: 5,
+					getMyNumber: function(){
+						return this.myNumber;
+					}
+				};
+				var myNewObj2 = new MyConstructor();
+				myNewObj2.getMyNumber(); // = 5
+				myNewObj2.myNumber = 6
+				myNewObj2.getMyNumber(); // = 6
+
+				// Built-in types like strings and numbers also have constructors that create
+				// equivalent wrapper objects.
+				var myNumber = 12;
+				var myNumberObj = new Number(12);
+				myNumber == myNumberObj; // = true
+
+				// Except, they aren't exactly equivalent.
+				typeof myNumber; // = 'number'
+				typeof myNumberObj; // = 'object'
+				myNumber === myNumberObj; // = false
+				if (0){
+					// This code won't execute, because 0 is falsy.
+				}
+				if (new Number(0)){
+				   // This code will execute, because wrapped numbers are objects, and objects
+				   // are always truthy.
+				}
+
+				// However, the wrapper objects and the regular builtins share a prototype, so
+				// you can actually add functionality to a string, for instance.
+				String.prototype.firstCharacter = function(){
+					return this.charAt(0);
+				}
+				"abc".firstCharacter(); // = "a"
+
+				// This fact is often used in "polyfilling", which is implementing newer
+				// features of JavaScript in an older subset of JavaScript, so that they can be
+				// used in older environments such as outdated browsers.
+
+				// For instance, we mentioned that Object.create isn't yet available in all
+				// implementations, but we can still use it with this polyfill:
+				if (Object.create === undefined){ // don't overwrite it if it exists
+					Object.create = function(proto){
+						// make a temporary constructor with the right prototype
+						var Constructor = function(){};
+						Constructor.prototype = proto;
+						// then use it to create a new, appropriately-prototyped object
+						return new Constructor();
+					}
+				}
+		- https://www.w3schools.com/js/default.asp
+			- JS Tutorial
+				- JS HOME
+				- JS Introduction
+				- JS Where To
+					- The <script> Tag
+						- Old JavaScript examples may use a type attribute: <script type="text/javascript">.
+						- The type attribute is not required. JavaScript is the default scripting language in HTML.
+						- <script>
+							document.getElementById("demo").innerHTML = "My First JavaScript";
+							</script>
+					- JavaScript Functions and Events
+						- A JavaScript function is a block of JavaScript code, that can be executed when "called" for.
+						- For example, a function can be called when an event occurs, like when the user clicks a button.
+					- JavaScript in <head> or <body>
+						- Scripts can be placed in the <body>, or in the <head> section of an HTML page, or in both.
+					- JavaScript in <head>
+						- <head>
+								<script>
+									function myFunction() {
+										document.getElementById("demo").innerHTML = "Paragraph changed.";
+									}
+								</script>
+							</head>
+						- <button type="button" onclick="myFunction()">Try it</button>
+					- JavaScript in <body>
+						- <button type="button" onclick="myFunction()">Try it</button>
+						- ...
+							<script>
+								function myFunction() {
+								   document.getElementById("demo").innerHTML = "Paragraph changed.";
+								}
+							</script>
+
+							</body>
+					- External JavaScript
+						- External file: myScript.js
+							- function myFunction() {
+									document.getElementById("demo").innerHTML = "Paragraph changed.";
+								}
+						- <script src="myScript.js"></script>
+					- External References
+						- script located in a specified folder on the current web site
+							- <script src="/js/myScript1.js"></script>
+				- JS Output
+					- JavaScript Display Possibilities
+						JavaScript can "display" data in different ways:
+							- Writing into an HTML element, using innerHTML.
+								- <p id="demo"></p>
+								- <script>
+									document.getElementById("demo").innerHTML = 5 + 6;
+									</script>
+							- Writing into the HTML output using document.write().
+								- <script>
+									document.write(5 + 6);
+									</script>
+							- Writing into an alert box, using window.alert().
+								- <script>
+									window.alert(5 + 6);
+									</script>
+							- Writing into the browser console, using console.log().
+								- <script>
+									console.log(5 + 6);
+									</script>
+				- JS Syntax
+				- JS Statements
+					- JavaScript Keywords
+						JavaScript statements often start with a keyword to identify the JavaScript action to be performed.
+
+						Here is a list of some of the keywords you will learn about in this tutorial:
+
+						Keyword			Description
+						break			Terminates a switch or a loop
+						continue		Jumps out of a loop and starts at the top
+						debugger		Stops the execution of JavaScript, and calls (if available) the debugging function
+						do ... while	Executes a block of statements, and repeats the block, while a condition is true
+						for				Marks a block of statements to be executed, as long as a condition is true
+						function		Declares a function
+						if ... else		Marks a block of statements to be executed, depending on a condition
+						return			Exits a function
+						switch			Marks a block of statements to be executed, depending on different cases
+						try ... catch	Implements error handling to a block of statements
+						var				Declares a variable
+				- JS Comments
+				- JS Variables
+				- JS Operators
+					- JavaScript Type Operators
+						Operator	Description
+						typeof		Returns the type of a variable
+						instanceof	Returns true if an object is an instance of an object type
+				- JS Arithmetic
+				- JS Assignment
+				- JS Data Types
+					- Difference Between Undefined and Null
+						Undefined and null are equal in value but different in type:
+
+						typeof undefined           // undefined
+						typeof null                // object
+
+						null === undefined         // false
+						null == undefined          // true
+					- Primitive Data
+						A primitive data value is a single simple data value with no additional properties and methods.
+						
+						typeof "John"              // Returns "string" 
+						typeof 3.14                // Returns "number"
+						typeof true                // Returns "boolean"
+						typeof false               // Returns "boolean"
+						typeof x                   // Returns "undefined" (if x has no value)
+					- Complex Data
+						The typeof operator can return one of two complex types:
+
+							function
+							object
+						typeof {name:'John', age:34} // Returns "object"
+						typeof [1,2,3,4]             // Returns "object" (not "array", see note below)
+						typeof null                  // Returns "object"
+						typeof function myFunc(){}   // Returns "function"
+				- JS Functions
+				- JS Objects
+					- Accessing Object Properties
+						- objectName.propertyName
+						- objectName["propertyName"]
+					- Do Not Declare Strings, Numbers, and Booleans as Objects!
+						- var x = new String();        // Declares x as a String object
+						- var y = new Number();        // Declares y as a Number object
+						- var z = new Boolean();       // Declares z as a Boolean object
+				- JS Scope
+					- Automatically Global
+						- myFunction();
+							// code here can use carName
+							function myFunction() {
+								carName = "Volvo";
+							}
+					- Global Variables in HTML
+						- var carName = "Volvo";
+							// code here can use window.carName
+				- JS Events
+					- HTML Events
+						- In the following example, an onclick attribute (with code), is added to a button element:
+							- <button onclick="document.getElementById('demo').innerHTML = Date()">The time is?</button>
+						- In the next example, the code changes the content of its own element (using this.innerHTML):
+							- <button onclick="this.innerHTML = Date()">The time is?</button>
+						- It is more common to see event attributes calling functions:
+							- <button onclick="displayDate()">The time is?</button>
+				- JS Strings
+					- String Length
+						- var sln = txt.length;
+					- Special Characters
+						- These are commonly used special characters that can be inserted in a text with the backslash sign:
+							Code	Outputs
+							\'	single quote
+							\"	double quote
+							\\	backslash
+						- Five other escape characters are valid in JavaScript:
+							Code	Outputs
+							\b	Backspace
+							\r	Carriage Return
+							\f	Form Feed
+							\t	Horizontal Tabulator
+							\v	Vertical Tabulator
+				- JS String Methods
+					- Finding a String in a String
+						- The indexOf() method returns the index of (the position of) the first occurrence of a specified text in a string
+							- var str = "Please locate where 'locate' occurs!";
+							- var pos = str.indexOf("locate");
+						- The lastIndexOf() method returns the index of the last occurrence of a specified text in a string:
+							- var str = "Please locate where 'locate' occurs!";
+							- var pos = str.lastIndexOf("locate");
+						- Both the indexOf(), and the lastIndexOf() methods return -1 if the text is not found.
+						- Both methods accept a second parameter as the starting position for the search:
+							- var str = "Please locate where 'locate' occurs!";
+							- var pos = str.indexOf("locate",15);
+				- JS Numbers
+					- isNaN(x);             // returns true because x is Not a Number
+					- typeof NaN;            // returns "number"
+					- But you can use the toString() method to output numbers as base 16 (hex), base 8 (octal), or base 2 (binary).
+						- var myNumber = 128;
+							myNumber.toString(16);  // returns 80
+							myNumber.toString(8);   // returns 200
+							myNumber.toString(2);   // returns 10000000
+				- JS Number Methods
+					- The toFixed() Method
+						-toFixed() returns a string, with the number written with a specified number of decimals:
+						- var x = 9.656;
+							x.toFixed(0);           // returns 10
+							x.toFixed(2);           // returns 9.66
+							x.toFixed(4);           // returns 9.6560
+							x.toFixed(6);           // returns 9.656000
+					- The toPrecision() Method
+						- toPrecision() returns a string, with a number written with a specified length:
+						- var x = 9.656;
+							x.toPrecision();        // returns 9.656
+							x.toPrecision(2);       // returns 9.7
+							x.toPrecision(4);       // returns 9.656
+							x.toPrecision(6);       // returns 9.65600
+					- The valueOf() Method
+						- var x = 123;
+							x.valueOf();            // returns 123 from variable x
+							(123).valueOf();        // returns 123 from literal 123
+							(100 + 23).valueOf();   // returns 123 from expression 100 + 23
+					- Global Methods
+						JavaScript global methods can be used on all JavaScript data types.
+
+						These are the most relevant methods, when working with numbers:
+
+						Method			Description
+						Number()		Returns a number, converted from its argument.
+						parseFloat()	Parses its argument and returns a floating point number
+						parseInt()		Parses its argument and returns an integer
+				- JS Math
+					- Math Object Methods
+						Method					Description
+						abs(x)					Returns the absolute value of x
+						acos(x)					Returns the arccosine of x, in radians
+						asin(x)					Returns the arcsine of x, in radians
+						atan(x)					Returns the arctangent of x as a numeric value between -PI/2 and PI/2 radians
+						atan2(y, x)				Returns the arctangent of the quotient of its arguments
+						ceil(x)					Returns the value of x rounded up to its nearest integer
+						cos(x)					Returns the cosine of x (x is in radians)
+						exp(x)					Returns the value of Ex
+						floor(x)				Returns the value of x rounded down to its nearest integer
+						log(x)					Returns the natural logarithm (base E) of x
+						max(x, y, z, ..., n)	Returns the number with the highest value
+						min(x, y, z, ..., n)	Returns the number with the lowest value
+						pow(x, y)				Returns the value of x to the power of y
+						random()				Returns a random number between 0 and 1
+						round(x)				Returns the value of x rounded to its nearest integer
+						sin(x)					Returns the sine of x (x is in radians)
+						sqrt(x)					Returns the square root of x
+						tan(x)					Returns the tangent of an angle
+				- JS Random
+				- JS Dates
+					- Creating Date Objects
+						- new Date()
+						- new Date(milliseconds)
+						- new Date(dateString)
+						- new Date(year, month, day, hours, minutes, seconds, milliseconds)
+				- JS Date Formats
+					- ISO Date	"2015-03-25" (The International Standard)
+				- JS Date Methods
+					- Date Get Methods
+						Get methods are used for getting a part of a date. Here are the most common (alphabetically):
+
+						Method	Description
+						getDate()	Get the day as a number (1-31)
+						getDay()	Get the weekday as a number (0-6)
+						getFullYear()	Get the four digit year (yyyy)
+						getHours()	Get the hour (0-23)
+						getMilliseconds()	Get the milliseconds (0-999)
+						getMinutes()	Get the minutes (0-59)
+						getMonth()	Get the month (0-11)
+						getSeconds()	Get the seconds (0-59)
+						getTime()	Get the time (milliseconds since January 1, 1970)
+					- Date Set Methods
+						Set methods are used for setting a part of a date. Here are the most common (alphabetically):
+
+						Method	Description
+						setDate()	Set the day as a number (1-31)
+						setFullYear()	Set the year (optionally month and day)
+						setHours()	Set the hour (0-23)
+						setMilliseconds()	Set the milliseconds (0-999)
+						setMinutes()	Set the minutes (0-59)
+						setMonth()	Set the month (0-11)
+						setSeconds()	Set the seconds (0-59)
+						setTime()	Set the time (milliseconds since January 1, 1970)
+					- Date Input - Parsing Dates
+						- If you have a valid date string, you can use the Date.parse() method to convert it to milliseconds.
+						- Date.parse() returns the number of milliseconds between the date and January 1, 1970:
+							<script>
+								var msec = Date.parse("March 21, 2012");
+								document.getElementById("demo").innerHTML = msec;
+							</script>
+						- You can then use the number of milliseconds to convert it to a date object:
+							- <script>
+								var msec = Date.parse("March 21, 2012");
+								var d = new Date(msec);
+								document.getElementById("demo").innerHTML = d;
+							</script>
+					- Compare Dates
+						- Dates can easily be compared.
+						The following example compares today's date with January 14, 2100:
+						var today, someday, text;
+						today = new Date();
+						someday = new Date();
+						someday.setFullYear(2100, 0, 14);
+
+						if (someday > today) {
+							text = "Today is before January 14, 2100.";
+						} else {
+							text = "Today is after January 14, 2100.";
+						}
+						document.getElementById("demo").innerHTML = text;
+					- UTC Date Methods
+						UTC date methods are used for working UTC dates (Universal Time Zone dates):
+
+						Method					Description
+						getUTCDate()			Same as getDate(), but returns the UTC date
+						getUTCDay()				Same as getDay(), but returns the UTC day
+						getUTCFullYear()		Same as getFullYear(), but returns the UTC year
+						getUTCHours()			Same as getHours(), but returns the UTC hour
+						getUTCMilliseconds()	Same as getMilliseconds(), but returns the UTC milliseconds
+						getUTCMinutes()			Same as getMinutes(), but returns the UTC minutes
+						getUTCMonth()			Same as getMonth(), but returns the UTC month
+						getUTCSeconds()			Same as getSeconds(), but returns the UTC seconds
+				- JS Arrays
+					- JavaScript Arrays
+						- var cars = ["Saab", "Volvo", "BMW"];
+					- Using the JavaScript Keyword new
+						- var cars = new Array("Saab", "Volvo", "BMW");		// Bad
+						- var cars = ["Saab", "Volvo", "BMW"];				// Good
+					- Access the Elements of an Array
+						- You refer to an array element by referring to the index number.
+					- Access the Full Array
+						- document.getElementById("demo").innerHTML = cars; // Saab,Volvo,BMW
+					- Array Elements Can Be Objects
+						- myArray[0] = Date.now;
+							myArray[1] = myFunction;
+							myArray[2] = myCars;
+					- Array Properties and Methods
+						- var x = cars.length;   // The length property returns the number of elements
+						- var y = cars.sort();   // The sort() method sorts arrays*
+					- Adding Array Elements
+						- var fruits = ["Banana", "Orange", "Apple", "Mango"];
+						- fruits.push("Lemon");
+					- How to Recognize an Array
+						- The problem is that the JavaScript operator typeof returns "object":
+							- var fruits = ["Banana", "Orange", "Apple", "Mango"];
+								typeof fruits;             // returns object
+						- To solve this problem ECMAScript 5 defines a new method Array.isArray():
+							- Array.isArray(fruits);     // returns true
+							- in older browsers
+								- function isArray(x) {
+									return x.constructor.toString().indexOf("Array") > -1;
+								}
+				- JS Array Methods
+					- Converting Arrays to Strings
+						- document.getElementById("demo").innerHTML = fruits.join(" * ");
+					- Popping
+						- var fruits = ["Banana", "Orange", "Apple", "Mango"];
+							var x = fruits.pop();      // the value of x is "Mango"
+					- Pushing
+						- var fruits = ["Banana", "Orange", "Apple", "Mango"];
+							var x = fruits.push("Kiwi");   //  the value of x is 5
+					- Shifting Elements
+						- var fruits = ["Banana", "Orange", "Apple", "Mango"];
+							fruits.shift();            // Removes the first element "Banana" from fruits
+						- var fruits = ["Banana", "Orange", "Apple", "Mango"];
+							fruits.unshift("Lemon");    // Adds a new element "Lemon" to fruits
+					- Splicing an Array
+						- var fruits = ["Banana", "Orange", "Apple", "Mango"];
+							fruits.splice(2, 0, "Lemon", "Kiwi");	// Banana,Orange,Lemon,Kiwi,Apple,Mango
+					- Using splice() to Remove Elements
+						- var fruits = ["Banana", "Orange", "Apple", "Mango"];
+							fruits.splice(0, 1);        // Removes the first element of fruits
+					- Merging (Concatenating) Arrays
+						- var arr1 = ["Cecilie", "Lone"];
+							var arr2 = ["Emil", "Tobias","Linus"];
+							var arr3 = ["Robin", "Morgan"];
+							var myChildren = arr1.concat(arr2, arr3);     // Concatenates arr1 with arr2 and arr3
+					- Slicing an Array
+						- The method then selects elements from the start argument, and up to (but not including) the end argument.
+							- var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+								var citrus = fruits.slice(1, 3);
+				- JS Array Sort
+					- https://www.w3schools.com/js/js_array_sort.asp
+						- var fruits = ["Banana", "Orange", "Apple", "Mango"];
+						- fruits.sort();            // Sorts the elements of fruits 
+						- fruits.reverse();         // Reverses the order of the elements
+				- JS Booleans
+				- JS Comparisons
+				- JS Conditions
+				- JS Switch
+				- JS Loop For
+					- for (i = 0, len = cars.length, text = ""; i < len; i++) { 
+						text += cars[i] + "<br>";
+					}
+				- JS Loop While
+				- JS Break
+					- The Break Statement
+						- The break statement "jumps out" of a loop.
+					- The Continue Statement
+						- The continue statement "jumps over" one iteration in the loop.
+					- JavaScript Labels
+						- With a label reference, the break statement can be used to jump out of any code block:
+						- label:
+							statements
+						- break labelname;
+						- continue labelname;
+						- var cars = ["BMW", "Volvo", "Saab", "Ford"];
+							list: {
+								text += cars[0] + "<br>"; 
+								text += cars[1] + "<br>"; 
+								text += cars[2] + "<br>"; 
+								break list;
+								text += cars[3] + "<br>"; 
+								text += cars[4] + "<br>"; 
+								text += cars[5] + "<br>"; 
+							}
+				- JS Type Conversion
+				- JS Bitwise
+				- JS RegExp
+					- Using String search() With a Regular Expression
+						- var str = "Visit W3Schools";
+							var n = str.search(/w3schools/i);
+					- Using String search() With String
+						- var str = "Visit W3Schools!";
+							var n = str.search("W3Schools");
+					- Use String replace() With a Regular Expression
+						- var str = "Visit Microsoft!";
+							var res = str.replace(/microsoft/i, "W3Schools");
+					- Using String replace() With a String
+						- var str = "Visit Microsoft!";
+							var res = str.replace("Microsoft", "W3Schools");
+					- Regular Expression Modifiers
+						Modifiers can be used to perform case-insensitive more global searches:
+
+						Modifier	Description
+						i			Perform case-insensitive matching
+						g			Perform a global match (find all matches rather than stopping after the first match)
+						m			Perform multiline matching
+						
+					- Regular Expression Patterns
+						Brackets are used to find a range of characters:
+
+						Expression	Description
+						[abc]		Find any of the characters between the brackets
+						[0-9]		Find any of the digits between the brackets
+						(x|y)		Find any of the alternatives separated with |
+						
+						Metacharacters are characters with a special meaning:
+
+						Metacharacter	Description
+						\d				Find a digit
+						\s				Find a whitespace character
+						\b				Find a match at the beginning or at the end of a word
+						\uxxxx			Find the Unicode character specified by the hexadecimal number xxxx
+						
+						Quantifiers define quantities:
+
+						Quantifier	Description
+						n+			Matches any string that contains at least one n
+						n*			Matches any string that contains zero or more occurrences of n
+						n?			Matches any string that contains zero or one occurrences of n
+				- JS Errors
+					- JavaScript Errors - Throw and Try to Catch
+						- The try statement lets you test a block of code for errors.
+						- The catch statement lets you handle the error.
+						- The throw statement lets you create custom errors.
+						- The finally statement lets you execute code, after try and catch, regardless of the result.
+					- The finally Statement
+						- try {
+								Block of code to try
+							}
+							catch(err) {
+								Block of code to handle errors
+							} 
+							finally {
+								Block of code to be executed regardless of the try / catch result
+							}
+						- function myFunction() {
+								var message, x;
+								message = document.getElementById("message");
+								message.innerHTML = "";
+								x = document.getElementById("demo").value;
+								try { 
+									if(x == "") throw "is empty";
+									if(isNaN(x)) throw "is not a number";
+									x = Number(x);
+									if(x > 10) throw "is too high";
+									if(x < 5) throw "is too low";
+								}
+								catch(err) {
+									message.innerHTML = "Error: " + err + ".";
+								}
+								finally {
+									document.getElementById("demo").value = "";
+								}
+							}
+					- Error Object Properties
+						Property	Description
+						name		Sets or returns an error name
+						message		Sets or returns an error message (a string)
+						
+					- Error Name Values
+						Six different values can be returned by the error name property:
+
+						Error Name		Description
+						EvalError		An error has occurred in the eval() function
+						RangeError		A number "out of range" has occurred
+						ReferenceError	An illegal reference has occurred
+						SyntaxError		A syntax error has occurred
+						TypeError		A type error has occurred
+						URIError		An error in encodeURI() has occurred
+				- JS Debugging
+					- The console.log() Method
+						- a = 5;
+							b = 6;
+							c = a + b;
+							console.log(c);
+					- The debugger Keyword
+						- var x = 15 * 5;
+							debugger;
+							document.getElementById("demo").innerHTML = x;
+				- JS Hoisting
+				- JS Strict Mode
+					- Internet Explorer 9 does not support ECMAScript 5 "use strict".
+					- Declaring Strict Mode
+						- https://www.w3schools.com/js/js_strict.asp
+				- JS Style Guide
+				- JS Best Practices
+					- Don't Use new Object()
+						Use {} instead of new Object()
+						Use "" instead of new String()
+						Use 0 instead of new Number()
+						Use false instead of new Boolean()
+						Use [] instead of new Array()
+						Use /()/ instead of new RegExp()
+						Use function (){} instead of new Function()
+					- Use Parameter Defaults
+						- function myFunction(x, y) {
+								if (y === undefined) {
+									y = 0;
+								}
+							}
+				- JS Mistakes
+				- JS Performance
+				- JS Reserved Words
+				- JS Versions
+				- JS JSON
+					- JSON Objects
+						- {"firstName":"John", "lastName":"Doe"}
+					- JSON Arrays
+						- "employees":[
+							{"firstName":"John", "lastName":"Doe"}, 
+							{"firstName":"Anna", "lastName":"Smith"}, 
+							{"firstName":"Peter", "lastName":"Jones"}
+						]
+					- Converting a JSON Text to a JavaScript Object
+						- var text = '{ "employees" : [' +
+							'{ "firstName":"John" , "lastName":"Doe" },' +
+							'{ "firstName":"Anna" , "lastName":"Smith" },' +
+							'{ "firstName":"Peter" , "lastName":"Jones" } ]}';
+						- var obj = JSON.parse(text);
+						- <script>
+							document.getElementById("demo").innerHTML =
+							obj.employees[1].firstName + " " + obj.employees[1].lastName;
+							</script>
+				JS Forms
+				- JS Forms
+					- JavaScript Form Validation
+						- function validateForm() {
+								var x = document.forms["myForm"]["fname"].value;
+								if (x == "") {
+									alert("Name must be filled out");
+									return false;
+								}
+							}
+				- Forms API
+					- https://www.w3schools.com/js/js_validation_api.asp
+					- Constraint Validation DOM Methods
+						Property			Description
+						checkValidity()		Returns true if an input element contains valid data.
+						setCustomValidity()	Sets the validationMessage property of an input element.
+					- Constraint Validation DOM Properties
+						Property			Description
+						validity			Contains boolean properties related to the validity of an input element.
+						validationMessage	Contains the message a browser will display when the validity is false.
+						willValidate		Indicates if an input element will be validated.
+					- Validity Properties
+						The validity property of an input element contains a number of properties related to the validity of data:
+
+						Property		Description
+						customError		Set to true, if a custom validity message is set.
+						patternMismatch	Set to true, if an element's value does not match its pattern attribute.
+						rangeOverflow	Set to true, if an element's value is greater than its max attribute.
+						rangeUnderflow	Set to true, if an element's value is less than its min attribute.
+						stepMismatch	Set to true, if an element's value is invalid per its step attribute.
+						tooLong			Set to true, if an element's value exceeds its maxLength attribute.
+						typeMismatch	Set to true, if an element's value is invalid per its type attribute.
+						valueMissing	Set to true, if an element (with a required attribute) has no value.
+						valid			Set to true, if an element's value is valid.
+
+				JS Objects
+				- Object Definitions
+					- Creating a JavaScript Object
+						- Using an Object Literal
+							- var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+						- Using the JavaScript Keyword new
+							- var person = new Object();
+								person.firstName = "John";
+								person.lastName = "Doe";
+								person.age = 50;
+								person.eyeColor = "blue";
+						- Using an Object Constructor
+							- est un prototype
+							- function person(first, last, age, eye) {
+									this.firstName = first;
+									this.lastName = last;
+									this.age = age;
+									this.eyeColor = eye;
+								}
+								var myFather = new person("John", "Doe", 50, "blue");
+								var myMother = new person("Sally", "Rally", 48, "green");
+				- Object Properties
+				- Object Methods
+				- Object Prototypes
+					- Creating a Prototype
+						- function Person(first, last, age, eyecolor) {
+								this.firstName = first;
+								this.lastName = last;
+								this.age = age;
+								this.eyeColor = eyecolor;
+							}
+						- var myFather = new Person("John", "Doe", 50, "blue");
+							var myMother = new Person("Sally", "Rally", 48, "green");
+					- Adding a Method to an Object
+						- myFather.name = function () {
+								return this.firstName + " " + this.lastName;
+							};
+					- Adding Methods to a Prototype
+						- function Person(first, last, age, eyecolor) {
+								this.firstName = first;
+								this.lastName = last;
+								this.age = age;
+								this.eyeColor = eyecolor;
+								this.name = function() {return this.firstName + " " + this.lastName;};
+							}
+					- Using the prototype Property
+						- function Person(first, last, age, eyecolor) {
+								this.firstName = first;
+								this.lastName = last;
+								this.age = age;
+								this.eyeColor = eyecolor;
+							}
+							Person.prototype.name = function() {
+								return this.firstName + " " + this.lastName;
+							};
+
+				JS Functions
+				- Function Definitions
+					- The Function() Constructor
+						- var myFunction = new Function("a", "b", "return a * b");
+							var x = myFunction(4, 3);
+					- Function Hoisting
+						- emploi avant la déclaration
+						- myFunction(5);
+							function myFunction(y) {
+								return y * y;
+							}
+						- Self-Invoking Functions
+							- A self-invoking expression is invoked (started) automatically, without being called.
+							- Function expressions will execute automatically if the expression is followed by ().
+							- (function () {
+									var x = "Hello!!";      // I will invoke myself
+								})();
+						- Functions Can Be Used as Values
+							- function myFunction(a, b) {
+									return a * b;
+								}
+								var x = myFunction(4, 3) * 2;
+				- Function Parameters
+				- Function Invocation
+				- Function Call
+					- The JavaScript call() Method
+						- The call() method is a predefined JavaScript function method.
+						- It can be used to invoke (call) a function with an owner object as the first argument (parameter).
+						- With call(), you can use a method belonging to another object.
+						- var person = {
+								firstName:"John",
+								lastName: "Doe",
+								fullName: function() {
+									return this.firstName + " " + this.lastName;
+								}
+							}
+							var myObject = {
+								firstName:"Mary",
+								lastName: "Doe",
+							}
+							person.fullName.call(myObject);  // Will return "Mary Doe"
+				- Function Apply
+					- The Difference Between call() and apply()
+						- The apply() method is similar to the call() method
+						- The only difference is:
+							- call() takes any function arguments separately.
+							- apply() takes any function arguments as an array.
+							- The apply() method is very handy if you want to use an array instead of an argument list.
+						- If you want to obtain the largest number in a list of numbers you can use the Math.max() method:
+							- Math.max(1,2,3);  // Will return 3
+						- Since JavaScript arrays do not have a max() method, you can apply the Math.max() instead.
+							- Math.max.apply(null,[1,2,3]); // Will also return 3
+				- Function Closures
+					- Variable Lifetime
+						- Global variables live as long as your application (your window / your web page) lives.
+						- Local variables have short lives. They are created when the function is invoked, and deleted when the function is finished.
+
+				JS HTML DOM
+				- DOM Intro
+				- DOM Methods
+				- DOM Document
+					- Finding HTML Elements
+						Method									Description
+						document.getElementById(id)				Find an element by element id
+						document.getElementsByTagName(name)		Find elements by tag name
+						document.getElementsByClassName(name)	Find elements by class name
+						document.querySelectorAll("p.intro")	Find elements by CSS Selectors
+						document.anchors						Find elements by HTML Object Collections
+						document.body
+						document.documentElement
+						document.embeds
+						document.forms
+						document.head
+						document.images
+						document.links
+						document.scripts
+						document.title
+																	- var x = document.forms["frm1"];
+																		var text = "";
+																		var i;
+																		for (i = 0; i < x.length; i++) {
+																			text += x.elements[i].value + "<br>";
+																		}
+					- Changing HTML Elements
+						Method									Description
+						element.innerHTML =  new html content	Change the inner HTML of an element
+						element.attribute = new value			Change the attribute value of an HTML element
+						element.setAttribute(attribute, value)	Change the attribute value of an HTML element
+						element.style.property = new style		Change the style of an HTML element
+					- Adding and Deleting Elements
+						Method							Description
+						document.createElement(element)	Create an HTML element
+						document.removeChild(element)	Remove an HTML element
+						document.appendChild(element)	Add an HTML element
+						document.replaceChild(element)	Replace an HTML element
+						document.write(text)			Write into the HTML output stream
+					- Adding Events Handlers
+						Method													Description
+						document.getElementById(id).onclick = function(){code}	Adding event handler code to an onclick event
+						
+					- Finding HTML Objects
+						The first HTML DOM Level 1 (1998), defined 11 HTML objects, object collections, and properties. These are still valid in HTML5.
+
+						Later, in HTML DOM Level 3, more objects, collections, and properties were added.
+
+						Property						Description														DOM
+						document.anchors				Returns all <a> elements that have a name attribute				1
+						document.applets				Returns all <applet> elements (Deprecated in HTML5)				1
+						document.baseURI				Returns the absolute base URI of the document					3
+						document.body					Returns the <body> element										1
+						document.cookie					Returns the document's cookie									1
+						document.doctype				Returns the document's doctype									3
+						document.documentElement		Returns the <html> element										3
+						document.documentMode			Returns the mode used by the browser							3
+						document.documentURI			Returns the URI of the document									3
+						document.domain					Returns the domain name of the document server					1
+						document.domConfig				Obsolete. Returns the DOM configuration							3
+						document.embeds					Returns all <embed> elements									3
+						document.forms					Returns all <form> elements										1
+						document.head					Returns the <head> element										3
+						document.images					Returns all <img> elements										1
+						document.implementation			Returns the DOM implementation									3
+						document.inputEncoding			Returns the document's encoding (character set)					3
+						document.lastModified			Returns the date and time the document was updated				3
+						document.links					Returns all <area> and <a> elements that have a href attribute	1
+						document.readyState				Returns the (loading) status of the document					3
+						document.referrer				Returns the URI of the referrer (the linking document)			1
+						document.scripts				Returns all <script> elements									3
+						document.strictErrorChecking	Returns if error checking is enforced							3
+						document.title					Returns the <title> element										1
+						document.URL					Returns the complete URL of the document						1
+
+				- DOM Elements
+				- DOM HTML
+				- DOM CSS
+				- DOM Animations
+				- DOM Events
+				- DOM Event Listener
+					- The addEventListener() method
+						- document.getElementById("myBtn").addEventListener("click", displayDate);
+						function displayDate{ ... }
+					- Syntax
+						- element.addEventListener(event, function, useCapture);
+					- Add an Event Handler to the Window Object
+						- The addEventListener() method allows you to add event listeners on any HTML DOM object such as HTML elements, the HTML document, the window object, or other objects that support events, like the xmlHttpRequest object.
+						- window.addEventListener("resize", function(){
+								document.getElementById("demo").innerHTML = sometext;
+							});
+					- Passing Parameters
+						- element.addEventListener("click", function(){ myFunction(p1, p2); });
+					- Event Bubbling or Event Capturing?
+						- The default value is false, which will use the bubbling propagation, when the value is set to true, the event uses the capturing propagation.
+						- document.getElementById("myP").addEventListener("click", myFunction, true);
+					- The removeEventListener() method
+						- element.removeEventListener("mousemove", myFunction);
+					- Browser Support
+						- The addEventListener() and removeEventListener() methods are not supported in IE 8 and earlier versions and Opera 6.0 and earlier versions. However, for these specific browser versions, you can use the attachEvent() method to attach an event handlers to the element, and the detachEvent() method to remove it:
+						- element.attachEvent(event, function);
+					- Cross-browser solution:
+						- var x = document.getElementById("myBtn");
+						if (x.addEventListener) {                    // For all major browsers, except IE 8 and earlier
+							x.addEventListener("click", myFunction);
+						} else if (x.attachEvent) {                  // For IE 8 and earlier versions
+							x.attachEvent("onclick", myFunction);
+						}
+				- DOM Navigation
+					- Navigating Between Nodes
+						You can use the following node properties to navigate between nodes with JavaScript:
+
+						parentNode
+						childNodes[nodenumber]
+						firstChild
+						lastChild
+						nextSibling
+						previousSibling
+				- DOM Nodes
+					- https://www.w3schools.com/js/js_htmldom_nodes.asp
+					- Creating New HTML Elements (Nodes)
+					- Creating new HTML Elements - insertBefore()
+					- Removing Existing HTML Elements
+					- Replacing HTML Elements
+				- DOM Collections
+					- The getElementsByTagName() method returns an HTMLCollection object.
+						- var x = document.getElementsByTagName("p");
+				- DOM Node Lists
+					- A NodeList object is a list (collection) of nodes extracted from a document.
+					- A NodeList object is almost the same as an HTMLCollection object.
+					- var myNodeList = document.querySelectorAll("p");
+					
+				JS Browser BOM
+				- JS Window
+					- The Browser Object Model (BOM)
+						- There are no official standards for the Browser Object Model (BOM).
+						- Since modern browsers have implemented (almost) the same methods and properties for JavaScript interactivity, it is often referred to, as methods and properties of the BOM.
+				- JS Screen
+					- Window Screen
+						The window.screen object can be written without the window prefix.
+
+						Properties:
+
+						screen.width
+						screen.height
+						screen.availWidth
+						screen.availHeight
+						screen.colorDepth
+						screen.pixelDepth
+				- JS Location
+					- Window Location
+						The window.location object can be written without the window prefix.
+
+						Some examples:
+
+						window.location.href returns the href (URL) of the current page
+						window.location.hostname returns the domain name of the web host
+						window.location.pathname returns the path and filename of the current page
+						window.location.protocol returns the web protocol used (http: or https:)
+						window.location.assign loads a new document
+				- JS History
+					- Window History
+						The window.history object can be written without the window prefix.
+
+						To protect the privacy of the users, there are limitations to how JavaScript can access this object.
+
+						Some methods:
+
+						history.back() - same as clicking back in the browser
+						history.forward() - same as clicking forward in the browser
+				- JS Navigator
+					- Browser Cookies
+						- navigator.cookieEnabled;
+					- Browser Application Name
+						- navigator.appName
+					- Browser Application Code Name
+						- navigator.appCodeName
+					- The Browser Engine
+						- navigator.product
+					- The Browser Version
+						- navigator.appVersion
+					- The Browser Agent
+						- navigator.userAgent
+					- The Browser Platform
+						- navigator.platform
+					- The Browser Language
+						- navigator.language
+					- Is The Browser Online?
+						- navigator.onLine
+					- Is Java Enabled?
+						- navigator.javaEnabled()
+				- JS Popup Alert
+					- Alert Box
+						- alert("Hello\nHow are you?");
+					- Confirm Box
+						- if (confirm("Press a button!") == true) {
+							txt = "You pressed OK!";
+						} else {
+							txt = "You pressed Cancel!";
+						}
+					- Prompt Box
+						- var person = prompt("Please enter your name", "Harry Potter");
+							if (person == null || person == "") {
+								txt = "User cancelled the prompt.";
+							} else {
+								txt = "Hello " + person + "! How are you today?";
+							}
+				- JS Timing
+					- The setTimeout() Method
+						- timeoutVariable = window.setTimeout(function, milliseconds);
+					- How to Stop the Execution?
+						- window.clearTimeout(timeoutVariable)
+					- The setInterval() Method
+						- timerVariable = window.setInterval(function, milliseconds);
+					- How to Stop the Execution?
+						- window.clearInterval(timerVariable)
+					- 
+				- JS Cookies
+					- Create a Cookie with JavaScript
+						- document.cookie = "username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+					- Read a Cookie with JavaScript
+						- var x = document.cookie;
+					- Change a Cookie with JavaScript
+						- document.cookie = "username=John Smith; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+					- Delete a Cookie with JavaScript
+						- Just set the expires parameter to a passed date:
+						- document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+					- var user = getCookie("username");
+					- setCookie("username", user, 365);
+
+				JS AJAX
+				- AJAX Intro
+					- function loadDoc() {
+						  var xhttp = new XMLHttpRequest();
+						  xhttp.onreadystatechange = function() {
+							if (this.readyState == 4 && this.status == 200) {
+							 document.getElementById("demo").innerHTML = this.responseText;
+							}
+						  };
+						  xhttp.open("GET", "ajax_info.txt", true);
+						  xhttp.send();
+						}
+				- AJAX XMLHttp
+					- Create an XMLHttpRequest Object
+						- var xhttp = new XMLHttpRequest();
+					- Access Across Domains
+						- For security reasons, modern browsers do not allow access across domains.
+						- This means that both the web page and the XML file it tries to load, must be located on the same server.
+					- Older Browsers (IE5 and IE6)
+						- if (window.XMLHttpRequest) {
+								// code for modern browsers
+								xmlhttp = new XMLHttpRequest();
+							 } else {
+								// code for old IE browsers
+								xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+							}
+					- XMLHttpRequest Object Methods
+						Method								Description
+						new XMLHttpRequest()				Creates a new XMLHttpRequest object
+						abort()								Cancels the current request
+						getAllResponseHeaders()				Returns header information
+						getResponseHeader()					Returns specific header information
+						open(method, url, async, user, psw)	Specifies the request
+															method: the request type GET or POST
+															url: the file location
+															async: true (asynchronous) or false (synchronous)
+															user: optional user name
+															psw: optional password
+						send()								Sends the request to the server
+															Used for GET requests
+						send(string)						Sends the request to the server.
+															Used for POST requests
+						setRequestHeader()					Adds a label/value pair to the header to be sent
+						
+					- XMLHttpRequest Object Properties
+						Property							Description
+						onreadystatechange					Defines a function to be called when the readyState property changes
+						readyState							Holds the status of the XMLHttpRequest.
+															0: request not initialized 
+															1: server connection established
+															2: request received 
+															3: processing request 
+															4: request finished and response is ready
+						responseText						Returns the response data as a string
+						responseXML							Returns the response data as XML data
+						status								Returns the status-number of a request
+															200: "OK"
+															403: "Forbidden"
+															404: "Not Found"
+															For a complete list go to the Http Messages Reference
+						statusText							Returns the status-text (e.g. "OK" or "Not Found")
+				- AJAX Request
+					- Send a Request To a Server
+						- Method						Description
+							open(method, url, async)	Specifies the type of request
+														method: the type of request: GET or POST
+														url: the server (file) location
+														async: true (asynchronous) or false (synchronous)
+							send()						Sends the request to the server (used for GET)
+							send(string)				Sends the request to the server (used for POST)
+						- GET or POST?
+							- GET is simpler and faster than POST, and can be used in most cases.
+								However, always use POST requests when:
+									A cached file is not an option (update a file or database on the server).
+									Sending a large amount of data to the server (POST has no size limitations).
+									Sending user input (which can contain unknown characters), POST is more robust and secure than GET.
+						- GET Requests
+							- xhttp.open("GET", "demo_get2.asp?fname=Henry&lname=Ford", true);
+								xhttp.send();
+						- POST Requests
+							- To POST data like an HTML form, add an HTTP header with setRequestHeader(). Specify the data you want to send in the send() method:
+							- xhttp.open("POST", "ajax_test.asp", true);
+								xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+								xhttp.send("fname=Henry&lname=Ford");
+							- Method							Description
+							setRequestHeader(header, value)		Adds HTTP headers to the request
+																header: specifies the header name
+																value: specifies the header value
+						- The url - A File On a Server
+							- xhttp.open("GET", "ajax_test.asp", true);
+						- Asynchronous - True or False?
+							- By sending asynchronously, the JavaScript does not have to wait for the server response, but can instead:
+								- execute other scripts while waiting for server response
+								- deal with the response after the response is ready
+						- The onreadystatechange Property
+							- With the XMLHttpRequest object you can define a function to be executed when the request receives an answer.
+				- AJAX Response
+					- The onreadystatechange Property
+						- Property					Description
+							onreadystatechange		Defines a function to be called when the readyState property changes
+							readyState				Holds the status of the XMLHttpRequest. 
+													0: request not initialized 
+													1: server connection established
+													2: request received 
+													3: processing request 
+													4: request finished and response is ready
+							status					200: "OK"
+													403: "Forbidden"
+													404: "Page not found"
+													For a complete list go to the Http Messages Reference
+							statusText				Returns the status-text (e.g. "OK" or "Not Found")
+						- The onreadystatechange function is called every time the readyState changes.
+					- Using a Callback Function
+						- loadDoc("url-1", myFunction1);
+							loadDoc("url-2", myFunction2);
+
+							function loadDoc(url, cFunction) {
+							  var xhttp;
+							  xhttp = new XMLHttpRequest();
+							  xhttp.onreadystatechange = function() {
+								if (this.readyState == 4 && this.status == 200) {
+								  cFunction(this);
+								}
+							  };
+							  xhttp.open("GET", url, true);
+							  xhttp.send();
+							}
+
+							function myFunction1(xhttp) {
+							  // action goes here
+							} 
+							function myFunction2(xhttp) {
+							  // action goes here
+							}
+						- Server Response Properties
+							- Property		Description
+								responseText	get the response data as a string
+								responseXML		get the response data as XML data
+						- Server Response Methods
+							- Method					Description
+								getResponseHeader()		Returns specific header information from the server resource
+								getAllResponseHeaders()	Returns all the header information from the server resource
+						- The responseText Property
+							- The responseText property returns the server response as a JavaScript string, and you can use it accordingly:
+							- document.getElementById("demo").innerHTML = xhttp.responseText;
+						- The responseXML Property
+							- The XML HttpRequest object has an in-built XML parser.
+							- The responseXML property returns the server response as an XML DOM object.
+							- xmlDoc = xhttp.responseXML;
+								txt = "";
+								x = xmlDoc.getElementsByTagName("ARTIST");
+								for (i = 0; i < x.length; i++) {
+								  txt += x[i].childNodes[0].nodeValue + "<br>";
+								  }
+								document.getElementById("demo").innerHTML = txt;
+								xhttp.open("GET", "cd_catalog.xml", true);
+								xhttp.send();
+						- The getAllResponseHeaders() Method
+							- The getAllResponseHeaders() method returns all header information from the server response.
+							- var xhttp = new XMLHttpRequest();
+								xhttp.onreadystatechange = function() {
+								  if (this.readyState == 4 && this.status == 200) {
+									document.getElementById("demo").innerHTML =
+									this.getAllResponseHeaders();
+								  }
+								};
+						- The getResponseHeader() Method
+							- The getResponseHeader() method returns specific header information from the server response.
+							- var xhttp = new XMLHttpRequest();
+								xhttp.onreadystatechange = function() {
+								  if (this.readyState == 4 && this.status == 200) {
+									document.getElementById("demo").innerHTML =
+									this.getResponseHeader("Last-Modified");
+								  }
+								};
+								xhttp.open("GET", "ajax_info.txt", true);
+								xhttp.send();
+				- AJAX XML File
+				- AJAX PHP
+				- AJAX ASP
+				- AJAX Database
+				- AJAX Applications
+				- AJAX Examples
+
+				JS JSON
+				- JSON Intro
+					- JSON: JavaScript Object Notation
+					- Sending Data
+						- var myObj = { "name":"John", "age":31, "city":"New York" };
+							var myJSON = JSON.stringify(myObj);
+							window.location = "demo_json.php?x=" + myJSON;
+					- Receiving Data
+						- var myJSON = '{ "name":"John", "age":31, "city":"New York" }';
+							var myObj = JSON.parse(myJSON);
+							document.getElementById("demo").innerHTML = myObj.name;
+					- Storing Data
+						- //Storing data:
+							myObj = { "name":"John", "age":31, "city":"New York" };
+							myJSON = JSON.stringify(myObj);
+							localStorage.setItem("testJSON", myJSON);
+
+							//Retrieving data:
+							text = localStorage.getItem("testJSON");
+							obj = JSON.parse(text);
+							document.getElementById("demo").innerHTML = obj.name;
+				- JSON Syntax
+					- JSON - Evaluates to JavaScript Objects
+						- In JSON, keys must be strings, written with double quotes:
+							- { "name":"John" }
+						- In JavaScript, keys can be strings, numbers, or identifier names:
+							- { name:"John" }
+				- JSON vs XML
+				- JSON Data Types
+					- JSON Strings
+						- { "name":"John" }
+					- JSON Numbers
+						- { "age":30 }
+					- JSON Objects
+						- { "employee":{ "name":"John", "age":30, "city":"New York", "cars": { "car1":"Ford", "car2":"BMW", "car3":"Fiat" } } }
+						- x = myObj.cars.car2;
+							//or:
+							x = myObj.cars["car2"];
+					- JSON Arrays
+						- { "employees":[ "John", "Anna", "Peter" ] }
+					- JSON Booleans
+						- { "sale":true }
+					- JSON null
+						- { "middlename":null }
+				- JSON Objects
+				- JSON Arrays
+				- JSON Parse
+				- JSON Stringify
+				- JSON PHP
+				- JSON HTML
+				- JSON JSONP
+					- JSONP Intro
+						- JSONP stands for JSON with Padding.
+							- Requesting a file from another domain can cause problems, due to cross-domain policy.
+							- Requesting an external script from another domain does not have this problem.
+							- JSONP uses this advantage, and request files using the script tag instead of the XMLHttpRequest object.
+								- <script src="demo_jsonp.php">
+					
+
+				JS Examples
+				- JS Examples
+				- JS HTML DOM
+				- JS HTML Input
+				- JS HTML Objects
+				- JS HTML Events
+				- JS Browser
+				- JS Quiz
+				- JS Certificate
+
+				JS References
+				- JavaScript Objects
+				- HTML DOM Objects

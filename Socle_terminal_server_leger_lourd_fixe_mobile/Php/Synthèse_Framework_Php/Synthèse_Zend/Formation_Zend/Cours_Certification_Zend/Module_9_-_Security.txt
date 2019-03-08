@@ -1,0 +1,83 @@
+> Basic Rules
+- All input is evil
+	- Filter
+	- Escape output
+- Trust no data from the outside
+	- GET/POST
+	- Cookies
+	- HTTP headers can be forged
+
+> XSS
+- Solutions
+	- htmlspecialchars()
+	- htmlentities()
+	- strip_tags()
+
+> CSRF
+- Solutions
+	- form with unique token	
+	
+> SQL Injection
+- Solutions
+	- Preparder Statment
+	- addslashes is insufficent
+
+> Session Attacks
+- Session Hijacking
+- Session Fixation
+- Solutions
+	- session_regenerate_id
+
+> Code Injection
+- Solutions
+	- whitelist
+	- allow_url_fopen = off
+- system()
+	- don't use
+	- Solutions
+		- escapshellargs()
+		
+> Secure Configuration
+- display_errors = Off
+- log_errors = On
+- error_reportiong = E_ALL to set it to the high level
+
+> Secure Passwords
+- do not save password in cleartext	
+- use a hash value
+	- md5() 	32 characters, hexa
+	- sha1()	40 characters, hexa
+	
+> File Uploads
+- file name can be forged
+	- use whitelist
+- Mime type can be forged
+	- if possible, ignore it
+- temporary file name can be forged
+	- use *_uploaded_file()
+	
+> PHP as a CGI Binary
+
+> PHP as an Apache Module
+- .htaccess
+
+> Data Storage
+- Limited Rights
+- 
+
+> Data Encryption
+- SSL
+- SSH
+- mcrypt and mhash
+
+
+
+
+
+
+
+
+
+
+
+

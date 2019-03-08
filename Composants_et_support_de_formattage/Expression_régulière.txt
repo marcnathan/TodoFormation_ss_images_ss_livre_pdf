@@ -1,0 +1,108 @@
+
+> Définition d'un motif élémentaire
+
+http://fr2.php.net/manual/fr/function.preg-match.php
+-          http://www.regular-expressions.info/hipowls.html
+-          http://net.tutsplus.com/tutorials/php/advanced-regular-expression-tips-and-techniques/
+-          http://www.catswhocode.com/blog/15-php-regular-expressions-for-web-developers
+-          http://www.pcre.org/
+-          http://www.rampant-books.com/t_gogala_easyphp_preg_match.htm
+
+
+Les motifs sont toujours contenus dans des chaînes de caractères entre simple ou doubles guillemets.
+
+- Les délimiteur
+
+Il faut toujours commencer et finir le modèle par des délimiteurs (/ # ~) :
+$modele="/a/";
+
+On peut utiliser aussi un modificateurs de motif, qui se positionne après le délimiteur final.
+ici on va utiliser le i :
+$modele="/a/i";
+
+- Recherche de un ou plusieurs caractères
+
+Pour rechercher le caractère @ :
+$modele="/@/";
+
+Pour rechercher une chaîne précise :
+$modele="/Paris/";
+
+Pour rechercher dans une chaîne les caractères qui ont une signification particulière (. $ ^ ? \ [ ] ( ) + *)
+il faut les échapper avec un \.
+
+Pour détecter la présence d'au moins une chaîne parmis deux :
+$modele="/\.com|\.net/";
+
+Pour rechercher les caractères xyz :
+$modele="/xyz/";
+
+Pour rechercher un mot d'au moins un caractère contenant n'importe quelles lettres minuscule :
+$modele="/[a-z]/";
+
+De même en majuscule :
+$modele="/[A-Z]/";
+
+Pour la recherche d'au moins un caractère numérique :
+$modele="/[0-9]/";
+
+
+- Restriction de caractères
+
+Pour interdire la présence d'un groupe de caractère, faire précéder le groupe par ^ entre les crochets.
+
+exemple :
+$modele="/[^abc]/";
+$modele="/[^a-z]/";
+$modele="/[^A-Z]/";
+$modele="/[^0-9]/";
+
+
+- Conditions 
+
+Pour imposer à la chaîne de commencer par un groupe, faire précéder le groupe par ^ (avant les crochets) :
+$modele="/^bon/";
+
+Pour imposer à la chaîne de finir par un groupe, faire précéder le groupe par $ (après les crochets) :
+$modele="/\.com$/";
+
+Pour définir "la présence obligatoire" "d'au moins un caractère" "n'importe la quelle" :
+$modele="/mat./";
+
+Pour définir "la présence ou non" "du caractère précédent" :
+$modele="/math?/";
+
+Pour définir "la présence obligatoire" "d'un ou plusieurs occurrence" "du caractère précédent" :
+$modele="/nat+/";
+
+Pour définir "la présence ou non" "d'un ou plusieurs occurence" "d'un caractère" :
+$modele="/pour*/";
+
+L'usage des paranthèses permet de faire des recherche de groupe de caractère :
+$modele="/([a-z0-9])+/";
+
+On pourra combiner les condition :
+$modele="/mat.*/";
+(Recherche tous les mots d'un nombre de caractère quelconque contenant les lettre mat.
+Exemple: mat, math, matériel, matter)
+
+
+- Définition du nombre de caractère
+
+L'usage des accolades permet de préciser le nombre de fois que l'on souhaite voir apparaître un caractère ou un groupe de caractères dans la chaine, comme suite :
+
+{n} cherche exactement n fois le caractère ou le groupe qui précède.
+{n,} cherche au minimum n fois le caractère ou le groupe de caractère qui précède.
+{n,m} cherche entre n et m fois le caractère ou le groupe de caractère qui précède.
+
+Exemple : 
+$modele="/cor{2}/";
+$modele="/cor{1,}/";
+$modele="/([a-z]{2,4})/";
+
+$model_mail = "/(^[a-z])([a-z0-9])+(\.|-)?([a-z0-9]+)@([a-z0-9]{2,})\.([a-z] {2,4}$)/i";
+
+A exécuter dans la fonction de test :
+preg_match($regex, $mail)
+
+

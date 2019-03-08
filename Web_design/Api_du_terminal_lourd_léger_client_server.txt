@@ -1,0 +1,13 @@
+> notes
+	- 
+	- 
+	- 
+	- 
+
+
+> Api du terminal client
+	- sécurité / hacks / communication avec des application de platformes
+		- notification
+		- agenda et contacts
+		- mail
+		- entre onglets

@@ -1,0 +1,466 @@
+> SQL
+
+SELECT column_name,column_name
+FROM table_name;
+
+SELECT CustomerName,City FROM Customers;
+
+
+SELECT DISTINCT column_name,column_name
+FROM table_name;
+
+SELECT DISTINCT City FROM Customers;
+
+
+SELECT column_name,column_name
+FROM table_name
+WHERE column_name operator value;
+
+SELECT * FROM Customers
+WHERE Country='Mexico';
+
+
+SELECT * FROM Customers
+WHERE Country='Germany'
+AND (City='Berlin' OR City='München');
+
+
+SELECT column_name, column_name
+FROM table_name
+ORDER BY column_name ASC|DESC, column_name ASC|DESC;
+
+SELECT * FROM Customers
+ORDER BY Country ASC, CustomerName DESC;
+
+
+INSERT INTO table_name
+VALUES (value1,value2,value3,...);
+
+INSERT INTO table_name (column1,column2,column3,...)
+VALUES (value1,value2,value3,...);
+
+INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+VALUES ('Cardinal','Tom B. Erichsen','Skagen 21','Stavanger','4006','Norway');
+
+
+UPDATE table_name
+SET column1=value1,column2=value2,...
+WHERE some_column=some_value;
+
+UPDATE Customers
+SET ContactName='Alfred Schmidt', City='Hamburg'
+WHERE CustomerName='Alfreds Futterkiste';
+
+
+DELETE FROM table_name
+WHERE some_column=some_value;
+
+DELETE FROM Customers
+WHERE CustomerName='Alfreds Futterkiste' AND ContactName='Maria Anders';
+
+DELETE FROM table_name;
+or
+DELETE * FROM table_name;
+
+
+SELECT column_name(s)
+FROM table_name
+WHERE column_name LIKE pattern;
+
+SELECT * FROM Customers
+WHERE City LIKE '%s';
+
+
+SELECT column_name(s)
+FROM table_name
+WHERE column_name IN (value1,value2,...);
+
+SELECT * FROM Customers
+WHERE City IN ('Paris','London');
+
+
+SELECT column_name(s)
+FROM table_name
+WHERE column_name BETWEEN value1 AND value2;
+
+SELECT * FROM Products
+WHERE (Price BETWEEN 10 AND 20)
+AND NOT CategoryID IN (1,2,3);
+
+
+SELECT column_name AS alias_name
+FROM table_name;
+
+SELECT column_name(s)
+FROM table_name AS alias_name;
+
+SELECT o.OrderID, o.OrderDate, c.CustomerName
+FROM Customers AS c, Orders AS o
+WHERE c.CustomerName="Around the Horn" AND c.CustomerID=o.CustomerID;
+
+
+SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
+FROM Orders
+INNER JOIN Customers
+ON Orders.CustomerID=Customers.CustomerID;
+
+INNER JOIN: Returns all rows when there is at least one match in BOTH tables
+LEFT JOIN: Return all rows from the left table, and the matched rows from the right table
+RIGHT JOIN: Return all rows from the right table, and the matched rows from the left table
+FULL JOIN: Return all rows when there is a match in ONE of the tables
+
+
+SELECT column_name(s)
+FROM table1
+INNER JOIN table2
+ON table1.column_name=table2.column_name;
+
+SELECT Customers.CustomerName, Orders.OrderID
+FROM Customers
+INNER JOIN Orders
+ON Customers.CustomerID=Orders.CustomerID
+ORDER BY Customers.CustomerName;
+
+
+SELECT column_name(s)
+FROM table1
+LEFT JOIN table2
+ON table1.column_name=table2.column_name;
+
+SELECT Customers.CustomerName, Orders.OrderID
+FROM Customers
+LEFT JOIN Orders
+ON Customers.CustomerID=Orders.CustomerID
+ORDER BY Customers.CustomerName;
+
+
+SELECT column_name(s)
+FROM table1
+RIGHT JOIN table2
+ON table1.column_name=table2.column_name;
+
+SELECT Orders.OrderID, Employees.FirstName
+FROM Orders
+RIGHT JOIN Employees
+ON Orders.EmployeeID=Employees.EmployeeID
+ORDER BY Orders.OrderID;
+
+
+SELECT column_name(s)
+FROM table1
+FULL OUTER JOIN table2
+ON table1.column_name=table2.column_name;
+
+SELECT Customers.CustomerName, Orders.OrderID
+FROM Customers
+FULL OUTER JOIN Orders
+ON Customers.CustomerID=Orders.CustomerID
+ORDER BY Customers.CustomerName;
+
+
+SELECT column_name(s) FROM table1
+UNION
+SELECT column_name(s) FROM table2;
+
+SELECT City FROM Customers
+UNION
+SELECT City FROM Suppliers
+ORDER BY City;
+
+
+SELECT column_name(s)
+INTO newtable [IN externaldb]
+FROM table1;
+
+SELECT CustomerName, ContactName
+INTO CustomersBackup2013
+FROM Customers;
+
+SELECT Customers.CustomerName, Orders.OrderID
+INTO CustomersOrderBackup2013
+FROM Customers
+LEFT JOIN Orders
+ON Customers.CustomerID=Orders.CustomerID;
+
+
+INSERT INTO table2
+(column_name(s))
+SELECT column_name(s)
+FROM table1;
+
+INSERT INTO Customers (CustomerName, Country)
+SELECT SupplierName, Country FROM Suppliers
+WHERE Country='Germany';
+
+
+CREATE DATABASE dbname;
+
+
+CREATE TABLE table_name
+(
+column_name1 data_type(size),
+column_name2 data_type(size),
+column_name3 data_type(size),
+....
+);
+
+CREATE TABLE Persons
+(
+PersonID int,
+LastName varchar(255),
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255)
+);
+
+
+CREATE TABLE table_name
+(
+column_name1 data_type(size) constraint_name,
+column_name2 data_type(size) constraint_name,
+column_name3 data_type(size) constraint_name,
+....
+);
+
+
+NOT NULL - Indicates that a column cannot store NULL value
+UNIQUE - Ensures that each row for a column must have a unique value
+PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Ensures that a column (or combination of two or more columns) have a unique identity which helps to find a particular record in a table more easily and quickly
+FOREIGN KEY - Ensure the referential integrity of the data in one table to match values in another table
+CHECK - Ensures that the value in a column meets a specific condition
+DEFAULT - Specifies a default value for a column
+
+
+CREATE TABLE Persons
+(
+P_Id int NOT NULL,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255),
+CONSTRAINT uc_PersonID UNIQUE (P_Id,LastName)
+)
+
+ALTER TABLE Persons
+ADD UNIQUE (P_Id)
+
+ALTER TABLE Persons
+ADD CONSTRAINT uc_PersonID UNIQUE (P_Id,LastName)
+
+ALTER TABLE Persons
+DROP INDEX uc_PersonID
+
+CREATE TABLE Persons
+(
+P_Id int NOT NULL PRIMARY KEY,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255)
+)
+
+CREATE TABLE Orders
+(
+O_Id int NOT NULL,
+OrderNo int NOT NULL,
+P_Id int,
+PRIMARY KEY (O_Id),
+FOREIGN KEY (P_Id) REFERENCES Persons(P_Id)
+)
+
+CREATE TABLE Persons
+(
+P_Id int NOT NULL,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255),
+CHECK (P_Id>0)
+)
+
+ALTER TABLE Persons
+DROP CHECK chk_Person
+
+ALTER TABLE Persons
+ALTER City SET DEFAULT 'SANDNES'
+
+
+CREATE INDEX index_name
+ON table_name (column_name)
+
+CREATE INDEX PIndex
+ON Persons (LastName, FirstName)
+
+ALTER TABLE table_name DROP INDEX index_name
+
+DROP TABLE table_name
+
+DROP DATABASE database_name
+
+TRUNCATE TABLE table_name
+
+
+ALTER TABLE table_name
+ADD column_name datatype
+
+ALTER TABLE table_name
+DROP COLUMN column_name
+
+ALTER TABLE table_name
+MODIFY COLUMN column_name datatype
+
+
+CREATE TABLE Persons
+(
+ID int NOT NULL AUTO_INCREMENT,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255),
+PRIMARY KEY (ID)
+)
+
+ALTER TABLE Persons AUTO_INCREMENT=100
+
+
+CREATE VIEW view_name AS
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+
+CREATE VIEW [Current Product List] AS
+SELECT ProductID,ProductName
+FROM Products
+WHERE Discontinued=No
+
+
+CREATE OR REPLACE VIEW view_name AS
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+
+CREATE OR REPLACE VIEW [Current Product List] AS
+SELECT ProductID,ProductName,Category
+FROM Products
+WHERE Discontinued=No
+
+DROP VIEW view_name
+
+
+NOW()	Returns the current date and time
+CURDATE()	Returns the current date
+CURTIME()	Returns the current time
+DATE()	Extracts the date part of a date or date/time expression
+EXTRACT()	Returns a single part of a date/time
+DATE_ADD()	Adds a specified time interval to a date
+DATE_SUB()	Subtracts a specified time interval from a date
+DATEDIFF()	Returns the number of days between two dates
+DATE_FORMAT()	Displays date/time data in different formats
+
+DATE - format YYYY-MM-DD
+DATETIME - format: YYYY-MM-DD HH:MI:SS
+TIMESTAMP - format: YYYY-MM-DD HH:MI:SS
+YEAR - format YYYY or YY
+
+
+Data type	Description
+DATE()	A date. Format: YYYY-MM-DD
+Note: The supported range is from '1000-01-01' to '9999-12-31'
+
+DATETIME()	*A date and time combination. Format: YYYY-MM-DD HH:MI:SS
+Note: The supported range is from '1000-01-01 00:00:00' to '9999-12-31 23:59:59'
+
+TIMESTAMP()	*A timestamp. TIMESTAMP values are stored as the number of seconds since the Unix epoch ('1970-01-01 00:00:00' UTC). Format: YYYY-MM-DD HH:MI:SS
+Note: The supported range is from '1970-01-01 00:00:01' UTC to '2038-01-09 03:14:07' UTC
+
+TIME()	A time. Format: HH:MI:SS
+Note: The supported range is from '-838:59:59' to '838:59:59'
+
+YEAR()	A year in two-digit or four-digit format.
+Note: Values allowed in four-digit format: 1901 to 2155. Values allowed in two-digit format: 70 to 69, representing years from 1970 to 2069
+
+
+SELECT ProductName,UnitPrice*(UnitsInStock+IFNULL(UnitsOnOrder,0))
+FROM Products
+
+SELECT ProductName,UnitPrice*(UnitsInStock+COALESCE(UnitsOnOrder,0))
+FROM Products
+
+
+CHARACTER(n)	Character string. Fixed-length n
+VARCHAR(n) or
+CHARACTER VARYING(n)	Character string. Variable length. Maximum length n
+BINARY(n)	Binary string. Fixed-length n
+BOOLEAN	Stores TRUE or FALSE values
+VARBINARY(n) or
+BINARY VARYING(n)	Binary string. Variable length. Maximum length n
+INTEGER(p)	Integer numerical (no decimal). Precision p
+SMALLINT	Integer numerical (no decimal). Precision 5
+INTEGER	Integer numerical (no decimal). Precision 10
+BIGINT	Integer numerical (no decimal). Precision 19
+DECIMAL(p,s)	Exact numerical, precision p, scale s. Example: decimal(5,2) is a number that has 3 digits before the decimal and 2 digits after the decimal
+NUMERIC(p,s)	Exact numerical, precision p, scale s. (Same as DECIMAL)
+FLOAT(p)	Approximate numerical, mantissa precision p. A floating number in base 10 exponential notation. The size argument for this type consists of a single number specifying the minimum precision
+REAL	Approximate numerical, mantissa precision 7
+FLOAT	Approximate numerical, mantissa precision 16
+DOUBLE PRECISION	Approximate numerical, mantissa precision 16
+DATE	Stores year, month, and day values
+TIME	Stores hour, minute, and second values
+TIMESTAMP	Stores year, month, day, hour, minute, and second values
+INTERVAL	Composed of a number of integer fields, representing a period of time, depending on the type of interval
+ARRAY	A set-length and ordered collection of elements
+MULTISET	A variable-length and unordered collection of elements
+XML	Stores XML data
+
+
+Data type	Description
+CHAR(size)	Holds a fixed length string (can contain letters, numbers, and special characters). The fixed size is specified in parenthesis. Can store up to 255 characters
+VARCHAR(size)	Holds a variable length string (can contain letters, numbers, and special characters). The maximum size is specified in parenthesis. Can store up to 255 characters. Note: If you put a greater value than 255 it will be converted to a TEXT type
+TINYTEXT	Holds a string with a maximum length of 255 characters
+TEXT	Holds a string with a maximum length of 65,535 characters
+BLOB	For BLOBs (Binary Large OBjects). Holds up to 65,535 bytes of data
+MEDIUMTEXT	Holds a string with a maximum length of 16,777,215 characters
+MEDIUMBLOB	For BLOBs (Binary Large OBjects). Holds up to 16,777,215 bytes of data
+LONGTEXT	Holds a string with a maximum length of 4,294,967,295 characters
+LONGBLOB	For BLOBs (Binary Large OBjects). Holds up to 4,294,967,295 bytes of data
+ENUM(x,y,z,etc.)	Let you enter a list of possible values. You can list up to 65535 values in an ENUM list. If a value is inserted that is not in the list, a blank value will be inserted.
+Note: The values are sorted in the order you enter them.
+
+You enter the possible values in this format: ENUM('X','Y','Z')
+
+SET	Similar to ENUM except that SET may contain up to 64 list items and can store more than one choice
+
+
+Data type	Description
+TINYINT(size)	-128 to 127 normal. 0 to 255 UNSIGNED*. The maximum number of digits may be specified in parenthesis
+SMALLINT(size)	-32768 to 32767 normal. 0 to 65535 UNSIGNED*. The maximum number of digits may be specified in parenthesis
+MEDIUMINT(size)	-8388608 to 8388607 normal. 0 to 16777215 UNSIGNED*. The maximum number of digits may be specified in parenthesis
+INT(size)	-2147483648 to 2147483647 normal. 0 to 4294967295 UNSIGNED*. The maximum number of digits may be specified in parenthesis
+BIGINT(size)	-9223372036854775808 to 9223372036854775807 normal. 0 to 18446744073709551615 UNSIGNED*. The maximum number of digits may be specified in parenthesis
+FLOAT(size,d)	A small number with a floating decimal point. The maximum number of digits may be specified in the size parameter. The maximum number of digits to the right of the decimal point is specified in the d parameter
+DOUBLE(size,d)	A large number with a floating decimal point. The maximum number of digits may be specified in the size parameter. The maximum number of digits to the right of the decimal point is specified in the d parameter
+DECIMAL(size,d)	A DOUBLE stored as a string , allowing for a fixed decimal point. The maximum number of digits may be specified in the size parameter. The maximum number of digits to the right of the decimal point is specified in the d parameter
+
+
+Moteur de stockage : SHOW ENGINES;
+
+https://openclassrooms.com/courses/les-moteurs-de-stockage-de-mysql-2
+
+- MyISAM : moteur par défaut. Ne supporte pas les transaction mais possède des fonctionnalités de recherche de texte.
+- InnoDB : sous doute le plus utilisé de nos jours. Supporte le mode transactionnel (verrouillage niveau ligne, commit et rollback) et les contrainte référentielles (clés étrangères).
+- MEMORY : stockage des données et des index en RAM, Convient à des données non persistante.
+- ARCHIVE : stockage des données sous forme compressée (seuls les SELECT et INSERT sont possibles). Modèle idéal pour archiver des données.
+- CSV : stockage des données sous forme de fichiers texte dans lesquels les valeurs sont séparées par une virgule.
+- FEDERATED : convient pour les architectures réparties (plusieurs serveurs).
+- NDB (Network DataBase) : convient pour les architectures en cluster.
+- MERGE : Il s'agit d'un moteur regroupant plusieurs tables MyISAM de manière transparente. Les tables fusionnées existent encore indépendamment, MERGE se contente de fournir une interface unique pour accéder en lecture à toutes les tables simultanément, et en écriture selon des règles que l'on aura fixé.
+- BLACKHOLE : Toute données envoyées dans une table BLACKHOLE est immédiatement détruite, mais l'action est cependant consignée dans les logs de MySQL. Ce moteur de table est utile pour simuler des copies de tables ou vérifier la syntaxe d'un système de sauvegarde.
+- BerkeleyDB ou BDB : BDB est un moteur assez peu utilisé, car assez lent, et dont les fonctionnalités intéressantes sont équivalentes à celles proposées par InnoDB.
+
+/* A la création de la table */
+CREATE TABLE maTable(
+...
+)ENGINE=MonMoteurDeStockage;
+
+/* En modifiant une table déjà créée */
+ALTER TABLE maTable ENGINE=UnAutreMoteur;

@@ -1,0 +1,50 @@
+> Sessions
+- session_cache_expire
+- session_destroy
+- session_id
+- session_start
+
+> Forms
+- Inputs & co
+- POST
+- GET
+- REQUEST
+- IMPORT_request_variables()
+- Encoding / Decoding
+	- HTML interpratation : htmlspecialchars()
+	function encodes special characters in data, as a security measure
+	- URL : encode data with urlencode() to interpret as one item
+- File Uploads
+	- copy_uploaded_file()
+	- move_uploaded_file()
+	- is_uploaded_file()
+	- MAX_FILE_SIZE, file_uploads, etc.
+
+> Cookies with PHP
+- setcookie()
+- setrawcookie()
+- and it is possible to set two cookies with the same name and different values but with different path
+
+> HTTP Functions
+- header()
+- header_sent()
+- headers_list()
+
+> HTTP Authentication
+- Basic
+- Digest
+	- Hashing
+
+
+
+
+
+
+
+
+
+
+
+
+
+

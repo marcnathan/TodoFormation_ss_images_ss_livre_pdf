@@ -1,0 +1,2058 @@
+﻿
+- Bases de l'XHTML et CSS2 (HTML5 et CSS3)
+
+
+-- Le language XHTML
+	
+	- Le HTML fut conçu à la base pour présenter du text
+
+	- C'est le marché qui l'en a détourné pour créer des présentations diversifiés
+
+	- De cette concurrence entre Netscape et Microsoft, est né 
+
+		- des balises ne fonctionnant que sur les navigateurs respectifs
+
+		- une destructuration complète du language HTML
+
+		- un codage imparfait de la par des développeurs
+
+	- Ceci malgré l'apparition en 1992 de HTML 4 et 1996 du CSS
+
+	- Le XML apparu en 1998 était devenu la référence dans la diffusion de l'information de par sa modularité et inter-opérabilité
+
+	- Non adapté au Web, la W3C a créer le XHTML en 2000
+
+	- Le XHTML n'est rien d'autre que du HTML suivant les spécification du XML
+
+	- A la seule différence que dans le XML, le développeur est totalement libre de spécifier ses propre balise via la DTD (Document Type Definition) alorsque le XHTML suit une DTD spécifié.
+
+	- une DTD définit la liste limitative de tous les éléments XHTML utilisables et énumère ceux qui peuvent y être inclus. 
+Le respect de ces contraintes est impératif pour que le document soit déclaré conforme à la DTD. 
+> Test possible sur le validateur en ligne de la W3C : http://validator.w3.org
+
+
+
+- Structure d'un document XHTML
+
+	- Les éléments de base
+
+		- les balises
+
+	• tout élément doit être encapsulé dans des balises ouvrantes et fermantes sous le forme :
+
+	 <nom_element> Contenu </nom_element>
+
+	• toute balise peut contenir des attributs de mise en forme définie dans la balise ouvrante sous la forme :
+
+	<nom_element attribut1="valeur1" attribut2="valeur2" > Contenu de l’élément </nom_element>
+	
+	• Le contenu d’un élément peut être constitué de texte ou d’autres éléments qui, euxmêmes, peuvent en contenir d’autres, et ainsi de suite. Cet ensemble d’inclusion constitue la hiérarchie du document XHTML.
+
+
+		- les attributs
+
+• L’attribut id. Il sert à identifier un élément de manière unique en lui donnant un nom, soit pour lui attribuer un style, soit pour y faire référence sans ambiguïté dans un script JavaScript.
+
+• L’attribut class. Il contient le nom d’une classe CSS qui contient des définitions de styles. 
+
+• L’attribut title. Il contient un texte qui apparaît dans une bulle quand l’utilisateurn positionne le curseur quelques instants (ce n’est pas instantané) sur un élément. 
+
+• L’attribut style. Il permet de définir un style localement pour un élément donné. Il est encore toléré en XHTML 1.1 mais déconseillé.
+
+• L'attribut d'appelle de fonctions Javascript (onclick,...)
+
+
+		- Règles de base du XHTML
+
+• Les éléments et les attributs sont sensibles à la casse et doivent être écrits en minuscules.
+
+Par exemple, <body> et non plus <BODY> comme en HTML.
+
+• Les éléments non vides doivent avoir obligatoirement une balise d’ouverture et une balise de fermeture.
+
+Par exemple, on ne doit plus écrire :
+<ol>
+<li>Item 1
+<li>Item 2
+mais le code suivant :
+<ol>
+<li>Item1 </li>
+<li>Item2 </li>
+</ol>
+
+• Les éléments vides ne comportent qu’une seule balise et doivent se terminer par les caractères /> précédés d’une espace pour marquer la fin de l’élément. 
+
+Par exemple, il ne faut plus écrire :
+<img src= "monimage.gif"> <hr> <br>
+mais le code suivant :
+<img src= "monimage.gif" /> <hr /> <br />
+
+• Les éléments ne doivent pas se chevaucher. Ils doivent donc obéir au principe premierouvert-dernier-fermé. 
+Dans ce cas, le premier élément est le parent du second et celui-ci est enfant du premier. 
+
+Par exemple, le code suivant est incorrect :
+<div> Cette division contient un titre <h1> Important ! </div> </h1>
+et doit être remplacé par :
+<div> Cette division contient un titre <h1> Important ! </h1></div>
+
+• Tous les attributs doivent avoir une valeur incluse entre des guillemets doubles (").
+
+Par exemple, il ne faut plus écrire :
+<p class=styleperso title=attention> Texte important</p>
+mais le code suivant :
+<p class="styleperso" title="attention" > Texte important</p>
+
+• À tous les attributs utilisés doit être donnée une valeur, y compris ceux dont la valeur est unique. 
+
+Par exemple, il ne faut plus écrire :
+<input type= "checkbox" checked disabled />
+mais le code suivant :
+<input type= "checkbox" checked="checked" disabled="disabled" />
+
+• L’attribut name qui servaient à identifier certains éléments (<a>, <form>, par exemple) est supprimé et doit être remplacé par l’attribut id.
+	
+
+		- La structure du document XHTML
+
+	- Le fichier contenant ce code doit avoir une extension .html ou .htm.
+
+
+
+- Les balises de l'En-tête
+
+
+	- Il est possible de spécifier le jeu de caractères employés en spécifiant l'encodage (ISO-8859-1 ne contient que les caractères anglais).
+
+	Il existe 2 méthodes qui peuvent être utilisées conjointement :
+
+1er méthode (placé avant la balise doctype):
+	<?xml version="1.0" encoding="utf-8" ?>
+
+Le langage XHTML consiste en une reformulation du langage HTML, conforme aux prescriptions XML. Tout document XHTML peut donc débuter de la même manière.
+
+
+2ème méthode (placé entre les balises head):
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+Si on est amené à utiliser du PHP, la seconde méthode de déclaration est conseillée.
+
+	- La seconde ligne du document s'appelle le DOCTYPE. 
+C'est une balise indispensable pour conserver la compatibilité du rendu de votre page sur les différents navigateurs modernes.
+
+	- Celui qui est conseillé est le XHTML 1.0 Strict :
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+	- En pratique :
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+Soit <!DOCTYPE html PUBLIC {type de document} {chemin de la documentation de référence} >
+
+(on trouve en somme le XHTML 1.0 Strict, XHTML 1.0 Transitional, XHTML 1.0 Frameset et le XHTML 1.1)
+
+
+----- info : Transitional -------
+
+Elle autorise l’utilisation d’éléments obsolètes présents dans les versions anciennes du langage HTML, tels que <font> ou <center> absolument déconseillés depuis des années.
+Cette DTD n’a été créé par le W3C que pour assurer la compatibilité avec des documents HTML élaborés avec HTML 4 Transitional, lui-même créé pour assurer la compatibilité avec HTML 3.2. 
+
+---------------------------------
+
+
+
+	- Puis, vient la balise <html>, élément racine du document au sens XML. Cet élément racine possède trois attributs facultatifs :
+
+		- L’attribut xml:lang dont la valeur est un code de langue normalisée qui indique la langue utilisée par défaut dans la page.
+
+		- L’attribut dir qui indique le sens de lecture du texte de la page.
+
+		- L’attribut xmlns qui précise l’adresse URL de l’espace de nom utilisé dans la page. Il prend la valeur fixe http://www.w3.org/1999/xhtml.
+
+<html xml:lang="fr" dir="ltr" xmlns="http://www.w3.org/1999/xhtml"
+<!--suite des éléments inclus --
+</html>
+
+
+Il est le "Parent" de deux balises principale : 
+
+	- <head>, qui va contenir tout l'en-tête de la page 
+
+	- et <body> qui va contenir tout le corps du document.
+
+
+
+L’élément <head> englobe un certain nombre d’informations utiles au bon affichage de la page web. Ces informations sont contenues dans six éléments différents qui ont chacun un rôle bien déterminé :
+
+	> titre : définit entre ces balises le titre de la page
+
+	> base : permet de définir le répertoire de base pour les URL relatives utilisées dans le document HTML et XHTML. (utiles notamment pour les images) Il peut être modifié par le Javascript.
+
+<base href="http://www.mon_site.com/" />
+
+	> link : permet d’établir un lien entre la page XHTML en cours
+et un autre document externe nécessaire à la page.
+La liaison avec les fichiers externes est déterminée par les attributs rel, rev, type, href, hreflang, media et charset.
+
+		- rel="stylesheet" si le fichier externe est une feuille de style 
+
+		– rel="shortcut icon" pour faire référence à l’icône identifiant le site
+
+		- type = "text/css" : pour une feuille de style CSS
+
+		- type = "text/javascript" : pour un script JavaScript
+
+		- type = "text/html" ou "text/xml" : pour une fichier de type xml ou html
+
+		- type = "images/x-icon" : pour créer une icône
+
+
+		- href : contient l’adresse relative ou absolue de la ressource externe associée
+
+
+		- media : précise le type de média concerné par le document externe. Notamment utilisé pour la feuille de style.
+
+		- screen (écran d’ordinateur)
+		- print (imprimante), 
+		- tv (téléviseur), 
+		- projections (rétro ou vidéo projecteur), 
+		- handheld (PDA, téléphone), 
+		- braille (terminal braille), 
+		- aural (navigateurs oraux) et all (tous les médias).
+
+
+Ainsi nous aurons :
+
+• Pour lier une feuille de style :
+
+<link rel="stylesheet" type="text/css" href="code.css" />
+
+• Pour lier plusieurs feuilles de style en précisant le média concerné :
+
+<link rel="stylesheet" type="text/css" href="styleWeb.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="styleWeb.css" media="print" />
+
+• Pour lier un script JavaScript :
+
+<link rel="script" type="text/javascript" href="code.js" />
+
+• Pour créer une icône dans la barre d’adresse :
+
+<link rel="shorcut icon" type="images/x-icon" href="/fashion.icon" />
+
+• Pour créer un lien de dépendance vers un document :
+
+<link rel="next" type="text/html" href="page3.html" />
+<link rev="previous" type="text/html" href="page1.html" />
+
+• Pour créer un lien vers la page d’accueil :
+
+<link rel="start" type="text/html" href="index.html" />
+
+
+	> meta : est également un élément vide pour lequel l’information est contenue dans ses attributs, destinées au serveur web, aux navigateurs et aux moteurs de recherche. Elle a la forme suivante :
+
+<meta name="nom1" content="valeur1" />
+<meta http-equiv="nom2" content="valeur2" />
+
+De rôle relativement similaire, si nous utilisons l’attribut http-equiv, l’information indiquée dans l’attribut content sera présente dans les en-têtes HTTP envoyés par le serveur au navigateur sous la forme de
+couple nom/valeur.
+
+
+Voici les plus courent d'entre eux :
+
+• name="author" : désigne le nom de l’auteur de la page sans pour autant créer un copyright.
+
+<meta name= "author" content="Steve Austine" />
+
+
+• name="keywords". Cette valeur est très importante pour le créateur de site car son incorporation dans un document sert à l’indexation des pages web par les moteurs de recherche et les annuaires.
+Chaque mot ou expression est séparé des autres par une virgule dans l'attribut content.
+
+<meta name="keywords" content="XHTML, HTML, XHTML 1.1, CSS 2, design web,
+➥ création de sites />
+
+
+• name="description". C’est cette description qui apparaît dans le moteur de recherche et il est donc essentiel qu’elle soit courte et correcte.
+
+<meta name="Description" content="Le site de l&apos;homme qui vallait que 3 milliards" />
+
+
+• name="robots". Cette valeur permet de donner des directives aux robots des moteurs de recherche sur la manière dont les pages seront indexées.
+
+Les valeurs possibles sont les suivantes :
+
+	– content="none" ou "noindex", si vous voulez empêcher l’indexation d’une page particulière.
+
+	– content="index", pour autoriser l’indexation de la page, ce qui est plus que recommandé.
+
+	– content="follow", pour autoriser l’indexation simultanée de la page concernée et des pages qui sont les cibles des liens contenus dans cette page. Le choix de cette valeur peut être risqué car il peut conduire à des indexations en chaîne si les pages cibles font de même. Si vos liens sont tous internes, n’hésitez pas à l’utiliser.
+
+– content="nofollow", pour empêcher cette indexation des pages liées.
+
+<meta name="robots" content="index" />
+
+
+• name="revisit-after". Cette valeur précise aux robots des moteurs de recherche la périodicité des passages du robot sur le site.
+
+<meta name="revisit-after" content="15 days"/>
+
+
+• http-equiv="refresh". Quand il est associé à l’attribut content qui a pour valeur un nombre de N secondes, son utilisation permet de forcer le navigateur à recharger la page ou charge la page spécifié toutes les N secondes.
+
+<meta http-equiv="refresh" content="10; http:/www.funphp.com/index/>
+
+
+• http-equiv="Content-type". Cette valeur de l’attribut permet de définir simultanément
+le type du document et le jeu de caractères utilisés dans la page.
+
+<meta http-equiv="Content-type" content="text/html;charset=iso-8859-1" />
+
+
+	> script : est une balise qui permet d’incorporer du code JavaScript dans une page XHTML au moyen de l’élément <script>.
+Le code du script est inclut entre les balises <script> et </script> et en commentaire pour éviter l'exécution par les navigateurs dépourvus d’interpréteur.
+
+<script type="text/javascript"> 
+//<![CDATA[               [anciennement <!-- pour le html4
+function debut()
+{alert(‘Bonjour XHTML’);}
+//]]>               [anciennement -->
+</script>
+
+		- en rajoutant l'attribut src il est possible de lier comme la balise link un fichier js au fichier xhtml.
+
+<script type="text/javascript" src="http://www.funhtml/xhtml/fichiercode.js">
+</script>
+
+
+On peut rajouter cette balise script même dans la corps du document.
+
+
+	> style : a le même fonctionnement que script mais pas link.
+En somme on peut ajouter des styles particuliers à la page. 
+Cette balise contient deux attribut :
+
+		- type : dont la présence est obligatoire, il prend toujours la valeur text/css.
+
+		- media : précise le type de média concerné par la feuille de style.
+
+<style type="text/css" media="screen" >
+body{background-color:yellow;color:blue;}
+</style
+
+
+
+- Les commentaires
+
+<!-- Voici un premier commentaire sur une ligne. -->
+<!-- Voici un deuxième commentaire.
+Celui-ci est multilignes. -->
+<!------------------ Cette méthode est déconseillée ! ----------------->
+
+
+
+- Créer du text et des listes
+
+	- les titres
+
+		- Balises <hN>, permet de structurer le contenut. Elément nécessaire au référencement.
+
+
+	- les divisions
+
+		- Balise <p>, permet de structurer le contenut. Elément nécessaire au référencement.
+
+		- Balise <div>, crée une division de la page. 
+Ce type de division permet de grouper dans un seul bloc un ensemble composé soit de texte soit d’éléments inclus, auxquels on pourra appliquer globalement des styles particuliers.
+
+		- Balise <pre>, cet élément sert à afficher le texte qu’il contient en préservant sa présentation et les différents espaces et indentations qui se trouvent dans le code XHTML, alors que par défaut les autres éléments ne conservent pas cette présentation.
+
+		- Balise <form>, permet de créer un formulaire.
+
+		- Balise <fieldset>, fait également partie du bloc. Son rôle habituel est également d’être inclut dans l’élément <form> pour créer des groupes de composants d’un formulaire. 
+Cette balise va de paire avec la balise <legend>.
+
+		- Balise <span>, est l'équivalent en ligne de l’élément de bloc <div>. C’est le plus employé des éléments créant des divisions sémantiques en ligne. Joint à l'attribut title, on peut créer une bulle d'information au survole.
+
+
+
+	- les sytles physiques
+
+		- <b> et <strong>, permet de mettre un contenu en gras.
+
+		- <i> et <em>, permet de mettre un contenu en italique.
+
+		- <big> et <small>, permettent de d'incrémenter ou de décrémenter la taille de la police définit dans un bloc pour un contenu. Elles peuvent être imbriqué.
+
+		- <sup> et <sub>, permettent de positionner en exposant ou indice un contenu.
+
+		- <br />, permet un retour à la ligne.
+
+	- les listes
+
+		- ordonnées
+
+<ol>
+<li>Item 1</li>
+<li>Item 2
+	<ol>
+	<li>Item 1</li>
+	<li>Item 2</li>
+	<li>Item 3</li>
+	</ol>
+</li>
+<li>Item 3</li>
+</ol>
+	
+		- non ordonnées
+
+<ul>
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+</ul>
+
+		- de définition
+
+<dl>
+<dt>Terme 1</dt>
+<dd>Définition 1</dd>
+<dt>Terme 2</dt>
+<dd>Définition 2</dd>
+</dl>
+
+l’élément <dt> contient le terme et <dd> en renferme la définition.
+
+
+- Insérer des images et du multimedia
+
+	- les types d'images (pour le web)
+
+• GIF : Graphics Interface Format, ayant pour extension .gif.
+On l’utilisera en priorité pour des icônes, des dessins ou des bandeaux
+publicitaires.
+
+• JPEG : Joint Photographic Experts Group, ayant pour extensions .jpeg ou .jpg très adapté aux photographies réalistes.
+
+• PNG : Portable Network Graphics, ayant pour extension .png. 
+A une meilleur définition que le jpeg et gère la transparence.
+
+
+	- L'insertion d'images
+
+• L’attribut src : précise l’adresse relative ou absolue du fichier image que l’on désire afficher dans la page.
+
+<img src="image.png" />
+
+<img src="http://www.votresite.com/images/image.png" />
+
+• L’attribut alt : sa présence est également nécessaire et il doit contenir un texte fournissant une brève description de l’image.
+
+• Les attributs height et width : permettent de définir respectivement la hauteur (height) et la largeur (width) qu’aura l’image sur le média d’affichage. Définit en pourcentage ou fixe.
+
+(existe les attribut ismap et usemap permettant de créer des zones clicables sur l'image)
+	
+
+	(- Les images réactives)
+
+<map id="regions">
+	<area href="http://www.orleans.fr" alt="Région Centre" title="Région Centre" shape="rect" coords="142,118,188,180" />
+	<area nohref="nohref" onclick="alert(‘Visitez la plus belle ville du monde’)" alt="Région parisienne" title="Région parisienne" shape="circle" coords="180,98,16" />
+	<area href="http://www.nantes.fr" onfocus="alert(‘Nantes en plein
+ développement’)" alt="Pays de Loire" title="Pays de Loire" shape="poly" coords="76,146,95,110,138,130,94,182,76,146" />
+</map>
+
+<img usemap="#regions" src="../images/france.gif" alt="Carte des régions"
+ width="344" height="336"/>
+
+
+
+	(- L'insertion d'images en tant qu'objet)
+
+
+
+	- Image et bouton
+
+<button type="button" onmouseover="time=new Date();alert(time)"><br/>
+
+<img src="../images/horloge.jpg" width="200" height="200" alt="La pendule"/><br/><br/>
+</button>
+
+
+	- L'insertion du multimedia
+
+Les images ne sont pas les seuls éléments décoratifs d’une page web. À cet effet, nous disposons désormais de multiples éléments multimédias qui vont des animations Flash à la vidéo, en passant par les fichiers sons MP3 et les applets Java. Avec le langage XHTML, on peut incorporer ces fichiers multimédias de manière conforme en oubliant les balises <embed> et <applet> désormais obsolètes. C’est l’élément <object> qui se prête
+aujourd’hui le mieux à l’inclusion de ces différents composants.
+
+	- fichier flash, une video ou une piste audio
+
+<object data="nav.swf" title="FLASH" type="application/x-shockwave-flash"
+width="880" height="165" standby="Menu en Flash">
+<h1>OBJET FLASH NON AFFICHE</h1>
+<param name="nom_param" value="valeur_param"/>
+</object>
+
+- <h1> n'est affiché que si l'objet n'est pas lu
+- les paramètres avec leur combinaison nom/valeur permettent de configurer les medias de lecture
+- L'attribut type précise le type MIME du fichier 
+- Les attributs width et height précisent les dimensions de l’animation dans la page. 
+- L’attribut standby peut également être précisé pour contenir un texte qui s’affiche pendant le temps de chargement du fichier
+
+
+
+- Créer des liens
+
+	- Les liens à partir d'un texte
+
+<a href= "http://www.w3.org" >W3C </a>
+
+		- les attributs
+
+• rel : il donne la relation de dépendance existant entre le document d’origine et le document cible.
+
+• rev : cet attribut indique la relation inverse du précédent, et donc le rapport existant entre le document cible et celui qui l’a appelé.
+
+• id : permettant de styliser la balise et d'inclure au Javascript
+
+• title : permet de spécifier un titre au lien.
+
+• type : permet de spécifier le type du document pointé.
+	- application/pdf
+	- application/msword
+	- video/mpeg
+	- audio/x-wav
+
+• target :
+
+_blank	: Ouverture de la page cible dans une nouvelle fenêtre
+_parent	: Ouverture de la page cible dans le cadre parent
+_self	: Ouverture de la page cible dans le cadre hôte
+_top	: Ouverture de la page cible dans la fenêtre hôte
+Nom du cadre: Ouverture de la page cible dans le cadre portant le nom cité
+		
+
+		- les ancres
+
+La liaison se fait par l'attribut id et le sélecteur # :
+
+<p><a href="#para1">Vers le paragraphe 1</a></p>
+
+<p><a id="para1">Paragraphe 1</a>Un document XHTML doit avoir la structure…</p>
+
+
+Pour une adresse relative, nous pouvons écrire :
+
+<p><a href="page2.html#para1">Paragraphe 1</a></p>
+
+Et, pour une adresse absolue, le code suivant :
+<p><a href="http://www.funhtml.com/page2.html#para1">Paragraphe 1</a></p>
+
+
+	- Liens à partir d'éléments graphiques
+
+• Il est possible de créer un lien de format bouton grace à la balise <button type="button"> encapsulé par la balise <a>. 
+
+<a id="lien3" href="http://www.w3.org">
+<button type="button" value="W3C"> Le site W3C </button>
+</a>
+
+• Ou d'encapsuler une image
+
+<a href="reseaux.html">
+<img src="../images/couvreseaux.gif" alt="Réseaux et télécoms" width="100"
+ height="130" title="Réseaux et télécoms"/>
+</a>
+
+
+	- Liens déclenchant un script JavaScript
+
+Pour créer ce type de lien, nous écrivons par exemple le modèle suivant :
+<p>Cliquez pour <a href="javascript:code JavaScript">exécuter le script</a></p>
+
+Exemple :
+
+<script type="text/javascript">
+<!--
+function ladate()
+{
+jour= new Date;
+alert(jour);
+}
+function fondrouge()
+{
+col="#F00";
+document.getElementById(‘divis’).style.backgroundColor=col;
+}
+
+
+Appelle dans le corps du document XHTML :
+
+<a href="javascript:ladate()">Afficher la date</a><br />
+<a href="javascript:fondrouge() ">Créer un fond rouge pour cette division
+</a>
+
+
+
+
+- Créer des tableaux
+
+	- La structure d'un tableau
+
+<table border="1">
+<caption>Un tableau &#233;l&#233;mentaire</caption>
+<tr>
+<td> Ligne 1 Colonne 1 </td><td> Ligne 1 Colonne 2 </td><td> Ligne 1 Colonne 3
+</td>
+</tr>
+<tr>
+<td> Ligne 2 Colonne 1 </td><td> Ligne 2 Colonne 2 </td><td> Ligne 2 Colonne 3
+</td>
+</tr>
+<tr>
+<td> Ligne 3 Colonne 1 </td><td> Ligne 3 Colonne 2 </td><td> Ligne 3 Colonne 3
+</td>
+</tr>
+</table>
+
+		- Les attributs de table
+
+• border ="N" : il définit la largeur des bordures externes et internes qui délimitent le tableau et les cellules.
+
+• width="N px | N%" : il définit la largeur totale du tableau dans la page.
+
+• cellpadding="N px | N%" : il définit la largeur de l’espacement entre le contenu d’une cellule et sa bordure.
+
+• cellspacing="N px | N%" : il définit l’espacement entre les bordures de chaque cellule.
+
+• frame : il permet de diversifier l’affichage des bordures externes du tableau en n’affichant qu’une partie d’entre elles. Il peut prendre les valeurs suivantes :
+– void : supprime toutes les bordures extérieures ;
+– above : ne laisse subsister que la bordure supérieure ;
+– below : ne laisse que la bordure inférieure ;
+– lhs : ne laisse que la bordure gauche ;
+– rhs : ne laisse que la bordure droite ;
+– hsides : ne laisse que les bordures horizontales haute et basse ;
+– vsides : ne laisse que les bordures verticales gauche et droite ;
+– box ou border : ne laisse que les quatre bordures externes.
+
+• rules : il définit l’affichage des bordures internes du tableau, situées entre les cellules.
+Il prend les valeurs suivantes :
+– none : supprime toutes les bordures internes ;
+– rows : ne laisse que les bordures horizontales ;
+– cols : ne laisse que les bordures verticales ;
+– all : affiche toutes les bordures. C’est le comportement par défaut.
+– groups : n’affiche que les bordures délimitant les groupes de lignes ou de colonnes définis par les éléments <col /> et <colgroup>, <tbody>, <thead> et <tfoot>, dont nous allons voir les rôles respectifs ci-après.
+
+
+	- Créer des groupes de lignes et de colonnes
+
+<h1>Statistiques des contr&ocirc;les radars sur autoroute A7</h1>
+<table border="5" frame="box" rules="groups" cellspacing="5" width="90%">
+
+<thead><tr><th> Vitesse mesurée en km/h </th><th> Nombre de Véhicules </th>
+<th> Sanction opérées</th></tr></thead>
+
+<tfoot><tr><th> Vitesse mesurée en km/h </th><th> Nombre de Véhicules </th>
+<th> Sanction opérées</th></tr></tfoot>
+
+<tbody class="rouge" align="center">
+<tr>
+<td> de 90 à 110 km/h </td><td> 325 </td><td> NON </td>
+</tr>
+<tr>
+
+<td> de 110 à 130 km/h </td><td> 564 </td><td> NON </td>
+</tr>
+<tr>
+<td> de 130 à 140 km/h </td><td> 323 </td><td> NON </td>
+</tr>
+</tbody>
+
+<tbody class="bleu" align="center">
+<tr><td> de 140 à 160 km/h </td><td> 223 </td><td> Amende </td>
+</tr>
+<tr>
+<td> de 160 à 190 km/h </td><td> 87 </td><td> Retrait </td>
+</tr>
+</tbody>
+
+</table>
+
+		- les attributs des éléments <thead>, <tfoot>, <tbody>, <tr>, <th> et <td>
+
+• align ="left | center | right | justify | char" : il définit l’alignement horizontal du contenu respectivement à gauche, au centre, à droite ou justifié dans la cellule.
+
+• valign ="top | middle | bottom | baseline" : il définit l’alignement vertical du contenu respectivement sur le haut, le milieu ou le bas de la cellule.
+
+		(- autres groupes)
+
+<table border="5" width="100%" rules="groups" summary="Facture de livres"
+ cellpadding="5">
+<caption><big>Facture de votre commande de livres</big></caption>
+
+<!-- Groupe 1 : Dates -->
+<colgroup id="date" width="10%" span="1" align="center" class="date">
+</colgroup>
+
+<!-- Groupe 2 : Titre et Auteur -->
+<colgroup id="titre" span="2" width="25%" align="left" class="gras">
+</colgroup>
+
+<!-- Groupe 3: Quantité, Prix unitaire, Prix total -->
+<colgroup id="prix" span="3" align="right" class="prix">
+<col width="10%" />
+<col span="2" width="15%" />
+</colgroup>
+
+<!—En-tête et pied du tableau -->
+
+
+	- Créer des tableaux irréguliers
+
+<td colspan="N"> Contenu de la cellule</td>
+
+<td rowspan="N"> Contenu de la cellule</td>
+
+
+	(- Imbrication de tableaux)
+
+	- Organisation d'une page à l'aide de tableaux
+
+Et contrairement à ce que l'on pense les tableaux permettent une structuratation de l'information très difficile à reproduire par le css.
+
+
+
+- Créer des formulaires
+	
+	- Structure d'un formulaire
+
+<form method="post" action="traitement.php">
+<fieldset>
+<legend>Formulaire type</legend>
+<!-- Composants du formulaire -->
+</fieldset>
+</form>
+
+		- Les attribut de la balise
+
+• action : cet attribut est obligatoire car il désigne le fichier qui est chargé de traiter les données du formulaire côté serveur. 
+
+• method : il détermine la méthode d’envoi des données vers le serveur. Il peut prendre les deux valeurs get ou post.
+
+• enctype : il détermine le type d’encodage de données transmises vers le serveur. Sa valeur par défaut est application/x-www-form-urlencoded et pour l'envoi de fichier sa valeur est multipart/form-data.
+
+
+	- Les composants communs
+
+		- fieldset et legend
+
+Permet de regrouper des champs et de les titrer.
+
+		- input type="submit" et button même combat
+
+<input type="submit" value="Envoi" name="soumission" id="soumission" title="Bouton d’envoi" />
+
+<button type= "submit" value="Envoi2" name="soumission2" id="soumission2"
+title="Bouton d’envoi"> Envoi2
+</button>
+
+On peut aussi insérer une image pour le bouton :
+
+<button type="submit" value="Envoi3" name="soumission3" id="soumission3"
+accesskey="C" title="Bouton d’envoi">
+<img src="france2.gif" height="50" width="50" alt="France"/>
+</button>
+
+<input type="image" src="../images/france.gif" value="Envoi3" name="soumission3" id="soumission3" title="Bouton d’envoi image" onclick="submit()"/>
+
+
+
+	- les composants de saisie de texte
+
+La saisie de texte uniligne
+
+<input type="text" name="pays" maxlenght="25" value="France" />
+
+• name="texte" : il attribue un nom à la zone de saisie, ce qui permet de récupérer dans une variable la valeur saisie sur le serveur.
+
+• size="N" : il permet de fixer la longueur visible de la zone de texte à N caractères, ce qui n’empêche pas des saisies plus longues.
+
+• maxlength="N" : il permet de limiter le texte saisi à N caractères.
+
+• value="texte": il définit un texte par défaut qui est affiché dans la zone de texte tant que l’utilisateur n’en a pas saisi un autre.
+
+• disabled="disabled" : cet attribut, qui prend la valeur booléenne unique disabled, rend
+la zone de saisie inactive, empêchant ainsi toute saisie.
+
+• readonly="readonly" : permet d’utiliser une zone de saisie pour afficher une information.
+
+
+La saisie de mot de passe
+
+La différenciation entre ces deux champs réside dans la valeur de l’attribut type qui prend la valeur password au lieu de text, sinon on peut y appliquer les mêmes attributs.
+
+
+La saisie de texte long
+
+<textarea name="commentaires" cols="70" rows="10">
+Tapez vos commentaires ici…
+</textarea>
+
+• cols="N" qui fixe la largeur de la zone à N caractères.
+
+• rows="N" qui fixe la hauteur à N lignes.
+
+
+	- Les boutons radios et les cases à cocher
+
+<label>Monsieur</label> <input type="radio" name="sexe" value="Monsieur" <?Php if($sexe==='Monsieur'){ echo 'checked="checked"';} ?>/>
+<label>Madame</label> <input type="radio" name="sexe" value="Madame"  />
+
+On peut ici utiliser aussi les attributs disabled et readonly. Notez bien que les " name " prennent la même valeur.
+
+
+<label>Classique : </label>
+<input type="checkbox" name="classique" value="oui" />
+
+
+
+	- les listes de sélection
+
+<select name="pays[]" size="1">
+<optgroup label="Europe">
+	<option value="null"></option>
+	<option value="France"> France</option>
+	<option value="Belgique"> Belgique</option>
+	<option value="Suisse"> Suisse</option>
+	<option value="Canada"> Canada</option>
+</optgroup>
+</select>
+
+• name="texte" : permet comme pour les autres éléments du formulaire, de récupérer la ou les données choisies dans une variable qui est identifiée par ce nom.
+
+• size="Nombre" : il définit le nombre de lignes d’options qui sont visibles lors de l’affichage de la liste.
+
+• multiple="multiple" : il prend la valeur booléenne unique multiple pour indiquer que l’utilisateur peut opérer plusieurs choix simultanément dans la liste. L'utilisation de la touche CTRL est à spécifier.
+De plus il faut penser à ajouter des [] au name.
+
+• disabled="disabled" : pour rendre la liste inactive. Aucun choix n’est plus alors possible.
+
+La balise <optgroup> permet de procéder à des regroupement dans l'affichage.
+
+
+	- les champs cachés
+
+<input type="hidden" id="navigateur" name="navigateur" value="secret" />
+
+Peut permettre d'envoyer des informations secondaire au server.
+
+	
+	- le transfert de fichiers
+
+<label>Choisissez le fichier JPEG ou PNG : </label>
+<input type="file" name="fichier" accept="image/jpeg,image/png" />
+<input type="hidden" name="MAX_FILE_SIZE" value="50000" />
+
+Pour l'envoie les éléments à mettre en place sont relativement simples.
+Bien pensez à définir le type de données envoyé avec l'attribut enctype.
+
+
+	- Un formulaire complet
+
+<form action="exemple7-14.php" method="post" enctype="multipart/form-data">
+<!-- Premier groupe de composants-->
+<fieldset>
+<legend><b>Vos coordonnées</b></legend>
+<label>Nom : </label><input type="text" name="nom" size="40" maxlength="256" value="votre nom" /><br />
+<label>Prénom : </label><input type="text" name="prenom" size="40" maxlength="256" value="votre prénom" /><br />
+<label>Mail : </label><input type="text" name="mail" size="40" maxlength="256" value="votre mail" /><br />
+<label>Code : </label><input type="password" name="code" size="40" maxlength="6" /> <br />
+<input type="radio" name="sexe" value="homme" /><label>Homme</label> <br />
+
+<input type="radio" name="sexe" value="femme" /><label>Femme</label> <br />
+<select name="pays" size="1" tabindex="2" onfocus="this.style.color=‘red’"
+ onchange="alert(‘Merci de votre choix’)" onblur="this.style.color=‘black’">
+<option value="null" > Votre pays</option>
+<optgroup label="Europe"><option value="France" > France</option>
+<option value="Belgique" > Belgique</option>
+<option value="Italie" > Italie</option>
+<option value="Allemagne" > Allemagne</option>
+</optgroup>
+<optgroup label="Amérique">
+<option value="USA" label="fr" > USA </option>
+<option value="Canada" > Canada</option>
+<option value="Argentine" > Argentine</option>
+</optgroup>
+<optgroup label="Autres">
+<option value="Europe" > Europe </option>
+<option value="Asie" > Asie </option>
+<option value="Amériques" > Amériques </option>
+<option value="Océanie" > Océanie</option>
+</optgroup>
+</select>
+<br />
+</fieldset>
+<!-- Deuxième groupe de composants-->
+<fieldset>
+<legend><b>Vos goûts</b></legend>
+<input type="checkbox" name="pomme" value="pomme" /> Pommes<br />
+<input type="checkbox" name="poire" value="poire" /> Poires<br />
+<input type="checkbox" name="scoubidou" value="scoubidou" /> Scoubidous<br />
+<textarea name="gouts" cols="50" rows="5" onclick="this.value=‘‘">
+Décrivez vos goûts en détail
+</textarea>
+<br />
+</fieldset>
+<!-- Troisième groupe de composants-->
+<fieldset>
+<legend><b>Envoyez nous votre photo</b></legend>
+<input type="file" name="fichier" accept="image/jpeg" />
+<input type="hidden" name="MAX_FILE_SIZE" value="10000" />
+<br /><br />
+<input type="reset" value="Effacer" />
+&nbsp;&nbsp;&nbsp;<input type="submit" value="Envoyer" />
+<br />
+</fieldset>
+</form>
+
+
+<?php
+echo "<h1>Lecture des données </h1>";
+foreach($_POST as $cle=>$valeur)
+{
+echo "$cle : $valeur <br />";
+}
+echo "<h1>Informations sur le fichier transféré</h1>";
+foreach($_FILES as $tab)
+{
+foreach($tab as $cle=>$valeur)
+{
+echo "$cle : $valeur <br />";
+}
+}
+?>
+
+
+	- Organisation des formulaires à l'aide de tableaux
+
+Afin de procéder à une mise en forme efficace et rapide, il est d'usage d'utiliser des tableaux pour aligner les étiquettes des champs de saisies.
+
+On peut aussi utiliser le CSS, plus long à mettre en place, mais beaucoup plus efficace.
+
+
+
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Formulaire traité par PHP</title>
+</head>
+<body>
+<form action="exemple7-14.php" method="post" enctype="multipart/form-data">
+<!-- Premier groupe de composants-->
+<fieldset>
+<legend><b>Vos coordonnées</b></legend>
+<table border="0" width="100%">
+<colgroup width="10%" align="right"></colgroup>
+<colgroup width="70%"></colgroup>
+<tr>
+<td><label>Nom : </label></td>
+<td><input type="text" name="nom" size="40" maxlength="256" value="votre nom" /></td>
+</tr>
+<tr>
+<td><label>Prénom : </label></td>
+<td><input type="text" name="prenom" size="40" maxlength="256" value="votre prénom" /></td>
+<fieldset>
+<legend><b>Vos goûts</b></legend>
+<table border="0" width="100%" >
+<colgroup width="10%" align="right"></colgroup>
+
+<colgroup width="70%"></colgroup>
+<tr>
+<td><label>Pommes : </label> </td>
+<td><input type="checkbox" name="pomme" value="pomme" /> </td>
+</tr>
+<tr>
+<td><label>Poires : </label> </td>
+<td><input type="checkbox" name="poire" value="poire" /></td>
+</tr>
+<tr>
+<td><label>Scoubidous : </label></td>
+<td><input type="checkbox" name="scoubidou" value="scoubidou" /></td>
+</tr>
+<tr>
+<td><label>Décrivez nous vos goûts en détail : </label></td>
+<td>
+<textarea name="gouts" cols="50" rows="5" onclick="this.value=‘‘">
+Exprimez vous ici...
+</textarea>
+</td>
+</tr>
+</table>
+</fieldset>
+<!-- Troisième groupe de composants-->
+<fieldset>
+<legend><b>Envoyez-nous votre photo</b></legend>
+<table border="0" width="100%" align="right"><colgroup width="10%"  align="right"></colgroup>
+<colgroup width="70%"></colgroup>
+<tr>
+<td><label>Choisir le fichier : </label></td>
+<td><input type="file" name="fichier" accept="image/jpeg" />
+ <input type="hidden" name="MAX_FILE_SIZE" value="10000" /></td>
+</tr>
+<tr>
+<td> <input type="submit" value=" Envoyer " /></td>
+<td><input type="reset" value="Effacer toutes les données" /></td>
+</tr>
+</table>
+</fieldset>
+</form>
+</body>
+</html>
+
+
+
+- Créer des cadres
+	
+	- Structure des pages avec cadres
+
+Les cadres bien que déconseillés, peuvent être utilisé d'après les spécification de la W3C jusqu'au XHTML 1.0.
+
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+
+Une page dé"ployant la structure des frames, affiche en réalité plusieurs pages dans des cadres interconnectable par du Javascript.
+
+Cela avait des avantages d'un point de vue sécurité des pages affichées.
+Ce besoin est maintenant résolut par les MVC.
+
+Et coté inconvégnant, au dela du développement lourd nécessités, tout référencement générait des accès pouvant déstructurer le site.
+La gestion des frames peut être désactivé dans le navigateur voir même plus géré dans le future.
+
+Il peut être utile néant moin de connaitre son fonctionnement.
+
+
+L'élément <frameset> permet la définition des divisions de la page en différents cadres, dont les dimensions ou les proportions sont définies par ses attributs rows et cols.
+
+Cet élément inclut ensuite autant d’éléments <frame /> que le concepteur a défini de cadres différents.
+
+Pour les navigateurs qui ne supporteraient pas les cadres, il est possible d’afficher un contenu de remplacement en l’incluant dans l’élément <noframes>. Il doit être inclus dans l’élément <frameset> et doit contenir à son tour un élément <body> qui inclut les éléments XHTML créant la page de remplacement.
+
+En plus des attributs class, id et title habituels, il possède
+les attributs suivants :
+
+• name : il permet, comme id, d’attribuer un nom au cadre, ce qui est indispensable pour gérer les pages et choisir dans quel cadre va s’afficher la cible d’un lien par exemple.
+Le nom ne doit pas commencer par le caractère de soulignement mais par une lettre.
+
+• src : il est essentiel car il définit l’URL du document XHTML qui va s’afficher dans le cadre.
+
+• frameborder : il définit si le cadre a une bordure (valeur 1) ou s’il n’en a pas (valeur 0).
+
+• marginwidth : il définit la largeur de la marge entre le bord gauche du cadre et son contenu.
+Sa valeur est donnée en pixel ou en pourcentage de la largeur totale du cadre.
+
+• marginheight : il définit la hauteur de la marge entre le bord supérieur du cadre et son
+contenu.
+
+• noresize : il prend la valeur booléenne unique noresize pour interdire au visiteur de redimensionner le cadre.
+
+• scrolling : permet d'activer (yes), de désactiver (no) ou d'automatiser (auto) l'affichage des barres de défilements.
+
+
+	- Les cadres horizontaux
+
+En écrivant par exemple le code suivant :
+
+<frameset rows = "100,*,200">
+<frame src="http://www.funhtml.com/pagehaut.html" />
+<frame src=" http://www.funhtml.com/pagecentre.html" />
+<frame src=" http://www.funhtml.com/pagebas.html" />
+<noframes>
+<body>
+<p>Votre navigateur ne supporte pas les cadres!<br /> Voir la <a id="lien"
+➥ href="http://www.funhtml.com/index.html" tabindex="1" accesskey="A"
+➥ title="Version sans cadres">version sans cadres</a>
+</p>
+</body>
+</noframes>
+</frameset>
+
+nous créons également trois cadres horizontaux, le premier de 100 pixels de haut, le dernier de 200 pixels de haut, et le cadre central a une hauteur variable, selon la définition de l’écran du poste client, laquelle se définit à l’aide du caractère *.
+
+
+
+	- Les cadres verticaux
+
+Ici on procède simplement à l'emploi de l'attribut cols à la place de rows dans la balise frameset.
+
+<frameset cols="30%,*,250" >
+<frame src="http://www.arte-tv.com" name="gauche" noresize="noresize"
+ frameborder="0" />
+<frame src="http://www.france2.fr" name="milieu" frameborder="0" />
+<frame src="http://www.lemonde.fr" name="droit" frameborder="0" />
+<noframes>
+<body>
+<p>Votre navigateur ne supporte pas les cadres!<br />
+ Voir la <a id="lien" href="http://www.funhtml.com/index.html" tabindex="1" accesskey="A" title="Version sans cadres">version sans cadres</a>
+</p>
+</body>
+</noframes>
+</frameset>
+
+
+	- La communication entre les cadres
+
+Un problème se pose alors pour réaliser cette opération puisque, par définition, chaque cadre a un contenu indépendant des autres et que, par défaut toujours, chaque document cible d’un lien s’affiche dans le même cadre que celui qui contient ce lien. Il y a deux méthode pour naviguer entre les cadres :
+
+La méthode utilisant la DTD Transitional
+
+En utilisant l'attribut target de la balise <a>.
+La valeur de cet attribut est le nom du cadre dans lequel doit s’afficher le document cible du lien. Cette valeur doit correspondre à celle des attributs name et id du cadre concerné.
+
+Dans notre précédent exemple, le cadre de gauche contient le menu vertical créé sous la forme d’une liste de liens qui permet de naviguer dans le site.
+
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Menu</title>
+<meta http-equiv="Content-type" content="text/html; charset=iso-8859-1" />
+<link rel="shortcut icon" type="images/x-icon" href="../images/favicon.ico" />
+<style type="text/css" >
+body{background-color:#CCC;color:000;}
+</style>
+</head>
+<body>
+<ul>
+<li><a id="structure" href="structure.html" tabindex="1" accesskey="A"
+➥ title="Structure" target="centre" >Structure</a></li>
+<li><a id="texte" href="texte.html" tabindex="1" accesskey="B" title="Texte"
+➥ target="centre" >Le texte</a></li>
+<li><a id="image" href="images.html" tabindex="1" accesskey="C" title="Images"
+➥ target="centre" >Les images</a></li>
+<li><a id="tableau" href="tableau.html" tabindex="1" accesskey="D"
+➥ title="Tableaux" target="centre">Les tableaux</a></li>
+<li><a id="form" href="form.html" tabindex="1" accesskey="D" title="Formulaires"
+➥ target="centre">Les formulaires</a></li>
+</ul>
+</body>
+</html>
+
+
+La méthode JavaScript
+
+La méthode JavaScript permet de détourner subtilement l’interdiction d’employer l’attribut target faite par XHTML 1.1 en y faisant pourtant référence, mais sans qu’il soit présent dans le code du document affiché dans le cadre nommé gauche. Soit on édite dynamiquement la structure de la balise <a> par la Javascript en ajoutant :
+
+onclick="this.target=‘centre’"
+
+
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Menu</title>
+<meta http-equiv="Content-type" content="text/html; charset=iso-8859-1" />
+<link rel="shortcut icon" type="images/x-icon" href="../images/favicon.ico" />
+<style type="text/css" >
+body{background-color:#CCC;color:000;}
+</style>
+</head>
+<body>
+<ul>
+<li><a id="structure" href="structure.html" title="Structure" onclick="document.getElementById(‘structure’).target=‘centre’" >Structure</a></li>
+<li><a id="texte" href="texte.html" title="Texte" onclick="document.getElementById(‘texte’).target=‘centre’" >Le texte</a>
+</li>
+<li><a id="image" href="images.html" title="Images" onclick="document.getElementById(‘image’).target=‘centre’" >Les images</a>
+</li>
+<li><a id="tableau" href="tableau.html" title="Tableaux" onclick="this.target=‘centre’">Les tableaux</a></li>
+<li><a id="form" href="form.html" tabindex="1" accesskey="D" title="Formulaires" onclick="this.target=‘centre’">Les formulaires</a></li>
+</ul>
+</body>
+</html>
+
+
+
+	
+-- Les styles CSS
+
+
+- Introduction à CSS
+
+La création de styles CSS (Cascading Style Sheets ou feuilles de style en cascade) est le complément indispensable du langage XHTML.
+
+		- cette séparation permet d’alléger les pages en centralisant les définitions des styles en un point unique
+		- une seule définition pouvant s’appliquer à un grand nombre d’éléments
+		- facilite également la maintenance et l’évolution des sites
+
+
+La feuille de style se créer :
+
+	
+
+	- Ecrire des feuilles de styles
+
+
+		- soit dans une fichier à part avec l'extension .css et appliqué dans les document XHTML par l'appelle suivant :
+
+<link rel="stylesheet" type="text/css" href="/xhtml/messtyles.css" />
+
+		- soit directement dans les documents XHTML entre les balises <style>:
+
+<style type="text/css">
+	<!-- Code CSS -->
+</style>
+
+Il est possible comme pour le XHTML de vérifier la validité des feuilles de styles d'une page par le lien suivant : http://jigsaw.w3.org/css-validator/
+
+		- soit par inclusion entre les balises <style> :
+
+@import url(fichier.css);
+
+<style type= "text/css">
+@import url(commun.css)all;
+@import url(ecran.css)screen;
+@import url(imprimante.css)print;
+div,p {font-style: italic;}
+h1,h2 {color: red;}
+</style>
+
+
+	- Créer des styles
+
+La structure d'un style se définie comme suite :
+
+sélecteur { propriété1 : valeur1; propriété2 : valeur2 }
+
+
+- Les sélecteurs 
+
+Les sélecteurs permettent de faire référence à plusieurs éléments ou un seul dans le DOM et dans plusieurs fichier et de lui appliquer une mise en forme spécifique.
+
+
+Sélection par élément :
+
+	Sélectionner un seul :
+
+p {color : yellow ; background-color :blue;}
+
+	Sélectionner plusieurs :
+
+h1,div,pre {color : black ; background-color : red;}
+
+
+	Pour appliquer un style à tous les éléments, on peut utiliser le sélecteur universel :
+
+* {background-color : yellow;}
+
+
+	Cela n'empèche pas la redéfinition des éléments enfant.
+
+*{background-color : yellow;}
+p{background-color : gray;}
+
+
+
+Sélection par les classes :
+
+Les classes présentent l’intérêt de pouvoir s’appliquer à n’importe quel élément, n’importe où dans le code de la page et un nombre indéfinie de fois.
+
+déclaration :
+
+.evidence {color : red;}
+
+
+appelle :
+
+<p class="evidence">Texte contenu du paragraphe</p>
+
+
+On peut rajouter une couche de précision à cette définition par la précision :
+
+div.jaune {color : yellow;}
+
+
+On peut augmenter la puissance de la mise en forme des classes par la concaténation des sélecteurs dans un élément :
+
+<div class="classe1 classe2"> Ceci est un texte avec la classe 1 et 2 </div>
+
+
+
+Sélection d'identifiant id :
+
+Chaque élément peut avoir un attribut id qui doit être unique dans une page donnée.
+
+déclaration :
+
+#bleu {color: white; background-color: blue;}
+
+appelle :
+
+<div id="bleu">Texte en blanc sur bleu</div>
+
+Attention à la casse dans les décalarations de styles.
+De plus, notez que les id ont une utilité de liaison du Javascript au Css.
+
+
+
+Sélection par les attributs :
+
+On peut aussi faire référence à un élément d'après les attributs qu'il possède ou valeur des attributs qu'il possède.
+
+element [attribut] {Définition du style;}
+
+h2[title][id]{background-color: yellow;}
+
+
+element [attribut="valeur"] {Définition du style;}
+
+code[title="code JavaScript"] {color: blue;}
+
+Il est possible d’étendre encore ce sélecteur en attribuant un style à tous les éléments, dont un attribut donné à une valeur qui ne correspond que partiellement à une chaîne donnée.
+Pour obtenir cette sélection, il faut utiliser la syntaxe suivante, dans laquelle le signe = est remplacé par ~= :
+
+element [attribut ~="valeur"] {Définition des styles;}
+
+td[id ~="nom"]{background-color: #222;color: white;}
+
+
+
+Sélection par parent-descendant :
+
+Pour cela, il faut utiliser la syntaxe suivante :
+
+element_parent element_enfant {Définition des styles;}
+
+En écrivant par exemple le style suivant :
+
+ul li ol li {dispay: block; background-color: gray; color: white;}
+
+
+
+Pseudo-classes et pseudo-éléments
+
+Les pseudo-classes et les pseudo-éléments permettent d’attribuer un style à une partie abstraite d’un document non identifiable dans cette hiérarchie.
+
+Les pseudo-classes applicables aux liens :
+
+
+a:link {color: blue;}
+a:visited {color: red;}
+
+
+Les pseudo-classes dynamiques :
+
+a:focus{color: red;}
+
+
+(Les pseudo-éléments :)
+
+• :first-letter, qui permet d’affecter un style à la première lettre du contenu d’un élément indiqué avant ce sélecteur.
+
+p:first-letter {fonize: 300%; color: blue;}
+
+• :first-line, qui permet d’affecter un style à la première ligne du contenu de l’élément indiqué.
+
+div:first{font-size: 150%; font-weight: bold;}
+
+• :before, qui permet d’insérer un contenu doté d’un style particulier avant le contenu réel de l’élément précisé, en l’associant avec la propriété content. En écrivant le style suivant :
+
+cite:beforeontent:"<<"; font-weight: bold;}
+
+chaque contenu d’une citation <cite> sera précédé des caractères << en gras.
+
+• :after, qui joue un rôle similaire au précédent mais définit un contenu doté d’un style à la fin du contenu de l’élément utilisé. En écrivant :
+
+cite:after {cnt: ">>";font-weight: bold;}
+
+chaque citation contenu dans l’élément <cite> sera suivie des caractères >> en gras.
+
+
+La déclaration !important
+
+Permet de spécifier la priorité d'un style en cas de conflit dans larboressence du DOM du document XHTML.
+
+*{color: black !important; background-color: yellow;}
+div{color: blue; background-color: white;}
+
+
+
+	- Cascade et héritage
+
+Toute définition de style pour un élément parent sera transmis à tout ses éléments enfants.
+
+
+	- Les unités
+
+Elles s’appliquent aussi bien à la taille d’une police qu’à la largeur d’une bordure ou la hauteur d’un élément.
+
+• Les unités relatives
+– em : qui se réfère à la taille de la police utilisée ou à la valeur de la propriété fontsize
+– ex : qui correspond à la taille de la lettre « x » minuscule dans la police utilisée.
+– px : qui correspond à la taille de 1 pixel.
+
+• Les unités absolues : elles sont recommandées quand les caractéristiques physiques
+(mesurables) du média sont connues.
+– in : soit un pouce anglais (un inch), donc 25,4 mm ;
+– cm : le centimètre ;
+– mm : le millimètre ;
+– pt : le point qui représente conventionnellement 1/72 de pouce ;
+– pc : le pica qui représente 12 points, soit 1/6 de pouce.
+
+• Les pourcentages qui, comme chacun le sait, ne sont pas des unités mais une convention décriture, le symbole % représentant la fraction 1/100. Leur utilisation fait toujours référence à une autre dimension, celle de l’élément parent le plus souvent.
+
+
+	- Les couleurs 
+
+• Tous les mots-clés sont en anglais, par exemple black, yellow qui correspondent à des couleurs connues ; d’autres sont plus fantaisistes comme whitesmoke.
+
+• Un code hexadécimal de couleur basé sur les composantes RGB d’une couleur dans le système additif. L’ensemble doit être précédé du caractère dièse (#), par exemple #F4C5A8.
+
+• À l’aide de la fonction rgb() qui admet trois paramètres représentant la valeur des composantes RGB d’une couleur selon la syntaxe rgb(Red, Green, Blue), chaque composante est exprimée par un nombre entier variant de 0 à 255 ou par un pourcentage de 0 à 100 %.
+
+
+
+- Couleurs et images de fond
+
+
+	- La couleur d'avant plan
+
+La couleur d’avant-plan est celle du text, elle est définie par la propriété color selon la syntaxe suivante :
+
+sélecteur {color:<couleur> | inherit}
+
+body{color:#AA5;}
+
+
+	- La couleur de fond
+
+La couleur d'arrière plan est défnit par :
+
+background-color:<couleur> | transparent | inherit
+
+body{background-color: yellow;}
+
+
+	- Les images de fond
+
+background-image:url(<URL>)|none|inherit
+
+body{background-image: url(fondbleu.gif);
+
+
+background-repeat:repeat|repeat-x|repeat-y|no-repeat|inherit
+
+background-repeat:repeat-x;
+
+
+background-position:[[<pourcent> | <long> | left | center | right][<pourcent> | <long> | top | center | bottom]?] | [left | center | right]||[top | center | bottom]]| inherit
+
+background-position:left bottom;}
+
+Où on spécifie d'abord la position horizontal puis verticale.
+
+
+	- Un raccourci pour les fonds
+
+Il est possible de définir toutes ces propriété avec un seul propriété :
+
+background:[<background-color>||<background-image>||<background-repeat>||
+ <background-attachement>||<background-position>]|inherit
+
+body{background:url(paysage.png) no-repeat top center scroll #BBB;}
+
+
+- Créer des bordures, marges, espacements et contours
+
+
+	- Les modèle Css des boites
+
+À chaque élément XHTML visuel correspond dans le navigateur une zone rectangulaire nommée boîte. 
+
+Que l’élément soit du type bloc comme <div>, <p> ou <form>, ou de type en ligne comme <img />, il se voit donc attribuer sa propre boîte.
+
+
+	- Les bordures
+
+border: [<largeur>||<style>||[<couleur>|transparent]] | inherit
+
+h1{border: 5px double blue;}
+
+
+Le paramètre style peut prendre une des valeurs suivantes :
+
+• dotted : bordure en pointillés courts
+
+• dashed : bordure en tirets longs
+
+• solid : bordure pleine continue
+
+• double : bordure constituée de deux traits parallèles continus
+
+• groove : bordure en creux.
+
+• ridge : bordure en relief.
+
+• inset : bordure en creux dont chaque côté n’a qu’une seule couleur
+
+• outset : bordure en relief dont chaque côté n’a qu’une seule couleur
+
+Il est possible de définir des bordures spécifiques en étendant la nuance de la propriété :
+
+• border-top : définit la bordure haute ;
+
+• border-right : définit la bordure droite ;
+
+• border-bottom : définit la bordure basse ;
+
+• border-left : définit la bordure gauche.
+
+
+
+	- Les marges
+
+Il est possible de définir les marges extérieurs d'un élément par l'attribut margin :
+
+• margin-top : définit la marge haute ;
+
+• margin-right : définit la marge droite ;
+
+• margin-bottom : définit la marge basse ;
+
+• margin-left : définit la marge haute.
+
+ou 
+
+• margin : définit la marge {1,4}.
+
+- En donnant une seule valeur, elle s’applique aux quatre côtés.
+
+- En donnant deux valeurs, la première s’applique aux côtés haut et bas, et la seconde aux côtés droit et gauche.
+
+- En donnant trois valeurs, la première s’applique au côté haut, la suivante aux côtés droit et gauche, et la dernière au bord bas.
+
+- En donnant quatre valeurs, on définit les quatre bords.
+
+
+	- Les espacements
+
+Un espacement interne par rapport au contenu peut être créer grace à la propriété padding :
+
+• padding-top : définit l’espacement haut ;
+
+• padding-right : définit l’espacement droit ;
+
+• padding-bottom : définit l’espacement bas ;
+
+• padding-left : définit l’espacement gauche.
+
+ou 
+
+• padding: définit l'espacement {1,4}.
+	
+
+
+	- Les contours
+
+Le style du contour est la première des propriétés à définir pour obtenir un affichage, les autres ayants des valeurs par défaut. Il est créé grâce à la propriété outline-style, dont la syntaxe est similaire à celle de border-style :
+
+outline-style: none | <style> | inherit
+
+Les valeurs de styles sont les même que pour les bordures.
+
+
+On peut spécifier de même la couleur :
+
+outline-color: <couleur> | invert | inherit
+
+
+Ainsi que l'épaisseur du trait :
+
+outline-width: <long> | thin | medium | thick | inherit
+
+
+
+- Le styles du texte et des liens
+
+
+	- Les polices
+
+- La famille de police :
+
+font-family :[[<nom> |<generic>],]* | inherit
+
+.arial{font-family:Arial sans-serif;}
+
+• serif : il s’agit des polices à empattements et proportionnelles
+(Times New Roman, Baskerville, Georgia, Modern.).
+
+• sans-serif : il s’agit des polices sans empattement et proportionnelles
+(Arial, Abadi, Helvetica, Verdana).
+
+• cursive : il s’agit des polices dont l’aspect ressemble à l’écriture manuscrite (Script et Vivaldi.).
+
+• monospace : il s’agit des polices non proportionnelles dans lesquelles chaque caractère occupe la même largeur (Courier New).
+
+• fantasy : on classe dans cette famille toutes les polices originales ne rentrant pas dans les catégories précédentes (Comic Sans MS).
+
+On peut les définir de manière plus précise et par ordre de priorité, car il est possibloe que le navigateur ne possède pas ola police en question.
+
+
+
+
+	- La tailles des polices
+
+Celle-ci est définie grâce à la propriété font-size, dont la syntaxe est la suivante :
+
+font-size: <taille-absolue> | <taille-relative> | <long> | <pourcent> | inherit
+
+Les valeurs de taille absolue sont définies par les mots-clés suivants, de la taille la plus petite à la plus grande :
+
+xx-small, x-small, small, medium, large, x-large, xx-large.
+
+
+
+	- La graisse du texte
+
+La syntaxe de la propriété font-weight est la suivante :
+
+font-weight : normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | inherit
+
+
+
+	- Le style des polices
+
+La syntaxe de cette propriété est la suivante :
+
+font-style:normal | italic |oblique |inherit
+
+
+La propriété font-variant, dont la syntaxe est :
+
+font-variant:small-caps|normal|inherit
+
+
+Grâce à la propriété text-transform, il est possible d’agir sur la casse du texte d’un élément. Sa syntaxe est la suivante :
+
+text-transform : uppercase | lowercase | capitalize | none | inherit
+
+
+Il est possible aussi de 'décorer' du texte comme les lien hypertexe :
+
+text-decoration :none | [underline || overline || line-through || blink] | inherit
+
+
+
+	- Régler l'interligne
+
+nous pouvons modifier l’interligne par défaut à l’aide de la propriété lineheight dont la syntaxe est :
+
+line-height:normal | <nombre> | <long> | <pourcent> | inherit
+
+
+
+	- Définir plusieurs propriétés en une fois
+
+Sa syntaxe générale est la suivante :
+font: [[<font-style> || <font-variant> || <font-weight>] ? <font-size> [/ <line-height>] ? <font-family> ] | caption | icon | menu | message-box | small-caption | status-bar | inherit
+
+p{font:italic small-caps bold 14px/18px Arial, sans-serif}
+
+p{font-style:italic; font-variant:small-caps; font-weight:bold; font-size:14px; line-height:18px; font-family:Arial,sans-serif;}
+
+
+
+	- L'alignement et l'espacement du text
+
+L’alignement horizontal du texte :
+
+text-align: left | center | right | justify | inherit
+
+h1{text-align: center;}
+
+
+Indentation dans un paragraphe :
+
+text-indent:<long>|<pourcent>|inherit
+
+
+L’espacement des mots :
+
+letter-spacing:normal|<long>|inherit
+
+
+L’espacement des caractères :
+
+word-spacing : normal | <long> | inherit
+
+
+Le mode d'affichage des caractères d'espacement :
+
+white-space: normal | pre | nowrap | inherit
+
+
+	- Le style des liens
+
+La balise <a> dispose des même possibilités de mise en fomre que les autres balises, avec une extention par les pseudo-classe (:link, :visited, :active, :focus et :hover).
+
+
+
+
+- Créer une mise en page : le dimensionnement et le positionnement
+
+
+	- Le dimensionnement des éléments
+
+Comme vue pour spécifier les dimension on utilisera : 
+
+width: <longueur> | NN% | auto | inherit
+
+height: <longueur> | NN% | auto | inherit
+
+
+Pour résoudre des problème de débordement de contenu on incorporera une barre de défilement :
+
+overflow : visible | hidden | scroll | auto | inherit
+
+Ou on pourra rendre les dimension fonction du contenu :
+
+min-height: <longueur> | NN% | inherit
+max-height: <longueur> | NN% | none |inherit
+
+min-width: <longueur> | NN% | inherit
+max-width: <longueur> | NN% | none |inherit
+
+
+
+	- Le rendu des éléments 
+
+Il est possible de modifier la disposition (en ligne, en liste, en bloc) de tout élément suivant les besoin grace à la propriété :
+
+display : none |inline | block | list-item |table | inline-table | table-row-group | table-header-group | table-footer-group | table-row | table-column-group | table-column | table-cell | table-caption | inherit
+
+Il est ainsi possible par exemple de simuler le comportement d'un tableau avec des divisions par leur mise en forme avec cette propriété.
+
+
+
+	- Le positionnement des éléments
+
+Le positionnement flottement
+
+Les blocs aux-quels est appliqué cette propriété apparaissent dans la page les uns à la suite des autres, de haut en bas, selon leur ordre d’apparition dans le code XHTML.
+
+float:left|right|none|inherit
+
+En cas de débordement d'un bloc de son bloc conteneur, il faut appliquer à celui-ci la propriété clear avec une valeur fonction de celle du float :
+
+clear: none | left | right | both | inherit
+
+
+
+Le positionnement relatif
+
+Les blocs s'affichent dans l'ordre d'écriture du document XHTML et se positionnent par rapport à une position normale dans le flux.
+
+position : relative;
+
+// à tester
+
+On peut spécifier un décalage grace à l'attribut suplémentaire des bords de sa position dans le flux :
+
+• left : décale l’élément vers la droite (si sa valeur est positive) ou vers la gauche (si sa valeur est négative) ;
+
+• top : décale l’élément vers le bas (si sa valeur est positive) ou vers le haut (si sa valeur est négative) ;
+
+• right : décale l’élément vers la gauche (si sa valeur est positive) ou vers la droite (si sa valeur est négative) ;
+
+• bottom : décale l’élément vers le haut (si sa valeur est positive) ou vers le bas (si sa valeur est négative).
+
+Les quatre propriétés left, top, right, bottom ont la même syntaxe. Par exemple :
+left: <longueur> | NN% | auto | inherit
+
+
+
+Le positionnement absolu 
+
+La boîte créée pour l’élément concerné n’apparaît plus dans le flux normal du document.
+Le positionnement d’un élément est effectué par rapport au bloc de son conteneur. 
+Chaque bloc d’un élément positionné de manière absolue devient à son tour le conteneur de ses éléments enfants.
+
+
+position: absolute ;
+
+On peut spécifier un décalage grace à l'attribut suplémentaire des bords de son conteneur :
+
+• left : décale l’élément vers la droite (si sa valeur est positive) ou vers la gauche (si sa valeur est négative) ;
+
+• top : décale l’élément vers le bas (si sa valeur est positive) ou vers le haut (si sa valeur est négative) ;
+
+• right : décale l’élément vers la gauche (si sa valeur est positive) ou vers la droite (si sa valeur est négative) ;
+
+• bottom : décale l’élément vers le haut (si sa valeur est positive) ou vers le bas (si sa valeur est négative).
+
+Les quatre propriétés left, top, right, bottom ont la même syntaxe. Par exemple :
+left: <longueur> | NN% | auto | inherit
+
+
+
+Le positionnement fixe
+
+Les propriétés de positionnement sont appliquées non plus par rapport au conteneur mais par rapport aux bords de la fenêtre.
+
+position: fixed ;
+
+
+
+	- Visibilité et ordre d'empilement
+
+Ici les blocs d'un même niveau peuvent de superposer, de là l'ordre peut être définit par la propriété z-index.
+
+z-index : auto | <Nombre> | inherit
+
+Dans le même ordre d’idées, nous pouvons appliquer à tous les éléments la propriété visibility qui permet de les cacher ou de les rendre visibles. Sa syntaxe est la suivante :
+
+visibility : visible | hidden | collapse | inherit
+
+
+• visible : l’élément est visible normalement et c’est la valeur par défaut.
+
+• hidden : l’élément est caché mais sa place est présente dans le flux.
+
+• collapse : son comportement est identique à la valeur hidden mais elle s’applique particulièrement aux cellules des tableaux.
+
+
+
+
+- Le style des listes
+
+
+	- La numérotation des listes
+
+<ol>
+<li></li>
+<li></li>
+</ol>
+
+Nous pouvons faire varier cette numérotation en attribuant un style à l’élément <ol> à l’aide de la propriété list-style-type dont la syntaxe est :
+
+list-style-type :<type>|none|inherit
+
+ol {list-style-type:decimal; font-weight:bold; }
+ol li ol{list-style-type:decimal-leading-zero; font-weight:lighter;}
+
+Pour les listes ordonnées, le paramètre <type> peut prendre une des valeurs suivantes :
+
+• decimal : numérotation en chiffres arabes : 1, 2, 3… C’est la valeur par défaut.
+
+• upper-latin ou upper-alpha : numérotation alphabétique en majuscules : A, B, C…
+
+• lower-latin ou lower-alpha : numérotation alphabétique en minuscule : a, b, c…
+
+• upper-roman : numérotation en chiffres romains majuscules I, II, III, IV…
+
+• lower-roman : numérotation en chiffres romains minuscules i, ii, iii, iv…
+
+
+Il est possible d’intervenir sur la position horizontale
+de ces caractères (chiffres ou lettres) en définissant la propriété list-style-position dont la syntaxe est la suivante :
+
+list-style-position :inside|outside|inherit
+
+• Avec la valeur inside, les caractères de la numérotation sont placés dans la marge de retrait du texte de l’item.
+
+• Avec la valeur outside, qui est la valeur par défaut, ces caractères sont intégrés au texte de l’item.
+
+• La valeur inherit permet de définir explicitement le style de l’élément parent mais la propriété est de toute façon héritée par défaut.
+
+
+
+
+
+	- Les listes à puces
+
+Les puces prédéfinies
+
+Pour les listes à puces, la syntaxe de la propriété list-style-type est simplifiée et se résume à ceci :
+
+list-style-type:disc | circle | square | none | inherit
+
+ul{font-size:1.5em;background-color:#CCC;list-style-type:square;}
+ul ul{font-size:0.8em;background-color:#EEE;list-style-type:circle;}
+
+• disc : la puce est un disque plein (c’est la valeur par défaut) ;
+
+• circle : la puce est un cercle ;
+
+• square : la puce est un carré plein ;
+
+• none : pas de puce.
+
+
+Les listes graphiques
+
+Cette création de style s’effectue avec la propriété list-style-image,
+dont la syntaxe est :
+
+list-style-image :<uri>|none|inherit
+
+ul{font-size:1.5em ;list-style-image:url(../images/drapeaufr.gif);}
+ul ul{font-size:0.8em;list-style-image:url(../images/fleche.gif);}
+
+
+Les listes mixtes
+
+ul{font-size:1.5em;list-style-image:url(../images/drapeaufr.gif);
+list-style-type:disc;}
+ul ul{font-size:0.8em;list-style-type:square;}
+
+
+
+
+	- Affichage des listes en ligne
+
+La règle pour créer des menus est d'utiliser des listes.
+Afin d'obtenir un menu horizontale, on peut utiliser cette propriété  :
+
+display:inline;
+
+ol{
+text-align: center; background-color:#FC0;border-bottom: 2px
+solid #000;margin-left: 0;}
+li{display:inline;list-style-type: none; font-size:18px
+; background-color:#EEE; padding:5px 20px 5px 20px; border-right:2px solid}
+#AAA;border-bottom:2px solid #AAA;}
+li a{color:navy;}
+
+
+	- Affichage d'éléments divers sous forme de liste
+
+Il est possible aussi de transformer le comportement d'un élément vers celui d'une liste :
+
+display: list-item;
+
+h2{display:list-item;list-style-image:url(fleche.gif);
+list-style-type:disc;list-style-position:inside;font-size:18px;
+background-color:#EEE;padding:5px 20px 5px 20px;border-bottom:2px solid #AAA;}
+h1{text-align:center;border-top:2px solid #AAA;border-bottom: 2px solid #AAA; font-size:44px;font-style:oblique; }
+a{color:navy;}
+div{position:absolute;width:15%;}
+
+<div>
+<h2><a href="http://www.w3.org" title="Spécifications XHTML 1.0" >XHTML 1.0</a></h2>
+<h2><a href="http://www.funhtml.com" title="Spécifications XHTML 1.1">XHTML 1.1</a></h2>
+<h2><a href="http://www.w3.org/TR/CSS21/" title="Spécifications CSS 2.1">CSS 2.1</a></h2>
+<h2><a href="http://www.php.net" title="Spécifications CSS 2.1">PHP</a></h2>
+<h2><a href="http://www.mysql.org" title="Spécifications CSS 2.1">MySQL</a></h2>
+</div>
+
+
+
+- Les médias écrits
+
+
+	- Adapter les styles à l'impression
+
+Cibler un média précis
+
+Le plus simple est de décrire une feuille de style par média et de l'appeler dans le document en fonction :
+
+<link rel="stylesheet" type="text/css" media="screen" href="style_ecran.css" />
+<link rel="stylesheet" typ e="text/css" media="print" href="style_imprime.css" />
+ 
+
+Sinon, on peut aussi écrire le style dans le document en question :
+
+<style type="text/css" media="screen">
+body {background-color: yellow; color:blue;}
+</style>
+<style type="text/css" media="print">
+body {background-color: white; color: black;}
+</style>
+
+
+Aussi, plus élaboré en utilisant la directive @media suivie du nom du média :
+
+<style type="text/css" >
+@media screen{
+body{background-color: blue; font-family: Arial; color: white;}
+}
+@media print{
+body{background-color: #FFF; font-family: Times; color: #000;}
+}
+</style>
+
+
+Adaptation des styles à l'impression
+
+Il s'agit ici de sélectionner que les élément que l'on besoin d'imprimer.
+Généralement on est intéressé que par :
+	- le contenu d'une page d'un site 
+	- ou dans un cadre plus spécifique, édition d'un document.
+
+Note : pour visualiser le formatage, on peut utiliser la fonction aperçu avant impression du navigateur.
+
+Dans les deux cas :
+
+	- Nous utilisons la propriété display en lui affectant la valeur none pour les deux premiers éléments <div> menu et en-tête. 
+	- Nous adaptons également la police de caractères 
+		- en définissant la propriété font-family avec la valeur Times serif 
+		- et la propriété font-size en utilisant l’unité pt adaptée aux imprimantes pour chaque élément. 
+
+	- De plus, l’impression en noir sur fond blanc ou gris est définie explicitement par les valeurs des propriétés color et background-color.
+
+
+@media print{
+div#tete {display: none;}
+div#menu {display: none;}
+div#contenu {width: 170mm; background-color: white; color: black; margin-left: 20mm; text-align: justify; font-family: Times serif;}
+p {margin-left: 15mm; font-size: 14pt;}
+h2{font-size:30pt; text-align:center; margin-bottom: 30mm; background-color: #EEE;}
+
+
+
+	- Gestion des sauts de page
+
+Nous pouvons améliorer la présentation d’un contenu imprimé en insérant, comme dans un traitement de texte, des sauts de page uniquement avant et après un élément de bloc, en définissant respectivement les propriétés page-break-before et page–break-after, dont la syntaxe commune est la suivante :
+
+page-break-before: auto | always | avoid | left | right | inherit
+page-break-after: auto | always | avoid | left | right | inherit
+
+Voici la signification de leurs paramètres :
+
+• auto : les sauts de page ne sont effectués que si nécessaire ;
+
+• always : le saut de page forcé est toujours autorisé avant ou après un élément quelle que soit sa hauteur ;
+
+• avoid : aucun saut de page forcé n’est autorisé ;
+
+• left : le saut de page n’est autorisé que si l’élément figure dans une page de gauche (page paire ou verso) ;
+
+• right : le saut de page n’est autorisé que si l’élément figure dans une page de droite (page impaire ou recto).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

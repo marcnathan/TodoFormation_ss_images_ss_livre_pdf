@@ -1,0 +1,542 @@
+> Chain Of Responsibilities
+- 
+
+
+
+// ------------------------------------------------
+http://designpatternsphp.readthedocs.io/en/latest/Behavioral/ChainOfResponsibilities/README.html
+
+3.1. Chain Of Responsibilities
+3.1.1. Purpose:
+
+To build a chain of objects to handle a call in sequential order. If one object cannot handle a call, it delegates the call to the next in the chain and so forth.
+3.1.2. Examples:
+
+    logging framework, where each chain element decides autonomously what to do with a log message
+    a Spam filter
+    Caching: first object is an instance of e.g. a Memcached Interface, if that “misses” it delegates the call to the database interface
+    Yii Framework: CFilterChain is a chain of controller action filters. the executing point is passed from one filter to the next along the chain, and only if all filters say “yes”, the action can be invoked at last.
+
+3.1.3. UML Diagram
+Alt ChainOfResponsibility UML Diagram
+3.1.4. Code
+
+You can also find these code on GitHub
+
+Request.php
+
+<?php
+
+namespace DesignPatterns\Behavioral\ChainOfResponsibilities;
+
+/**
+ * Request is a request which goes through the chain of responsibilities.
+ *
+ * About the request: Sometimes, you don't need an object, just an integer or
+ * an array. But in this case of a full example, I've made a class to illustrate
+ * this important idea in the CoR (Chain of Responsibilities). In the real world,
+ * I recommend to always use a class, even a \stdClass if you want, it proves
+ * to be more adaptive because a single handler doesn't know much about the
+ * outside world and it is more difficult if, one day, you want to add some
+ * criterion in a decision process.
+ */
+class Request
+{
+    // getter and setter but I don't want to generate too much noise in handlers
+}
+
+Handler.php
+
+<?php
+
+namespace DesignPatterns\Behavioral\ChainOfResponsibilities;
+
+/**
+ * Handler is a generic handler in the chain of responsibilities.
+ *
+ * Yes you could have a lighter CoR with a simpler handler but if you want your CoR
+ * to be extendable and decoupled, it's a better idea to do things like that in real
+ * situations. Usually, a CoR is meant to be changed everytime and evolves, that's
+ * why we slice the workflow in little bits of code.
+ */
+abstract class Handler
+{
+    /**
+     * @var Handler
+     */
+    private $successor = null;
+
+    /**
+     * Append a responsibility to the end of chain.
+     *
+     * A prepend method could be done with the same spirit
+     *
+     * You could also send the successor in the constructor but in PHP that is a
+     * bad idea because you have to remove the type-hint of the parameter because
+     * the last handler has a null successor.
+     *
+     * And if you override the constructor, that Handler can no longer have a
+     * successor. One solution is to provide a NullObject (see pattern).
+     * It is more preferable to keep the constructor "free" to inject services
+     * you need with the DiC of symfony2 for example.
+     *
+     * @param Handler $handler
+     */
+    final public function append(Handler $handler)
+    {
+        if (is_null($this->successor)) {
+            $this->successor = $handler;
+        } else {
+            $this->successor->append($handler);
+        }
+    }
+
+    /**
+     * Handle the request.
+     *
+     * This approach by using a template method pattern ensures you that
+     * each subclass will not forget to call the successor. Besides, the returned
+     * boolean value indicates you if the request have been processed or not.
+     *
+     * @param Request $req
+     *
+     * @return bool
+     */
+    final public function handle(Request $req)
+    {
+        $req->forDebugOnly = get_called_class();
+        $processed = $this->processing($req);
+        if (!$processed) {
+            // the request has not been processed by this handler => see the next
+            if (!is_null($this->successor)) {
+                $processed = $this->successor->handle($req);
+            }
+        }
+
+        return $processed;
+    }
+
+    /**
+     * Each concrete handler has to implement the processing of the request.
+     *
+     * @param Request $req
+     *
+     * @return bool true if the request has been processed
+     */
+    abstract protected function processing(Request $req);
+}
+
+Responsible/SlowStorage.php
+
+<?php
+
+namespace DesignPatterns\Behavioral\ChainOfResponsibilities\Responsible;
+
+use DesignPatterns\Behavioral\ChainOfResponsibilities\Handler;
+use DesignPatterns\Behavioral\ChainOfResponsibilities\Request;
+
+/**
+ * This is mostly the same code as FastStorage but in fact, it may greatly differs.
+ *
+ * One important fact about CoR: each item in the chain MUST NOT assume its position
+ * in the chain. A CoR is not responsible if the request is not handled UNLESS
+ * you make an "ExceptionHandler" which throws exception if the request goes there.
+ *
+ * To be really extendable, each handler doesn't know if there is something after it.
+ */
+class SlowStorage extends Handler
+{
+    /**
+     * @var array
+     */
+    protected $data = array();
+
+    /**
+     * @param array $data
+     */
+    public function __construct($data = array())
+    {
+        $this->data = $data;
+    }
+
+    protected function processing(Request $req)
+    {
+        if ('get' === $req->verb) {
+            if (array_key_exists($req->key, $this->data)) {
+                $req->response = $this->data[$req->key];
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+
+Responsible/FastStorage.php
+
+<?php
+
+namespace DesignPatterns\Behavioral\ChainOfResponsibilities\Responsible;
+
+use DesignPatterns\Behavioral\ChainOfResponsibilities\Handler;
+use DesignPatterns\Behavioral\ChainOfResponsibilities\Request;
+
+/**
+ * Class FastStorage.
+ */
+class FastStorage extends Handler
+{
+    /**
+     * @var array
+     */
+    protected $data = array();
+
+    /**
+     * @param array $data
+     */
+    public function __construct($data = array())
+    {
+        $this->data = $data;
+    }
+
+    protected function processing(Request $req)
+    {
+        if ('get' === $req->verb) {
+            if (array_key_exists($req->key, $this->data)) {
+                // the handler IS responsible and then processes the request
+                $req->response = $this->data[$req->key];
+                // instead of returning true, I could return the value but it proves
+                // to be a bad idea. What if the value IS "false" ?
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+
+3.1.5. Test
+
+Tests/ChainTest.php
+
+<?php
+
+namespace DesignPatterns\Behavioral\ChainOfResponsibilities\Tests;
+
+use DesignPatterns\Behavioral\ChainOfResponsibilities\Request;
+use DesignPatterns\Behavioral\ChainOfResponsibilities\Responsible;
+use DesignPatterns\Behavioral\ChainOfResponsibilities\Responsible\FastStorage;
+use DesignPatterns\Behavioral\ChainOfResponsibilities\Responsible\SlowStorage;
+
+/**
+ * ChainTest tests the CoR.
+ */
+class ChainTest extends \PHPUnit_Framework_TestCase
+{
+    /**
+     * @var FastStorage
+     */
+    protected $chain;
+
+    protected function setUp()
+    {
+        $this->chain = new FastStorage(array('bar' => 'baz'));
+        $this->chain->append(new SlowStorage(array('bar' => 'baz', 'foo' => 'bar')));
+    }
+
+    public function makeRequest()
+    {
+        $request = new Request();
+        $request->verb = 'get';
+
+        return array(
+            array($request),
+        );
+    }
+
+    /**
+     * @dataProvider makeRequest
+     */
+    public function testFastStorage($request)
+    {
+        $request->key = 'bar';
+        $ret = $this->chain->handle($request);
+
+        $this->assertTrue($ret);
+        $this->assertObjectHasAttribute('response', $request);
+        $this->assertEquals('baz', $request->response);
+        // despite both handle owns the 'bar' key, the FastStorage is responding first
+        $className = 'DesignPatterns\Behavioral\ChainOfResponsibilities\Responsible\FastStorage';
+        $this->assertEquals($className, $request->forDebugOnly);
+    }
+
+    /**
+     * @dataProvider makeRequest
+     */
+    public function testSlowStorage($request)
+    {
+        $request->key = 'foo';
+        $ret = $this->chain->handle($request);
+
+        $this->assertTrue($ret);
+        $this->assertObjectHasAttribute('response', $request);
+        $this->assertEquals('bar', $request->response);
+        // FastStorage has no 'foo' key, the SlowStorage is responding
+        $className = 'DesignPatterns\Behavioral\ChainOfResponsibilities\Responsible\SlowStorage';
+        $this->assertEquals($className, $request->forDebugOnly);
+    }
+
+    /**
+     * @dataProvider makeRequest
+     */
+    public function testFailure($request)
+    {
+        $request->key = 'kurukuku';
+        $ret = $this->chain->handle($request);
+
+        $this->assertFalse($ret);
+        // the last responsible :
+        $className = 'DesignPatterns\Behavioral\ChainOfResponsibilities\Responsible\SlowStorage';
+        $this->assertEquals($className, $request->forDebugOnly);
+    }
+}
+
+
+
+
+// ------------------------------------------------
+https://sourcemaking.com/design_patterns/chain_of_responsibility
+
+
+Chain of Responsibility
+Intent
+
+    Avoid coupling the sender of a request to its receiver by giving more than one object a chance to handle the request. Chain the receiving objects and pass the request along the chain until an object handles it.
+    Launch-and-leave requests with a single processing pipeline that contains many possible handlers.
+    An object-oriented linked list with recursive traversal.
+
+Problem
+
+There is a potentially variable number of "handler" or "processing element" or "node" objects, and a stream of requests that must be handled. Need to efficiently process the requests without hard-wiring handler relationships and precedence, or request-to-handler mappings.
+
+Chain of responsibility example
+Discussion
+
+Encapsulate the processing elements inside a "pipeline" abstraction; and have clients "launch and leave" their requests at the entrance to the pipeline.
+
+Chain of responsibility example
+
+The pattern chains the receiving objects together, and then passes any request messages from object to object until it reaches an object capable of handling the message. The number and type of handler objects isn't known a priori, they can be configured dynamically. The chaining mechanism uses recursive composition to allow an unlimited number of handlers to be linked.
+
+Chain of Responsibility simplifies object interconnections. Instead of senders and receivers maintaining references to all candidate receivers, each sender keeps a single reference to the head of the chain, and each receiver keeps a single reference to its immediate successor in the chain.
+
+Make sure there exists a "safety net" to "catch" any requests which go unhandled.
+
+Do not use Chain of Responsibility when each request is only handled by one handler, or, when the client object knows which service object should handle the request.
+Structure
+
+The derived classes know how to satisfy Client requests. If the "current" object is not available or sufficient, then it delegates to the base class, which delegates to the "next" object, and the circle of life continues.
+
+Chain of responsibility scheme
+
+Multiple handlers could contribute to the handling of each request. The request can be passed down the entire length of the chain, with the last link being careful not to delegate to a "null next".
+Example
+
+The Chain of Responsibility pattern avoids coupling the sender of a request to the receiver by giving more than one object a chance to handle the request. ATM use the Chain of Responsibility in money giving mechanism.
+
+Chain of responsibility example
+Check list
+
+    The base class maintains a "next" pointer.
+    Each derived class implements its contribution for handling the request.
+    If the request needs to be "passed on", then the derived class "calls back" to the base class, which delegates to the "next" pointer.
+    The client (or some third party) creates and links the chain (which may include a link from the last node to the root node).
+    The client "launches and leaves" each request with the root of the chain.
+    Recursive delegation produces the illusion of magic.
+
+Rules of thumb
+
+    Chain of Responsibility, Command, Mediator, and Observer, address how you can decouple senders and receivers, but with different trade-offs. Chain of Responsibility passes a sender request along a chain of potential receivers.
+    Chain of Responsibility can use Command to represent requests as objects.
+    Chain of Responsibility is often applied in conjunction with Composite. There, a component's parent can act as its successor.
+
+
+Chain of Responsibility in PHP
+
+A method called in one object will move up a chain of objects until one is found that can properly handle the call.
+
+<?php
+
+abstract class AbstractBookTopic {
+    abstract function getTopic();
+    abstract function getTitle();
+    abstract function setTitle($title_in);
+}
+ 
+class BookTopic extends AbstractBookTopic {
+    private $topic;
+    private $title;
+    function __construct($topic_in) {
+      $this->topic = $topic_in;
+      $this->title = NULL;
+    }
+    function getTopic() {
+      return $this->topic;
+    }
+    //this is the end of the chain - returns title or says there is none
+    function getTitle() {
+      if (NULL != $this->title) {
+        return $this->title;
+      } else {
+        return 'there is no title avaialble';
+      }
+    }
+    function setTitle($title_in) {$this->title = $title_in;}
+}
+
+class BookSubTopic extends AbstractBookTopic {
+    private $topic;
+    private $parentTopic;
+    private $title;
+    function __construct($topic_in, BookTopic $parentTopic_in) {
+      $this->topic = $topic_in;
+      $this->parentTopic = $parentTopic_in;
+      $this->title = NULL;
+    }
+    function getTopic() {
+      return $this->topic;
+    }
+    function getParentTopic() {
+      return $this->parentTopic;
+    }   
+    function getTitle() {
+      if (NULL != $this->title) {
+        return $this->title;
+      } else {
+        return $this->parentTopic->getTitle();
+      }
+    }
+    function setTitle($title_in) {$this->title = $title_in;}
+}
+
+class BookSubSubTopic extends AbstractBookTopic {
+    private $topic;
+    private $parentTopic;
+    private $title;
+    function __construct($topic_in, BookSubTopic $parentTopic_in) {
+      $this->topic = $topic_in;
+      $this->parentTopic = $parentTopic_in;
+      $this->title = NULL;
+    }
+    function getTopic() {
+      return $this->topic;
+    }
+    function getParentTopic() {
+      return $this->parentTopic;
+    }   
+    function getTitle() {
+      if (NULL != $this->title) {
+        return $this->title;
+      } else {
+        return $this->parentTopic->getTitle();
+      }
+    }
+    function setTitle($title_in) {$this->title = $title_in;}
+}
+
+  writeln("BEGIN TESTING CHAIN OF RESPONSIBILITY PATTERN");
+  writeln("");
+
+  $bookTopic = new BookTopic("PHP 5");
+  writeln("bookTopic before title is set:");
+  writeln("topic: " . $bookTopic->getTopic());
+  writeln("title: " . $bookTopic->getTitle());
+  writeln("");
+
+  $bookTopic->setTitle("PHP 5 Recipes by Babin, Good, Kroman, and Stephens");
+  writeln("bookTopic after title is set: ");
+  writeln("topic: " . $bookTopic->getTopic());
+  writeln("title: " . $bookTopic->getTitle());
+  writeln("");
+ 
+  $bookSubTopic = new BookSubTopic("PHP 5 Patterns",$bookTopic);
+  writeln("bookSubTopic before title is set: ");
+  writeln("topic: " . $bookSubTopic->getTopic());
+  writeln("title: " . $bookSubTopic->getTitle());
+  writeln("");
+
+  $bookSubTopic->setTitle("PHP 5 Objects Patterns and Practice by Zandstra");
+  writeln("bookSubTopic after title is set: ");
+  writeln("topic: ". $bookSubTopic->getTopic());
+  writeln("title: ". $bookSubTopic->getTitle());
+  writeln("");
+ 
+  $bookSubSubTopic = new BookSubSubTopic("PHP 5 Patterns for Cats",
+    $bookSubTopic);
+  writeln("bookSubSubTopic with no title set: ");
+  writeln("topic: " . $bookSubSubTopic->getTopic());
+  writeln("title: " . $bookSubSubTopic->getTitle());
+  writeln("");
+
+  $bookSubTopic->setTitle(NULL);
+  writeln("bookSubSubTopic with no title for set for bookSubTopic either:");
+  writeln("topic: " . $bookSubSubTopic->getTopic());
+  writeln("title: " . $bookSubSubTopic->getTitle());
+  writeln("");
+
+  writeln("END TESTING CHAIN OF RESPONSIBILITY PATTERN");
+
+  function writeln($line_in) {
+    echo $line_in."<br/>";
+  }
+?>
+
+Output
+
+BEGIN TESTING CHAIN OF RESPONSIBILITY PATTERN
+
+
+bookTopic before title is set:
+topic: PHP 5
+title: there is no title avaialble
+
+
+bookTopic after title is set: 
+topic: PHP 5
+title: PHP 5 Recipes by Babin, Good, Kroman, and Stephens
+
+
+bookSubTopic before title is set: 
+topic: PHP 5 Patterns
+title: PHP 5 Recipes by Babin, Good, Kroman, and Stephens
+
+
+bookSubTopic after title is set: 
+topic: PHP 5 Patterns
+title: PHP 5 Objects Patterns and Practice by Zandstra
+
+
+bookSubSubTopic with no title set: 
+topic: PHP 5 Patterns for Cats
+title: PHP 5 Objects Patterns and Practice by Zandstra
+
+
+bookSubSubTopic with no title for set for bookSubTopic either:
+topic: PHP 5 Patterns for Cats
+title: PHP 5 Recipes by Babin, Good, Kroman, and Stephens
+
+
+END TESTING CHAIN OF RESPONSIBILITY PATTERN
+
+
+
+
+
+
+
+
+
+
+
+

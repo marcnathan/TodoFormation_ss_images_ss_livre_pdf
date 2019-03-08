@@ -1,0 +1,61 @@
+> Creating Classes
+- Declaration
+- Properties
+	- no more var which is PHP 4 style
+- Methods
+- Visibility
+	- Properties
+	- Methods
+- Constructor
+	- 
+- Destructor
+- Static ::
+
+> Inheritance
+- Parent Constructor
+- final
+
+> Absract Classes
+- abstract
+- extention 
+
+> Interfaces
+- interface, implements, extends
+
+> Magic Methods
+- __toString()
+- __callStatic()
+- __invoke()
+- __set_state()
+- __get()
+- __set()
+- __isset()
+- __unset()
+- __call()
+- __clone() with clone
+- __sleep()
+- __wakeup()
+
+> Type Hinting
+- For functions and methods
+	- Arrays
+	- Objects
+- if no match, fatal error
+
+> Serializing Objets
+- serialize()
+- unserialize()
+
+
+
+
+
+
+
+
+
+
+
+
+
+

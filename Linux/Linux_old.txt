@@ -1,0 +1,585 @@
+
+- Le système unix
+	- http://fr.wikipedia.org/wiki/Linux
+	- http://www.ubuntu-fr.org/
+
+
+- L’arborescence d’un système Linux
+
+Répertoire 	description 	
+	
+/ 		Répertoire "racine", point d’entrée du système de fichiers
+
+/boot 		Répertoire contenant le noyau Linux et l’amorceur
+
+/bin 		Répertoire contenant les exécutables de base, comme par exemple cp, mv, ls, etc.
+
+/dev		Répertoire contenant des fichiers spéciaux nommés devices qui permettent le lien avec les périphériques de la machine
+
+/etc 		Répertoire contenant les fichiers de configuration du système 
+
+/home		Répertoire contenant les fichiers personnels des utilisateurs (un sous-répertoire par utilisateur)
+
+/lib 		Répertoire contenant les librairies et les modules du noyau (/lib/modules)
+
+/media		Répertoire contenant les « points de montage » des médias usuels : CD, DVD, disquette, clef USB
+
+/root 		Répertoire personnel de l’administrateur
+
+/sbin 		Répertoire contenant les exécutables destinés à l’administration du système 
+
+/tmp		Répertoire contenant des fichiers temporaires utilisés par certains programmes
+
+/usr		Répertoire contenant les exécutables des programmes (/usr/bin et
+/usr/sbin)
+
+/var		Répertoire contenant les fichiers qui servent à la maintenance du système (les fichiers de journaux notamment dans /var/log) et des données variables et diverses
+
+
+
+Fichier 		périphérique
+/dev/input/mouse	souris
+/dev/fd0 		lecteur de disquettes
+/dev/hda 		lecteur maître de la première nappe IDE
+/dev/hdb 		lecteur asservi de la première nappe IDE
+/dev/hdc 		lecteur maître de la seconde nappe IDE
+/dev/hdd 		lecteur asservi de la seconde nappe IDE
+/dev/sda 		premier disque dur SATA, SCSI ou USB
+/dev/sdb 		second disque dur SATA, SCSI ou USB
+/dev/ttyS0 		premier port série ou infrarouge
+/dev/ttyS1 		second port série ou infrarouge
+/dev/parport0 		port parallèle
+/dev/lp0 		imprimante parallèle
+/dev/usb/lp0 		imprimante USB
+
+
+
+
+- Commandes linux
+
+
+> Le shell
+
+- Chaque ligne (dans le sens interaction) que vous tapez est une commande
+- Certaines commandes acceptent également des options, données comme premiers arguments, précédées par des tirets.
+- Ces commandes peuvent accepter des arguments, séparés par des espaces.
+
+$ cp /usr/share/doc/bash/copyright copyright2
+
+$ ln -s /usr/share/doc/bash/copyright copyright2
+
+- Toutes vos commandes sont exécutées dans le répertoire courant.
+- Le répertoire personnel est symbolisé par ~
+- Par défaut on est logué sur le profil de session (choisie au démarrage)
+
+
+> Connexion root
+
+$ su root 
+
+(sudo passwd root - sous ubuntu, permet d'activer le compte root)
+
+- permet de devenir root.
+
+$ sudo [commande] 
+
+- permet d'exécuter une commande super utilisateur le temps de son exécution
+
+
+
+> Connexion utilisateur
+
+su toto 
+
+- permet de devenir l’utilisateur toto. (Debian)
+
+
+
+> Détail de la commande su
+
+- La command su
+
+La commande "su" (Switch User) permet d'ouvrir une session avec l'ID (IDentifiant) d'un autre utilisateur, ou de démarrer un nouveau shell de connexion. 
+
+- Démarrer un nouveau shell de connexion avec "su -"
+
+su - toto
+
+Permet de charger le profil de l'utilisateur toto.
+
+su -
+
+Permet de charger le profil du super utilisateur
+
+La présence du tiret "-" force le démarrage d'un nouveau shell de connexion, avec ajustement des variables d'environnement et de tous les réglages par défaut selon les préférences de l'utilisateur.
+
+- Revenir au shell précédent
+
+Taper la commande "exit" ou la combinaison de touches "Ctrl-d" pour fermer le shell courant et revenir au précédent. 
+
+
+
+> Afficher le contenu d'un répertoire
+
+- ls affiche le contenu d’un répertoire, ou du répertoire courant :
+
+ls
+
+
+ls -l 
+
+- permet d'afficher les droits et les données sur le fichier
+
+
+
+> Se déplacer dans le shell
+
+- Le . désigne le répertoire courent
+- Le .. désigne le répertoire parent
+- Pour ce déplacer on utilisera la commande cd
+
+~$ cd ..
+/home$ cd ..
+~$ cd
+
+pwd
+
+- la tabulation permet d'utiliser l'autocomplétion
+
+
+
+> Créer un répertoire
+
+- On peut créer un nouveau répertoire en utilisant la commande mkdir en précisant le chemin (commandes équivalentes mais identiques) :
+
+$ cd /home/marc
+
+$ mkdir test
+$ mkdir /home/formation/test
+$ mkdir ~/test
+$ mkdir ../formation/test
+
+
+
+> Effacer un répertoire
+
+- On peut effacer un répertoire avec la commande rmdir
+
+$ cd /home/marc
+
+$ mkdir test2
+$ rmdir test2
+
+
+
+> Copier un fichier vers un répertoire
+
+- Ceci se fait avec la commande cp
+
+$ cd /home/marc
+
+$ cp /usr/share/doc/bash/copyright /home/marc/copyright
+$ cp copyright copyright2
+
+
+
+> Déplacement d'un fichier ou changer le nom d'un fichier
+
+- Ceci se fait avec la commande mv et sa destination
+
+$ mv copyright test/
+$ mv copyright2 test/copyright3
+
+
+
+> Afficher le contenu d'un ou plusieurs fichiers
+
+$ cat test/copyright3
+[la licence de Bash]
+$ cat test/copyright3 test/copyright2
+[la licence de Bash en deux exemplaires]
+
+
+
+> Créer et éditer un fichier avec vi
+
+$ cd /home/marc
+
+Vi est un des éditeurs de texte les plus populaires sous les systèmes de type Unix.
+
+- Pour créer un fichier ou ouvrir un fichier on tape la commande 
+
+$ vi nom_fichier.ext
+
+Après le lancement de vi nous sommes en mode commande.
+
+- vi comprend trois modes : 
+	- un mode "commande", permettant de tapper des commandes
+	- un mode "insertion", permettant d'insérer du text, entrez dans ce mode par la touche "a" ou par la touche "i" ou "insert" 
+	- un mode de remplacement, permettant de remplacer du text, entrez dans ce mode par la touche "r"
+
+Pour être sur que l'on est en mode commande appuyez sur la touche "Echap".
+
+Commande vi :
+
+a 	permet d'ajouter du texte à la fin de la ligne.
+i   	permet d'ajouter du texte avant le curseur.
+o  	permet d'ajouter une ligne en dessous du curseur.
+O 	permet d'ajouter une ligne au dessus du curseur.
+
+le retour chariot permet d'aller à la ligne suivante.
+
+x	Efface le caractère actuellement sous le curseur
+dd	Efface la ligne actuellement sous le curseur
+dxd	Efface x lignes à partir de celle actuellement sous le curseur
+nx	Efface n caractères à partir de celle actuellement sous le curseur
+x>>	Indente x lignes vers la droitee à partir de celle actuellement sous le curseur
+x<<	Indente x lignes vers la gauche à partir de celle actuellement sous le curseur
+
+u 	permet d'annuler la dernière commande effectuée.
+
+:q	Quitte l'éditeur (sans sauvegarder)
+:q!	Force l'éditeur à quitter sans sauvegarder (même si des modifications ont été apportées au document)
+:wq	Sauvegarde le document et quitte l'éditeur
+
+
+1) Tapper ce texte avec la faute d'orthographe :
+
+Linux est gratuit, 
+puissant et 
+en perpetuelle evolution.
+Linux est stabbla. 
+
+
+2) Corriger l'erreur
+
+
+
+> Chercher un fichier
+
+- whereis [-bmsu] [-BMS répertoire ... -f] nom ...
+
+
+- find <répertoire de recherche> <critères de recherche>
+find /usr -name toto -print
+
+
+
+> Chercher une commande à partir d'un mot-clef
+
+comment naviguer sur le Web ?
+
+$ apropos web
+w3m (1) - a text based Web browser and pager
+
+
+
+> Afficher le manuel d'une commande
+
+$ man vi
+
+
+
+> Créer un lien sur un fichier
+
+$ ln [-s] source destination
+
+Attention un lien n'est pas une copie: si vous modifiez le fichier alors tous les liens sur ce fichier seront modifiés.
+Il existe deux sortes de liens: le lien physique et le lien symbolique (avec l'option -s). 
+Le lien physique ne peut adresser que des fichiers, alors que le lien symbolique peut aussi lier des répertoires.
+
+
+
+> Lister les processus
+
+- lister les processus rataché à un terminale
+
+$ ps
+
+
+
+> Tuer un processus
+
+$ kill ou killall
+
+
+
+> Eteindre l'ordinateur (en root)
+
+halt
+
+
+
+> Redémarrer l'ordinateur
+
+reboot
+
+
+
+> Identifier les utilisateurs
+
+w et who
+
+
+
+> Raffraichir l'affichage
+
+Ctrl-l
+
+
+
+> Bloque et Débloquer l'affichage d'un terminal
+
+Ctrl-s et Ctrl-q
+
+
+
+> Effacer l'écran
+
+clear
+
+
+
+
+- Le système de gestion des paquets Debian
+
+
+> Installer des paquets
+
+Les commandes à savoir sont les suivantes :
+– Met à jour la liste des paquets disponibles :
+
+# aptitude update
+
+
+– Met à jour tous les paquets déjà installés, sauf ceux qui nécessitent d’en désinstaller d’autres :
+
+# aptitude safe-upgrade
+
+
+- Installation
+
+# sudo apt-get install nom_paquet
+
+
+- Désinstaller un paquet
+
+# sudo aptitude remove paquet-a-supprimer
+
+
+- Désinstaller un paquet et supprimer ses fichiers de configuration :
+
+# sudo aptitude purge paquet-a-supprimer
+
+
+
+
+
+- Installation de LAMP
+
+> Installation
+
+	sudo apt-get install lamp-server^
+
+ou
+
+	sudo apt-get install apache2 php5 mysql-server libapache2-mod-php5 php5-mysql
+
+Le mot de passe administrateur mySQL vous est demandé: Entrez-en un.
+
+sudo /etc/init.d/apache2 restart
+
+
+> Lancement
+
+$ sudo /etc/init.d/apache2 start
+
+ou 
+
+service apache2 start
+
+
+
+> Arret
+
+$ sudo /etc/init.d/apache2 stop
+
+
+
+> Redémarrage
+
+$ sudo /etc/init.d/apache2 restart
+
+
+
+- Installation et test de Nano
+
+sudo apt-get install nano
+
+man nano
+
+1) Test du localhost dans le navigateur
+
+
+
+
+> Modification des droits d'accès au dossier var/www/
+
+- se positionnant dans le dossier var/
+
+sudo chown -R marc:users www
+
+1) Test du php par index.php par nano
+
+
+
+
+> Changer les permission à un fichier ou dossier
+
+- Pour chaque fichier, il y a trois classes d'utilisateurs
+utilisateur :	le propriétaire du fichier
+groupe :	le groupe auquel appartient le fichier
+autre :	tous les autres
+Les permissions accordées à ces trois classes sont :
+r :	lecture
+w :	écriture
+x :	exécution (pour un fichier, peut être executé, pour un répertoire, peut devenir répertoire courant)
+chmod mode fichiers
+change les permissions du ou des fichiers/répertoires.
+exemple mode désiré : rwxr-xr--
+user	group	other	
+rwx	 r-x	 r--	
+111	 101	 100	 en binaire
+7	 5	4	
+d'ou la commande chmod 754 fichier
+
+1) changer les permission du fichier index.php
+
+
+
+> Changer l'appartenance d'un utilisateur à un groupe ayant droit sur un fichier
+
+- Permet de changer le user et le groupe en même temps tout en utilisant le groupe principal (celui défini dans /etc/passwd) de l'utilisateur donné. Donc un mot de moins à taper (et/ou à chercher).
+
+chown [options] proprietare[:groupe] fichier...
+Options POSIX : [-R]
+
+-R
+Modifier récursivement l'appartenance des répertoires et de leurs contenus. Continuer la descente même si des erreurs surviennent.
+
+
+
+> Changer le groupe d'appartenance d'un fichier
+
+- Change l'appartenance de chacun des fichiers indiqués pour qu'ils deviennent propriétés du groupe indiqué.
+
+chgrp [options] groupe fichier...
+Options POSIX : [-R] [--]
+
+
+
+
+- Installation de Phpmyadmin
+
+> Installation
+
+apt-get install phpmyadmin
+
+
+> Test navigateur http://localhost/phpmyadmin 
+
+login : root
+pass : marc
+
+
+- http://localhost/phpmyadmin  ne fonctionne pas
+
+sudo dpkg-reconfigure phpmyadmin
+
+Et bine sélectionner apache2
+
+
+- Voir aussi liaison de phpMyadmin au dossier var/www
+
+sudo ln -s /usr/share/phpmyadmin/ /var/www/phpmyadmin
+
+
+
+- Voir aussi modifier le fichier 
+
+/etc/phpmyadmin/config.inc.php
+
+
+
+
+- Création de d'un Virtualhost
+
+1) Exercice à faire pour demain
+
+source : http://doc.ubuntu-fr.org/tutoriel/virtualhosts_avec_apache2
+
+
+
+
+
+
+
+
+> Liste Livres
+
+- UBUNTU Administration d'un système linux	373 pages
+
+4- Beginning Ubuntu Linux	541 pages
+
+3- Building Secure Servers With Linux	276 pages
+
+- Building Secure Servers With Linux	667 pages
+
+- Designing And Implementing Linux Firewalls And QoS	285 pages
+
+- Hack Proofing Linux - A Guide To Open Source Security		705 pages
+
+- Debian GNU-Linux Bible (2001)		677 pages
+
+2- Linux Bible 2005 Edition	767 pages
+
+- Linux Bible 2006 Edition	792 pages
+
+1- Formation-debian	291 pages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

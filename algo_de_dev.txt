@@ -1,0 +1,757 @@
+- datas > capital > technologies de la porte du temps, des cycles des bases 365 des radians d'énergies de dimensions
+	- d'une fabulation, journalisations d'événement pour les continuums du futures
+		- pour avoir leur technologies (lazards) et aller chercher mes prédécesseurs, accompagnants et absents dans les dents
+	- de l'ensemble de définition d'un continuum, des librairies de patterns de vides, de la mer des mots des causes et des utilités, des énergies de dimensions, des bases des cycles, trouver et maîtriser le protocole du trésor premier des annuaires des indexées des meuilleurs procédées de la porte du temps
+		- de la partitions d'étalons sociologique sur physiologique, pour polariser des tableaux de maîtres (architechte et alchimiste) de " places to be " en disciples, pour bâtir une sécurité aux anticipation, des authentifications émotionnels, des inerties et vélocité des constances non prédites, de 5000 d'archives de proportions de genres de regards des continuums de mon continuums
+	- des interphases de classes de conteneurs de classes de conteneurs d'élements de bases d'états, contenants, masses de cookbook pour atteindre l'auto-entretenus d'un business plan de nova supply, du gap des spécialisations militaire des polyglottes économétriciens des jeux de rentes de sociétes des stockes d'heures de travails de l'arbre de nash des zones d'arts cachés dans la nuit fondu dans le jour saisie
+		
+		
+- faire un recueil, d'un scénario de scénarios métier face a un scénario de scénarios client, des besoins marchés (étude du marché documents Atos), des problèmes et procédés solutions en outils et developpement du métier
+		- formater un algorithme modulaire de process fonction des coûts, besoins, délais, risques acceptés du clients, environnement de développement et de production
+			- le process des outils, frameworks, de languages et de procédées, scénarios par profil de users
+				- de déploiement et configuration de l'environnement de dèv et de prod (intra et extra jusqu'aux sous-réseaux, comptes, protocole et terminaux localisés de connections)
+					- de solutions d'espaces de travail / de consommation de services, sécurisés, par centres de profits / ségmentation
+
+						- d'environnements de reproductions d'éco-systèmes de coordination
+							- de production de services
+								- pour consommation de services
+									- de business units
+										- des besoins métiers
+											- office
+												- gestion de ressources et administratif
+											- bi pour le décisinnel du " quoi, comment, où et pourquoi ? " du " 4p "
+												- erp pour mrp
+													- BO
+													- Qlikview
+													- Solution open-sources
+													- SAP BusinessObjects
+													- IBM Cognos
+													- Microsoft BI (SSIS, SSRS, SSAS)
+													- Oracle (OBIEE, ODI)
+													- IBM/IM (DataStage)
+													- Informatica
+													- QlikView
+													- BODS/SAP BO (ERP)
+													- Talend
+													- SAP (ERP)
+													- People Soft (ERP)
+											- big data, data science and internet of Things " acqumulation de bases de connaissances aux squores et prédictions des agrégats de l'écosystème d'une entreprise "
+												- formatage des métadatas de valeurisation d'objets pour services de contenus + Ai pluguer à un ERP pour formater des goulots de l'économétrie (indexées des meilleurs procédées aux stocks d'heures de W)
+												- hadoop et son écosystème
+													- No SQL (Cassandra, MongoDB, HBase, …)
+													- Search (ElasticSearch, Solr, …)
+													- FastData (Complex Event Processing, Stream Processing, In memory Technology, …)
+													- Analytics (Spotfire, ClikView, Kibana, Tableau, …)
+													- Data Science (R, Python, SPSS, Machine learning, statistiques
+													recherche opérationnelle, théorie des graphes, Text-Mining, NPL, …)
+									- de clients finaux
+										- des besoins sociaux
+									- infrastructure de production de services
+										- terminaux
+											- client / server 
+												- windows / linux
+											- fixe
+												- léger
+												- lourd
+											- mobile
+												- léger
+												- lourd
+											- sur terminaux client (léger + lourd) fixe et mobile, à partir d'un server interne ou externe de développement, de socles aux interfases applicatif, back office et front office, de outils d'applications sur terminaux, de traitements d'analyse, de agrégation, granularisation et archivage de données, d'éléments de production d'un bien et service, de l'économie de la dématérialisation papier et industrialisation massive des procédées
+							- de développement de services
+								- des outils + server de formattage du cahier des charges, de son planning et méthodologie de développement
+									- Spécification et maquettage du GL
+										- les cycles de développement du marché et leurs termes
+									- Conception UML
+									- Modélisation de la base de données
+									- outils de ticketing
+										- spécification des besoins et traitement d'annomailes
+											- Redmine
+											- Slack
+											- Trello
+										- management des équipes de notification d'événement, d'affectation et calandrier de traitement
+											- 
+								- des outils + server de Os + VM / Docker
+								- des outils + server de versionning
+								- des outils + server de gestion de dépendances
+								- des outils + server de test
+									- types de test
+										- servers
+											- 
+												- outils
+													- 
+								- des outils + server d'autentification
+								- des outils + server de bases / entrepôts de données et plus
+									- Bases et Entrepôts de données relationnelles
+										- MySql / SqlServer / Oracle / PostgreSQL
+										- Sql/PL-Sql/Trasact-Sql/Engine/Trigger/Fonction/Comptes/Connexion/Vues/Objet/...
+										- Mysql
+											- ressources
+												- net
+													- http://sql.sh/cours/jointures/inner-join
+												- livre
+													- 
+											- lien indexe complet
+												- 
+											- procédées essentiels
+												- Sql/PL-Sql/Trasact-Sql/Engine/Trigger/Fonction/Comptes/Connexion/Vues/Objet/...
+											- outils
+												- Workbench
+									- Bases et Entrepôts de données Objet (NoSql)
+										- Key-value databases
+											-
+										- Document databases
+											- Mongo DB
+										- Column family databases
+											- 
+										- Graph databases
+											-
+									- Bases et Entrepôts de données réseau
+										- 
+									- Bases et Entrepôts de données hiérarchique
+										- 
+								- des outils + server de mail
+								- des outils + server de partage de fichiers
+								- des outils + server de partage d'imprimantes
+								- des outils + server de documentation
+									- http://blog.nalis.fr/index.php?post/2009/12/09/Les-types-d-outils-pour-un-Atelier-de-genie-logiciel-AGL-Web-open-source-en-PHP
+								- des outils + server de développement
+									- web
+										- 
+								- des outils + server de staging (" mise en scène ")
+								- des outils + server de hacks
+									- backtrack
+								- des outils + server de préproduction
+								- des outils + server de production
+								- des outils + server de TMA
+								- des outils + server de bases de connaissances
+									- versionning, en plus des log, des param et var d'env, ressources et applis
+
+
+			
+	1 - Système de Gestion de Versionning, des Dépendances, de Conteneurs
+		- git + git lab + git hub
+			- ressources
+				- net
+					- 
+				- livre
+					- 
+			- lien indexe complet
+				- 
+			- procédées essentiels
+				- installation
+					- 
+				- paramétrage
+					- connexion aux servers (packagist, ...)
+						- connexions sous ssh au Gitlab (<> Github ?)
+						- repositories
+					- fichier  de configuration
+						- congif et alias
+						- gitignore
+				- commandes
+					- 
+				- outils
+					- 
+		- composer
+			- ressources
+				- net
+					- 
+				- livre
+					- 
+			- lien indexe complet
+				- 
+			- procédées essentiels
+				- installation
+					- 
+				- paramétrage
+					- connexion aux servers (packagist, ...)
+						- 
+					- fichier  de configuration
+						- 
+				- commandes
+					- 
+				- outils
+					- 
+		- vagrant
+			- ressources
+				- net
+					- 
+				- livre
+					- 
+			- lien indexe complet
+				- 
+			- procédées essentiels
+				- installation
+					- 
+				- paramétrage
+					- connexion aux servers (packagist, ...)
+						- 
+					- fichier  de configuration
+						- 
+				- commandes
+					- 
+				- outils
+					- 
+		- docker
+			- ressources
+				- net
+					- 
+				- livre
+					- 
+			- lien indexe complet
+				- 
+			- procédées essentiels
+				- installation
+					- 
+				- paramétrage
+					- connexion aux servers (packagist, ...)
+						- 
+					- fichier  de configuration
+						- 
+				- commandes
+					- 
+				- outils
+					- 
+		- Gulp
+			- 
+		- Phing
+			- 
+	2 - Framework PHP de développement
+		- bench par type
+			- 
+		- Impérativement à connaitre
+			- Lourds
+				- Symfony (a synth et apprendre)
+				- Laravel 
+				- CodeIgniter 
+				- Zend 
+				- Yii
+			- MicroFrameWork pour faire des Api
+				- Silex (Symfony)
+				- Lumen (Laravel)
+	3 - Développement Symfony
+		- fixtures avancées
+			- ressources
+				- net
+					- 
+				- livre
+					- 
+			- lien indexe complet
+				- 
+			- procédées essentiels
+				- 
+			- outils
+				- 
+	4 - Tests Unitaire, Fonctionnel, Technique, Automatisée : Non-Régression, Compatibilité, Parseur de norme, de Charge, Profiling : Performence, de Chargement HTML PHP
+		- du Framework
+			- Symfony
+				- console
+				- web
+			- Composants
+				- 
+		- PhpUnit (lu a syth et apprendre) 
+		- Sélénium
+		- Behat
+		- Blackfire
+	5 - Api / Web Services (lu a syth et apprendre) et ressources du net
+		- conception, intégration et déploiement
+			- Web Services
+				- REST, SOAP, CORS, WSDL, ...
+			- Api
+				- http://blog.mashape.com/list-of-40-tutorials-on-how-to-create-an-api/
+				- 
+		- Api Web du marchés
+			- Frameworks
+				- http://api.symfony.com/3.0/Symfony/Component/HttpFoundation/RequestStack.html
+				- d'interfase (Dhtmlx (https://dhtmlx.com/docs/products/dhtmlxGantt/), ...)
+			- Composant
+				- payement en ligne
+				- Formattage et extraction de données de PDF
+				- Librairie Graphique (Google Charte, grafana, ...)
+				- 
+			- Sites 
+				- de réseaux sociaux 
+				- de réseaux pro
+				- de contenus multimédia
+			- Divers
+				- https://www.w3resource.com
+			- Riches médias
+				- Youtubes
+				- 
+		- autres ressources Web du marchés
+			- Bases de données
+				- 
+			- Web sémentique
+				- 
+			- Data Lac
+				- 
+	6 - User Interface (Front), Protocoles / Sockets (Communication) et Server Side (Back)
+		- User Interface (Front)
+			- Design PSD
+				- Cookbook de Design Web et Print
+					- patternes de styles et tendances
+						- benche
+							- 
+						- de techniques de procédées et d'outils
+							- 
+					- coloration et leurs symboliques par référentiel
+						- 
+			- Intégration
+				- HTML (code header)
+				- XML
+				- CSS
+				- Js (Fonction, Animation, Ajax, JSONP, ...)
+					- native*
+						- 
+					- framework
+						- Jasmine
+						- JQuery*
+							- 
+						- Jquery Mobile*
+							- 
+						- Angular*
+							- 
+						- Blackbone
+						- React*
+							- 
+						- Meteor
+						- Node*
+							- 
+						- Ember
+						- Dojo
+						- Iconic*
+							- 
+						- Bootstrap 4
+							- 
+						- Less
+							- 
+			- Api du terminal client et prise en charges de protocoles de langages
+				- sécurité / hacks / communication avec des application de platformes
+					- notification
+					- agenda et contacts
+					- mail
+					- entre onglets
+					
+					
+		- Protocoles / Sockets (Communication)
+			- 7 Couche application 
+			Gopher • SSH • FTP • SMB • NNTP • DNS • SNMP • XMPP • Telnet • SMTP • POP3 • IMAP • IRC • RTP• WebDAV • SIMPLE • HTTP • HTTPS • Modbus • CLNP • SIP • DHCP• CANopen• TCAP• RTSP • BGP • SOAP • LDAP • RIP • OSPF • IS-IS • EIGRP
+			- 6 Couche de présentation 
+			• ASCII • Videotex • Unicode • TDI • ASN.1 • XDR • UUCP • NCP • AFP • SSP • TLS
+			- 5 Couche de session 
+			• AppleTalk • NetBios • RPC
+			- 4 Couche de transport 
+			TCP • UDP • SCTP • SPX • DCCP
+			- 3 Couche de réseau 
+			IP • NetBEUI • IPv4 • IPv6 • DHCP (en tant que service) • IPX • ICMP • IGMP • WDS • EIGRP • ARP
+			- 2 Couche de liaison de données 
+			Ethernet • CSMA/CD • CSMA/CA • Anneau à jeton • LocalTalk • FDDI • X.21 • X.25 • Frame Relay • BitNet • CAN • PPP • PPPoE • HDLC• ATM • SPB • MPLS "2,5"
+			- 1 Couche physique 
+			Codage NRZ • Codage Manchester • Codage Miller • RS-232 • RS-449 • V.21-V.23 • V.42-V.90 • Câble coaxial • 10BASE2 • 10BASE5 • Paire torsadée • 10BASE-T • 100BASE-TX • 1000BASE-T • RNIS • PDH • SDH • T-carrier • EIA-422 • EIA-485 • SONET • ADSL • SDSL • VDSL • DSSS • FHSS • HomeRF • IrDA • USB • IEEE 1394 (FireWire) • Thunderbolt • Wireless USB, Bluetooth • Wi-Fi
+			
+		- Server Side (Back)
+			- os
+				- linux
+					- Php 5 à 7
+						- modules, fonctions, class, interface, Api... 
+						- voir indexe de Formation Zend Php
+						- php 7
+							- manuel en ligne
+								- ressources
+									- net
+										- 
+									- livre
+										- 
+								- lien indexe complet
+									- 
+								- procédées essentiels
+									- 
+								- outils
+									- 
+							- formation zend
+								- ressources
+									- net
+										- 
+									- livre
+										- 
+								- lien indexe complet
+									- 
+								- procédées essentiels
+									- 
+								- outils
+									- 
+					- Js (Node.js, Express.js, JWT, Mongoose)
+						- 
+					- Go
+						- 
+					- Java / J2EE
+						- TomCat
+						- EJB
+						- Grails J  I  S
+						- GWT
+						- J2ME
+						- JBoss (WildFly) / Tomcat
+						- JPA / Hibernate
+						- JSF
+						- JSP / Servlets
+						- JUnit
+						- Maven
+						- Spring
+						- Struts
+						- Grunt
+						- Bower
+					- C
+						- 
+					- Pyton
+						- 
+					- Perl
+						-
+				- windows
+					- ASP
+						- 
+	7 - Environnement de Developpement, de Recette et de Production
+	 (Linux / Windows / PhpStorm / éclipse / netbeans / Apache (Administration + Linux) / Php (Administration) / Doker (Gestion de conteneur d'instances d'applications sous linux) / Vagrant / jira / Jenkins / Sonar / Redmine) / ElasticSearch / architecture micro-services ou traitements asynchrones / Saas
+	 
+		- reformater 1 / 6 / 7
+			- en fonction de l'objet des environnements pour
+				- la consommation de services de
+					- business unit
+						- des besoins métiers
+							- office
+							- bi
+							- big data
+						- terminaux
+							- client / server 
+								- windows / linux
+							- fixe
+								- léger
+								- lourd
+							- mobile
+								- léger
+								- lourd
+					- client final
+						- des besoins sociaux
+							- 
+						- terminaux
+							- client / server 
+								- windows / linux
+							- fixe
+								- léger
+								- lourd
+							- mobile
+								- léger
+								- lourd
+				- le développement de services de
+					- business unit
+						- des besoins métiers
+							- office
+							- bi
+							- big data
+						- terminaux
+							- client / server 
+								- windows / linux
+							- fixe
+								- léger
+								- lourd
+							- mobile
+								- léger
+								- lourd
+					- client final
+						- des besoins sociaux
+							- 
+						- terminaux
+							- client / server 
+								- windows / linux
+							- fixe
+								- léger
+								- lourd
+							- mobile
+								- léger
+								- lourd
+							
+			
+		- Administration Réseaux / Connexion (SSH, VPN, ...) 
+			- Linux
+				- ressources
+					- net
+						- 
+					- livre
+						- 
+				- lien indexe complet
+					- 
+				- outils
+					- 
+			- Windows
+		- Administration d'environnement de Server (faire le point sur les centres de formations) et de Comptes
+			- Micro-Services / Doker / Apache (modules Php (Administration par versions et connexions autres services environnement), ...) / Vagrant
+			
+			- Apache
+				- ressources
+					- net
+						- 
+					- livre
+						- 
+				- lien indexe complet
+					- 
+				- procédées essentiels
+					- de Modules
+						- 
+					- de Directives
+						- 
+					- Header
+						- 
+					- du Virtual host
+						- 
+					- du .Htaccess
+						- 
+				- outils
+					- 
+					
+			- ssh
+				- ressources
+					- net
+						- 
+					- livre
+						- 
+				- lien indexe complet
+					- 
+				- procédées essentiels
+					- 
+				- outils
+					- 
+					
+			- acl + groupes
+				- ressources
+					- net
+						- 
+					- livre
+						- 
+				- lien indexe complet
+					- 
+				- procédées essentiels
+					- 
+				- outils
+					- 
+					
+			- Bases et Entrepôts de données relationnelles
+				- MySql / SqlServer / Oracle / PostgreSQL
+				- Sql/PL-Sql/Trasact-Sql/Engine/Trigger/Fonction/Comptes/Connexion/Vues/Objet/...
+				- Mysql
+					- ressources
+						- net
+							- http://sql.sh/cours/jointures/inner-join
+						- livre
+							- 
+					- lien indexe complet
+						- 
+					- procédées essentiels
+						- Sql/PL-Sql/Trasact-Sql/Engine/Trigger/Fonction/Comptes/Connexion/Vues/Objet/...
+					- outils
+						- Workbench
+			- Bases et Entrepôts de données Objet (NoSql)
+				- Key-value databases
+					-
+				- Document databases
+					- Mongo DB
+				- Column family databases
+					- 
+				- Graph databases
+					-
+			- Bases et Entrepôts de données réseau
+				- 
+			- Bases et Entrepôts de données hiérarchique
+				- 
+				
+			- Mail / DHCP (Authentification par environnement dangereux ?) / POSTSCRIPT
+			
+			- GitLab / Redmine / Bitbucket pipelines / Trello / SensioLabInsight / jira / Jenkins / Sonar
+			
+			- TEST / Ticketing / Connexions (Vpn, ssh, ...) / Services
+			
+		- Outils 
+			- IDE (Netbeans / Eclipse / PhpStorm (module UML, Jenkins, ...)) 
+			- FTP-Tcp-Ip (Putty / MobaXerm)
+			- 
+	8 - linux
+			- ressources
+				- net
+					- 
+				- livre
+					- 
+			- lien indexe complet
+				- 
+			- outils
+				- 
+	9 - Méthodes 
+		- Cordination des parties (à confronter avec méthode de développement) du GL
+			- Scrum de Agile + Redmine|Trello
+				- ressources
+					- net
+						- 
+					- livre
+						- 
+				- lien indexe complet
+					- 
+				- procédées essentiels
+					- 
+				- outils
+					- 
+			- Gaant + Pert
+		- Cordination des développeurs (à confronter avec méthode de développement)
+			- UML objets
+				- ressources
+					- net
+						- 
+					- livre
+						- 
+				- lien indexe complet
+					- 
+				- procédées essentiels
+					- 
+				- outils
+					- 
+			- Merise bdd
+		- Mode de développement TDD, BDD, DDD
+			- ressources
+				- net
+					- 
+				- livre
+					- 
+			- lien indexe complet
+				- 
+			- procédées essentiels
+				- 
+			- outils
+				- 
+		- Normes
+			- Poo
+				- théorie
+					- ressources
+						- net
+							- https://openclassrooms.com/courses/programmez-en-oriente-objet-en-php#
+						- livre
+							- 
+					- lien indexe complet
+						- 
+					- procédées essentiels
+						- 
+				- design patterns
+					- ressources
+						- net
+							- https://www.tutorialspoint.com/php/php_design_patterns.htm
+							- https://openclassrooms.com/courses/programmez-en-oriente-objet-en-php#
+						- livre
+							- 
+					- lien indexe complet
+						- 
+					- procédées essentiels
+						- 
+					- outils
+						- 
+			- Solide
+				- ressources
+					- net
+						- 
+					- livre
+						- 
+				- lien indexe complet
+					- 
+				- procédées essentiels
+					- 
+				- outils
+					- 
+			- Psr
+				- ressources
+					- net
+						- 
+					- livre
+						- 
+				- lien indexe complet
+					- 
+				- procédées essentiels
+					- 
+				- outils
+					- 
+	10 - Sécurité (les types d'exploits par protocole de réseaux et os server de l'application)
+		- Formes et Acteurs
+			- ressources
+				- net
+					- 
+				- livre
+					- synthèse Essential PHP Security
+			- lien indexe complet
+				- 
+		- Failles Technos
+			- Os
+				-
+			- Outils
+				- 
+			- Langages
+				- 
+		- Outils et Cookbook de test de Hacks
+			- http://www.hacker10.com/tag/backtrack-alternative/
+		- Veilles
+			- 
+	11 - 
+		- 
+			- 
+	12 - Développement Mobile (faire le point sur les centres de formations)
+		- Web classique
+			- JQuery Mobile
+		- FrameWork
+			- Web (https://blog.jscrambler.com/10-frameworks-for-mobile-hybrid-apps/)
+				- Xamarin / Phonegap / Intel XDK / Ionic Framework / Framework7 / Appcelerator Titanium / Mobile Angular UI / Onsen UI / Sencha Touch / Kendo UI
+			- iOs
+				- 
+			- Android
+				- 
+		- DB
+			- SQlite
+			- XML
+		- Mobile Stores
+			- Google Play
+				- 
+			- Apple Store
+				- 
+			- MS Store
+				- 
+	13 - 
+		- 
+			- 
+	14 - ERP
+		- Open sources
+			-
+		- Solution payantes
+			- 
+		- bench marché
+			- 
+	15 - Formation
+		- faire une analyse et valeuriser les lectures
+		- en ligne
+			- Udemy / VideoToBrain / Kindle / https://learnxinyminutes.com
+		- Livres pdf
+		- Livres
+	16 - 
+	17 - 
+	18 - Mettre les synthèses en ligne
+		- Résumé sur Onenote + mobile + tablette
+		- Dans un wiki + pdf sous ssh dans un sous domaine de mbo-wdev.com accessible via mobile et fixe (mettre chaque synthèse sous sh512 + salt dans mysql)
+		- si pas de road map
+			- de l'index utiliser des urls
+				- des scénarios métiers (indexées des outils et procédées) | des scénarion clients (indexées des besoins)
+					- 
+	19 - Référencement Web dans les annuaires du net
+		- ressources 
+				- net
+					- 
+				- livre
+					- Google Analytique
+			- lien indexe complet
+				- 
+			- procédées essentiels
+				- sitemap.txt
+			- base, api et outils 
+				- Google
+	20 - 
+
+
+

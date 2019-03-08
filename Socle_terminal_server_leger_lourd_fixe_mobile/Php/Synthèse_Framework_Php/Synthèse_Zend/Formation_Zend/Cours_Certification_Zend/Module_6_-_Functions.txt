@@ -1,0 +1,33 @@
+> Declare Functions
+- Parameters
+	- no type of int, bool, float, string
+	- if function call has less parameters than th function declaration, we will get the wrong result with a warning
+	- References
+		- 
+- Return
+	- Value
+	- Multiple
+		- Array
+		- Objet
+		- References
+- Variable Scope
+	- global
+	- $GLOBALS
+- Satatic	
+	- a variable can be both static and global
+- Variable Functions
+	- $a()
+- Anonymous Functions
+	- use
+		
+> Function 
+- Parameters
+	- func_num_args()
+	- func_get_arg()
+	- func_get_args()
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,330 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+	
+	
+
+> Références fonctions
+
+- http://php.balluche.fr/?ref.http
+
+- http://php.net/manual/fr/funcref.php
+
+- http://php.net/manual/fr/langref.php
+
+- 
+
+
+
+> Transmission -----------------------------------------------------------------
+
+
+Plan 1 -----------------------------------------
+
+
+Chapitre 1 : les bases du PHP
+
+- Syntaxe
+  - Fichiers sources et balises PHP
+  - Caractères de nouvelle ligne
+- Anatomie d'un script PHP
+  - Commentaires
+  - Caractères blancs
+  - Instructions simples et composées
+  - Constructions du langage
+- Types de données
+  - Types numériques
+  - Type chaîne
+  - Type booléen
+  - Types composés
+  - Conversions de type
+- Variables
+  - Variables variables
+  - Vérifier l'existence d'une variable
+- Constantes
+- Opérateurs
+  - Priorité et associativité
+  - Arithmétiques
+  - Concaténation de chaînes
+  - Bit à bit
+  - Affectations
+  - Référence
+  - Comparaisons
+  - Logiques
+  - Autres
+- Structures de contrôle de flux
+  - Conditionnelles
+  - Itératives
+  - break et continue
+- Gestion des erreurs
+  - Types d'erreur
+  - error_reporting
+  - gestionnaires d'erreurs
+
+Chapitre 2 : les fonctions
+
+- Syntaxe de base
+- Valeur de retour
+- Portée des variables
+  - Passage de paramètres
+  - Passage par référence
+  - Liste de paramètres de longueur variable
+
+Chapitre 3 : les tableaux
+
+- Les bases
+  - Affichage
+  - Tableaux Enumératifs et associatifs
+  - Tableaux multi-dimensionnels
+  - Décomposition d'un tableau
+- Opérations sur les tableaux
+  - Comparaison
+  - Compter, rechercher et supprimer des éléments
+  - Inverser les données avec array_reverse et array_flip
+- Itération sur les tableaux
+  - Pointeur interne d'un tableau
+  - foreach
+  - array_walk
+- Tri sur les tableaux
+  - Options de tri
+  - Mélanger
+- Tableaux en tant que pile, file d'attente et ensemble
+
+Chapitre 4 : les chaînes et expressions régulières
+
+- Les bases
+  - Substitution de variables
+  - Syntaxe HEREDOC
+  - Echappement de valeurs littérales
+  - Déterminer la longueur d'une chaîne
+  - Transformation
+  - Utilisation en tant que tableau
+- Comparer, rechercher et remplacer des chaînes
+  - Recherche simple
+  - Recherche à partir d'un masque
+  - Remplacement simple
+  - Extraction de sous-chaînes
+- Formattage
+  - Nombres
+  - Monnaie
+  - printf
+  - sscanf
+- Expressions régulières
+  - Délimiteurs
+  - Méta-caractères
+  - Quantificateurs
+  - Sous-expressions
+  - Remplacement complexe
+
+Chapitre 5 : la programmation Web
+
+- Anatomie d'une page Web
+- Formulaires et URL
+  - Méthode GET
+  - Méthode POST
+  - $_REQUEST
+  - Transmission de fichiers
+  - Choisir entre GET et POST
+- En-têtes HTTP
+  - Redirection
+  - Compression
+  - Mise en cache
+  - Cookies
+- Sessions
+
+Chapitre 6 : la Programmation Orientée Objet
+
+- Les bases
+  - Déclarer une classe
+  - Instancier un objet
+  - Héritage
+- Méthodes et propriétés d'instance
+  - Constructeur
+  - Destructeur
+  - Visibilité
+  - Déclarer et accéder à un membre
+- Constantes de classe
+- Méthodes et propriétés de classe
+- Interfaces et classes abstraites
+  - Déterminer le type d'un objet
+- Exceptions
+  - la classe Exception
+  - Utiliser les excéptions
+- __autoload()
+- Reflexivité
+
+Chapitre 7 : conception orientée objet
+
+- Design Patterns
+  - Singleton
+  - Factory
+  - Registry
+  - Model-View-Controller
+- The Standard PHP Library (SPL)
+  - Accéder un objet comme un tableau
+  - Itérer sur un objet
+
+Chapitre 8 : les bases de données et SQL
+
+- Les extensions d'accès 
+  - mysql
+  - mysqli
+  - odbc
+  - PHP Data Object (PDO)
+
+Chapitre 9 : les flux et la programmation réseau
+
+- Accès aux fichiers
+  - Fonctions de style C
+  - Fonctions simplifiées
+  - Accès aux dossiers
+  - Contrôler les privilèges d'accès
+- Accès aux ressources du réseau
+  - Accès simplifié au réseau
+  - Contexte de flux
+  - Fonctionnalités avancées
+
+Chapitre 10 : XML et les services Web
+
+- Extensible Markup Language (XML)
+  - Créer un document XML
+- SimpleXML
+  - Analyser un document
+  - Accéder aux enfants et aux attributs
+  - Requêtes XPath
+  - Modifier un document XML
+  - Travailler avec des espaces de noms
+- Document Object Model (DOM)
+  - Analyser un document
+  - Accéder aux enfants et aux attributs
+  - Requêtes XPath
+  - Modifier un document XML
+  - Travailler avec des espaces de noms
+- Web Services
+  - Protocole SOAP
+  - Accéder à un Web Service
+  - Créer un Web Service
+  - REST
+
+Chapitre 11 : la sécurité
+
+- Concepts et bonnes pratiques
+  - Toute donnée d'entrée est suspecte
+  - Liste blanche et liste noire
+  - Filtrage des entrées
+  - Echapement des sorties
+  - register_globals
+- Sécurité des sites Web
+  - Formulaires contrefaits
+  - Cross-Site Scripting (XSS)
+  - Cross-Site Request Forgeries
+- Sécurité au niveau base de données
+- Sécurité au niveau des sessions
+- Sécurité au niveau du système de fichiers
+- Sécurité sur les serveurs mutualisés
+
+Chapitre 12 : les différences entre PHP4 et PHP5
+
+- Fonctionnalités du langage
+- Objets et les méthodes magiques
+- Nouvelles extensions
+- Gestion des erreurs
+
+
+Plan 2 -----------------------------------------
+
+	- Context et prérequis
+		- Environnement de production
+		- Environnement de développement
+		- Interaction avec le HTML
+			- Les formulaires
+			- Mise en forme - Interphases - Technos 
+			
+	- >>> Développement Procédural
+		- Structure du language
+			- Variables, constantes et types
+			- Les chaines de caractères
+				- Heredoc et Regex
+			- Les tableaux
+			- Les fonctions
+			- Dates et calandriers
+			- Les fichiers
+			- Cookies, session, et e-mails
+			- Protocoles et réseau
+			- Interfaces (sauf bases de données)
+			- Les Class et Librairies
+				- SQL
+				- SQLite
+				- pdf
+				- dg / ming
+				- zip
+				- csv
+				- xml
+				- Les Class
+				- Les Framework
+					- Le framework PEAR
+					- Le framework Zend
+					- Le framework Symfony
+					- http://socialcompare.com/fr/comparison/php-frameworks-comparison
+					- http://fr.wikipedia.org/wiki/Liste_de_frameworks_PHP
+			- Références en lignes
+				- http://php.balluche.fr/
+				- http://www.info-3000.com/phpmysql/listecompletefonction.php
+				- http://php.net/manual/fr/funcref.php
+				
+	- >>> Développement Objet : Les classes et les objets (-----! à modulariser !---- // Voir avec les plans (livres, plan Erwan, Vince))
+		- Introduction
+		- Syntaxe de base
+		- Propriétés
+		- Constantes de classe
+		- Auto-chargement de classes
+		- Constructeurs et destructeurs
+		- Visibilité
+		- Héritage
+		- L'opérateur de résolution de portée (::)
+		- Statique
+		- Abstraction de classes
+		- Interfaces
+		- Traits
+		- Surcharge magique
+		- Parcours d'objets
+		- Méthodes magiques
+		- Mot-clé "final"
+		- Clônage d'objets
+		- Comparaison d'objets
+		- Typage objet
+		- Late Static Bindings (Résolution statique à la volée)
+		- Objets et références
+		- Sérialisation d'objets
+		- Modifications en POO (Programmation orientée objet)
+		
+	- Complément
+		- Les espaces de noms
+		- Les exceptions et exceptions prédéfinits
+		- Les références
+		- Les variables prédéfinits
+		- Les générateurs
+		- Les interphases prédéfinits
+		- Les gestion de paramètres de contexte
+		- Les protocoles et gestionnaires
+		
+	- Sécurité
+		-
+		
+	- Caractéristiques
+		-
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+
+

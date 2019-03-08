@@ -1,0 +1,31 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+
+	
+	
+> git + git lab + git hub
+	- ressources
+		- net
+			- https://bruno.lsis.univ-tln.fr/git/gitminimal
+			- https://learnxinyminutes.com/docs/git/
+		- livre
+			- 
+	- lien indexe complet
+		- 
+	- procédées essentiels
+		- installation
+			- 
+		- paramétrage
+			- connexion aux servers (packagist, ...)
+				- connexions sous ssh au Gitlab (<> Github ?)
+				- repositories
+			- fichier  de configuration
+				- congif et alias
+				- gitignore
+		- commandes
+			- 
+		- outils
+			- 

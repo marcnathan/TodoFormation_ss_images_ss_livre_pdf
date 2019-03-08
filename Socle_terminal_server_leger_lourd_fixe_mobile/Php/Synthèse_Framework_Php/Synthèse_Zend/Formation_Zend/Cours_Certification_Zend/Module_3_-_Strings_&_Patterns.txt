@@ -1,0 +1,73 @@
+> Strings
+- Single Quotes
+- Double Quotes
+- HEREDOC
+- NOWDOC
+
+
+> Functions
+- substr() with negative parameters and maximal lenght excess
+- strpos() the return value between 0 and false
+- substr_count()
+- Comparing String
+	- strcmp()
+	- levenshtein()
+	- similar_text()
+- Phonetic Functions
+	- metaphone()
+	- soundex()
+- Counting Strings
+	- strlen()
+	- str_word_count()
+- String & Array
+	- explode()
+	- implode()
+- Formatted Output
+	- printf()
+	- sprintf()
+	- vprintf()
+	- vsprintf()
+	- fprintf()
+	
+> Regular Expressions
+- Delimiter 	
+	- / or # or ! (or other ; must be the same)
+	- escaping
+- Boundaries
+	- ^ $ \A \Z \b \B
+- Charater classes
+	- []
+	- [a-z]
+- Built-in charater classes
+	- \d \D \s \S \w \W .
+- Quantifier
+	- * + ? {n} {n,} {,m} {n,m}
+- Alternatives
+	- | *? +?
+- Functions
+	- preg_match() with the tird argument
+	- preg_match_all()
+	- preg_replace() with the position replacement and caution on arrays and delimiters
+	- preg_replace_callback()
+
+
+> Encodings	
+- mbstring
+- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

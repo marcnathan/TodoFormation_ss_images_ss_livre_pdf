@@ -1,0 +1,30 @@
+> Notes
+	- Spécialisation dans la création de user interfases
+	- angular est plus spécialisé dans le traitement des données
+	- jquery est plus spacialisé dans l'animation
+	- 
+	- 
+	- 
+
+	
+	
+> react
+	- ressources
+		- net
+			- https://reactjs.org/tutorial/tutorial.html
+		- livre
+			- 
+	- lien indexe complet
+		- 
+	- procédées essentiels
+		- installation
+			- 
+				- 
+		- commandes
+			- 
+			
+			- 
+			
+		- outils
+			- 
+	

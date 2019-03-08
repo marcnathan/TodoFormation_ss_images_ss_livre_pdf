@@ -1,0 +1,135 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+
+	
+	
+> Api traitement de Web Services, code html header (1/2 semaine)
+	- ressources
+		- net
+			- http://php.net/manual/en/refs.webservice.php
+			- http://blog.mashape.com/list-of-40-tutorials-on-how-to-create-an-api/
+			- https://symfony.com/doc/current/controller/soap_web_service.html
+			- http://api.symfony.com/3.0/Symfony/Component/HttpFoundation/RequestStack.html
+			- https://www.w3resource.com
+			- https://en.wikipedia.org/wiki/Application_programming_interface
+			- https://en.wikipedia.org/wiki/Web_API
+			- https://developer.chrome.com/extensions/api_other
+			- https://developer.mozilla.org/en-US/docs/Web/Reference/API
+			- Formattage et extraction de données de PDF
+			- Librairie Graphique (Google Charte, ...)
+			- Framework d'interfase (Dhtmlx (https://dhtmlx.com/docs/products/dhtmlxGantt/), ...
+			- http://inchoo.net/dev-talk/symfony2-rest/
+			- https://learnxinyminutes.com/docs/json/
+			- https://learnxinyminutes.com/docs/javascript/
+			- https://learnxinyminutes.com/docs/jquery/
+			- Amazon Web Services's (voir tuto de globalis)
+		- livre
+			- 
+	- lien indexe complet
+		- 
+	- procédées essentiels
+		- définition
+			- api (application programming interface) d'un web services (de serveur à serveur) <> ajax (de client à serveur)
+				- REST, SOAP + WSDL, ...
+				- http://php.net/manual/en/refs.webservice.php
+				- Programmes destinés à échanger des données entre systèmes hétérogènes
+				- Basés sur des standards (SOAP) ou des styles d’architecture (REST)
+				- Fonctionnent en mode Client / Serveur (requête / réponse)
+				- Echange de données préformattées (XML, JSON, YAML, HTML...)
+				- Faible couplage grâce aux standards ouverts comme XML
+				- Faciles à mettre en oeuvre
+				- Type de service
+					- REST 
+						- c’est quoi ?
+							- REpresentational State Transfert
+							- Concept inventé par Roy Fielding en 2000
+							- REST est un style d’architecture !
+							- REST s’appuie sur les concepts suivants :
+							- Le protocole HTTP (requête / réponse)
+							- La notion d’URI qui identifie chaque ressource
+							- Les méthodes HTTP (GET, POST, PUT, DELETE, HEAD)
+							- Les codes de statut (200, 201, 403, 404, 500...)
+							- Les formats ouverts (XML, JSON, HTML...)
+							- REST est simple à mettre en oeuvre
+						- la notion d’URI dans REST
+							- Chaque URI identifie une ressource
+								- http://api.domain.com/users/hugo
+							- Une URI ne contient pas de verbe !
+							- Une même URI peut être appelée avec différentes méthodes HTTP
+								- GET http://api.domain.com/users	// Récupère les utilisateurs
+								- POST http://api.domain.com/users	// Crée un nouvel utilisateur
+						- les méthodes HTTP
+							- GET, POST, PUT, DELETE et HEAD
+							- Identifient les actions réalisables sur la ressource
+								- GET http://api.domain.com/users	// Récupère les utilisateurs
+								- POST http://api.domain.com/users	// Crée un nouvel utilisateur
+								- PUT http://api.domain.com/users/hugo		// Modifie hugo
+								- DELETE http://api.domain.com/users/hugo	// Supprime hugo
+							- Opérations CRUD sur les ressources
+						- les codes HTTP de retour
+							- Indiquent l’état (succès ou échec) de l’opération effectuée
+								Méthodes 			En cas de succès 			En cas d’échec
+								
+								POST 				201 Created					400 Bad Request
+														Redirection vers l’URI 
+														de l’objet
+								PUT 					200 OK 						400 Bad Request
+																							404 Not Found
+																							409 Conflict
+								DELETE 			200 OK 						400 Bad Request
+																							404 Not Found
+																							410 Gone
+								GET 					200 OK 						400 Bad Request
+																							404 Not Found
+					- SOAP
+						- c’est quoi ?
+							- « Simple Object Access Protocol »
+							- SOAP est un protocole standard (http://www.w3.org/TR/soap/)
+							- Appel de procédure à distance reposant sur un standard XML
+							- SOAP permet d’invoquer des méthodes sur un objet distant
+							- La réponse est servie au client SOAP sous forme d’une réponse SOAP XML
+							- Transport des requêtes et réponses SOAP avec le protocole HTTP
+							- Les requêtes et réponses SOAP sont des chaînes XML
+							- Les données sont traitées sur le serveur puis converties en XML
+		- conception, intégration et déploiement
+			- api web services
+				- REST
+					- https://zestedesavoir.com/tutoriels/1280/creez-une-api-rest-avec-symfony-3/developpement-de-lapi-rest/fosrestbundle-et-symfony-a-la-rescousse/
+				- SOAP
+					- https://symfony.com/doc/current/controller/soap_web_service.html
+		- mise en pratique dans le projet du blog
+			- web services
+				- 
+			- un api
+				- 
+		- connaitre les api web et web services du marchés
+			- Frameworks
+				- http://api.symfony.com/3.0/Symfony/Component/HttpFoundation/RequestStack.html
+				- d'interfase (Dhtmlx (https://dhtmlx.com/docs/products/dhtmlxGantt/), ...)
+			- Composant <> de Bundle ou Module
+				- payement en ligne
+				- Formattage et extraction de données de PDF
+				- Librairie Graphique (Google Charte, grafana, ...)
+				- 
+			- Sites 
+				- de réseaux sociaux 
+				- de réseaux pro
+				- de services transversaux
+					- google+
+				- de contenus multimédia ou riches médias
+					- Youtubes
+			- Divers
+				- https://www.w3resource.com
+				- applications
+					- terminaux mobiles légers
+					- 
+			- autres ressources Web du marchés
+				- Bases de données
+					- 
+				- Web sémentique
+					- 
+				- Data Lac
+					- 

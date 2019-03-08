@@ -1,0 +1,670 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+
+
+- docker
+	- ressources
+		- net
+			- https://en.wikipedia.org/wiki/Docker_(software)
+			- https://docs.docker.com/engine/docker-overview/
+			- https://docs.docker.com/engine/installation/#supported-platforms
+			- https://docs.docker.com/engine/installation/linux/docker-ee/ubuntu/
+			- https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository
+			- https://docs.docker.com/engine/installation/linux/linux-postinstall/#manage-docker-as-a-non-root-user
+			- https://docs.docker.com/get-started/part4/#prerequisites
+			- https://docs.docker.com/engine/userguide/
+			- https://opensource.com/business/14/7/guide-docker
+			- https://buddy.works/guides/5-ways-to-deploy-php-applications
+		- livre
+			- 
+	- lien indexe complet
+		- 
+	- procédées essentiels
+		- installation
+			- Docker is a tool that can package an application and its dependencies in a virtual container that can run on any Linux server. 
+			- This helps enable flexibility and portability on where the application can run, whether on premises, public cloud, private cloud, bare metal, etc.[14]
+			- Docker provides a layer of abstraction and automation of operating-system-level virtualization on Windows and Linux.
+			- Docker containers are so lightweight, a single server or virtual machine can run several containers simultaneously that run processes in isolation.
+			- Using Docker to create and manage containers may simplify the creation of highly distributed systems by allowing multiple applications, worker tasks and other processes to run autonomously on a single physical machine or across multiple virtual machines. This allows the deployment of nodes to be performed as the resources become available or when more nodes are needed, allowing a platform as a service (PaaS)-style of deployment and scaling for systems like Apache Cassandra, MongoDB or Riak. Docker also simplifies the creation and operation of task or workload queues and other distributed systems.
+		- paramétrage
+			- fichier  de configuration
+				- 
+		- commandes
+			- docker build -t friendlyname .  # Create image using this directory's Dockerfile
+			- docker run -p 4000:80 friendlyname  # Run "friendlyname" mapping port 4000 to 80
+			- docker run -d -p 4000:80 friendlyname         # Same thing, but in detached mode
+			- docker container ls                                # List all running containers
+			- docker container ls -a             # List all containers, even those not running
+			- docker container stop <hash>           # Gracefully stop the specified container
+			- docker container kill <hash>         # Force shutdown of the specified container
+			- docker container rm <hash>        # Remove specified container from this machine
+			- docker container rm $(docker container ls -a -q)         # Remove all containers
+			- docker image ls -a                             # List all images on this machine
+			- docker image rm <image id>            # Remove specified image from this machine
+			- docker image rm $(docker image ls -a -q)   # Remove all images from this machine
+			- docker login             # Log in this CLI session using your Docker credentials
+			- docker tag <image> username/repository:tag  # Tag <image> for upload to registry
+			- docker push username/repository:tag            # Upload tagged image to registry
+			- docker run username/repository:tag                   # Run image from a registry
+			
+			- docker stack ls                                            # List stacks or apps
+			- docker stack deploy -c <composefile> <appname>  # Run the specified Compose file
+			- docker service ls                 # List running services associated with an app
+			- docker service ps <service>                  # List tasks associated with an app
+			- docker inspect <task or container>                   # Inspect task or container
+			- docker container ls -q                                      # List container IDs
+			- docker stack rm <appname>                             # Tear down an application
+			
+			- 
+			
+		- outils
+			- Docker Compose
+				- Compose is a tool for defining and running multi-container Docker applications.[60] It uses YAML files to configure the application's services and performs the creation and start-up process of all the containers with a single command.
+			- Docker Swarm
+				- Docker Swarm provides native clustering functionality for Docker containers, which turns a group of Docker engines into a single, virtual Docker engine.[61]
+			
+		
+	
+	
+	- présentation de la ressource
+		- Docker overview
+			Estimated reading time: 10 minutes
+			Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications. By taking advantage of Docker’s methodologies for shipping, testing, and deploying code quickly, you can significantly reduce the delay between writing code and running it in production.
+
+			The Docker platform
+				Docker provides the ability to package and run an application in a loosely isolated environment called a container. The isolation and security allow you to run many containers simultaneously on a given host. Containers are lightweight because they don’t need the extra load of a hypervisor, but run directly within the host machine’s kernel. This means you can run more containers on a given hardware combination than if you were using virtual machines. You can even run Docker containers within host machines that are actually virtual machines!
+
+				Docker provides tooling and a platform to manage the lifecycle of your containers:
+
+				- Develop your application and its supporting components using containers.
+				- The container becomes the unit for distributing and testing your application.
+				- When you’re ready, deploy your application into your production environment, as a container or an orchestrated service. This works the same whether your production environment is a local data center, a cloud provider, or a hybrid of the two.
+			
+			Docker Engine
+				Docker Engine is a client-server application with these major components:
+
+					- A server which is a type of long-running program called a daemon process (the dockerd command).
+
+					- A REST API which specifies interfaces that programs can use to talk to the daemon and instruct it what to do.
+
+					- A command line interface (CLI) client (the docker command).
+
+				Image Docker Engine Components Flow
+
+				The CLI uses the Docker REST API to control or interact with the Docker daemon through scripting or direct CLI commands. Many other Docker applications use the underlying API and CLI.
+
+				The daemon creates and manages Docker objects, such as images, containers, networks, and volumes.
+
+				Note: Docker is licensed under the open source Apache 2.0 license.
+
+				For more details, see Docker Architecture below.
+
+			What can I use Docker for?
+				Fast, consistent delivery of your applications
+
+					Docker streamlines the development lifecycle by allowing developers to work in standardized environments using local containers which provide your applications and services. Containers are great for continuous integration and continuous delivery (CI/CD) workflows.
+
+					Consider the following example scenario:
+
+					Your developers write code locally and share their work with their colleagues using Docker containers.
+					They use Docker to push their applications into a test environment and execute automated and manual tests.
+					When developers find bugs, they can fix them in the development environment and redeploy them to the test environment for testing and validation.
+					When testing is complete, getting the fix to the customer is as simple as pushing the updated image to the production environment.
+					
+				Responsive deployment and scaling
+
+					Docker’s container-based platform allows for highly portable workloads. Docker containers can run on a developer’s local laptop, on physical or virtual machines in a data center, on cloud providers, or in a mixture of environments.
+
+					Docker’s portability and lightweight nature also make it easy to dynamically manage workloads, scaling up or tearing down applications and services as business needs dictate, in near real time.
+
+				Running more workloads on the same hardware
+
+					Docker is lightweight and fast. It provides a viable, cost-effective alternative to hypervisor-based virtual machines, so you can use more of your compute capacity to achieve your business goals. Docker is perfect for high density environments and for small and medium deployments where you need to do more with fewer resources.
+
+			Docker architecture
+				Docker uses a client-server architecture. The Docker client talks to the Docker daemon, which does the heavy lifting of building, running, and distributing your Docker containers. The Docker client and daemon can run on the same system, or you can connect a Docker client to a remote Docker daemon. The Docker client and daemon communicate using a REST API, over UNIX sockets or a network interface.
+
+				Image Docker Architecture Diagram
+
+				The Docker daemon
+					The Docker daemon (dockerd) listens for Docker API requests and manages Docker objects such as images, containers, networks, and volumes. A daemon can also communicate with other daemons to manage Docker services.
+
+				The Docker client
+					The Docker client (docker) is the primary way that many Docker users interact with Docker. When you use commands such as docker run, the client sends these commands to dockerd, which carries them out. The docker command uses the Docker API. The Docker client can communicate with more than one daemon.
+
+				Docker registries
+					A Docker registry stores Docker images. Docker Hub and Docker Cloud are public registries that anyone can use, and Docker is configured to look for images on Docker Hub by default. You can even run your own private registry. If you use Docker Datacenter (DDC), it includes Docker Trusted Registry (DTR).
+
+					When you use the docker pull or docker run commands, the required images are pulled from your configured registry. When you use the docker push command, your image is pushed to your configured registry.
+
+					Docker store allows you to buy and sell Docker images or distribute them for free. For instance, you can buy a Docker image containing an application or service from a software vendor and use the image to deploy the application into your testing, staging, and production environments. You can upgrade the application by pulling the new version of the image and redeploying the containers.
+
+				Docker objects
+					When you use Docker, you are creating and using images, containers, networks, volumes, plugins, and other objects. This section is a brief overview of some of those objects.
+
+					IMAGES
+						An image is a read-only template with instructions for creating a Docker container. Often, an image is based on another image, with some additional customization. For example, you may build an image which is based on the ubuntu image, but installs the Apache web server and your application, as well as the configuration details needed to make your application run.
+
+						You might create your own images or you might only use those created by others and published in a registry. To build your own image, you create a Dockerfile with a simple syntax for defining the steps needed to create the image and run it. Each instruction in a Dockerfile creates a layer in the image. When you change the Dockerfile and rebuild the image, only those layers which have changed are rebuilt. This is part of what makes images so lightweight, small, and fast, when compared to other virtualization technologies.
+
+					CONTAINERS
+						A container is a runnable instance of an image. You can create, start, stop, move, or delete a container using the Docker API or CLI. You can connect a container to one or more networks, attach storage to it, or even create a new image based on its current state.
+
+						By default, a container is relatively well isolated from other containers and its host machine. You can control how isolated a container’s network, storage, or other underlying subsystems are from other containers or from the host machine.
+
+						A container is defined by its image as well as any configuration options you provide to it when you create or start it. When a container is removed, any changes to its state that are not stored in persistent storage disappear.
+
+						Example docker run command
+							The following command runs an ubuntu container, attaches interactively to your local command-line session, and runs /bin/bash.
+
+								$ docker run -i -t ubuntu /bin/bash
+				
+						When you run this command, the following happens (assuming you are using the default registry configuration):
+
+						If you do not have the ubuntu image locally, Docker pulls it from your configured registry, as though you had run docker pull ubuntu manually.
+
+						Docker creates a new container, as though you had run a docker container create command manually.
+
+						Docker allocates a read-write filesystem to the container, as its final layer. This allows a running container to create or modify files and directories in its local filesystem.
+
+						Docker creates a network interface to connect the container to the default network, since you did not specify any networking options. This includes assigning an IP address to the container. By default, containers can connect to external networks using the host machine’s network connection.
+
+						Docker starts the container and executes /bin/bash. Because the container is run interactively and attached to your terminal (due to the -i and -t) flags, you can provide input using your keyboard and output is logged to your terminal.
+
+						When you type exit to terminate the /bin/bash command, the container stops but is not removed. You can start it again or remove it.
+
+					SERVICES
+						Services allow you to scale containers across multiple Docker daemons, which all work together as a swarm with multiple managers and workers. Each member of a swarm is a Docker daemon, and the daemons all communicate using the Docker API. A service allows you to define the desired state, such as the number of replicas of the service that must be available at any given time. By default, the service is load-balanced across all worker nodes. To the consumer, the Docker service appears to be a single application. Docker Engine supports swarm mode in Docker 1.12 and higher.
+
+			The underlying technology
+				Docker is written in Go and takes advantage of several features of the Linux kernel to deliver its functionality.
+
+			Namespaces
+				Docker uses a technology called namespaces to provide the isolated workspace called the container. When you run a container, Docker creates a set of namespaces for that container.
+
+				These namespaces provide a layer of isolation. Each aspect of a container runs in a separate namespace and its access is limited to that namespace.
+
+				Docker Engine uses namespaces such as the following on Linux:
+
+				The pid namespace: Process isolation (PID: Process ID).
+				The net namespace: Managing network interfaces (NET: Networking).
+				The ipc namespace: Managing access to IPC resources (IPC: InterProcess Communication).
+				The mnt namespace: Managing filesystem mount points (MNT: Mount).
+				The uts namespace: Isolating kernel and version identifiers. (UTS: Unix Timesharing System).
+				
+			Control groups
+				Docker Engine on Linux also relies on another technology called control groups (cgroups). A cgroup limits an application to a specific set of resources. Control groups allow Docker Engine to share available hardware resources to containers and optionally enforce limits and constraints. For example, you can limit the memory available to a specific container.
+
+			Union file systems
+				Union file systems, or UnionFS, are file systems that operate by creating layers, making them very lightweight and fast. Docker Engine uses UnionFS to provide the building blocks for containers. Docker Engine can use multiple UnionFS variants, including AUFS, btrfs, vfs, and DeviceMapper.
+
+			Container format
+				Docker Engine combines the namespaces, control groups, and UnionFS into a wrapper called a container format. The default container format is libcontainer. In the future, Docker may support other container formats by integrating with technologies such as BSD Jails or Solaris Zones.
+
+			Next steps
+				Read about installing Docker.
+				Get hands-on experience with the Getting started with Docker tutorial.
+				Check out examples and deep dive topics in the Docker Engine user guide.
+	
+	
+	
+	- installation de la ressource
+		- Get Docker CE for Ubuntu
+			Estimated reading time: 12 minutes
+			To get started with Docker CE on Ubuntu, make sure you meet the prerequisites, then install Docker.
+
+			Prerequisites
+				Docker EE customers
+					To install Docker Enterprise Edition (Docker EE), go to Get Docker EE for Ubuntu instead of this topic.
+
+					To learn more about Docker EE, see Docker Enterprise Edition.
+
+				OS requirements
+					To install Docker CE, you need the 64-bit version of one of these Ubuntu versions:
+
+					Artful 17.10 (Docker CE 17.11 Edge and higher only)
+					Xenial 16.04 (LTS)
+					Trusty 14.04 (LTS)
+					Docker CE is supported on Ubuntu on x86_64, armhf, s390x (IBM Z), and ppc64le (IBM Power) architectures.
+
+					ppc64le and s390x limitations: Packages for IBM Z and Power architectures are only available on Ubuntu Xenial and above.
+
+				Uninstall old versions
+					Older versions of Docker were called docker or docker-engine. If these are installed, uninstall them:
+
+					$ sudo apt-get remove docker docker-engine docker.io
+					It’s OK if apt-get reports that none of these packages are installed.
+
+					The contents of /var/lib/docker/, including images, containers, volumes, and networks, are preserved. The Docker CE package is now called docker-ce.
+
+				Supported storage drivers
+					Docker EE on Ubuntu supports overlay2 and aufs storage drivers.
+
+						For new installations on version 4 and higher of the Linux kernel, overlay2 is supported and preferred over aufs.
+						For version 3 of the Linux kernel, aufs is supported because overlay or overlay2 drivers are not supported by that kernel version.
+						
+					If you need to use aufs, you need to do additional preparation as outlined below.
+
+				EXTRA STEPS FOR AUFS
+					Xenial 16.04 and newer [Trusty 14.04]
+					For Ubuntu 16.04 and higher, the Linux kernel includes support for OverlayFS, and Docker CE uses the overlay2 storage driver by default. If you need to use aufs instead, you need to configure it manually. See aufs
+
+			Install Docker CE
+				You can install Docker CE in different ways, depending on your needs:
+
+					Most users set up Docker’s repositories and install from them, for ease of installation and upgrade tasks. This is the recommended approach.
+
+					Some users download the DEB package and install it manually and manage upgrades completely manually. This is useful in situations such as installing Docker on air-gapped systems with no access to the internet.
+
+					In testing and development environments, some users choose to use automated convenience scripts to install Docker.
+
+				Install using the repository
+					Before you install Docker CE for the first time on a new host machine, you need to set up the Docker repository. Afterward, you can install and update Docker from the repository.
+
+					SET UP THE REPOSITORY
+					
+						Update the apt package index:
+
+							$ sudo apt-get update
+							
+						Install packages to allow apt to use a repository over HTTPS:
+
+							$ sudo apt-get install \
+								apt-transport-https \
+								ca-certificates \
+								curl \
+								software-properties-common
+								
+						Add Docker’s official GPG key:
+
+							$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+						
+							Verify that you now have the key with the fingerprint 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88, by searching for the last 8 characters of the fingerprint.
+
+								$ sudo apt-key fingerprint 0EBFCD88
+
+								pub   4096R/0EBFCD88 2017-02-22
+									  Key fingerprint = 9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88
+								uid                  Docker Release (CE deb) <docker@docker.com>
+								sub   4096R/F273FCD8 2017-02-22
+								
+						Use the following command to set up the stable repository. You always need the stable repository, even if you want to install builds from the edge or test repositories as well. To add the edge or test repository, add the word edge or test (or both) after the word stable in the commands below.
+
+						Note: The lsb_release -cs sub-command below returns the name of your Ubuntu distribution, such as xenial. Sometimes, in a distribution like Linux Mint, you might need to change $(lsb_release -cs) to your parent Ubuntu distribution. For example, if you are using Linux Mint Rafaela, you could use trusty.
+
+						x86_64 / amd64 [armhf] [IBM Power (ppc64le)] [IBM Z (s390x)]
+						
+							$ sudo add-apt-repository \
+							   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+							   $(lsb_release -cs) \
+							   stable"
+							   
+						Note: Starting with Docker 17.06, stable releases are also pushed to the edge and test repositories.
+
+						Learn about stable and edge channels.
+
+					INSTALL DOCKER CE
+						Update the apt package index.
+
+							$ sudo apt-get update
+							
+						Install the latest version of Docker CE, or go to the next step to install a specific version. Any existing installation of Docker is replaced.
+
+							$ sudo apt-get install docker-ce
+							
+							Got multiple Docker repositories?
+
+								If you have multiple Docker repositories enabled, installing or updating without specifying a version in the apt-get install or apt-get update command always installs the highest possible version, which may not be appropriate for your stability needs.
+
+						On production systems, you should install a specific version of Docker CE instead of always using the latest. This output is truncated. List the available versions.
+
+							$ apt-cache madison docker-ce
+
+							docker-ce | 17.12.0~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+							
+						The contents of the list depend upon which repositories are enabled. Choose a specific version to install. The second column is the version string. The third column is the repository name, which indicates which repository the package is from and by extension its stability level. To install a specific version, append the version string to the package name and separate them by an equals sign (=):
+
+							$ sudo apt-get install docker-ce=<VERSION>
+							
+							The Docker daemon starts automatically.
+
+						Verify that Docker CE is installed correctly by running the hello-world image.
+
+							$ sudo docker run hello-world
+							
+						This command downloads a test image and runs it in a container. When the container runs, it prints an informational message and exits.
+
+						Docker CE is installed and running. The docker group is created but no users are added to it. You need to use sudo to run Docker commands. Continue to Linux postinstall to allow non-privileged users to run Docker commands and for other optional configuration steps.
+
+					UPGRADE DOCKER CE
+						To upgrade Docker CE, first run sudo apt-get update, then follow the installation instructions, choosing the new version you want to install.
+
+			Install from a package
+				If you cannot use Docker’s repository to install Docker CE, you can download the .deb file for your release and install it manually. You need to download a new file each time you want to upgrade Docker CE.
+
+					Go to https://download.docker.com/linux/ubuntu/dists/, choose your Ubuntu version, browse to pool/stable/ and choose amd64, armhf, ppc64el, or s390x. Download the .deb file for the Docker version you want to install.
+
+						Note: To install an edge package, change the word stable in the URL to edge. Learn about stable and edge channels.
+
+					Install Docker CE, changing the path below to the path where you downloaded the Docker package.
+
+						$ sudo dpkg -i /path/to/package.deb
+			
+						The Docker daemon starts automatically.
+
+					Verify that Docker CE is installed correctly by running the hello-world image.
+
+						$ sudo docker run hello-world
+			
+						This command downloads a test image and runs it in a container. When the container runs, it prints an informational message and exits.
+
+					Docker CE is installed and running. The docker group is created but no users are added to it. You need to use sudo to run Docker commands. Continue to Post-installation steps for Linux to allow non-privileged users to run Docker commands and for other optional configuration steps.
+
+				UPGRADE DOCKER CE
+					To upgrade Docker CE, download the newer package file and repeat the installation procedure, pointing to the new file.
+
+			Install using the convenience script
+				Docker provides convenience scripts at get.docker.com and test.docker.com for installing edge and testing versions of Docker CE into development environments quickly and non-interactively. The source code for the scripts is in the docker-install repository. Using these scripts is not recommended for production environments, and you should understand the potential risks before you use them:
+
+					The scripts require root or sudo privileges to run. Therefore, you should carefully examine and audit the scripts before running them.
+					The scripts attempt to detect your Linux distribution and version and configure your package management system for you. In addition, the scripts do not allow you to customize any installation parameters. This may lead to an unsupported configuration, either from Docker’s point of view or from your own organization’s guidelines and standards.
+					The scripts install all dependencies and recommendations of the package manager without asking for confirmation. This may install a large number of packages, depending on the current configuration of your host machine.
+					The script does not provide options to specify which version of Docker to install, and installs the latest version that is released in the “edge” channel.
+					Do not use the convenience script if Docker has already been installed on the host machine using another mechanism.
+					This example uses the script at get.docker.com to install the latest release of Docker CE on Linux. To install the latest testing version, use test.docker.com instead. In each of the commands below, replace each occurrence of get with test.
+
+						Warning:
+
+						Always examine scripts downloaded from the internet before running them locally.
+
+							$ curl -fsSL get.docker.com -o get-docker.sh
+							$ sudo sh get-docker.sh
+
+							<output truncated>
+
+							If you would like to use Docker as a non-root user, you should now consider
+							adding your user to the "docker" group with something like:
+
+							  sudo usermod -aG docker your-user
+
+							Remember to log out and back in for this to take effect!
+
+							WARNING: Adding a user to the "docker" group grants the ability to run
+									 containers which can be used to obtain root privileges on the
+									 docker host.
+									 Refer to https://docs.docker.com/engine/security/security/#docker-daemon-attack-surface
+									 for more information.
+									 
+					Docker CE is installed. It starts automatically on DEB-based distributions. On RPM-based distributions, you need to start it manually using the appropriate systemctl or service command. As the message indicates, non-root users can’t run Docker commands by default.
+
+				UPGRADE DOCKER AFTER USING THE CONVENIENCE SCRIPT
+					If you installed Docker using the convenience script, you should upgrade Docker using your package manager directly. There is no advantage to re-running the convenience script, and it can cause issues if it attempts to re-add repositories which have already been added to the host machine.
+
+			Uninstall Docker CE
+				Uninstall the Docker CE package:
+
+					$ sudo apt-get purge docker-ce
+				
+				Images, containers, volumes, or customized configuration files on your host are not automatically removed. To delete all images, containers, and volumes:
+
+					$ sudo rm -rf /var/lib/docker
+				
+				You must delete any edited configuration files manually.
+
+			Next steps
+				Continue to Post-installation steps for Linux
+
+				Continue with the User Guide.
+	
+	
+	- Post-installation steps for Linux
+		Estimated reading time: 14 minutes
+		This section contains optional procedures for configuring Linux hosts to work better with Docker.
+
+		Manage Docker as a non-root user
+			The docker daemon binds to a Unix socket instead of a TCP port. By default that Unix socket is owned by the user root and other users can only access it using sudo. The docker daemon always runs as the root user.
+
+			If you don’t want to use sudo when you use the docker command, create a Unix group called docker and add users to it. When the docker daemon starts, it makes the ownership of the Unix socket read/writable by the docker group.
+
+			Warning: The docker group grants privileges equivalent to the root user. For details on how this impacts security in your system, see Docker Daemon Attack Surface.
+
+			To create the docker group and add your user:
+
+				Create the docker group.
+
+					$ sudo groupadd docker
+		
+				Add your user to the docker group.
+
+					$ sudo usermod -aG docker $USER
+		
+				Log out and log back in so that your group membership is re-evaluated.
+
+					If testing on a virtual machine, it may be necessary to restart the virtual machine for changes to take effect.
+
+					On a desktop Linux environment such as X Windows, log out of your session completely and then log back in.
+
+				Verify that you can run docker commands without sudo.
+
+					$ docker run hello-world
+		
+					This command downloads a test image and runs it in a container. When the container runs, it prints an informational message and exits.
+
+					If you initially ran Docker CLI commands using sudo before adding your user to the docker group, you may see the following error, which indicates that your ~/.docker/ directory was created with incorrect permissions due to the sudo commands.
+
+						WARNING: Error loading config file: /home/user/.docker/config.json -
+						stat /home/user/.docker/config.json: permission denied
+		
+					To fix this problem, either remove the ~/.docker/ directory (it is recreated automatically, but any custom settings are lost), or change its ownership and permissions using the following commands:
+
+						$ sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+						$ sudo chmod g+rwx "/home/$USER/.docker" -R
+		
+		Configure Docker to start on boot
+		
+			Most current Linux distributions (RHEL, CentOS, Fedora, Ubuntu 16.04 and higher) use systemd to manage which services start when the system boots. Ubuntu 14.10 and below use upstart.
+
+			systemd
+		
+				$ sudo systemctl enable docker
+		
+				To disable this behavior, use disable instead.
+
+				$ sudo systemctl disable docker
+		
+				If you need to add an HTTP Proxy, set a different directory or partition for the Docker runtime files, or make other customizations, see customize your systemd Docker daemon options.
+
+			upstart
+		
+				Docker is automatically configured to start on boot using upstart. To disable this behavior, use the following command:
+
+				$ echo manual | sudo tee /etc/init/docker.override
+		
+			chkconfig
+			
+				$ sudo chkconfig docker on
+		
+		Use a different storage engine
+		
+			For information about the different storage engines, see Storage drivers. The default storage engine and the list of supported storage engines depend on your host’s Linux distribution and available kernel drivers.
+
+		Configure where the Docker daemon listens for connections
+		
+			By default, the Docker daemon listens for connections on a UNIX socket. To enable Docker to accept requests from remote hosts, you can configure it to listen on an IP address and port as well. It still needs to listen on the UNIX socket as well, to accept requests from local clients.
+
+				Set the hosts array in the /etc/docker/daemon.json to connect to the UNIX socket and an IP address, as follows:
+
+					{
+					  "hosts": ["fd://", "tcp://0.0.0.0:2375"]
+					}
+				
+				Restart Docker. Check to see whether the value was honored, by looking for the dockerd process. If step 1 worked, the Docker daemon shows multiple -H flags:
+
+					$ sudo ps aux |grep dockerd
+
+					root     31239  0.7  0.2 1007880 72816 ?       Ssl  15:03   0:00 /usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375
+				
+					If you see multiple -H values, you are done. If you do not see multiple -H values, go to the next step.
+
+				On some Linux distributions, such as RHEL and CentOS, the hosts key in the /etc/docker/daemon.json file is overridden by the contents of the docker.service service configuration file. In this case, you need to edit this file manually.
+
+					Use the command sudo systemctl edit docker.service to open the docker.service file in a text editor.
+
+					Add or modify the following lines, substituting your own values.
+
+						[Service]
+						ExecStart=
+						ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375
+					
+						Save the file.
+
+					Reload the systemctl configuration.
+
+					  $ sudo systemctl daemon-reload
+					
+					Restart Docker.
+
+						$ sudo systemctl restart docker.service
+						
+					Check again to see if the dockerd command now listens on both the file descriptor and the network address.
+
+						$ sudo ps aux |grep dockerd
+
+						root     31239  0.7  0.2 1007880 72816 ?       Ssl  15:03   0:00 /usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375
+					
+		Enable IPv6 on the Docker daemon
+					
+			To enable IPv6 on the Docker daemon, see Enable IPv6 support.
+
+			Troubleshooting
+	
+	- Algo de Base d'un cycle
+		- Get Started, Part 1: Orientation and setup
+Estimated reading time: 4 minutes
+1: Orientation 2: Containers 3: Services 4: Swarms 5: Stacks 6: Deploy your app
+Welcome! We are excited that you want to learn Docker. The Docker Get Started Tutorial teaches you how to:
+
+Set up your Docker environment (on this page)
+Build an image and run it as one container
+Scale your app to run multiple containers
+Distribute your app across a cluster
+Stack services by adding a backend database
+Deploy your app to production
+Docker concepts
+Docker is a platform for developers and sysadmins to develop, deploy, and run applications with containers. The use of Linux containers to deploy applications is called containerization. Containers are not new, but their use for easily deploying applications is.
+
+Containerization is increasingly popular because containers are:
+
+Flexible: Even the most complex applications can be containerized.
+Lightweight: Containers leverage and share the host kernel.
+Interchangeable: You can deploy updates and upgrades on-the-fly.
+Portable: You can build locally, deploy to the cloud, and run anywhere.
+Scalable: You can increase and automatically distribute container replicas.
+Stackable: You can stack services vertically and on-the-fly.
+Containers are portable
+
+Images and containers
+A container is launched by running an image. An image is an executable package that includes everything needed to run an application–the code, a runtime, libraries, environment variables, and configuration files.
+
+A container is a runtime instance of an image–what the image becomes in memory when executed (that is, an image with state, or a user process). You can see a list of your running containers with the command, docker ps, just as you would in Linux.
+
+Containers and virtual machines
+A container runs natively on Linux and shares the kernel of the host machine with other containers. It runs a discrete process, taking no more memory than any other executable, making it lightweight.
+
+By contrast, a virtual machine (VM) runs a full-blown “guest” operating system with virtual access to host resources through a hypervisor. In general, VMs provide an environment with more resources than most applications need.
+
+Container stack example	Virtual machine stack example
+Prepare your Docker environment
+Install a maintained version of Docker Community Edition (CE) or Enterprise Edition (EE) on a supported platform.
+
+For full Kubernetes Integration
+
+Kubernetes on Docker for Mac is available in 17.12.0-ce Edge or higher.
+Kubernetes on Docker for Windows is available in 18.02.0-ce Edge or higher.
+Install Docker
+
+Test Docker version
+	Ensure that you have a supported version of Docker:
+
+		$ docker --version
+		Docker version 17.12.0-ce, build c97c6d6
+
+Run docker version(without --) or docker info to view even more details about your docker installation:
+
+	$ docker info
+	Containers: 0
+	 Running: 0
+	 Paused: 0
+	 Stopped: 0
+	Images: 0
+	Server Version: 17.12.0-ce
+	Storage Driver: overlay2
+	...
+
+Note: To avoid permission errors (and the use of sudo), add your user to the docker group. Read more.
+
+Test Docker installation
+	Test that your installation works by running the simple Docker image, hello-world:
+
+	$ docker run hello-world
+
+	Unable to find image 'hello-world:latest' locally
+	latest: Pulling from library/hello-world
+	ca4f61b1923c: Pull complete
+	Digest: sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7
+	Status: Downloaded newer image for hello-world:latest
+
+	Hello from Docker!
+	This message shows that your installation appears to be working correctly.
+	...
+
+List the hello-world image that was downloaded to your machine:
+
+	$ docker image ls
+
+List the hello-world container (spawned by the image), which exits after displaying its message. If it were still running, you would not need the --all option:
+
+	$ docker container ls --all
+	CONTAINER ID     IMAGE           COMMAND      CREATED            STATUS
+	54f4984ed6a8     hello-world     "/hello"     20 seconds ago     Exited (0) 19 seconds ago
+
+Recap and cheat sheet
+
+	## List Docker CLI commands
+	docker
+	docker container --help
+
+	## Display Docker version and info
+	docker --version
+	docker version
+	docker info
+
+	## Excecute Docker image
+	docker run hello-world
+
+	## List Docker images
+	docker image ls
+
+	## List Docker containers (running, all, all in quiet mode)
+	docker container ls
+	docker container ls --all
+	docker container ls -a -q
+
+Conclusion of part one
+
+	Containerization makes CI/CD seamless. For example:
+
+		applications have no system dependencies
+		updates can be pushed to any part of a distributed application
+		resource density can be optimized.
+	
+	With Docker, scaling your application is a matter of spinning up new executables, not running heavy VM hosts.
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,109 @@
+> XML 
+- XMLWriter
+- XMLReader
+- SimpleXML
+	- asXML() > file_put_content()
+	- xpath() > w3school
+
+	
+> DOM
+- LIBXML
+- EXPAT	
+	- DOMDocument()
+		- loadXML()
+		- getElementByTagName()
+- SimpleXML
+	- simplexml_import_dom()
+	- dom_import_simplexml()
+	- XML_ELEMENT_NODE
+	- XML_TEXT_NODE
+
+	
+> Web Services
+- WSLD descibes the service
+- (!) not SOAP, it is the protocole using WSLD
+
+	
+> SOAP
+- Requires LIBXML
+- Uses HTTP : GET, POST, PUT, DELETE
+
+
+> REST
+- != from SOAP
+- Uses HTTP : GET, POST, PUT, DELETE
+- Headers
+
+
+> Context
+- AcceptHTTP > mobile devices via AJAX
+
+
+
+> Create a Web Service
+- WSMethods
+- 
+
+
+> Consume a Web Service
+- SoapClient
+- 
+
+
+> Debugging
+- __getLastRequest
+- 
+- 
+- 
+
+
+> Error Handling
+- is_soap_fault()
+
+
+
+> JSON 
+- Format for serializatio of data between different programming languages
+- Predefined constants
+	- JSON_ERROR_NONE
+	- 
+	- 
+- Functions
+	- json_decode()
+	- json_encode()
+	- json_last_error
+	
+
+
+> Date / Time
+- date() or DateTime()
+	- Constantes
+	- Methods
+		- Static
+		- Others
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

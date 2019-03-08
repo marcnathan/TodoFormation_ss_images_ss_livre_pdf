@@ -1,0 +1,463 @@
+> Iterator
+- One object can traverse the elements of another object.
+
+
+
+// ------------------------------------------------
+http://designpatternsphp.readthedocs.io/en/latest/Behavioral/Iterator/README.html
+
+
+3.3. Iterator
+3.3.1. Purpose
+
+To make an object iterable and to make it appear like a collection of objects.
+3.3.2. Examples
+
+    to process a file line by line by just running over all lines (which have an object representation) for a file (which of course is an object, too)
+
+3.3.3. Note
+
+Standard PHP Library (SPL) defines an interface Iterator which is best suited for this! Often you would want to implement the Countable interface too, to allow count($object) on your iterable object
+3.3.4. UML Diagram
+Alt Iterator UML Diagram
+3.3.5. Code
+
+You can also find these code on GitHub
+
+Book.php
+
+<?php
+
+namespace DesignPatterns\Behavioral\Iterator;
+
+class Book
+{
+    private $author;
+
+    private $title;
+
+    public function __construct($title, $author)
+    {
+        $this->author = $author;
+        $this->title = $title;
+    }
+
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function getAuthorAndTitle()
+    {
+        return $this->getTitle().' by '.$this->getAuthor();
+    }
+}
+
+BookList.php
+
+<?php
+
+namespace DesignPatterns\Behavioral\Iterator;
+
+class BookList implements \Countable
+{
+    private $books;
+
+    public function getBook($bookNumberToGet)
+    {
+        if (isset($this->books[$bookNumberToGet])) {
+            return $this->books[$bookNumberToGet];
+        }
+    }
+
+    public function addBook(Book $book)
+    {
+        $this->books[] = $book;
+    }
+
+    public function removeBook(Book $bookToRemove)
+    {
+        foreach ($this->books as $key => $book) {
+            /** @var Book $book */
+            if ($book->getAuthorAndTitle() === $bookToRemove->getAuthorAndTitle()) {
+                unset($this->books[$key]);
+            }
+        }
+    }
+
+    public function count()
+    {
+        return count($this->books);
+    }
+}
+
+BookListIterator.php
+
+<?php
+
+namespace DesignPatterns\Behavioral\Iterator;
+
+class BookListIterator implements \Iterator
+{
+    /**
+     * @var BookList
+     */
+    private $bookList;
+
+    /**
+     * @var int
+     */
+    protected $currentBook = 0;
+
+    public function __construct(BookList $bookList)
+    {
+        $this->bookList = $bookList;
+    }
+
+    /**
+     * Return the current book.
+     *
+     * @link http://php.net/manual/en/iterator.current.php
+     *
+     * @return Book Can return any type.
+     */
+    public function current()
+    {
+        return $this->bookList->getBook($this->currentBook);
+    }
+
+    /**
+     * (PHP 5 &gt;= 5.0.0)<br/>
+     * Move forward to next element.
+     *
+     * @link http://php.net/manual/en/iterator.next.php
+     *
+     * @return void Any returned value is ignored.
+     */
+    public function next()
+    {
+        $this->currentBook++;
+    }
+
+    /**
+     * (PHP 5 &gt;= 5.0.0)<br/>
+     * Return the key of the current element.
+     *
+     * @link http://php.net/manual/en/iterator.key.php
+     *
+     * @return mixed scalar on success, or null on failure.
+     */
+    public function key()
+    {
+        return $this->currentBook;
+    }
+
+    /**
+     * (PHP 5 &gt;= 5.0.0)<br/>
+     * Checks if current position is valid.
+     *
+     * @link http://php.net/manual/en/iterator.valid.php
+     *
+     * @return bool The return value will be casted to boolean and then evaluated.
+     *              Returns true on success or false on failure.
+     */
+    public function valid()
+    {
+        return null !== $this->bookList->getBook($this->currentBook);
+    }
+
+    /**
+     * (PHP 5 &gt;= 5.0.0)<br/>
+     * Rewind the Iterator to the first element.
+     *
+     * @link http://php.net/manual/en/iterator.rewind.php
+     *
+     * @return void Any returned value is ignored.
+     */
+    public function rewind()
+    {
+        $this->currentBook = 0;
+    }
+}
+
+BookListReverseIterator.php
+
+
+// ------------------------------------------------
+
+
+Iterator Design Pattern 
+Intent
+
+    Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.
+    The C++ and Java standard library abstraction that makes it possible to decouple collection classes and algorithms.
+    Promote to "full object status" the traversal of a collection.
+    Polymorphic traversal
+
+Problem
+
+Need to "abstract" the traversal of wildly different data structures so that algorithms can be defined that are capable of interfacing with each transparently.
+Discussion
+
+"An aggregate object such as a list should give you a way to access its elements without exposing its internal structure. Moreover, you might want to traverse the list in different ways, depending on what you need to accomplish. But you probably don't want to bloat the List interface with operations for different traversals, even if you could anticipate the ones you'll require. You might also need to have more than one traversal pending on the same list." And, providing a uniform interface for traversing many types of aggregate objects (i.e. polymorphic iteration) might be valuable.
+
+The Iterator pattern lets you do all this. The key idea is to take the responsibility for access and traversal out of the aggregate object and put it into an Iterator object that defines a standard traversal protocol.
+
+The Iterator abstraction is fundamental to an emerging technology called "generic programming". This strategy seeks to explicitly separate the notion of "algorithm" from that of "data structure". The motivation is to: promote component-based development, boost productivity, and reduce configuration management.
+
+As an example, if you wanted to support four data structures (array, binary tree, linked list, and hash table) and three algorithms (sort, find, and merge), a traditional approach would require four times three permutations to develop and maintain. Whereas, a generic programming approach would only require four plus three configuration items.
+Structure
+
+The Client uses the Collection class’ public interface directly. But access to the Collection’s elements is encapsulated behind the additional level of abstraction called Iterator. Each Collection derived class knows which Iterator derived class to create and return. After that, the Client relies on the interface defined in the Iterator base class.
+
+Iterator example
+Example
+
+The Iterator provides ways to access elements of an aggregate object sequentially without exposing the underlying structure of the object. Files are aggregate objects. In office settings where access to files is made through administrative or secretarial staff, the Iterator pattern is demonstrated with the secretary acting as the Iterator. Several television comedy skits have been developed around the premise of an executive trying to understand the secretary's filing system. To the executive, the filing system is confusing and illogical, but the secretary is able to access files quickly and efficiently.
+
+On early television sets, a dial was used to change channels. When channel surfing, the viewer was required to move the dial through each channel position, regardless of whether or not that channel had reception. On modern television sets, a next and previous button are used. When the viewer selects the "next" button, the next tuned channel will be displayed. Consider watching television in a hotel room in a strange city. When surfing through channels, the channel number is not important, but the programming is. If the programming on one channel is not of interest, the viewer can request the next channel, without knowing its number.
+
+Iterator example
+Check list
+
+    Add a create_iterator() method to the "collection" class, and grant the "iterator" class privileged access.
+    Design an "iterator" class that can encapsulate traversal of the "collection" class.
+    Clients ask the collection object to create an iterator object.
+    Clients use the first(), is_done(), next(), and current_item() protocol to access the elements of the collection class.
+
+Rules of thumb
+
+    The abstract syntax tree of Interpreter is a Composite (therefore Iterator and Visitor are also applicable).
+    Iterator can traverse a Composite. Visitor can apply an operation over a Composite.
+    Polymorphic Iterators rely on Factory Methods to instantiate the appropriate Iterator subclass.
+    Memento is often used in conjunction with Iterator. An Iterator can use a Memento to capture the state of an iteration. The Iterator stores the Memento internally.
+
+
+
+Iterator in PHP
+
+In the Iterator pattern a class will be able to traverse the elements of another class.
+
+In this example, the BookList class will have stored zero to many elements of the Book class. The BookListIterator can return all of the Books in the BookList one by one and in the sequential order that the Book elements were added to the BookList.
+
+I also show a BookListReverseIterator. The BookListReverseIterator can return all of the Books in the BookList one by one and in the reverse sequential order that the Book elements were added to the BookList. This is added to show that custom iterators can be quite useful when you need to process a list in an sequence other than sequentially first to last. While this Iterator is reverse, I could have also shown an iterator that returned, for example, only odd numbered elements.
+
+Note that the Iterators shown are not "robust", and would yield unpredicatable results if the List the Iterator is processing has elements removed while the Iterator is traversing the List.
+
+<?php
+
+class Book {
+    private $author;
+    private $title;
+    function __construct($title_in, $author_in) {
+      $this->author = $author_in;
+      $this->title  = $title_in;
+    }
+    function getAuthor() {return $this->author;}
+    function getTitle() {return $this->title;}
+    function getAuthorAndTitle() {
+      return $this->getTitle() . ' by ' . $this->getAuthor();
+    }
+}
+
+class BookList {
+    private $books = array();
+    private $bookCount = 0;
+    public function __construct() {
+    }
+    public function getBookCount() {
+      return $this->bookCount;
+    }
+    private function setBookCount($newCount) {
+      $this->bookCount = $newCount;
+    }
+    public function getBook($bookNumberToGet) {
+      if ( (is_numeric($bookNumberToGet)) && 
+           ($bookNumberToGet <= $this->getBookCount())) {
+           return $this->books[$bookNumberToGet];
+         } else {
+           return NULL;
+         }
+    }
+    public function addBook(Book $book_in) {
+      $this->setBookCount($this->getBookCount() + 1);
+      $this->books[$this->getBookCount()] = $book_in;
+      return $this->getBookCount();
+    }
+    public function removeBook(Book $book_in) {
+      $counter = 0;
+      while (++$counter <= $this->getBookCount()) {
+        if ($book_in->getAuthorAndTitle() == 
+          $this->books[$counter]->getAuthorAndTitle())
+          {
+            for ($x = $counter; $x < $this->getBookCount(); $x++) {
+              $this->books[$x] = $this->books[$x + 1];
+          }
+          $this->setBookCount($this->getBookCount() - 1);
+        }
+      }
+      return $this->getBookCount();
+    }
+}
+
+class BookListIterator {
+    protected $bookList;
+    protected $currentBook = 0;
+
+    public function __construct(BookList $bookList_in) {
+      $this->bookList = $bookList_in;
+    }
+    public function getCurrentBook() {
+      if (($this->currentBook > 0) && 
+          ($this->bookList->getBookCount() >= $this->currentBook)) {
+        return $this->bookList->getBook($this->currentBook);
+      }
+    }
+    public function getNextBook() {
+      if ($this->hasNextBook()) {
+        return $this->bookList->getBook(++$this->currentBook);
+      } else {
+        return NULL;
+      }
+    }
+    public function hasNextBook() {
+      if ($this->bookList->getBookCount() > $this->currentBook) {
+        return TRUE;
+      } else {
+        return FALSE;
+      }
+    }
+}
+
+class BookListReverseIterator extends BookListIterator {
+    public function __construct(BookList $bookList_in) {
+      $this->bookList = $bookList_in;
+      $this->currentBook = $this->bookList->getBookCount() + 1;
+    }
+    public function getNextBook() {
+      if ($this->hasNextBook()) {
+        return $this->bookList->getBook(--$this->currentBook);
+      } else {
+        return NULL;
+      }
+    }
+    public function hasNextBook() {
+      if (1 < $this->currentBook) {
+        return TRUE;
+      } else {
+        return FALSE;
+      }
+    }
+}
+
+
+  writeln('BEGIN TESTING ITERATOR PATTERN');
+  writeln('');
+ 
+  $firstBook = new Book('Core PHP Programming, Third Edition', 'Atkinson and Suraski');
+  $secondBook = new Book('PHP Bible', 'Converse and Park');
+  $thirdBook = new Book('Design Patterns', 'Gamma, Helm, Johnson, and Vlissides');
+
+  $books = new BookList();
+  $books->addBook($firstBook);
+  $books->addBook($secondBook);
+  $books->addBook($thirdBook);
+ 
+  writeln('Testing the Iterator');
+ 
+  $booksIterator = new BookListIterator($books);
+
+  while ($booksIterator->hasNextBook()) {
+    $book = $booksIterator->getNextBook();
+    writeln('getting next book with iterator :');
+    writeln($book->getAuthorAndTitle());
+    writeln('');
+  }
+ 
+  $book = $booksIterator->getCurrentBook();
+  writeln('getting current book with iterator :');
+  writeln($book->getAuthorAndTitle());
+  writeln('');  
+
+  writeln('Testing the Reverse Iterator');
+
+  $booksReverseIterator = new BookListReverseIterator($books);
+
+  while ($booksReverseIterator->hasNextBook()) {
+    $book = $booksReverseIterator->getNextBook();
+    writeln('getting next book with reverse iterator :');
+    writeln($book->getAuthorAndTitle());
+    writeln('');
+  }
+ 
+  $book = $booksReverseIterator->getCurrentBook();
+  writeln('getting current book with reverse iterator :');
+  writeln($book->getAuthorAndTitle());
+  writeln('');
+
+  writeln('END TESTING ITERATOR PATTERN');
+ 
+  function writeln($line_in) {
+    echo $line_in."<br/>";
+  }
+
+?>
+
+Output
+
+BEGIN TESTING ITERATOR PATTERN
+
+Testing the Iterator
+getting next book with iterator : 
+Core PHP Programming, Third Edition by Atkinson and Suraski
+
+getting next book with iterator : 
+PHP Bible by Converse and Park
+
+getting next book with iterator : 
+Design Patterns by Gamma, Helm, Johnson, and Vlissides
+
+getting current book with iterator : 
+Design Patterns by Gamma, Helm, Johnson, and Vlissides
+
+Testing the Reverse Iterator
+getting next book with reverse iterator : 
+Design Patterns by Gamma, Helm, Johnson, and Vlissides
+
+getting next book with reverse iterator : 
+PHP Bible by Converse and Park
+
+getting next book with reverse iterator : 
+Core PHP Programming, Third Edition by Atkinson and Suraski
+
+getting current book with reverse iterator : 
+Core PHP Programming, Third Edition by Atkinson and Suraski
+
+END TESTING ITERATOR PATTERN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

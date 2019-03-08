@@ -1,0 +1,1001 @@
+> Variables, constantes et types	----------------------------------
+
+- boolean 	define(string nom_cte, valeur [, bool casse])
+
+- boolean 	defined(string nom_cte)
+
+- string 	gettype($nom_var)
+
+- boolean 	empty($nom_var)
+
+- boolean 	isset($nom_var)
+
+- array 	get_defined_constants()
+
+- boolean	settype($var, string type)
+
+- boolean	is_array($var)
+
+- boolean	is_bool($var)
+
+- boolean	is_double()
+
+- boolean	is_integer()
+
+- boolean	is_null()
+
+- boolean	is_object
+
+- boolean	is_ressource()
+
+- boolean	is_string($var)
+
+
+> Les instructions de contrôle		----------------------------------
+
+- sortie anticipée de boucle	
+	break n (n nombre boucle les plus interne que l'on souhaite.fermer)
+
+- la gestion des erreurs
+	- class exception + extention
+
+
+> Les chaînes de caractères		----------------------------------
+
+- string	addslashes(string $str)
+
+Ajoute des antislashs dans une chaine.
+
+
+- string	chunk_split(string $ch, int N, string $fin)
+
+Scinde une chaîne en introduisant la chaîne $fin tous les N caractère.
+
+
+- string	crypt(string $ch [, string $sel])
+
+Crypte la chaîne $ch à l'aide de $sel.
+
+
+- void		echo string $ch1, ..., string $chN
+
+Affichae une ou plusieurs chaînes de caractères.
+
+
+- array explode(string $sep, string $ch [, int N])
+
+Transforme une chaîne en tableau indicé d'au maximum N éléments en utilisant le caractère $sep comme critère de coupure.
+
+	
+- string	html_entity_decode(string $ch, int CTE[, string charset])
+
+Convertit toutes les entités XHTML en caractère normaux.
+
+	
+- string 	htmlentities(string string, int quote_style, string charset)
+
+Convertit tous les carctères en entités XHTML.
+
+	
+- string 	htmlspecialchars(string string, int quote_style, string charset)
+
+Convertit les caractères spéciaux en entités XHTML.
+
+
+- string 	implode(string $sep, array $tab)
+
+Réunit tous les éléments d'un tableau dans une chaîne de caractères en les séparant par le caractère $sep.
+
+
+- string 	ltrim(string $ch [, string $liste])
+
+Supprime tous les caractères d'espaces en début de chaîne ou seulement ceux qui sont listés dans $liste.
+
+
+- string 	nl2br(string $ch)
+
+Remplace les sauts de ligne \n par l'éléments XHTML <br />.
+
+
+- string 	ord(string $ch)
+
+Retourne le code ASCII du caractère $ch
+
+
+- string 	print(string $ch)
+
+Affiche une chaîne de caractères
+
+
+- string 	printf(string "format", string $ch, ... $ch)
+
+Affiche des chaînes de caractères formatées à l'aide de caractères spéciaux. 
+
+
+- string 	quotemeta(string $ch)
+
+Echappe les caractères ., \, +, *, ?, [, ], (, ), $ et ^
+
+
+- string 	rtrim(string $ch [, string $liste)
+
+Supprime tous les caractères d'espaces en fin de chaîne ou seulement ceux qui sont listés dans $liste.
+
+
+- string 	similar_text(string $ch1, string $ch2 [, $pourcent])
+
+Calcule la similarité de deux chaînes de caractères en nombre de caractères ou en pourcentage retourné dans la variable $pourcent.
+
+
+- string 	sprintf(string "format", string $ch1, string $ch2, ..., $chN)
+
+Retourne une chaîne formaté contenant les variables $ch1 à $chN.
+
+
+- string 	sscanf(string $ch, string "format" [, string $ch1, ..., $chN])
+
+Décompose une chaine selon un format donnée et retourne ses éléments dans un tableau ou dans les variables $ch1 à $chN
+
+
+- mixed 	str_ireplace(mixed search, mixed replace, mixed subject, int &count)
+
+Version insensible à la	 casse de str_replace().
+
+
+- string 	str_pad(string input, int pad_lenght, string pad_string, int pad_type)
+
+Complète une chaîne jusqu'à une taille donnée.
+
+
+- string 	str_repeat(string input, int multiplier)
+
+Répète une chaîne.
+
+
+- mixed 	str_replace(string $ch1, string $ch2, string $ch [, string $var])
+
+Remplace toutes les occurences de $ch1 par $ch2 dans une chaîne $ch. Le nombre de remplacement est contenu dans $var.	
+
+
+- string 	str_shuffle(string $ch)
+
+Mélanges aléatoirement les caractères d'une chaîne $ch.
+
+
+- array 	str_split(string $ch [, int N])
+
+Convertit une chaîne en un tableau où chaque élément contient N caractères (1 par défaut).	
+
+
+- mixed		str_word_count(string $ch)
+
+Retourne le nombre de mots présent dans une chaîne. 	
+
+
+- int 		strcasecmp(string $ch1, string $ch2)
+
+Compare les chaînes $ch1 et $ch2 (insensible à la casse).  	
+
+
+- string	strip_tags(string $ch [, string $liste])
+
+Supprime les balises XHTML et PHP c'une chaîne, sauf celles qui sont contenues dans la chaîne $liste.		  
+
+
+- int 		stripos(string haystack, string needle, int offset)
+
+Version insensible à la casse de strpos().
+
+
+- string	stripslashes(string $ch)
+
+Supprime les antisslashs d'une chaîne et retourne la chaîne nettoyée.
+
+
+- string	stristr(string $ch1, string $ch2)
+
+Version insensible à la casse de strstr().
+
+
+- int		strlen(string $ch)
+
+Retourne la taille d'une chaîne.	
+
+
+- int		strnatcasecmp(string $ch, string $ch2)
+
+Comparaison de chaîne avec l'algorithme d'ordre naturel mais insensible à la casse.
+
+
+- int		strnatcmp(string $ch, string $ch2)
+
+Comparaison de chaîne avec l'algorithme d'ordre naturel.
+
+
+- int		strncasecmp(string $ch, string $ch2, int N)
+
+Compare en binaire des chaînes de caractères.
+
+
+- int		strncmp(string $ch, string $ch2, int N)
+
+Compare en binaire les N premiers caractère.
+
+
+- array		strpbrk(string $ch, string $ch2)
+
+Recherche une chaîne de caractère dans un ensemble de caractères.	
+
+
+- int		strpos(string $ch, string $ch, int offset)
+
+Trouve la position d'un caractère dans une chaîne.
+
+
+- string	strrchr(string $ch, char needle)
+
+Trouve la dernière occurence d'un caractère dans une chaîne.
+
+
+- string	strrev(string $ch)
+
+Inverse une chaîne.
+
+
+- int		strripos(string $ch, sting $ch, int offset)
+
+Trouve la position de la dernière occurence d'une chaîne dans une autre de façon insensible à la casse.
+
+
+- int		strrpos(string $ch, string $ch, int offset)
+
+Trouve la position de la dernière occuirence d'un caractère dans une chaîne.
+
+
+- int		strspn(string $ch, string $ch2, int start, int length)
+
+Trouve le premier segment d'une chaîne.
+
+
+- string	strstr(string $ch, string $ch2)
+
+recherche la première occurence dans une chaîne $ch2 dans $ch et retourne tous les caractères de $ch2 compris à la fin de la chaîne $ch.
+
+
+- string	strtolower(string $ch)
+
+Retourne $ch en miniscules.
+
+
+- string	strtoupper(string $ch)
+
+Retourne $ch en majuscules.
+
+
+- string	strstr(string $ch, string $liste1, string $liste2)
+
+Remplace les caractère de $liste1 par ceux de $liste2 dans la chaîne $ch.
+
+
+- int 		substr_count(string $ch, string $ch2)
+
+Retourne le nombre de chaîne $ch2 dans $ch.
+
+
+- string	substr(string $ch, int ind, int N)
+
+Retourne la chaîne contenant N caractère de $ch à partir de ind. Si le paramètre N est omis, retourne la sous-chaîne comprise entre l'indice ind et la fin de $ch.
+
+
+- string	trim(string $ch [, string liste])
+
+Supprime tous les caractères d'espaces suitués en début et fin de chaîne ou seulement ceux qui sont listés dans $liste.
+
+
+- string	ucfirst(strgin $ch)
+
+Retourne $ch avec le premier caractère en majuscule.
+
+
+- string	ucword(string $ch)
+
+Retourne $ch avec la premier caractère de chaque mot en majuscule.
+
+
+- void		vprintf(string "format", array $tab)
+
+Affiche une chaîne formatée composée des eléments du tableau $tab.
+
+
+- string	vsprintf(string format, array $tab)
+
+Retourne une chaîne formatée composée des éléments du tableau $tab.
+
+
+- string	wordwrap(string $ch [, int N [, string $car [, boolean coupe]]])
+
+Réalise la césure de $ch tous les N caractères. $car contient la chaîne à insérer dans $ch tous les N caractères.
+Le paramètre booléen coupe, s'il vaut TRUE, permet d'effectuer une cesure des mots dont la longueur dépasse N caractères.
+
+
+- bool		ereg(string $modele, string $ch [, array $tab]) 
+
+Permettent de contrôler la présence d'une sous-chaine répondant au motif d'experession régulière $modele dans $ch.
+Le troisième paramètre est un tableau indicé aui contient la chaîne $ch dans l'élément d'indice 0 ainsi que les sous-chaines répondant au modele dans les éléments suivants.
+
+
+- bool		eregi(string $modele, string $ch [, array $tab])
+
+Similaire au ereg() mais insensible à la casse.
+
+
+- string	ereg_replace(string $modele, string $remp, string $ch)
+
+Retourne une chaîne avec les chaînes de $ch respectant le modele remplacées par $rem.
+
+
+- string	eregi_replace(string $modele, string $remp, string $ch)
+
+Similaire au ereg_replace() mais insensible à la casse.
+
+
+
+
+> Les tableaux				----------------------------------
+
+- 		array_change_key_case(array $tab, int cte)
+
+Modifie la casse des clés du tableau $tab.
+
+
+- 		array_chunk(array $tab, int NB [, boolean CLE])
+
+Scinde le tableau en un tableau multidimentionnel dont chaque élément est un tableau indicé contenant NB éléments de $tab.
+Le paramètre CLE indique s'il faut conserver les indices initiaux.
+
+
+- array 	array_combine(array $tabcle, array $tabval)
+
+Créer un tableau associatif dont les clés sont les éléments de $tabcle et les valeurs ceux des $tabval.
+
+
+- 		array_count_values(array $tab)
+
+Compte le nombre d'occurences de chaque valeur des éléments de $tab et retourne un tableau dont les clés sont les valeurs du tableau $tab et les valeurs le nombre d'occurences.
+
+
+- array		array_diff(array $tab1, array $tab2 [, array $tabN])
+
+Retourne un tableau qui est la différence ensembliste des tableaux $tab1 et $tab2.
+Il contient les éléments de $tab1 moins ceux qui sont communs aux deux tableaux. Vous pouvez généraliser avec N tableau.
+
+
+- array 	array_fill(integer depart, int N, divers valeur)
+
+Retourne un tableau dont tous les éléments d'indices compris entre départ et départ+N ont la valeur contenue dans la paramètre valeur.
+
+
+- array		array_filter(array $tab, string nom_function)
+
+Supprime tous les éléments de $tab pour lesquels la fonction de tri passées en deuxième paramètre retourne FALSE.
+
+
+- array		array_flip(array $tab)
+
+Retourne un tableau associatif qui a pour clés les valeurs des éléments de $tab et pour valeurs les clés de $tab.
+
+
+- array		array_intersect_assoc(array $tab1, array $tab2, [, array $tabN])
+
+Retourne un tableau associatif contenant les éléments ayant même clé et même valeur pour les tableaux $tab1, $tab2, ..., $tabN.
+
+
+- array 	array_intersect(array $tab1, array $tab2, [, array $tabN])
+
+Retourne un tableau contenant les éléments ayant même clé et même valeur pour les tableaux $tab1, $tab2, ..., $tabN.
+
+
+- bool		array_key_exists(divers cle, array $tab)
+
+Retourne TRUE si la clé (ou l'indice) de valeur cle existe dans $tab.
+
+
+- array		array_keys(array $tab [, divers val])
+
+Retourne un tableau contenant uniquement les clés de $tab.
+Si le paramètre val est précisé, le tableau retourné contient la position des clés ayant la valeur val.
+
+
+- array		array_map(string nom_function, array $tab [, array $tab2, ..., $tabN])
+
+Applique la fonction indiquée à tous les éléments des tableaux $tab, $tab2, ..., $tabN.
+
+
+- array		array_merge(array $tab1, array $tab2 [, array $tabN])
+
+Retourne un tableau rassemblant tous les éléments des tableaux $tab, ..., $tabN. Si les clés sont identiques, c'est celle du dernier tableau qui l'emporte.
+
+
+- bool 		array_multisort(array $tab1 [, cte1, cte2 [, ... [, array $tabN, cte1, cte2]]])
+
+Tri plusieurs tableaux $tab1, ..., $tabN selon les critères précisés pour chacun d'eux  par les constantes cte1 et cte2.
+Ces constantes ont pour valeurs :
+- cte1 SORT_ASC : tri en ordre croissant (par défaut) ou SORT_DESC : tri en ordre décroissant.
+- cte2 SORT_REGULAR : comparaison alphabétique ou SORT_NUMERIC : comparaison numérique ou SORT_STRING : comparaison des chaînes.
+
+
+- array 	array_pad(array $tab, int N, divers val)
+
+Retourne un tableau contenant les éléments de $tab auxquels sont ajoutés plusieurs fois la valeur val pour obtenir N éléments au total.
+Si N > 0 les éléments sont ajoutés au début sinon à la fin.
+
+
+- divers	array_pop(array $tab)
+
+Supprime le dernier élément de $tab et retourne sa valeur.		
+
+
+- int		array_push(array $tab, divers $val [, divers $valN])
+
+Ajoute les valeurs $val, ... $valN à la fin du tableau $tab et retourne la taille du tableau.
+
+
+- divers	array_rand(array $tab [, int N])
+
+Choisit N éléments au hasard dans $tab et retourne un tableau contenant les clés des éléments choisis. Si N vaut 1 la fonction retourne une chaîne contenant sa clé.
+
+
+- divers	array_reduce(array $tab, string nom_fonction [, int N])
+
+Applique la fonction précisée à l'ensemble des éléments de $tab et retourne une valeur unique calculée à partir de ces valeurs (par exemple, la somme de tous les éléments). Si le paramètre N est passé, il est inclus dans les calculs comme valeur initiale.
+
+
+- array		array_reverse(array $tab [, bool cle])
+
+Inverse l'ordre des éléments d'un tableau. Préserve les clés si le paramètre cle vaut TRUE.
+
+
+- mixed		array_shift(array $tab)
+
+Supprime le premier élément du tableau et retourne cet élément.
+
+
+- array		array_slice(array $tab, int N [, int L])
+
+Retourne un tableau contenant L éléments extraits de $tab et dont le premier a l'indice N.
+
+
+- array		array_splice(array $tab, int N [, int L [, array $tab2]])
+
+Supprime L éléments de $tab à partir de l'indice N et les remplace éventuellement par ceux du tableau $tab2.
+
+
+- mixed		array_sum(array $tab)
+
+Retourne la somme des éléments du tableau.
+
+
+- array		array_unique(array $tab)
+
+Elimine les doublons et retourne une nouveau tableau.
+
+
+- int		array_unshift(array $tab, divers, $var1 [, divers $varN])
+
+Ajoute les valeurs contenus dans les variables $var1, ..., $varN à la fin du tableau et retourne le nombre d'éléments ajoutés.
+
+
+- array	array_values(array $tab)
+
+Retourne un tableau ne contenant que les valeurs du tableau associatif $tab. Crée des indices numériques de 0 à N. 
+
+
+- bool		array_walk(array $tab, string nom_fonction)
+
+Applique la fonction indiquée à tous les éléments de ^tab. Si la fonction a plusieurs paramètres, les éléments sont passées comme premiers paramètre. Retourne TRUE si l'oprération est réussit et FALSE sinon.
+
+
+- bool		arsort(array $tab)
+
+Trie le tableau associatif $tab en ordre décroissant des valeurs et en préservant les clés. Retourne TRUE si l'opération est réussit et FALSE sinon.
+
+
+- bool		asort(array $tab [, int sort_flags])
+
+Trie le tableau associatif $tab en ordre croissant des valeurs et en préservant les clés. Retourne TRUE si l'opération est réussit et FALSE sinon.
+
+
+- array		comptact(divers $var1 [, divers $varN])
+
+Créer un tableau dont les éléments sont les valeurs des varialbes $var1, ... $varN. Ces variables peuvent être des tableaux.
+
+
+- int 		count(array $tab [, int COUNT_RECURSIVE])
+
+Retourne le nombre d'éléments de $tab. Pour obtenir le nombre d'éléments d'un tableau multidimensionnel, il faut utiliser le deuxième paramètre.
+
+
+- mixed		current(array $tab)	
+
+Retourne la valeur de l'élément pointé par le pointeur du tableau.
+
+
+- array		each(array $tab)
+
+Retourne la clé (ou l'indice) et la valeur de l'élément en cours dans un tableau à quatre élément.
+Les éléments d'indice 0 et key contiennent la clé de l'élément de $tab. Les éléments 1 et value contiennet la valeur associée.
+
+
+- divers	end(array $tab)
+
+Place le pointeur de tableau sur le dernier élément et retourne sa valeur.
+
+
+- int		extract(array $tab [, int N [, string prefixe]])
+
+Crée des variables dont les noms sont les clés de $tab et les valeurs celles de ses éléments.
+
+
+- bool		in_array(divers $val, array $tab [, bool type])	
+
+Retourne TRUE si la valeur val est présente dans le tableau $tab. Si le paramètre type vaut TRUE de la valeur recherchée et de l'élément doivent être identique.
+
+
+- divers	key(array $tab)
+
+Retourne la clé de l'élément actuellement pointé dans $tab.
+
+
+- bool		krsort(array $tab)
+
+Trie $tab selon les clés en ordre décroissant. Les associations clé/valeur sont préservées.
+
+
+- bool		ksort(array $tab)
+
+Trie $tab selon les clés en ordre croissant. Les associations clé/valeur sont préservées.
+
+
+- void		list($var1, ... , $varN)		
+
+Permet d'affecter une liste de variables avec les éléments du tableau $tab.
+
+
+- void		natcasesort(array $tab)
+
+Trie le tableau en ordre naturel sans tenir compte de la casse.
+
+
+- divers	next(array $tab)
+
+Retourne l'élément suivant de $tab ou FALSE en fin de tableau.
+
+
+- mixed		prev(array $tab)
+
+Retourne l'élément précédent de $tab ou FALSE en début de tableau.
+
+
+- array		rang(int min, int max [, int pas])
+
+Crée un tableau contenant une suite d'entiers incrémentée de une unité par défaut, en commençant à la valeur min et en finissant à max. Le paramètre éventuel ne modifie pas cet incrément.
+
+
+- mixed		reset(array $tab)
+
+Replace le pointeur de tableau sur le premier élément et retourne cette valeur.
+
+
+- bool		rsort(array $tab [, int sort_flags])
+
+Trie les élément de $tab en ordre décroissant.
+
+
+- void		shuffle(array $tab)	
+
+Mélange tous les éléments du tableau au hasard.
+
+
+- bool		sort(array $tab [, int sort_flags])
+
+Trie les éléments du tableau en ordre croissant.
+
+
+- bool		uasort(array $tab, string nom_fonction)
+
+Trie les éléments d'un tableau associatif $tab en fonction d'un critère de comparaison défini par la fonction personnalisée nom_fonction.
+Les clés sont préservées.
+
+
+- bool		uksort(array $tab, string nom_fonction)
+
+Trie les clés d'un tableau en fonction d'un critère de comparaison défini par la fonction personnalisée nom_fonction.
+
+
+- bool		usort(array $tab, string nom_fonction)
+
+Trie les éléments de $tab en fonction d'un critère de comparaison défini par la fonction personnalisée nom_fonction.
+Les clés sont préservées.
+
+
+
+
+
+> Les formulaires			----------------------------------
+
+
+	
+> Les fonctions				----------------------------------
+
+
+
+> Dates et calandriers			----------------------------------
+
+- bool 		checkdate(int mois, int jour, int annee)
+
+Vérifie la validité de la date définie à l'aide des paramètres mois, jour, année.
+
+
+- string 	date(string format, int timestamp)
+
+Retourne en claire la date composée des informations indiquées dnas la chaîne de formatage.
+
+
+- array		getdate(int timestamp)
+
+Retourne un tableau associatif contenant toute information de date correspondant au timestamp.
+
+
+- array		gettimeofday()
+
+Retourne une tableau associatif dont les clés sont sec, usec, minuteswest et dsttime correspondant respectivement au nombre de secondes et de microsecondes et au décalage horaire par rapport à l'heure GMT. L'élément de clé dsttime vaut 1 pour l'heure d'hiver et 0 en été. Les valeurs sont celles du server.
+
+
+- string	gmdate(string format, int timestamp)
+
+Identique à la fonction date() mais avec des données GMT.
+
+
+- int 		gmmtime(int heure, int minute, int seconde, int mois, int jour, int annee, int hiver)
+
+Retourne le timestamp GMT correspondant à l'instant défini par les paramètres. L'entier hiver vaut 1 pour l'heure d'hiver et 0 sinon.
+
+
+- string	Gmstrftime(string format, int timestamp)
+
+Identique à strftime() mais en heure GMT.
+
+
+- string	microtime()
+
+Retourne une chaîne composée du nombre de microseconde suivi d'une espace puis du nombre de secondes de l'instant présent.
+
+
+- int		mktime(int heure, int minute, in seconde, int mois, int jour, int annee, int hiver)
+
+Retourne le timestamp (en heure local du server) correspondant à l'instant défini par les paramètres. L'entier hiver vaut 1 pour l'heure d'hiver et 0 sinon.
+
+
+- string	Strftime(string format, int timestamp)
+
+Retourne un tableau associatif contenant toutes les inforations de date correspondant au timestamp.
+
+
+- int		time()
+
+Retourne le timestamp de l'instant en cours sur la serveur.
+
+
+
+
+> La programmation Objet		----------------------------------
+
+
+
+
+> Les images dynamiques			----------------------------------
+
+
+
+
+> Les fichiers				----------------------------------
+
+- bool		copy(string nom_init, string nom_fin)
+
+Créer une copie du fichier nom_init sous le nom nom_fin et retourne TRUE si l'opération est réussit.
+
+
+- bool		fclose(resource $id_file)
+
+Ferme le fichier identifié par $id_file.
+
+
+- bool		foef(resource $id_file)
+
+Retourne True si le pointeur atteint la fin du fichier.
+
+
+- string 	fgetc(resource $id_file)
+
+Retourne un seul caractère du fichier identifié par $id_file et pointe sur le caractère suivant.
+
+
+- array 	fgetcsv(resource $id_file, int nb, string delim)
+
+Retourne tous les éléments de la ligne en cours du fichier identifié par $id_file avec un nombre maximal de caractères.
+Les éléments du fichiers sont séparés par le caractère précisé par delim (la virgule par défaut), chacun étant un élément du tableau retourné.
+
+
+- string 	fgets(resource $id_file, int nb)
+
+Retourne toute la ligne en cours du fichier identifé par $id_file avec un nombre maximale de nb caractères.
+
+
+- string 	fgetss(resource $id_file, int long)
+
+Effectue le même opération que la fonction fgets() en éliminant de la chaîne retournée les balises HTML qui s'y trouve.
+
+
+- bool		file_exists(string nom_fichier)
+
+Retourne True si le fichier existe et False dans le cas contraire.
+
+
+- array 	file(string nom_fichier, int chemin)
+
+Retourne toutes les lignes du fichier dans les éléments d'un tableau.
+
+
+- int		fileatime(string nom_fichier)
+
+Retourne la date du dernier accès au fichier.
+
+
+_ int		filectime(string nom_fichier)
+
+Retourne la date de la dernière modification des permissions du fichier.
+
+
+- int 		filemtime(string nom_fichier)
+
+Retourne la date de la dernière modification du fichier.
+
+
+- int		filesize(string nom_fichier)
+
+Retourne la taille du fichier en octect.
+
+
+- string 	filetype(string nom_fichier)
+
+Retourne "file" si c'est un fichier et "dir" si c'est un dossier.
+
+
+- bool		flock(resource $id_file, int mode)
+
+Vérouille/dévérouille le fichier identifié par $id_file en fonction de la valeur de la constante mode.
+Le fichier doit avoir été ouvert. Les valeurs de mode sont les suivantes :
+LOCK_SH (ou 1) pour verrouiller en lecture seule par tous;
+LOCK_EX (ou 2) pour vérouiller en lecture et écriture pour tous les autres utilisateurs;
+LOCK_UN (ou 3) pour déverouiller le fichier.
+
+
+- resource	fopen(string nom_fichier, string mode, int chemin)
+
+Ouvre le fichier dont vous avez précisé le nom et le mode d'accès parmis les valeurs suivantes :
+"r" : accès en lecture seule, pointeur en début de fichier.
+"r+" : accès en lecture et écriture, pointeur en début de fichier.
+"w" : accèx en écriture seule, pointeur en début de fichier. Efface le contenu du fichier et le crée s'il n'existe pas.
+"w+" : accès en lecture et écriture, pointeur en début de fichier. Efface le contenu du fichier et le crée s'il n'existe pas.
+"a" : accès en lecture seule, pointeur en fin de fichier. Crée le fichier s'il n'existe pas.
+"a+" : accès en lecture et écriture, pointeur en fin de fichier. Crée le fichier s'il n'existe pas.
+La fonction retourne un identifiant de fichier qui est utilisé comme paramètre par un grand nombre de fonction de lecture/écriture.
+Le paramètre chemin permet d'élargir la recherche du fichier aux sous-dossier s'il vaut 1.
+
+
+- int		fpassthru(resource $id_file)
+
+Lit le fichier situé après le pointeur et envoie le contenu vers la sortie standard.
+
+
+- string	fread(resource $id_file, int nb)
+
+Lit un nombre nb de caractère dans le fichier identifié par $id_file.
+
+
+- int 		fseek(resource $id_file, int nb)
+
+Déplace le pointeur du fichier à la position nb.
+
+
+- int 		ftell(resource $id_file)
+
+Retourne la position en cours du pointeur de fichier.
+
+
+- int 		fwrite(resource $id_file, string texte, int nb)
+
+Ecrit le nombre maximale de nb caractère de la chaîne texte dans le fichier identifié.
+
+
+- bool 		is_file(string nom_fichier)
+
+Retourne True si le fichier existe et False dans le cas contraire.
+
+
+- bool 		is_readable(string nom_fichier)
+
+Retourne True si le fichier est accessible à la lecture et False dans le cas contraire.
+
+
+- bool 		is_uploaded_file(string $id_file)
+
+Retourne True si le fichier provient d'un téléchargement par la méthode Post et False dans le cas contraire.
+
+
+- bool		is_writable(string $id_file)
+
+Retourne True si le fichier est accessible en écriture et False dans le cas contraire.
+
+
+- int		readfile(string nom_file, bool chemin)
+
+Lit la totalité du fichier et l'envoie vers la sortie standard.
+
+
+- string	realpath(string nom_fichier)
+
+Retourne le chemin d'accès du fichier.
+
+
+- bool		rename(string nom_ancien, string nouveau_nom)
+
+Renomme le fichier nom_ancien en nouveau_nom et retourne True si l'opération s'est bien exécutée.
+
+
+- bool		rewind(resource $id_file)
+
+Replace le pointeur du fichier en début de fichier.
+
+
+- resource	tmpfile()
+
+Crée un fichier temporaire qui ser effacé en fin de connexion.
+
+
+- bool		touch(string nom_fichier, int nouv_date [, int ex_date])
+
+Modifie la date de dernière modification du fichier et retourne True si l'opération est réussie. Crée le fichier s'il n'existe pas encore.
+
+
+- bool		unlink(string nom_fichier)
+
+Efface le fichier dont le nom est donné.
+
+
+
+> Cookies, session, et e-mails		----------------------------------
+
+- bool		setcookie(string $nom, string $valeur, int $date, string chemin, string domaine, int securite)
+
+Ecrit le cookie nommé $nom dont le contenu est $valeur et la date d'expiration $date. Les paramètres suivants indiquent le chemin et le nom du domaine qui peut accéder au cookie et s'il doit être accessible par une connexion sécurisée (valeur 1).
+
+
+- bool		mail(string $dest, string $objet, string $text, string $entete)
+
+Envoie l'e-mail dont le destinataire, l'objet et le texte sont précisés. Les en-têtes permettent d'envoyer des e-mails au format HTML.
+
+
+- bool		session_start()
+
+Démarre une session. 
+
+
+- bool		session_destroy()
+
+Détruit la session en-cours.
+
+
+- void		session_unset()
+
+Détruit toutes les variables de session.
+
+
+- string	session_name([string $id])
+
+Sans paramètre, la fonction retourne le nom de la session. Avec un paramètre, elle définit un nouveau nom de session.
+
+
+- string	session_id([string $id])
+
+Sans paramètre, la fonction retourne l'identifiant de session. Avec un paramètre, elle définit une nouvelle valeur l'identifiant.
+
+
+- string	session_save_path([string $id])
+
+Sans paramètre, la fonction retourne le chemin d'accès au dossier qui stocke les données de la session. Avec un paramètre, elle définit un nouveau dossier de stockage.
+
+
+- void		session_write_close()
+
+Ecrit les variables de la session sur le serveur et ferme la session.
+
+
+
+	
+> Le langage SQL			----------------------------------
+
+
+
+> Accès objet à MySQL			----------------------------------
+
+
+
+> PDO et MySQL				----------------------------------
+
+
+
+> LA base SQLite			----------------------------------
+	
+
+
+> PHP et SimpleXML			----------------------------------
+
+- objet		simplexml_import_dom(nodedom node)
+
+Crée un objet simplexml_element à partir d'un objet DOM.
+
+
+- objet		simplexml_load_file(string nom_fichier)
+
+Transfère le contenu d'un fichier XML dans un objet de type simplexml_element.
+
+
+- objet		simplexml_load_string(string chaine_xml)
+
+Transfère un contenu XML d'une chaine de caractère dans un objet de type simplexml_element.
+
+
+- string	asxml([string nom_fichier])
+
+Transfert le contenu d'un objet de type simplexml_element dans une chaîne. Si vous fournissez un paramètre, la méthode enrengistre le fichier sur le server.
+
+
+- objet		attributes()
+
+Retourne un objet dont les propriétés sont les attributs de l'objet simplexml_element auquel vous appliquez la méthode.
+
+
+- object	children()
+
+Retourne un objet dont les propriétés sont les éléments enfants de l'élément auquel vous appliquez la méthode.
+
+
+- array		xpath(string requete_path)
+
+Effectue une requête XPath sur les données de l'objet auquel vous appliquez la méthode.
+
+
+
+> Le framework PEAR			----------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

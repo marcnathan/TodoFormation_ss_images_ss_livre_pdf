@@ -1,0 +1,143 @@
+> Fluent Interface
+- 
+
+
+
+// ------------------------------------------------
+http://designpatternsphp.readthedocs.io/en/latest/Structural/FluentInterface/README.html
+
+
+2.8. Fluent Interface
+2.8.1. Purpose
+
+To write code that is easy readable just like sentences in a natural language (like English).
+2.8.2. Examples
+
+    Doctrine2’s QueryBuilder works something like that example class below
+    PHPUnit uses fluent interfaces to build mock objects
+    Yii Framework: CDbCommand and CActiveRecord use this pattern, too
+
+2.8.3. UML Diagram
+Alt FluentInterface UML Diagram
+2.8.4. Code
+
+You can also find these code on GitHub
+
+Sql.php
+
+<?php
+
+namespace DesignPatterns\Structural\FluentInterface;
+
+/**
+ * class SQL.
+ */
+class Sql
+{
+    /**
+     * @var array
+     */
+    protected $fields = array();
+
+    /**
+     * @var array
+     */
+    protected $from = array();
+
+    /**
+     * @var array
+     */
+    protected $where = array();
+
+    /**
+     * adds select fields.
+     *
+     * @param array $fields
+     *
+     * @return SQL
+     */
+    public function select(array $fields = array())
+    {
+        $this->fields = $fields;
+
+        return $this;
+    }
+
+    /**
+     * adds a FROM clause.
+     *
+     * @param string $table
+     * @param string $alias
+     *
+     * @return SQL
+     */
+    public function from($table, $alias)
+    {
+        $this->from[] = $table.' AS '.$alias;
+
+        return $this;
+    }
+
+    /**
+     * adds a WHERE condition.
+     *
+     * @param string $condition
+     *
+     * @return SQL
+     */
+    public function where($condition)
+    {
+        $this->where[] = $condition;
+
+        return $this;
+    }
+
+    /**
+     * Gets the query, just an example of building a query,
+     * no check on consistency.
+     *
+     * @return string
+     */
+    public function getQuery()
+    {
+        return 'SELECT '.implode(',', $this->fields)
+                .' FROM '.implode(',', $this->from)
+                .' WHERE '.implode(' AND ', $this->where);
+    }
+}
+
+2.8.5. Test
+
+Tests/FluentInterfaceTest.php
+
+<?php
+
+namespace DesignPatterns\Structural\FluentInterface\Tests;
+
+use DesignPatterns\Structural\FluentInterface\Sql;
+
+/**
+ * FluentInterfaceTest tests the fluent interface SQL.
+ */
+class FluentInterfaceTest extends \PHPUnit_Framework_TestCase
+{
+    public function testBuildSQL()
+    {
+        $instance = new Sql();
+        $query = $instance->select(array('foo', 'bar'))
+                ->from('foobar', 'f')
+                ->where('f.bar = ?')
+                ->getQuery();
+
+        $this->assertEquals('SELECT foo,bar FROM foobar AS f WHERE f.bar = ?', $query);
+    }
+}
+
+
+
+// ------------------------------------------------
+
+
+
+
+

@@ -1,0 +1,1328 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+
+
+> HTML (code header, canevas, ...) https://www.w3schools.com/html/
+	- HTML5 Tutorial
+		- HTML HOME
+		- HTML Introduction
+		- HTML Editors
+		- HTML Basic
+		- HTML Elements
+		- HTML Attributes
+		- HTML Headings
+
+			<!DOCTYPE html>
+			<html lang="en-US">
+			<html>
+
+			<head>
+			  <title>My First HTML</title>
+			  <meta charset="UTF-8">
+			  <meta name="keywords" content="HTML, CSS, XML, XHTML, JavaScript">
+			  <meta name="description" content="Free Web tutorials on HTML and CSS">
+			  <meta name="author" content="Hege Refsnes">
+			  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+			  
+			  <link rel="stylesheet" href="styles.css">
+			  
+			  <script src="myscript.js">
+			  
+			  <script>
+			  document.getElementById("demo").innerHTML = "Hello JavaScript!";
+			  </script>
+			  <noscript>Sorry, your browser does not support JavaScript!</noscript>
+			  
+			  <!-- 
+			  This is a long comment example. This is a long comment example.
+			  This is a long comment example. This is a long comment example.
+			  -->
+			  <!--[if IE 9]>
+				.... some HTML here ....
+			  <![endif]-->
+			
+			</head>
+
+			<body>
+
+			<h1>My First Heading</h1>
+
+			<p>My first paragraph.</p>
+
+			</body>
+			</html>
+			
+		- HTML Paragraphs
+		- HTML Styles
+		- HTML Formatting
+
+			<b>		Defines bold text
+			<em>	Defines emphasized text 
+			<i>		Defines italic text
+			<small>	Defines smaller text
+			<strong>Defines important text
+			<sub>	Defines subscripted text
+			<sup>	Defines superscripted text
+			<ins>	Defines inserted text
+			<del>	Defines deleted text
+			<mark>	Defines marked/highlighted text
+			
+		- HTML Quotations
+		- HTML Comments
+		- HTML Colors
+		- HTML CSS
+		- HTML Links
+		- HTML Images
+		- HTML Tables
+		- HTML Lists
+		- HTML Blocks
+		- HTML Classes
+		- HTML Iframes
+		- HTML JavaScript
+		- HTML File Paths
+		- HTML Head
+		- HTML Layout
+
+			New Semantic/Structural Elements
+			HTML5 offers new elements for better document structure:
+
+			Tag	Description
+			<article>	Defines an article in a document
+			<aside>	Defines content aside from the page content
+			<bdi>	Isolates a part of text that might be formatted in a different direction from other text outside it
+			<details>	Defines additional details that the user can view or hide
+			<dialog>	Defines a dialog box or window
+			<figcaption>	Defines a caption for a <figure> element
+			<figure>	Defines self-contained content
+			<footer>	Defines a footer for a document or section
+			<header>	Defines a header for a document or section
+			<main>	Defines the main content of a document
+			<mark>	Defines marked/highlighted text
+			<menuitem> 	Defines a command/menu item that the user can invoke from a popup menu
+			<meter>	Defines a scalar measurement within a known range (a gauge)
+			<nav>	Defines navigation links
+			<progress>	Represents the progress of a task
+			<rp>	Defines what to show in browsers that do not support ruby annotations
+			<rt>	Defines an explanation/pronunciation of characters (for East Asian typography)
+			<ruby>	Defines a ruby annotation (for East Asian typography)
+			<section>	Defines a section in a document
+			<summary>	Defines a visible heading for a <details> element
+			<time>	Defines a date/time
+			<wbr>	Defines a possible line-break
+			
+		- HTML Responsive
+		- HTML Computercode
+		- HTML Entities
+		- HTML Symbols
+		- HTML Charset
+		- HTML URL Encode
+		- HTML XHTML
+
+		- HTML Forms
+
+			Here is the list of <form> attributes:
+
+			Attribute		Description
+			accept-charset	Specifies the charset used in the submitted form (default: the page charset).
+			action			Specifies an address (url) where to submit the form (default: the submitting page).
+			autocomplete	Specifies if the browser should autocomplete the form (default: on).
+			enctype			Specifies the encoding of the submitted data (default: is url-encoded).
+			method			Specifies the HTTP method used when submitting the form (default: GET).
+			name			Specifies a name used to identify the form (for DOM usage: document.forms.name).
+			novalidate		Specifies that the browser should not validate the form.
+			target			Specifies the target of the address in the action attribute (default: _self).
+			
+		- HTML 	Form Elements
+
+			HTML Form Elements
+			*= new in HTML5.
+
+			Tag	Description
+			<form>		Defines an HTML form for user input
+			<input>		Defines an input control
+			<textarea>	Defines a multiline input control (text area)
+			<label>		Defines a label for an <input> element
+			<fieldset>	Groups related elements in a form
+			<legend>	Defines a caption for a <fieldset> element
+			<select>	Defines a drop-down list
+			<optgroup>	Defines a group of related options in a drop-down list
+			<option>	Defines an option in a drop-down list
+			<button>	Defines a clickable button
+			<datalist>	*Specifies a list of pre-defined options for input controls
+			<output>	*Defines the result of a calculation
+			
+			<form action="/action_page.php">
+			  <input list="browsers">
+			  <datalist id="browsers">
+				<option value="Internet Explorer">
+				<option value="Firefox">
+				<option value="Chrome">
+				<option value="Opera">
+				<option value="Safari">
+			  </datalist> 
+			</form>
+			
+		- HTML Input Types
+
+			HTML5 added several new input types:
+
+			color
+			date
+			datetime
+			datetime-local
+			email
+			month
+			number
+			range
+			search
+			tel
+			time
+			url
+			week
+			
+			Input Restrictions
+			Here is a list of some common input restrictions (some are new in HTML5):
+
+			Attribute	Description
+			disabled	Specifies that an input field should be disabled
+			max			Specifies the maximum value for an input field
+			maxlength	Specifies the maximum number of character for an input field
+			min			Specifies the minimum value for an input field
+			pattern		Specifies a regular expression to check the input value against
+			readonly	Specifies that an input field is read only (cannot be changed)
+			required	Specifies that an input field is required (must be filled out)
+			size		Specifies the width (in characters) of an input field
+			step		Specifies the legal number intervals for an input field
+			value		Specifies the default value for an input field
+			
+		- HTML Input Attributes
+
+			HTML5 added the following attributes for <input>:
+
+			autocomplete
+			autofocus
+			form
+			formaction
+			formenctype
+			formmethod
+			formnovalidate
+			formtarget
+			height and width
+			list
+			min and max
+			multiple
+			pattern (regexp)
+			placeholder
+			required
+			step
+			and the following attributes for <form>:
+
+			autocomplete
+			novalidate
+
+		- HTML5 Intro
+		- HTML5 Support
+			
+			Problem With Internet Explorer 8
+				
+				Syntax For HTML5Shiv
+				The HTML5Shiv is placed within the <head> tag.
+				The HTML5Shiv is a javascript file that is referenced in a <script> tag.
+				You should use the HTML5Shiv when you are using the new HTML5 elements such as: <article>, <section>, <aside>, <nav>, <footer>.
+				You can download the latest version of HTML5shiv from github (https://github.com/aFarkas/html5shiv) or reference the CDN version at https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js
+				
+				<head>
+				  <!--[if lt IE 9]>
+					<script src="/js/html5shiv.js"></script>
+				  <![endif]-->
+				</head>
+			
+		- HTML5 New Elements
+		- HTML5 Semantics
+		- HTML5 Migration
+		- HTML5 Style Guide
+
+		- HTML Canvas
+			
+			is used to draw graphics on a web page.
+			
+			<canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;">
+			</canvas>
+			
+			Draw a Line
+			<script>
+			var c = document.getElementById("myCanvas");
+			var ctx = c.getContext("2d");
+			ctx.moveTo(0,0);
+			ctx.lineTo(200,100);
+			ctx.stroke();
+			</script>
+			
+			Draw a Circle
+			<script>
+			var c = document.getElementById("myCanvas");
+			var ctx = c.getContext("2d");
+			ctx.beginPath();
+			ctx.arc(95,50,40,0,2*Math.PI);
+			ctx.stroke();
+			</script>
+			
+			Draw a Text
+			<script>
+			var c = document.getElementById("myCanvas");
+			var ctx = c.getContext("2d");
+			ctx.font = "30px Arial";
+			ctx.fillText("Hello World",10,50);
+			</script>
+			
+			Stroke Text
+			<script>
+			var c = document.getElementById("myCanvas");
+			var ctx = c.getContext("2d");
+			ctx.font = "30px Arial";
+			ctx.strokeText("Hello World",10,50);
+			</script>
+			
+			Draw Linear Gradient
+			<script>
+			var c = document.getElementById("myCanvas");
+			var ctx = c.getContext("2d");
+
+			// Create gradient
+			var grd = ctx.createLinearGradient(0,0,200,0);
+			grd.addColorStop(0,"red");
+			grd.addColorStop(1,"white");
+
+			// Fill with gradient
+			ctx.fillStyle = grd;
+			ctx.fillRect(10,10,150,80);
+			</script>
+			
+			Draw Circular Gradient
+			<script>
+			var c = document.getElementById("myCanvas");
+			var ctx = c.getContext("2d");
+
+			// Create gradient
+			var grd = ctx.createRadialGradient(75,50,5,90,60,100);
+			grd.addColorStop(0,"red");
+			grd.addColorStop(1,"white");
+
+			// Fill with gradient
+			ctx.fillStyle = grd;
+			ctx.fillRect(10,10,150,80);
+			</script>
+			
+			Draw Image
+			<script>
+			var c = document.getElementById("myCanvas");
+			var ctx = c.getContext("2d");
+			var img = document.getElementById("scream");
+			ctx.drawImage(img,10,10);
+			</script>
+			
+			
+			>>>>>>> https://www.w3schools.com/graphics/canvas_intro.asp
+			
+			
+		- HTML SVG
+			
+			Differences Between SVG and Canvas
+			SVG is a language for describing 2D graphics in XML.
+
+			Canvas draws 2D graphics, on the fly (with a JavaScript).
+
+			SVG is XML based, which means that every element is available within the SVG DOM. You can attach JavaScript event handlers for an element.
+
+			In SVG, each drawn shape is remembered as an object. If attributes of an SVG object are changed, the browser can automatically re-render the shape.
+
+			Canvas is rendered pixel by pixel. In canvas, once the graphic is drawn, it is forgotten by the browser. If its position should be changed, the entire scene needs to be redrawn, including any objects that might have been covered by the graphic.
+
+			Comparison of Canvas and SVG
+			The table below shows some important differences between Canvas and SVG:
+
+			Canvas												SVG
+			Resolution dependent								Resolution independent
+			No support for event handlers						Support for event handlers
+			Poor text rendering capabilities					Best suited for applications with large rendering areas (Google Maps)
+			You can save the resulting image as .png or .jpg	Slow rendering if complex (anything that uses the DOM a lot will be slow)
+			Well suited for graphic-intensive games				Not suited for game applications
+			
+			
+			<svg height="130" width="500">
+			  <defs>
+				<linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+				  <stop offset="0%" style="stop-color:rgb(255,255,0);stop-opacity:1" />
+				  <stop offset="100%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+				</linearGradient>
+			  </defs>
+			  <ellipse cx="100" cy="70" rx="85" ry="55" fill="url(#grad1)" />
+			  <text fill="#ffffff" font-size="45" font-family="Verdana" x="50" y="86">SVG</text>
+			  Sorry, your browser does not support inline SVG.
+			</svg>
+			
+			
+			>>>>>>> https://www.w3schools.com/graphics/svg_intro.asp
+			
+			
+		- HTML Google Maps
+			
+			<div id="map" style="width:400px;height:400px">
+			
+			<script>
+			function myMap() {
+				var mapOptions = {
+					center: new google.maps.LatLng(51.5, -0.12),
+					zoom: 10,
+					mapTypeId: google.maps.MapTypeId.HYBRID
+				}
+			var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+			}
+			</script>
+			
+			Example Explained
+			The mapOptions variable defines the properties for the map.
+
+			The center property specifies where to center the map (using latitude and longitude coordinates).
+
+			The zoom property specifies the zoom level for the map (try to experiment with the zoom level).
+
+			The mapTypeId property specifies the map type to display. The following map types are supported: ROADMAP, SATELLITE, HYBRID, and TERRAIN.
+
+			The line: var map=new google.maps.Map(document.getElementById("map"), mapOptions); creates a new map inside the <div> element with id="map", using the parameters that are passed (mapOptions).
+
+			<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+			
+		- HTML Media
+		- HTML Video
+			
+			Common Video Formats
+			Format		File	Description
+			MPEG		.mpg	MPEG. Developed by the Moving Pictures Expert Group. The first popular video format on the web. Used to be supported by all browsers, but it is not supported in HTML5 (See MP4).
+						.mpeg	
+			AVI			.avi	AVI (Audio Video Interleave). Developed by Microsoft. Commonly used in video cameras and TV hardware. Plays well on Windows computers, but not in web browsers.
+			WMV			.wmv	WMV (Windows Media Video). Developed by Microsoft. Commonly used in video cameras and TV hardware. Plays well on Windows computers, but not in web browsers.
+			QuickTime	.mov	QuickTime. Developed by Apple. Commonly used in video cameras and TV hardware. Plays well on Apple computers, but not in web browsers. (See MP4)
+			RealVideo	.rm		RealVideo. Developed by Real Media to allow video streaming with low bandwidths. It is still used for online video and Internet TV, but does not play in web browsers.
+						.ram	
+			Flash		.swf	Flash. Developed by Macromedia. Often requires an extra component (plug-in) to play in web browsers.
+						.flv	
+			Ogg			.ogg	Theora Ogg. Developed by the Xiph.Org Foundation. Supported by HTML5.
+			WebM		.webm	WebM. Developed by the web giants, Mozilla, Opera, Adobe, and Google. Supported by HTML5.
+			MPEG-4		.mp4	MP4. Developed by the Moving Pictures Expert Group. Based on QuickTime. Commonly used in newer video cameras and TV hardware. Supported by all HTML5 browsers. Recommended by YouTube. 
+			or MP4	
+				
+			<video width="320" height="240" controls>
+			  <source src="movie.mp4" type="video/mp4">
+			  <source src="movie.ogg" type="video/ogg">
+			Your browser does not support the video tag.
+			</video>
+			
+		- HTML Audio
+			
+			Audio Formats
+			Format		File	Description
+			MIDI		.mid	MIDI (Musical Instrument Digital Interface). Main format for all electronic music devices like synthesizers and PC sound cards. 
+						.midi	MIDI files do not contain sound, but digital notes that can be played by electronics. Plays well on all computers and music hardware, but not in web browsers.	
+			RealAudio	.rm		RealAudio. Developed by Real Media to allow streaming of audio with low bandwidths. Does not play in web browsers.
+						.ram	
+			WMA			.wma	WMA (Windows Media Audio). Developed by Microsoft. Commonly used in music players. Plays well on Windows computers, but not in web browsers.
+			AAC			.aac	AAC (Advanced Audio Coding). Developed by Apple as the default format for iTunes. Plays well on Apple computers, but not in web browsers.
+			WAV			.wav	WAV. Developed by IBM and Microsoft. Plays well on Windows, Macintosh, and Linux operating systems. Supported by HTML5.
+			Ogg			.ogg	Ogg. Developed by the Xiph.Org Foundation. Supported by HTML5.
+			MP3			.mp3	MP3 files are actually the sound part of MPEG files. MP3 is the most popular format for music players. Combines good compression (small files) with high quality. Supported by all browsers.
+			MP4			.mp4	MP4 is a video format, but can also be used for audio. MP4 video is the upcoming video format on the internet. This leads to automatic support for MP4 audio by all browsers.
+			
+			<audio controls>
+			  <source src="horse.ogg" type="audio/ogg">
+			  <source src="horse.mp3" type="audio/mpeg">
+			Your browser does not support the audio element.
+			</audio>
+			
+		- HTML Plug-ins
+			
+			The purpose of a plug-in is to extend the functionality of a web browser.
+			
+			HTML Helpers (Plug-ins)
+				Helper applications (plug-ins) are computer programs that extend the standard functionality of a web browser.
+
+				Examples of well-known plug-ins are Java applets.
+
+				Plug-ins can be added to web pages with the <object> tag or the <embed> tag. 
+
+				Plug-ins can be used for many purposes: display maps, scan for viruses, verify your bank id, etc.
+			
+			The <object> Element
+				The <object> element is supported by all browsers.
+
+				The <object> element defines an embedded object within an HTML document.
+
+				It is used to embed plug-ins (like Java applets, PDF readers, Flash Players) in web pages.
+				
+				The <object> element can also be used to include HTML in HTML.
+				
+				Or images if you like.
+				
+			The <embed> Element
+				The <embed> element is supported in all major browsers.
+
+				The <embed> element also defines an embedded object within an HTML document.
+
+				Web browsers have supported the <embed> element for a long time. However, it has not been a part of the HTML specification before HTML5.
+				
+				The <embed> element can also be used to include HTML in HTML.
+				
+				Or images if you like.
+			
+		- HTML YouTube
+			
+			>>>>>>> https://www.w3schools.com/html/html_youtube.asp
+			
+		- HTML APIs
+		- HTML Geolocation
+			
+			Using HTML Geolocation
+			
+				The getCurrentPosition() method is used to return the user's position.
+
+				The example below returns the latitude and longitude of the user's position:
+				
+				<script>
+				var x = document.getElementById("demo");
+				function getLocation() {
+					if (navigator.geolocation) {
+						navigator.geolocation.getCurrentPosition(showPosition);
+					} else {
+						x.innerHTML = "Geolocation is not supported by this browser.";
+					}
+				}
+				function showPosition(position) {
+					x.innerHTML = "Latitude: " + position.coords.latitude + 
+					"<br>Longitude: " + position.coords.longitude; 
+				}
+				</script>
+				
+				Example explained:
+				- Check if Geolocation is supported
+				- If supported, run the getCurrentPosition() method. If not, display a message to the user
+				- If the getCurrentPosition() method is successful, it returns a coordinates object to the function specified in the parameter (showPosition)
+				- The showPosition() function outputs the Latitude and Longitude
+				The example above is a very basic Geolocation script, with no error handling.
+			
+			Handling Errors and Rejections
+			
+				The second parameter of the getCurrentPosition() method is used to handle errors. It specifies a function to run if it fails to get the user's location:
+				
+				function showError(error) {
+					switch(error.code) {
+						case error.PERMISSION_DENIED:
+							x.innerHTML = "User denied the request for Geolocation."
+							break;
+						case error.POSITION_UNAVAILABLE:
+							x.innerHTML = "Location information is unavailable."
+							break;
+						case error.TIMEOUT:
+							x.innerHTML = "The request to get user location timed out."
+							break;
+						case error.UNKNOWN_ERROR:
+							x.innerHTML = "An unknown error occurred."
+							break;
+					}
+				}
+			
+			Displaying the Result in a Map
+			
+				To display the result in a map, you need access to a map service, like Google Maps.
+
+				In the example below, the returned latitude and longitude is used to show the location in a Google Map (using a static image):
+				
+				function showPosition(position) {
+					var latlon = position.coords.latitude + "," + position.coords.longitude;
+
+					var img_url = "https://maps.googleapis.com/maps/api/staticmap?center=
+					"+latlon+"&zoom=14&size=400x300&sensor=false&key=YOUR_:KEY";
+
+					document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
+				}
+			
+			Location-specific Information
+			
+				This page has demonstrated how to show a user's position on a map.
+
+				Geolocation is also very useful for location-specific information, like:
+
+				Up-to-date local information
+				Showing Points-of-interest near the user
+				Turn-by-turn navigation (GPS)
+				
+			The getCurrentPosition() Method - Return Data
+			
+				The getCurrentPosition() method returns an object on success. The latitude, longitude and accuracy properties are always returned. The other properties are returned if available:
+
+				Property	Returns
+				coords.latitude	The latitude as a decimal number (always returned)
+				coords.longitude	The longitude as a decimal number (always returned)
+				coords.accuracy	The accuracy of position (always returned)
+				coords.altitude	The altitude in meters above the mean sea level (returned if available)
+				coords.altitudeAccuracy	The altitude accuracy of position (returned if available)
+				coords.heading	The heading as degrees clockwise from North (returned if available)
+				coords.speed	The speed in meters per second (returned if available)
+				timestamp	The date/time of the response (returned if available)
+			
+			Geolocation Object - Other interesting Methods
+			
+				The Geolocation object also has other interesting methods:
+
+				watchPosition() - Returns the current position of the user and continues to return updated position as the user moves (like the GPS in a car).
+				clearWatch() - Stops the watchPosition() method.
+				The example below shows the watchPosition() method. You need an accurate GPS device to test this (like iPhone):
+				
+				<script>
+				var x = document.getElementById("demo");
+				function getLocation() {
+					if (navigator.geolocation) {
+						navigator.geolocation.watchPosition(showPosition);
+					} else {
+						x.innerHTML = "Geolocation is not supported by this browser.";
+					}
+				}
+				function showPosition(position) {
+					x.innerHTML = "Latitude: " + position.coords.latitude + 
+					"<br>Longitude: " + position.coords.longitude; 
+				}
+				</script>
+			
+		- HTML Drag/Drop
+			
+			HTML Drag and Drop Example
+			
+				<!DOCTYPE HTML>
+				<html>
+				<head>
+				<script>
+				function allowDrop(ev) {
+					ev.preventDefault();
+				}
+
+				function drag(ev) {
+					ev.dataTransfer.setData("text", ev.target.id);
+				}
+
+				function drop(ev) {
+					ev.preventDefault();
+					var data = ev.dataTransfer.getData("text");
+					ev.target.appendChild(document.getElementById(data));
+				}
+				</script>
+				</head>
+				<body>
+
+				<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+				<img id="drag1" src="img_logo.gif" draggable="true"
+				ondragstart="drag(event)" width="336" height="69">
+
+				</body>
+				</html>
+			
+			Make an Element Draggable
+			
+				<img draggable="true">
+			
+			What to Drag - ondragstart and setData()
+			
+				Then, specify what should happen when the element is dragged.
+
+				In the example above, the ondragstart attribute calls a function, drag(event), that specifies what data to be dragged.
+
+				The dataTransfer.setData() method sets the data type and the value of the dragged data:
+
+				function drag(ev) {
+					ev.dataTransfer.setData("text", ev.target.id);
+				}
+				In this case, the data type is "text" and the value is the id of the draggable element ("drag1").
+			
+			Where to Drop - ondragover
+			
+				The ondragover event specifies where the dragged data can be dropped.
+
+				By default, data/elements cannot be dropped in other elements. To allow a drop, we must prevent the default handling of the element.
+
+				This is done by calling the event.preventDefault() method for the ondragover event:
+
+				event.preventDefault()
+			
+			Do the Drop - ondrop
+			
+				When the dragged data is dropped, a drop event occurs.
+
+				In the example above, the ondrop attribute calls a function, drop(event):
+
+				function drop(ev) {
+					ev.preventDefault();
+					var data = ev.dataTransfer.getData("text");
+					ev.target.appendChild(document.getElementById(data));
+				}
+				Code explained:
+
+				Call preventDefault() to prevent the browser default handling of the data (default is open as link on drop)
+				Get the dragged data with the dataTransfer.getData() method. This method will return any data that was set to the same type in the setData() method
+				The dragged data is the id of the dragged element ("drag1")
+				Append the dragged element into the drop element
+				
+				
+		- HTML Web Storage
+			
+			What is HTML Web Storage?
+			
+				With web storage, web applications can store data locally within the user's browser.
+
+				Before HTML5, application data had to be stored in cookies, included in every server request. Web storage is more secure, and large amounts of data can be stored locally, without affecting website performance.
+
+				Unlike cookies, the storage limit is far larger (at least 5MB) and information is never transferred to the server.
+
+				Web storage is per origin (per domain and protocol). All pages, from one origin, can store and access the same data.
+				
+			HTML Web Storage Objects
+				
+				HTML web storage provides two objects for storing data on the client:
+
+					window.localStorage - stores data with no expiration date
+					window.sessionStorage - stores data for one session (data is lost when the browser tab is closed)
+					
+				Before using web storage, check browser support for localStorage and sessionStorage:
+
+				if (typeof(Storage) !== "undefined") {
+					// Code for localStorage/sessionStorage.
+				} else {
+					// Sorry! No Web Storage support..
+				}
+				
+			The localStorage Object
+				
+				The localStorage object stores the data with no expiration date. The data will not be deleted when the browser is closed, and will be available the next day, week, or year.
+				
+				// Store
+				localStorage.setItem("lastname", "Smith");
+				// Retrieve
+				document.getElementById("result").innerHTML = localStorage.getItem("lastname");
+			
+				Example explained:
+
+					- Create a localStorage name/value pair with name="lastname" and value="Smith"
+					- Retrieve the value of "lastname" and insert it into the element with id="result"
+					
+				The example above could also be written like this:
+
+					// Store
+					localStorage.lastname = "Smith";
+					// Retrieve
+					document.getElementById("result").innerHTML = localStorage.lastname;
+					
+				The syntax for removing the "lastname" localStorage item is as follows:
+
+					localStorage.removeItem("lastname");
+					
+				Note: Name/value pairs are always stored as strings. Remember to convert them to another format when needed!
+
+				The following example counts the number of times a user has clicked a button. In this code the value string is converted to a number to be able to increase the counter:
+				
+					if (localStorage.clickcount) {
+						localStorage.clickcount = Number(localStorage.clickcount) + 1;
+					} else {
+						localStorage.clickcount = 1;
+					}
+					document.getElementById("result").innerHTML = "You have clicked the button " +
+					localStorage.clickcount + " time(s).";
+				
+				The sessionStorage Object
+				
+					if (sessionStorage.clickcount) {
+						sessionStorage.clickcount = Number(sessionStorage.clickcount) + 1;
+					} else {
+						sessionStorage.clickcount = 1;
+					}
+					document.getElementById("result").innerHTML = "You have clicked the button " +
+					sessionStorage.clickcount + " time(s) in this session.";
+				
+				
+		- HTML Web Workers
+			
+			Check Web Worker Support
+				
+				if (typeof(Worker) !== "undefined") {
+					// Yes! Web worker support!
+					// Some code.....
+				} else {
+					// Sorry! No Web Worker support..
+				}
+			
+			Create a Web Worker File
+			
+				Now, let's create our web worker in an external JavaScript.
+
+				Here, we create a script that counts. The script is stored in the "demo_workers.js" file:
+
+				var i = 0;
+
+				function timedCount() {
+					i = i + 1;
+					postMessage(i);
+					setTimeout("timedCount()",500);
+				}
+
+				timedCount();
+				
+				The important part of the code above is the postMessage() method - which is used to post a message back to the HTML page.
+
+				Note: Normally web workers are not used for such simple scripts, but for more CPU intensive tasks.
+				
+			Create a Web Worker Object
+			
+				Now that we have the web worker file, we need to call it from an HTML page.
+
+				The following lines checks if the worker already exists, if not - it creates a new web worker object and runs the code in "demo_workers.js":
+
+					if (typeof(w) == "undefined") {
+						w = new Worker("demo_workers.js");
+					}
+				Then we can send and receive messages from the web worker.
+
+				Add an "onmessage" event listener to the web worker.
+
+					w.onmessage = function(event){
+						document.getElementById("result").innerHTML = event.data;
+					};
+				When the web worker posts a message, the code within the event listener is executed. The data from the web worker is stored in event.data.
+
+			Terminate a Web Worker
+			
+				When a web worker object is created, it will continue to listen for messages (even after the external script is finished) until it is terminated.
+
+				To terminate a web worker, and free browser/computer resources, use the terminate() method:
+
+				w.terminate();
+			
+			Reuse the Web Worker
+				
+				If you set the worker variable to undefined, after it has been terminated, you can reuse the code:
+
+				w = undefined;
+				
+			Full Web Worker Example Code
+				
+				We have already seen the Worker code in the .js file. Below is the code for the HTML page:
+
+				<!DOCTYPE html>
+				<html>
+				<body>
+
+				<p>Count numbers: <output id="result"></output></p>
+				<button onclick="startWorker()">Start Worker</button> 
+				<button onclick="stopWorker()">Stop Worker</button>
+
+				<script>
+				var w;
+
+				function startWorker() {
+					if(typeof(Worker) !== "undefined") {
+						if(typeof(w) == "undefined") {
+							w = new Worker("demo_workers.js");
+						}
+						w.onmessage = function(event) {
+							document.getElementById("result").innerHTML = event.data;
+						};
+					} else {
+						document.getElementById("result").innerHTML = "Sorry! No Web Worker support.";
+					}
+				}
+
+				function stopWorker() { 
+					w.terminate();
+					w = undefined;
+				}
+				</script>
+
+				</body>
+				</html>
+				
+			Web Workers and the DOM
+				
+				Since web workers are in external files, they do not have access to the following JavaScript objects:
+
+					- The window object
+					- The document object
+					- The parent object
+			
+		- HTML SSE
+			
+			Server-Sent Events - One Way Messaging
+			
+				A server-sent event is when a web page automatically gets updates from a server.
+
+				This was also possible before, but the web page would have to ask if any updates were available. With server-sent events, the updates come automatically.
+
+				Examples: Facebook/Twitter updates, stock price updates, news feeds, sport results, etc.
+			
+			Receive Server-Sent Event Notifications
+				
+				var source = new EventSource("demo_sse.php");
+				source.onmessage = function(event) {
+					document.getElementById("result").innerHTML += event.data + "<br>";
+				};
+				
+			Example explained:
+
+				- Create a new EventSource object, and specify the URL of the page sending the updates (in this example "demo_sse.php")
+				- Each time an update is received, the onmessage event occurs
+				- When an onmessage event occurs, put the received data into the element with id="result"
+			
+			Check Server-Sent Events Support
+				
+				In the tryit example above there were some extra lines of code to check browser support for server-sent events:
+
+					if(typeof(EventSource) !== "undefined") {
+						// Yes! Server-sent events support!
+						// Some code.....
+					} else {
+						// Sorry! No server-sent events support..
+					}
+			
+			Server-Side Code Example
+			
+				For the example above to work, you need a server capable of sending data updates (like PHP or ASP).
+
+				The server-side event stream syntax is simple. Set the "Content-Type" header to "text/event-stream". Now you can start sending event streams.
+
+				Code in PHP (demo_sse.php):
+				
+					<?php
+					header('Content-Type: text/event-stream');
+					header('Cache-Control: no-cache');
+
+					$time = date('r');
+					echo "data: The server time is: {$time}\n\n";
+					flush();
+					?>
+				
+				Code explained:
+
+					Set the "Content-Type" header to "text/event-stream"
+					Specify that the page should not cache
+					Output the data to send (Always start with "data: ")
+					Flush the output data back to the web page
+					
+			The EventSource Object
+				
+				In the examples above we used the onmessage event to get messages. But other events are also available:
+
+					Events	Description
+					onopen	When a connection to the server is opened
+					onmessage	When a message is received
+					onerror	When an error occurs
+
+		- HTML Examples
+		- HTML Quiz
+		- HTML Exercises
+		- HTML Certificate
+		- HTML Summary
+
+		- HTML References
+		- HTML Tag List
+		- HTML Attributes
+		- HTML Events
+			
+			Window Event Attributes
+				Events triggered for the window object (applies to the <body> tag):
+
+				Attribute	Value	Description
+				onafterprint	script	Script to be run after the document is printed
+				onbeforeprint	script	Script to be run before the document is printed
+				onbeforeunload	script	Script to be run when the document is about to be unloaded
+				onerror	script	Script to be run when an error occurs
+				onhashchange	script	Script to be run when there has been changes to the anchor part of the a URL
+				onload	script	Fires after the page is finished loading
+				onmessage	script	Script to be run when the message is triggered
+				onoffline	script	Script to be run when the browser starts to work offline
+				ononline	script	Script to be run when the browser starts to work online
+				onpagehide	script	Script to be run when a user navigates away from a page
+				onpageshow	script	Script to be run when a user navigates to a page
+				onpopstate	script	Script to be run when the window's history changes
+				onresize	script	Fires when the browser window is resized
+				onstorage	script	Script to be run when a Web Storage area is updated
+				onunload	script	Fires once a page has unloaded (or the browser window has been closed)
+
+			Form Events
+				Events triggered by actions inside a HTML form (applies to almost all HTML elements, but is most used in form elements):
+
+				Attribute	Value	Description
+				onblur	script	Fires the moment that the element loses focus
+				onchange	script	Fires the moment when the value of the element is changed
+				oncontextmenu	script	Script to be run when a context menu is triggered
+				onfocus	script	Fires the moment when the element gets focus
+				oninput	script	Script to be run when an element gets user input
+				oninvalid	script	Script to be run when an element is invalid
+				onreset	script	Fires when the Reset button in a form is clicked
+				onsearch	script	Fires when the user writes something in a search field (for <input="search">)
+				onselect	script	Fires after some text has been selected in an element
+				onsubmit	script	Fires when a form is submitted
+					
+			Keyboard Events
+				Attribute	Value	Description
+				onkeydown	script	Fires when a user is pressing a key
+				onkeypress	script	Fires when a user presses a key
+				onkeyup	script	Fires when a user releases a key
+
+			Mouse Events
+				Attribute	Value	Description
+				onclick	script	Fires on a mouse click on the element
+				ondblclick	script	Fires on a mouse double-click on the element
+				onmousedown	script	Fires when a mouse button is pressed down on an element
+				onmousemove	script	Fires when the mouse pointer is moving while it is over an element
+				onmouseout	script	Fires when the mouse pointer moves out of an element
+				onmouseover	script	Fires when the mouse pointer moves over an element
+				onmouseup	script	Fires when a mouse button is released over an element
+				onmousewheel	script	Deprecated. Use the onwheel attribute instead
+				onwheel	script	Fires when the mouse wheel rolls up or down over an element
+
+			Drag Events
+				Attribute	Value	Description
+				ondrag	script	Script to be run when an element is dragged
+				ondragend	script	Script to be run at the end of a drag operation
+				ondragenter	script	Script to be run when an element has been dragged to a valid drop target
+				ondragleave	script	Script to be run when an element leaves a valid drop target
+				ondragover	script	Script to be run when an element is being dragged over a valid drop target
+				ondragstart	script	Script to be run at the start of a drag operation
+				ondrop	script	Script to be run when dragged element is being dropped
+				onscroll	script	Script to be run when an element's scrollbar is being scrolled
+
+			Clipboard Events
+				Attribute	Value	Description
+				oncopy	script	Fires when the user copies the content of an element
+				oncut	script	Fires when the user cuts the content of an element
+				onpaste	script	Fires when the user pastes some content in an element
+
+			Media Events
+				Events triggered by medias like videos, images and audio (applies to all HTML elements, but is most common in media elements, like <audio>, <embed>, <img>, <object>, and <video>).
+
+				Tip: Look at our HTML Audio and Video DOM Reference for more information.
+
+				Attribute	Value	Description
+				onabort	script	Script to be run on abort
+				oncanplay	script	Script to be run when a file is ready to start playing (when it has buffered enough to begin)
+				oncanplaythrough	script	Script to be run when a file can be played all the way to the end without pausing for buffering
+				oncuechange	script	Script to be run when the cue changes in a <track> element
+				ondurationchange	script	Script to be run when the length of the media changes
+				onemptied	script	Script to be run when something bad happens and the file is suddenly unavailable (like unexpectedly disconnects)
+				onended	script	Script to be run when the media has reach the end (a useful event for messages like "thanks for listening")
+				onerror	script	Script to be run when an error occurs when the file is being loaded
+				onloadeddata	script	Script to be run when media data is loaded
+				onloadedmetadata	script	Script to be run when meta data (like dimensions and duration) are loaded
+				onloadstart	script	Script to be run just as the file begins to load before anything is actually loaded
+				onpause	script	Script to be run when the media is paused either by the user or programmatically
+				onplay	script	Script to be run when the media is ready to start playing
+				onplaying	script	Script to be run when the media actually has started playing
+				onprogress	script	Script to be run when the browser is in the process of getting the media data
+				onratechange	script	Script to be run each time the playback rate changes (like when a user switches to a slow motion or fast forward mode)
+				onseeked	script	Script to be run when the seeking attribute is set to false indicating that seeking has ended
+				onseeking	script	Script to be run when the seeking attribute is set to true indicating that seeking is active
+				onstalled	script	Script to be run when the browser is unable to fetch the media data for whatever reason
+				onsuspend	script	Script to be run when fetching the media data is stopped before it is completely loaded for whatever reason
+				ontimeupdate	script	Script to be run when the playing position has changed (like when the user fast forwards to a different point in the media)
+				onvolumechange	script	Script to be run each time the volume is changed which (includes setting the volume to "mute")
+				onwaiting	script	Script to be run when the media has paused but is expected to resume (like when the media pauses to buffer more data)
+
+			Misc Events
+				Attribute	Value	Description
+				onshow	script	Fires when a <menu> element is shown as a context menu
+				ontoggle	script	Fires when the user opens or closes the <details> element
+			
+		- HTML Colors
+		- HTML Canvas
+			
+			Description
+			The HTML5 <canvas> tag is used to draw graphics, on the fly, via scripting (usually JavaScript).
+
+			However, the <canvas> element has no drawing abilities of its own (it is only a container for graphics) - you must use a script to actually draw the graphics.
+
+			The getContext() method returns an object that provides methods and properties for drawing on the canvas.
+
+			This reference will cover the properties and methods of the getContext("2d") object, which can be used to draw text, lines, boxes, circles, and more - on the canvas.
+			
+			Colors, Styles, and Shadows
+				Property		Description
+				fillStyle		Sets or returns the color, gradient, or pattern used to fill the drawing
+				strokeStyle		Sets or returns the color, gradient, or pattern used for strokes
+				shadowColor		Sets or returns the color to use for shadows
+				shadowBlur		Sets or returns the blur level for shadows
+				shadowOffsetX	Sets or returns the horizontal distance of the shadow from the shape
+				shadowOffsetY	Sets or returns the vertical distance of the shadow from the shape
+
+				Method					Description
+				createLinearGradient()	Creates a linear gradient (to use on canvas content)
+				createPattern()			Repeats a specified element in the specified direction
+				createRadialGradient()	Creates a radial/circular gradient (to use on canvas content)
+				addColorStop()			Specifies the colors and stop positions in a gradient object
+			
+			Line Styles
+				Property	Description
+				lineCap		Sets or returns the style of the end caps for a line
+				lineJoin	Sets or returns the type of corner created, when two lines meet
+				lineWidth	Sets or returns the current line width
+				miterLimit	Sets or returns the maximum miter length
+				
+			Rectangles
+				Method			Description
+				rect()			Creates a rectangle
+				fillRect()		Draws a "filled" rectangle
+				strokeRect()	Draws a rectangle (no fill)
+				clearRect()		Clears the specified pixels within a given rectangle
+				
+			Paths
+				Method				Description
+				fill()				Fills the current drawing (path)
+				stroke()			Actually draws the path you have defined
+				beginPath()			Begins a path, or resets the current path
+				moveTo()			Moves the path to the specified point in the canvas, without creating a line
+				closePath()			Creates a path from the current point back to the starting point
+				lineTo()			Adds a new point and creates a line to that point from the last specified point in the canvas
+				clip()				Clips a region of any shape and size from the original canvas
+				quadraticCurveTo()	Creates a quadratic Bézier curve
+				bezierCurveTo()		Creates a cubic Bézier curve
+				arc()				Creates an arc/curve (used to create circles, or parts of circles)
+				arcTo()				Creates an arc/curve between two tangents
+				isPointInPath()		Returns true if the specified point is in the current path, otherwise false
+				
+			Transformations
+				Method			Description
+				scale()			Scales the current drawing bigger or smaller
+				rotate()		Rotates the current drawing
+				translate()		Remaps the (0,0) position on the canvas
+				transform()		Replaces the current transformation matrix for the drawing
+				setTransform()	Resets the current transform to the identity matrix. Then runs transform()
+				
+			Text
+				Property		Description
+				font			Sets or returns the current font properties for text content
+				textAlign		Sets or returns the current alignment for text content
+				textBaseline	Sets or returns the current text baseline used when drawing text
+
+				Method			Description
+				fillText()		Draws "filled" text on the canvas
+				strokeText()	Draws text on the canvas (no fill)
+				measureText()	Returns an object that contains the width of the specified text
+				
+			Image Drawing
+				Method		Description
+				drawImage()	Draws an image, canvas, or video onto the canvas
+				
+			Pixel Manipulation
+				Property	Description
+				width		Returns the width of an ImageData object
+				height		Returns the height of an ImageData object
+				data		Returns an object that contains image data of a specified ImageData object
+
+				Method				Description
+				createImageData()	Creates a new, blank ImageData object
+				getImageData()		Returns an ImageData object that copies the pixel data for the specified rectangle on a canvas
+				putImageData()		Puts the image data (from a specified ImageData object) back onto the canvas
+				
+			Compositing
+				Property					Description
+				globalAlpha					Sets or returns the current alpha or transparency value of the drawing
+				globalCompositeOperation	Sets or returns how a new image are drawn onto an existing image
+				
+			Other
+				Method			Description
+				save()			Saves the state of the current context
+				restore()		Returns previously saved path state and attributes
+				createEvent()	 
+				getContext()	 
+				toDataURL()	 
+			
+		- HTML Audio/Video
+			
+			HTML Audio and Video DOM Reference
+				The HTML5 DOM has methods, properties, and events for the <audio> and <video> elements.
+
+				These methods, properties, and events allow you to manipulate <audio> and <video> elements using JavaScript.
+			
+			HTML Audio/Video Methods
+			
+				Method			Description
+				addTextTrack()	Adds a new text track to the audio/video
+				canPlayType()	Checks if the browser can play the specified audio/video type
+				load()			Re-loads the audio/video element
+				play()			Starts playing the audio/video
+				pause()			Pauses the currently playing audio/video
+				
+			HTML Audio/Video Properties
+			
+				Property			Description
+				audioTracks			Returns an AudioTrackList object representing available audio tracks
+				autoplay			Sets or returns whether the audio/video should start playing as soon as it is loaded
+				buffered			Returns a TimeRanges object representing the buffered parts of the audio/video
+				controller			Returns the MediaController object representing the current media controller of the audio/video
+				controls			Sets or returns whether the audio/video should display controls (like play/pause etc.)
+				crossOrigin			Sets or returns the CORS settings of the audio/video
+				currentSrc			Returns the URL of the current audio/video
+				currentTime			Sets or returns the current playback position in the audio/video (in seconds)
+				defaultMuted		Sets or returns whether the audio/video should be muted by default
+				defaultPlaybackRate	Sets or returns the default speed of the audio/video playback
+				duration			Returns the length of the current audio/video (in seconds)
+				ended				Returns whether the playback of the audio/video has ended or not
+				error				Returns a MediaError object representing the error state of the audio/video
+				loop				Sets or returns whether the audio/video should start over again when finished
+				mediaGroup			Sets or returns the group the audio/video belongs to (used to link multiple audio/video elements)
+				muted				Sets or returns whether the audio/video is muted or not
+				networkState		Returns the current network state of the audio/video
+				paused				Returns whether the audio/video is paused or not
+				playbackRate		Sets or returns the speed of the audio/video playback
+				played				Returns a TimeRanges object representing the played parts of the audio/video
+				preload				Sets or returns whether the audio/video should be loaded when the page loads
+				readyState			Returns the current ready state of the audio/video
+				seekable			Returns a TimeRanges object representing the seekable parts of the audio/video
+				seeking				Returns whether the user is currently seeking in the audio/video
+				src					Sets or returns the current source of the audio/video element
+				startDate			Returns a Date object representing the current time offset
+				textTracks			Returns a TextTrackList object representing the available text tracks
+				videoTracks			Returns a VideoTrackList object representing the available video tracks
+				volume				Sets or returns the volume of the audio/video
+				
+			HTML Audio/Video Events
+					
+				Event			Description
+				abort			Fires when the loading of an audio/video is aborted
+				canplay			Fires when the browser can start playing the audio/video
+				canplaythrough	Fires when the browser can play through the audio/video without stopping for buffering
+				durationchange	Fires when the duration of the audio/video is changed
+				emptied			Fires when the current playlist is empty
+				ended			Fires when the current playlist is ended
+				error			Fires when an error occurred during the loading of an audio/video
+				loadeddata		Fires when the browser has loaded the current frame of the audio/video
+				loadedmetadata	Fires when the browser has loaded meta data for the audio/video
+				loadstart		Fires when the browser starts looking for the audio/video
+				pause			Fires when the audio/video has been paused
+				play			Fires when the audio/video has been started or is no longer paused
+				playing			Fires when the audio/video is playing after having been paused or stopped for buffering
+				progress		Fires when the browser is downloading the audio/video
+				ratechange		Fires when the playing speed of the audio/video is changed
+				seeked			Fires when the user is finished moving/skipping to a new position in the audio/video
+				seeking			Fires when the user starts moving/skipping to a new position in the audio/video
+				stalled			Fires when the browser is trying to get media data, but data is not available
+				suspend			Fires when the browser is intentionally not getting media data
+				timeupdate		Fires when the current playback position has changed
+				volumechange	Fires when the volume has been changed
+				waiting			Fires when the video stops because it needs to buffer the next frame
+
+		- HTML Doctypes
+		- HTML Character Sets
+		- HTML URL Encode
+		- HTML Lang Codes
+		- HTTP Messages
+			
+			When a browser requests a service from a web server, an error might occur.
+
+			This is a list of HTTP status messages that might be returned:
+
+			1xx: Information
+			
+				Message:		Description:
+				100 Continue	The server has received the request headers, and the client should proceed to send the request body
+				101 Switching 	Protocols	The requester has asked the server to switch protocols
+				103 Checkpoint	Used in the resumable requests proposal to resume aborted PUT or POST requests
+				
+			2xx: Successful
+			
+				Message:							Description:
+				200 OK								The request is OK (this is the standard response for successful HTTP requests)
+				201 Created							The request has been fulfilled, and a new resource is created 
+				202 Accepted						The request has been accepted for processing, but the processing has not been completed
+				203 Non-Authoritative Information	The request has been successfully processed, but is returning information that may be from another source
+				204 No Content						The request has been successfully processed, but is not returning any content
+				205 Reset Content					The request has been successfully processed, but is not returning any content, and requires that the requester reset the document view
+				206 Partial Content					The server is delivering only part of the resource due to a range header sent by the client
+			
+			3xx: Redirection
+			
+				Message:				Description:
+				300 Multiple Choices	A link list. The user can select a link and go to that location. Maximum five addresses  
+				301 Moved Permanently	The requested page has moved to a new URL 
+				302 Found				The requested page has moved temporarily to a new URL 
+				303 See Other			The requested page can be found under a different URL
+				304 Not Modified		Indicates the requested page has not been modified since last requested
+				306 Switch Proxy		No longer used
+				307 Temporary Redirect	The requested page has moved temporarily to a new URL
+				308 Resume Incomplete	Used in the resumable requests proposal to resume aborted PUT or POST requests
+			
+			4xx: Client Error
+			
+				Message:							Description:
+				400 Bad Request						The request cannot be fulfilled due to bad syntax
+				401 Unauthorized					The request was a legal request, but the server is refusing to respond to it. For use when authentication is possible but has failed or not yet been provided
+				402 Payment Required				Reserved for future use
+				403 Forbidden						The request was a legal request, but the server is refusing to respond to it
+				404 Not Found						The requested page could not be found but may be available again in the future
+				405 Method Not Allowed				A request was made of a page using a request method not supported by that page
+				406 Not Acceptable					The server can only generate a response that is not accepted by the client
+				407 Proxy Authentication Required	The client must first authenticate itself with the proxy
+				408 Request Timeout					The server timed out waiting for the request
+				409 Conflict						The request could not be completed because of a conflict in the request
+				410 Gone							The requested page is no longer available
+				411 Length Required					The "Content-Length" is not defined. The server will not accept the request without it 
+				412 Precondition Failed				The precondition given in the request evaluated to false by the server
+				413 Request Entity Too Large		The server will not accept the request, because the request entity is too large
+				414 Request-URI Too Long			The server will not accept the request, because the URL is too long. Occurs when you convert a POST request to a GET request with a long query information 
+				415 Unsupported Media Type			The server will not accept the request, because the media type is not supported 
+				416 Requested Range Not Satisfiable	The client has asked for a portion of the file, but the server cannot supply that portion
+				417 Expectation Failed				The server cannot meet the requirements of the Expect request-header field
+
+			5xx: Server Error
+
+				Message:								Description:
+				500 Internal Server Error				A generic error message, given when no more specific message is suitable
+				501 Not Implemented						The server either does not recognize the request method, or it lacks the ability to fulfill the request
+				502 Bad Gateway							The server was acting as a gateway or proxy and received an invalid response from the upstream server
+				503 Service Unavailable					The server is currently unavailable (overloaded or down)
+				504 Gateway Timeout						The server was acting as a gateway or proxy and did not receive a timely response from the upstream server
+				505 HTTP Version Not Supported			The server does not support the HTTP protocol version used in the request
+				511 Network Authentication Required		The client needs to authenticate to gain network access
+			
+		- HTTP Methods
+			
+			Compare GET vs. POST
+				The following table compares the two HTTP methods: GET and POST.
+
+											GET	POST
+				BACK button/Reload			Harmless								Data will be re-submitted (the browser should alert the user that the data are about to be re-submitted)
+				Bookmarked					Can be bookmarked						Cannot be bookmarked
+				Cached						Can be cached							Not cached
+				Encoding type				application/x-www-form-urlencoded		application/x-www-form-urlencoded or multipart/form-data. Use multipart encoding for binary data
+				History						Parameters remain in browser history	Parameters are not saved in browser history
+				Restrictions on data length	Yes, when sending data, the GET method	No restrictions
+											adds the data to the URL; and the 
+											length of a URL is limited 
+											(maximum URL length is 2048 characters)
+				Restrictions on data type	Only ASCII characters allowed			No restrictions. Binary data is also allowed
+				Security					GET is less secure compared to POST 
+											because data sent is part of the URL
+
+											Never use GET when sending passwords 	POST is a little safer than GET because the parameters are not stored in browser history or in web server logs
+											or other sensitive information!	
+				Visibility					Data is visible to everyone in the URL	Data is not displayed in the URL
+				
+			Other HTTP Request Methods
+				The following table lists some other HTTP request methods:
+
+				Method	Description
+				HEAD	Same as GET but returns only HTTP headers and no document body
+				PUT		Uploads a representation of the specified URI
+				DELETE	Deletes the specified resource
+				OPTIONS	Returns the HTTP methods that the server supports
+				CONNECT	Converts the request connection to a transparent TCP/IP tunnel
+			
+		- PX to EM Converter
+		- Keyboard Shortcuts

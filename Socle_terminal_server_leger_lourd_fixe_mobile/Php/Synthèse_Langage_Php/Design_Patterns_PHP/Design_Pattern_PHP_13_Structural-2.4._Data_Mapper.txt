@@ -1,0 +1,355 @@
+> Data Mapper
+	- 
+
+
+
+// ------------------------------------------------
+http://designpatternsphp.readthedocs.io/en/latest/Structural/DataMapper/README.html
+
+
+2.4. Data Mapper
+2.4.1. Purpose
+
+A Data Mapper, is a Data Access Layer that performs bidirectional transfer of data between a persistent data store (often a relational database) and an in memory data representation (the domain layer). The goal of the pattern is to keep the in memory representation and the persistent data store independent of each other and the data mapper itself. The layer is composed of one or more mappers (or Data Access Objects), performing the data transfer. Mapper implementations vary in scope. Generic mappers will handle many different domain entity types, dedicated mappers will handle one or a few.
+
+The key point of this pattern is, unlike Active Record pattern, the data model follows Single Responsibility Principle.
+2.4.2. Examples
+
+    DB Object Relational Mapper (ORM) : Doctrine2 uses DAO named as “EntityRepository”
+
+2.4.3. UML Diagram
+Alt DataMapper UML Diagram
+2.4.4. Code
+
+You can also find these code on GitHub
+
+User.php
+
+<?php
+
+namespace DesignPatterns\Structural\DataMapper;
+
+/**
+ * DataMapper pattern.
+ *
+ * This is our representation of a DataBase record in the memory (Entity)
+ *
+ * Validation would also go in this object
+ */
+class User
+{
+    /**
+     * @var int
+     */
+    protected $userId;
+
+    /**
+     * @var string
+     */
+    protected $username;
+
+    /**
+     * @var string
+     */
+    protected $email;
+
+    /**
+     * @param null $id
+     * @param null $username
+     * @param null $email
+     */
+    public function __construct($id = null, $username = null, $email = null)
+    {
+        $this->userId = $id;
+        $this->username = $username;
+        $this->email = $email;
+    }
+
+    /**
+     * @return int
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * @param int $userId
+     */
+    public function setUserID($userId)
+    {
+        $this->userId = $userId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param string $username
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+}
+
+UserMapper.php
+
+<?php
+
+namespace DesignPatterns\Structural\DataMapper;
+
+/**
+ * class UserMapper.
+ */
+class UserMapper
+{
+    /**
+     * @var DBAL
+     */
+    protected $adapter;
+
+    /**
+     * @param DBAL $dbLayer
+     */
+    public function __construct(DBAL $dbLayer)
+    {
+        $this->adapter = $dbLayer;
+    }
+
+    /**
+     * saves a user object from memory to Database.
+     *
+     * @param User $user
+     *
+     * @return bool
+     */
+    public function save(User $user)
+    {
+        /* $data keys should correspond to valid Table columns on the Database */
+        $data = array(
+            'userid' => $user->getUserId(),
+            'username' => $user->getUsername(),
+            'email' => $user->getEmail(),
+        );
+
+        /* if no ID specified create new user else update the one in the Database */
+        if (null === ($id = $user->getUserId())) {
+            unset($data['userid']);
+            $this->adapter->insert($data);
+
+            return true;
+        } else {
+            $this->adapter->update($data, array('userid = ?' => $id));
+
+            return true;
+        }
+    }
+
+    /**
+     * finds a user from Database based on ID and returns a User object located
+     * in memory.
+     *
+     * @param int $id
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return User
+     */
+    public function findById($id)
+    {
+        $result = $this->adapter->find($id);
+
+        if (0 == count($result)) {
+            throw new \InvalidArgumentException("User #$id not found");
+        }
+        $row = $result->current();
+
+        return $this->mapObject($row);
+    }
+
+    /**
+     * fetches an array from Database and returns an array of User objects
+     * located in memory.
+     *
+     * @return array
+     */
+    public function findAll()
+    {
+        $resultSet = $this->adapter->findAll();
+        $entries = array();
+
+        foreach ($resultSet as $row) {
+            $entries[] = $this->mapObject($row);
+        }
+
+        return $entries;
+    }
+
+    /**
+     * Maps a table row to an object.
+     *
+     * @param array $row
+     *
+     * @return User
+     */
+    protected function mapObject(array $row)
+    {
+        $entry = new User();
+        $entry->setUserID($row['userid']);
+        $entry->setUsername($row['username']);
+        $entry->setEmail($row['email']);
+
+        return $entry;
+    }
+}
+
+2.4.5. Test
+
+Tests/DataMapperTest.php
+
+<?php
+
+namespace DesignPatterns\Structural\DataMapper\Tests;
+
+use DesignPatterns\Structural\DataMapper\User;
+use DesignPatterns\Structural\DataMapper\UserMapper;
+
+/**
+ * UserMapperTest tests the datamapper pattern.
+ */
+class DataMapperTest extends \PHPUnit_Framework_TestCase
+{
+    /**
+     * @var UserMapper
+     */
+    protected $mapper;
+
+    /**
+     * @var DBAL
+     */
+    protected $dbal;
+
+    protected function setUp()
+    {
+        $this->dbal = $this->getMockBuilder('DesignPatterns\Structural\DataMapper\DBAL')
+                ->disableAutoload()
+                ->setMethods(array('insert', 'update', 'find', 'findAll'))
+                ->getMock();
+
+        $this->mapper = new UserMapper($this->dbal);
+    }
+
+    public function getNewUser()
+    {
+        return array(array(new User(null, 'Odysseus', 'Odysseus@ithaca.gr')));
+    }
+
+    public function getExistingUser()
+    {
+        return array(array(new User(1, 'Odysseus', 'Odysseus@ithaca.gr')));
+    }
+
+    /**
+     * @dataProvider getNewUser
+     */
+    public function testPersistNew(User $user)
+    {
+        $this->dbal->expects($this->once())
+                ->method('insert');
+        $this->mapper->save($user);
+    }
+
+    /**
+     * @dataProvider getExistingUser
+     */
+    public function testPersistExisting(User $user)
+    {
+        $this->dbal->expects($this->once())
+                ->method('update');
+        $this->mapper->save($user);
+    }
+
+    /**
+     * @dataProvider getExistingUser
+     */
+    public function testRestoreOne(User $existing)
+    {
+        $row = array(
+            'userid' => 1,
+            'username' => 'Odysseus',
+            'email' => 'Odysseus@ithaca.gr',
+        );
+        $rows = new \ArrayIterator(array($row));
+        $this->dbal->expects($this->once())
+                ->method('find')
+                ->with(1)
+                ->will($this->returnValue($rows));
+
+        $user = $this->mapper->findById(1);
+        $this->assertEquals($existing, $user);
+    }
+
+    /**
+     * @dataProvider getExistingUser
+     */
+    public function testRestoreMulti(User $existing)
+    {
+        $rows = array(array('userid' => 1, 'username' => 'Odysseus', 'email' => 'Odysseus@ithaca.gr'));
+        $this->dbal->expects($this->once())
+                ->method('findAll')
+                ->will($this->returnValue($rows));
+
+        $user = $this->mapper->findAll();
+        $this->assertEquals(array($existing), $user);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage User #404 not found
+     */
+    public function testNotFound()
+    {
+        $this->dbal->expects($this->once())
+                ->method('find')
+                ->with(404)
+                ->will($this->returnValue(array()));
+
+        $user = $this->mapper->findById(404);
+    }
+}
+
+
+
+
+// ------------------------------------------------
+
+
+
+
+
+
+
+
+

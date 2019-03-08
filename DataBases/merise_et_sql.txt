@@ -1,0 +1,1181 @@
+
+Objectif : Se doter des outils necessaires de conception et d'utilisation d'une Base de données pour des application Web.
+
+------------------------------------------------------------------------
+
+
+
+> Théorie : Conception d'une Base de données avec la méthode Merise
+
+- Définition d'une Base de données :
+
+Une base de données est un ensemble d'informations :
+- stockées sur un support 
+- et doté d'une certaine organisation 
+(exemple: carnet d'adresse de votre mobile).
+
+
+- Définition des contraintes et objectifs :
+
+L'organisation des données doit permettre de répondre à des contraintes précises :
+	- Les données doivent occuper le moins d'espace possible.
+	- Les redondances d'informations doivent être évitées.
+	- Les mises à jours ou suppression de données doivent laisser la base intègre et ne pas créer d'incohérences.
+	- La recherche d'informations doit être rapide et sûre.
+
+
+L'organisation de l'information que nous allons étudier, de manière agrégé, est le modèle entité / association, basé sur la logique mathématique des sous-ensembles, duquel se fonde la méthode Merise.
+
+Le domaine des Base de données étant assez vaste et complexe, on ne va aborder ici que l'essentiel.
+
+
+- Définition d'un SGBDR :
+
+Un SGBDR est un Système de Gestion de Base de Données Relationnelles (ex. notre cas d'étude : le Server MySQL).
+
+C'est ce système qui va nous permettre de déployer et d'utilise notre base de données.
+
+
+- Méthodologie de Merise :
+
+Afin de créer notre base de données, nous devons :
+	- d'abord, créer un MCD 
+Soit le Modèle Conceptuel de Données, qui est une représentation abstraite agrégés des données à stocker et des liens de dépendances entre elles.
+	- puis, le convertir en MLD
+Soit le Modèle Logique des Données, qui est la représentation du shemas implémentable dans un SGBDR.
+	- et enfin, concevoir le MPD
+Soit le Modèle Physique de Données, qui est l'implémentation du MLD dans un SGBDR via la code SQL.
+
+
+- Prise en main :
+
+Nous allons voir en détail ces étapes avec la conception d'une base de données pour un blog.
+
+
+
+- Conception d'un MCD :
+
+	1) Analyse des informations et des flux 
+
+Il faut d'abord faire l'inventaires des informations à récolter et à retraiter. 
+
+
+	2) conception du Modèle
+
+Puis procéder à un regroupement en entités composées d'attributs, liées par des associations de cardinalités.
+
+
+	- Définition des Entités
+
+Une entité est un regroupement d'informations décrivant un même élément.
+
+Exemple : 
+
+Dans le cas d'une personne achètant un produit.
+> on a deux entités, Personne et Produit, regroupant les informations correspondant à leur entité.
+
+On distingue deux sorte d'entités : 
+
+	- les entités fortes, dont l'existance ne dépend pas d'une autre,
+	- les entités faibles, dont l'existance dépend d'une autre.
+
+On représente les entités par un rectangle à deux cellules verticales, contenant dans la première le nom de l'entité et dans la seconde ses informations relatives.
+
+- Mise en pratique : 
+
+On veut créer un blog, où des personnes loguées peuvent poster des articles. Quelles sont les entités ?
+
+Réponse : 	personne - post
+
+
+
+	- Définition des Attributs
+
+Ce sont les catégories d'informations contenues dans chaque entités.
+
+Exemple : 
+
+L'entité personne regroupe en elle le nom, le prenom et l'adresse d'une personne. 
+Alors que l'entité article contiendra le nom, la description et le prix d'un article.
+
+L'entité personne regroupe ainsi toutes les personnes par leurs informations relatives. 
+
+Et cet entité les distingue par un attribut de référence, nommée clé primaire. 
+
+Cette clé est unique et permet de distinguer singulièrement une ligne d'informations de la table parmi tout les autres.
+
+Exemple: 
+
+Le numéro de sécurité sociale servant de référence à votre dossier médical dans le système de sante public.
+
+L'attribut de référence est toujours surligné dans la représentation de l'entité (qui deviendra par la suite une table).
+
+Dans la même logique, une clé étrangère permet de référencer une ligne de données d'une entité à une ou plusieur autre(s).
+
+- Mise en pratique : 
+
+On veut pouvoir identifier les personnes avec une login et mot de passe et d'afficher leur nom et prénom. 
+Pour chaque post, on doit pouvoir afficher le titre, le contenu et une catégorie ou thème au moins. 
+Comment doit on compléter les entités créées ?
+
+
+Réponse :
+
+[personne]
+
+nom 
+prenom 
+login 
+passe 
+
+
+[post]
+
+titre 
+desc
+note 
+etat 
+date 
+sujet
+
+
+
+	- Définition des Associations
+
+Les associations sont les liaisons qui " peuvent lier une entité à une autre ". Elle se représente par un éllipse scindé en deux parties; comportant le nom de l'association et des attributs éventuels.
+
+Exemple : 
+
+Une personne qui achète un produit. 
+
+On a l'entité personne, l'entité produit et l'association acheter.
+Qui peut contenir par exemple la date de l'achat, les références produits et le montant.
+
+Une association peut lier deux entités, dans ce cas elle est dite binaire, ou lier plusieurs entités, dans ce cas elle est dite n-aire.
+
+- Mise en pratique : 
+
+Ces personnes logués pouvant poster des articles par catégorie, quelles associations doivent être créées entre quelles entités ?
+
+Réponse : 
+
+[personne] (édite) [post] (classifie) [thème]
+
+
+	- Définition des Cardinalités
+
+La cardinalité d'une association mesure le nombre d'éventualités possibles d'une entité pour une liaison. Ainsi une liaison comporte autant de cardinalités que d'entités qu'elle lie.
+
+Une cardinalité est composée de deux paramètre définisant les limites minimal et maximal d'occurence de l'entité dans la liaison.
+
+Exemple : 
+
+[un client] (commande) [un produit]. 
+
+Un client peut commander plusieurs produits.
+Un produit peut être commandé par plusieurs clients.
+
+Un client peut commender entre 1 et N articles d'un magasin.
+Et un article peut être commandé par 0 et N clients.
+
+
+IL y a quatre type de cardinalités possible ainsi défini :
+- 0.1 : zéro ou une seule au maximum
+- 1.1 : une et une seule
+- 0.N : zéro et plusieurs
+- 1.N : une et plusieurs
+
+
+- Mise en pratique : 
+
+Quelles sont les cardinalités qui existent entre les associations ?
+
+
+Réponse :
+
+[personne] (0,n)-(édite)-(1,1) [post] (1,1)-(classifie)-(0,n) [thème]
+
+
+
+	3) Normalisation du MCD
+
+Afin de valider le MCD, il faut procéder à une normalisation.
+
+---------- info --------------
+la normalisation apporte : des requêtes plus simples à écrire11, des données plus facilement accessibles ; une meilleure intégrité des données ; la diminution des erreurs lors de l’insertion ou de la suppression de nouvelles données et une utilisation optimale des ressources.
+------------------------------
+
+- Première forme normale : 
+Chaque attribut doit être atomique, sa précision ne doit pas permettre une affectation de valeur multiple ou invalide. 
+
+Exemple : un attribut ne peut contenir le nom et le prénom.
+
+
+- Deuxième forme normale : 
+Tous les attributs d'une entités de la Première forme normale doivent dépendre de la clé primaire complète de son entité et non partiellement.
+
+- Troisième forme normale : 
+Tous les attribut d'une entité de la Deuxième forme normale doivent dépendre de la clé primaire uniquement de son entité.
+
+Ces trois premières formes suffisent à normaliser un MCD pour une base de petite et moyenne complexité (ex : blog, boutique en ligne, ...).
+
+
+Mise en pratique : 
+
+Contrôle de la construction et validation du MCD.
+
+
+
+- Conception d'un MLD
+
+Pour passe du MCD au MLD, il faut appliquer les règles suivantes :
+
+Toute entité devient une table :
+	- où le nom de l'entité devient le nom de la table,
+	- où la clé primaire de l'entité devient la clé primaire de la table.
+
+Pour les association binaire ayant des cardinalités "maximales" de 1:1 (soit par exemple 1.1 et 1.1), une des tables reçoit comme attribut supplémentaire la copie de la clé primaire de l'autre table.
+
+
+Pour une association binaire ayant des cardinalités "maximales" de 1:N (soit par exemple 1.1 et 1.N), la table représentant l'entité ayant la cardinalité 1.1 reçoit la clé primaire de l'autre entité comme clé étrangère.
+
+Pour une association binaire ayant des cardinalités maximales de type N:M (soit par exemple 1.N et 0.N), l'association devient une table. Cette table reçoit les clés primaire de chacune des tables connecté en clés étrangères.
+
+La combinaison de ces clés étrangère compose sa clé primaire. Cette table peut aussi recevoir des attributs supplémentaires relatifs à l'association des tables connectés.
+
+Attention :
+- contrainte de structure dans le nommage : pas d'accent, ni d'espace, ni de caractères spéciaux sauf le $, ni de ponctuation, 
+- un nom peut commencer par un chiffre mais ne doit pas contenir que des chiffres
+- la sensibilité à la casse dépend du système d'exploitation.
+
+Exemple : 
+
+La liaison commande qui contient une liste d'articles et un prix liant un client à des articles.
+
+Mise ne pratique :
+
+Construction du MLD du Blog.
+
+
+
+- Conception du MPD
+
+La construction du MPD à partir du MLD se fait via le language SQL dans un SGBDR, par la définition des types et des contraintes.
+
+
+
+	- Définition des éléménts d'un SGBDR
+
+		- Les identificateurs
+
+SQL utilise des identificateurs pour désigner les objets qu'il manipule : 
+utilisateur, table, colonne, index, fonctions, ...
+
+
+		- Les bases
+
+Chaques base de données est une hérarchisation des données :
+- d'une combinaison de tables, dépendentes ou indépendentes, 
+- d'une structuration de chaque table, par les contraintes
+- d'une structuration de chaque colonne, par les types
+
+
+		- Les types de données MySQL
+
+- Type alphanumérique	
+ CHAR(n)	Chaîne de caractères de longueur "fixe" n (n < 16 383)
+- Type alphanumérique	
+ VARCHAR(n)	Chaîne de caractères de n caractères maximum (n < 16 383)
+- Type numérique	
+ NUMBER(n,[d])	Nombre de n chiffres [optionnellement d après la virgule]
+- Type numérique	
+ SMALLINT	Entier signé de 16 bits (-32 768 à 32 767)
+- Type numérique	
+ INTEGER	Entier signé de 32 bits (-2 147 483 648 à 2 147 483 647)
+- Type numérique	
+ FLOAT		Nombre à virgule flottante
+- Type horaire	
+ DATE		Date sous la forme 'AAAA-MM-JJ' allant de '1000-01-01' à '9999-12-31'
+- Type horaire	
+ TIME		Heure sous la forme 'HH:MM:SS', allant de '-838:59:59' à '838:59:59'
+- Type horaire	
+ TIMESTAMP(M)	Sans rapport direct avec un timestamp UNIX, stock la Date et l'Heure sous la forme 'AAAAMMJJHHMMSS'. Le caractère M régresse la précision.
+
+
+		- Les options des attributs
+
+chaque attribut d'une table peut être précisé à l'aide des options suivantes :
+
+- NOT NULL		Oblige la définition d'une valeur
+> nom_attr VARCHAR (10) NOT NULL
+- NULL			Permet le champs vide
+- DEFAULT 'val'		Permet de définir une valeur par défaut
+- AUTO_INCREMENT  	Pour incrémenter par défault la valeur d'un attribut. Contrainte : il faut que l'attribut soit indexé ou qu'il soit la clé primaire.
+> nom_attr tinyint NOT NULL  auto_increment, INDEX indnom (nom)
+- PRIMARY KEY (nom)	Créer une clé primaire sur un attribut
+- UNIQUE (nom1, nom2, ) Pour que chaque enrengistrement ai une valeur unique. 
+- INDEX[nom_index] (nom1, nom2, ) Créer un index pour la table à partir des colonnes précisées. Cela accélère les recherches sur cette table de ces colonnes.		
+> INDEX mon_index (nom, prenom)
+
+
+		- Les contaraintes
+	
+Dans la définition d'une table, on peut indiquer des contraintes d'intégrités portant sur une ou plusieurs colonnes.
+
+Les contraintes possibles sont :
+UNIQUE, PRIMARY KEY, FOREIGN KEY ... REFERENCES, CHECK
+
+Chaque contrainte doit être nommée et définit comme suite :
+CONSTRAINT <nom_contrainte> <contrainte>
+
+Cette définition s'effectue soit lors de la création de la table, soit lors de la modification de la table.
+
+Nous verrons plus en détails lors de la présentation du code SQL.
+
+
+
+	- Analyse de ses éléments par la présentation de PHPmyAdmin
+
+PhpMyAdmin est une interphase web permettant :
+- de se connecter à une base de données MySQL,
+- de créer une base de données, 
+- de créer des tables, 
+- de mettre à jour des tables, 
+- d'insérer des données dans une table, 
+- de supprimer des données, une table ou une base de données.
+- d'administrer des bases de données.
+
+Pour y accéder :
+- en local : http://localhost/phpmyadmin ou http://127.0.0.1/phpmyadmin
+- en ligne : http://sql.votresit.com ou http://www.votresite.com/phpmyadmin
+
+Les données de connexion sont communiqué par l'hébergeur lors de la souscription de l'hébergement.
+
+	- Présentation de l'interphase
+		- Edition du mot de passe
+		- Edition du fichier config.inc.php (wamp/apps/phpmyadmin3.4.5/config.inc.php) 
+		- Création d'une base
+		- Création d'une table
+		- Insertion de données
+		- Modification de données
+		- Suppression de données
+		- Extration et Importation
+
+	- Présentation de l'onglet "SQL"
+		- On peut aussi réaliser toutes ces manipulations via des requêtes SQL.
+
+
+Mise en pratique :
+
+Créer le MPD du Blog avec PhpMyAdmin
+
+> voir pdf
+
+
+
+> Le language SQL
+
+Le SQL veut dire "Structured Query Language" qui veut dire "Language de Requêtes Structurés" développé par IBM dans les années 1970.
+
+C'est un language permettant de concevoir et d'interagire avec une base de données relationnelle.
+
+Ce langage fait l'objet de normalisation successives de l'ANSI (American National Standards Institute) depuis 1986, pour aboutir en 1992 à la norme SQL 2, puis en 1999 à la norme SQL 3 et enfin à la norme 2003.
+
+C'est actuellement la norme 2 (ou SQL-2 ou SQL-92) qui domine le marché, implémenté par tous les SGBD leader. 
+Chaque SGBDR se différentient donc par le niveau de respect de ces normes et des fonctionnalités propriétaires éventuelles développées.
+
+Le language que nous allons voir est adapté au SGBDR MySQL.
+
+Nous définissons dans le language SQL, un Langage de Définition de Données, un Langage de Manipulation de Données et un Language de protections d'accès :
+
+	- Le LDD permet de structure la base de données (CREATE, ALTER, DROP)
+	- Le LMD permet de manipuler les données (SELECT, UPDATE, INSERT, DELETE)
+	- Le DCL permet de définir les droits des utilisateurs (GRANT, REVOKE, COMMIT, ROLLBACK)
+
+
+
+- Commandes d'environnement
+
+~ Permet de mettre en commentaire
+
+	-- en ligne ou /* */ en bloc
+
+
+~ Démarrage du server en ligne de commande
+
+	Sous windows 
+	(ne fonctionne pas sous wamp + bug)
+	C:\> C:\wamp\bin\mysql\mysql5.5.16\bin\mysqld.exe
+
+	Essayer
+	C:\> C:\wamp\bin\mysql\mysql5.5.16\bin\mysql.exe
+
+	Sinon
+	C:\> C:\Program Files\MySQL\MySQL Server n.n\bin\mysqld.exe
+
+
+	Sous Linux 
+	# /etc/init.d/mysqld start
+
+
+~ Pour arrêter la server en ligne de commande
+	
+	Sous Windows 
+	(Procéder à la déconnexion + arrêt du service avant de lancer wamp)
+	C:\> C:\wamp\bin\mysql\mysql5.5.16\bin\mysqladmin -u root shutdown
+	
+	Sinon
+	C:\> C:\Program Files\MySQL\MySQL Server n.n\bin\mysqladmin -u root shutdown
+
+	Sous Linux
+	# /etc/init.d/mysqld stop
+
+
+
+~ Connexion en ligne de commande
+
+	mysql --user=nom_utilisateur -p 
+ou
+	mysql --user=nom_utilisateur -p [--host=localhost] [--database=ma_base]
+
+	L'option -p permet de définir le mot de passe sans le passer en paramètre
+
+
+~ Déconnexion
+
+	quit ou exit
+
+
+
+
+- Langage de Définition de Données (CREATE, ALTER, DROP - DATABASE, TABLE, INDEX)
+
+
+~ Création d'une Base de données
+
+	CREATE DATABASE [IF NOT EXISTS] nomBase 
+	[ [DEFAULT] CHARACTER SET utf-8 ] 
+	[ [DEFAULT] COLLATE utf8_general_ci];
+
+	Défintion des éléments
+
+	^ IF NOT EXISTS permet de spécifier que la base ne doit être créée que si elle n'existe pas.
+	^ nomBase désigne le nom de la base.
+	^ CHARACTER SET indique le jeu de caractères associés aux données des tables de cette base
+	^ COLLATE définit la comparaison du jeu de caractères en question afin de définir la position des caractères dans le jeu.
+
+
+~ Afficher les Base de données
+
+	SHOW DATABASES;
+	
+	SHOW INDEX FROM mytable FROM mydb;
+	SHOW INDEX FROM mydb.mytable;
+	
+	mysqlshow [options] [db_name [tbl_name [col_name]]]
+
+
+~ Sélectionner un Base de données de travail
+
+	USE nomBase;
+
+
+~ Modification d'une base
+
+	ALTER DATABASE nomBase
+	[ [DEFAULT] CHARACTER SET utf-8 ] 
+	[ [DEFAULT] COLLATE utf8_general_ci];
+	
+
+~ Destruction d'une Base de données
+
+	DROP DATABASE [IF EXISTS] nomTable;
+
+	IF EXISTS permet de spécifier de ne détruire la Base de données que si elle existe.
+
+
+
+~ Création d'une table
+
+	CREATE TABLE [IF NOT EXISTS] [nomBase.]nomTable
+	(colonne1 type1
+		[NOT NULL | NULL] [DEFAULT valeur1] [COMMENT 'chaine1'] [AUTO_INCREMENT]
+	[, colonne2 type2
+		[NOT NULL | NULL] [DEFAULT valeur2] [COMMENT 'chaine2']]
+	[
+	[PRIMARY KEY (nom_colonne1 | nomColonne1, nomColonne2, ...)]
+	[UNIQUE (nomColonne1) ou UNIQUE (nomColonne1 | nomColonne1, nomColonne2, ...)]
+	[FOREIGN Key (nomColonne1 | nomColonne1, nomColonne2, ...)
+	 REFERENCES nomTable(nomColonne1 | nomColonne1, nomColonne2, ...)]
+	[INDEX nomIndex (nomColonne1 | nomColonne1, nomColonne2, ...)]
+	])
+	[ENGINE = InnoDB | MyISAM | ...] [AUTO_INCREMENT = n]
+
+
+	Défintion des éléments
+	
+	^ NOT NULL afin que chaque enrengistrement de l'attribut ait obligatoirement une valeur ou NULL pour autoriser l'absence de valeur.
+	^ DEFAULT 'valeur_default' permet de définir une valeur par défaut pour l'attribut si aucune valeur n'a été définit.
+	^ AUTO_INCREMENT afin qu'un attribut numérique entier soit automatiquement incrémenté d'une unité à chaque insertion d'un enrengistrement. Pour que cette contrainte soit valable, il faut que l'attribut soit indexé ou qu'il soit la clé primaire.
+		nom VARCHAR(10) NOT NULL, PRIMARY KEY (nom)
+
+	Dans la définition des contraintes, on pourra spécifier :
+
+	^ PRIMARY KEY pour définir l'attribut comme clé primaire de la table.
+	^ UNIQUE permet de préciser que les valeurs de l'attribut ou de la combinaison d'attributs doit être unique. Un index est automatiquement généré sur cette colonne.
+	^ INDEX permet de créer un index pour les colonnes spécifiées afin d'accélérer les recherches sur ces colonnes.
+	^ KEY crée un index pour les attributs spécifiés
+	^ ENGINE définit les différents moteurs utilisable.
+Le choix de tel moteur dépendra de la façon dont on veut stocker et traiter les données de chaque table :
+		- MyISAM : moteur par défault, ne supporte pas les transactions mais possède des fonctionnalités de recherche texte.
+		- InnoDB : sans doute le plus utilisé de nos jours. Supporte le mode transactionnel et la gestion des clés étrangères.
+		- MEMORY : stockage des données et index en RAM le temps de la connexion.
+		- ARCHIVE : stockage des données sous une forme compressée (Seule les INSERT et SELECT sont autorisés)	
+		- CSV : stockage des données sous forme de fichiers textes dans lesquels les valeurs sont séparées par une virgule.
+		- FEDERATED : convient pour les architectures réparties (plusieurs serveur)
+		- NDB : convient pour les architectures en cluster.
+
+	Lors d'une création de table, toujour penser à créer les tables parents avant les tables enfants, dépendant par les clés étrangères.
+
+
+
+	
+~ Créer un Index
+	
+	Un index est lié à une base de données et se met automatiquement à jour.
+	Un index mis en place sur un champ d'une table accélère les recherches sur cette table.
+	Pour rappelle, un index est automatiquement créer pour les clés primaires.
+	Il est conseillé de créer des index pour toutes les clés étrangères.
+	L'index ralentit aussi les mise à jours de cette table.
+	Il est déconseillé de créer un index sur les champs souvent modifiés.
+	
+	CREATE [UNIQUE | FULLTEXT] INDEX nomIndex
+	[USING { BTREE | HASH }]
+	ON nomTable (colonne1 [ASC | DESC], ...)
+	
+	^ UNIQUE permet de créer un index qui n'accepte pas les doublons.
+	^ FULLTEXT permet de bénéficier de fonctions de recherche dans des textes.
+	^ ASC et DESC permettent de définir l'ordre  de classement.
+	
+	
+
+~ Modifier une table
+
+	
+	Ajout de colonne
+
+	ALTER TABLE [nomBase].nomTable ADD (
+				new_col1 type_col1[,
+				new_col2 type_col2] ...);
+ 	
+
+	Renommer des colonnes
+
+	ALTER TABLE [nomBase].nomTable CHANGE [COLUMN] ancienNom
+	nouveauNom typeMySQL [NOT NULL | NULL] [DEFAULT valeur]
+	[AUTO_INCREMENT]...;
+
+
+
+	Modifier le type des colonnes
+
+	ALTER TABLE [nomBase].nomTable MODIFY [COLUMN] nomColonneAModifier
+	typeMySQL  [NOT NULL | NULL] [DEFAULT valeur]
+	[AUTO_INCREMENT]...;
+
+
+	Valeur par défault
+
+	ALTER TABLE [nomBase].nomTable ALTER [COLUMN] nomColonneAModifier
+	{SET DEFAULT 'chaine' | DROP DEFAULT};
+
+	
+	Supprimer des colonnes
+
+	ALTER TABLE [nomBase].nomTable DROP
+	{ [COLUMN] nomColonne | PRIMARY KEY | INDEX nomIndex | 
+	FOREIGN KEY nomContrainte };
+
+
+	Ajout de contraintes
+
+	ALTER TABLE [nomBase].nomTable ADD
+	{ INDEX [nomIndex] [typeIndex] (nomColonne1, ...)
+	| CONSTRAINT nomContainte typeContrainte }
+
+		typeContrainte Trois types sont possible
+		
+		UNIQUE (nomColonne1 [, nomColonne2] ...)
+		
+		PRIMARY KEY (nomColonne1 [, nomColonne2] ...)
+	
+		FOREIGN KEY (nomColonne1 [, nomColonne2] ...)
+		REFERENCES nomTableLié (nomColonne1 [, nomColonne2] ...)
+		[ON DELETE {RESTRICT | CASCADE | SET NULL | NO ACTION}]
+		[ON UPDATE {RESTRICT | CASCADE | SET NULL | NO ACTION}] 		...;
+		
+	^ ON DELETE | ON UPDATE respectivement pour la suppression ou mise à jour d'une ligne de données dans la table permet cinq option:
+
+		^ RESTRICT permet de rejeter toute mise à jour ou supperssion, équivalent à NO ACTION.
+		^ CASCADE diffuse la commande à la table parent ou enfant liée.
+		^ SET NULL à la commande, définit la valeur null dans le champs de la table parent ou enfant liée.
+		^ NO ACTION aucun action n'est exécutée, ni de mise à jour ni de suppression entre les tables liées.
+
+http://dev.mysql.com/doc/refman/5.1/en/innodb-foreign-key-constraints.html
+	
+
+
+	Suppression de contraintes
+	
+	D'un Index
+	
+	ALTER TABLE [nomBase].nomTable DROP INDEX nomIndex;
+
+	
+	D'une clé primaire
+
+	ALTER TABLE [nomBase].nomTable DROP PRIMARY KEY;
+
+
+	D'une clé étrangère
+
+	ALTER TABLE [nomBase].nomTable DROP FOREIGN KEY nomContrainte;
+
+	
+
+~ Renomer une table
+	
+	RENAME [nomBase.]anciennomTable1 TO [nomBase.]nouveaunomTable1
+		[, [nomBase.]anciennomTable2 TO [nomBase.]nouveaunomTable] ...];
+	
+	Les contraintes d'intégrités, index et prérogatives associés à l'ancienne table sont automatiquement transférés sur nouvelle.
+	En revenches, les vues et les procédures sont invalidées et doivent être recréees.
+	
+
+
+~ Supprimer une table
+	
+	DROP TABLE [IF EXISTS]
+	[nomBase.]nomTable [, nomBase2.]nomTable2, ...]
+	[RESTRICT]
+
+	^ IF EXISTS permet d'éviter une erreur de MySQL si la table n'existe pas
+	^ RESTRICT (par défaut) permet de vérifier qu'aucun autre élément n'utilise la table (autre table via une clé étrangère, vue, déclencheur, etc.)
+	
+	Lors de la suppression d'une table :
+	- Soit on supprime d'abord les clés étrangères, les indexs, puis les tables.
+	- Soit on supprimer d'abord les tables enfants puis parents.
+
+
+
+~ Supprimer un Index
+	
+	DROP INDEX nomIndex [ON nomTable]
+
+	Un index est automatiquement supprimer dés qu'on supprime la table à laquelle il appartient.
+
+
+	
+	
+Mise en pratique :
+
+Créer un script pour implémenter le MPD du Blog avec SQL (dans un fichier)
+Soit en supprimant la base précédente, soit en en créant une nouvelle.
+Soit via l'onglet SQL de PhpMyAdmin, soit en ligne de commande avec Mysql
+
+> voir pdf
+
+
+CREATE TABLE IF NOT EXISTS `personne` (
+  
+`personne_id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  
+`personne_nom` varchar(50) NOT NULL,
+  
+`personne_prenom` varchar(50) NOT NULL,
+  
+`personne_login` varchar(10) NOT NULL,
+  
+`personne_passe` varchar(10) NOT NULL,
+  
+`personne_image` varchar(100) DEFAULT NULL,
+  
+PRIMARY KEY (`personne_id`)
+) 
+ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
+
+
+CREATE TABLE IF NOT EXISTS `theme` (
+  
+`theme_id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  
+`theme_sujet` varchar(255) NOT NULL,
+  
+`theme_icone` varchar(100) DEFAULT NULL,
+  
+PRIMARY KEY (`theme_id`)
+) 
+ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
+
+
+CREATE TABLE IF NOT EXISTS `post` (
+  
+`post_id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  
+`post_titre` varchar(255) NOT NULL,
+  
+`post_desc` text NOT NULL,
+  
+`post_note` tinyint(4) NOT NULL,
+  
+`post_etat` varchar(20) NOT NULL,
+  
+`post_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `post_fk_personne_id` tinyint(3) unsigned NOT NULL,
+  
+`post_fk_theme_id` tinyint(3) unsigned NOT NULL,
+  
+`post_image` varchar(100) DEFAULT NULL,
+  
+`post_slide` int(1) NOT NULL DEFAULT '1',
+  
+PRIMARY KEY (`post_id`),
+  
+KEY `post_fk_personne_id` (`post_fk_personne_id`),
+  
+KEY `post_fk_theme_id` (`post_fk_theme_id`)
+) 
+ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
+
+
+ALTER TABLE `post`
+  
+
+ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`post_fk_personne_id`) REFERENCES `personne` (`personne_id`) 
+ON DELETE CASCADE ON UPDATE CASCADE,
+  
+
+ADD CONSTRAINT `post_ibfk_2` FOREIGN KEY (`post_fk_theme_id`) 
+REFERENCES `theme` (`theme_id`) 
+ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+
+Plusieurs syntaxes est possible, je me réfère à MySQL :
+http://dev.mysql.com/doc/refman/5.0/fr/innodb-foreign-key-constraints.html
+
+
+
+
+- Langage de Manipulation des données (SELECT, UPDATE, INSERT, DELETE + WHERE - BETWEEN, IN, LIKE, EXISTS, JOIN + GROUP BY, HAVING, ORDER BY, LIMIT - TRUNCATE TABLE)
+	
+~ Extraire des données (SELECT)
+	
+	SELECT [{ DISTINCT | DISTINCTROW } | ALL } ] [[aliasTable.]listeColonnes ] | * ]
+	FROM nomTable [aliasTable] [,  nomTable [aliasTable] ] ...
+	[clauseOrdonnancement]
+	[GROUP¨BY nomColonne1 [, nomColonne2] ...]
+	[HAVING condition]
+	[ORDER BY nomColonne [ASC | DES] ]
+	[LIMIT [rangDépart,] nbLignes ];
+	
+	^ DISTINCT ou DISTINCTROW par opposition à l'option ALL définit par défaut, permet de ne pas inclure les duplicatats de lignes dans le résultat.
+	^ aliasTable permet de différencier des collonnes de table différentes portant les même nom de champs.
+	^ listColonnes énumère l'ensemble des champs à afficher. Chacune peut être redéfinit par un Alias : expression1 AS alias1
+	^ From désigne les tables à intéroger.
+	^ clauseOrdonnancement permet de définir des critères de tri par la clause WHERE (on le précisera par la suite.)
+	^ GROUP¨BY permet d'appliquer une fonction sur un regroupement.
+	^ HAVING pose une condition de restriction équivalent à WHERE mais n'est utilisable qu'après une clause GROUP BY
+	^ ORDER BY permet de trier le résultat suivant un ordre croissant ASC ou décroissant DESC d'une colonne.
+	^ LIMIT permet de sélectionner une plage de données dans le résultat de la requete.
+	
+
+	clauseOrdonnancement WHERE
+
+		Opérateurs de comparaison  	
+
+		< La valeur de la colonne est inférieur à 
+		= La valeur de la colonne est égale à 
+		> La valeur de la colonne est supérieur à
+		<= La valeur de la colonne est égale ou inférieur à
+		>= La valeur de la colonne est égale ou supérieur à
+		<> ou != La valeur de la colonne est différent de
+	
+		Opérateurs logique 	
+		
+		NOT Valide la valeur inverse d'une condition, sauf pr NULL
+		AND Retourne True quand les conditions renvoient True
+		OR Retourne True quand au moins une des opérande vaut True
+		XOR Retourne True quand un seul des opérandes vaut True
+
+		Opérateurs intégrés	
+
+		BETWEEN ... AND ... Permet de définir un interval de valeur
+		IN ('A','B', ...) Permet de définir une liste de valeur
+		LIKE '%mag_' Permet de sélectionner les valeurs répondant au motif. % définit un caractère indéfinit et au nombre indéfinit. _ définit un caractère indéfini.
+		IS NULL retourne True si la valeur est NULL.
+
+
+		Sous-intérogation 
+		
+		WHERE expression opérateur (SELECT ...)
+		WHERE expression IN (SELECT ...)
+		WHERE expression NOT IN (SELECT ...)
+
+
+	Clause EXISTS
+
+	Suivie d'une sous-intérogation entre parenthèses, et prend la valeur vrai s'il existe au moins une ligne satisfaisant les conditions de la sous-intérogation. Equivalent à IN.
+	
+	
+	
+	Clause JOIN
+		
+	Les deux types de jointures les plus utilisés sont :
+
+	La jointure relationnelle 
+
+	SELECT [alias1.]col1, [alias2.]col2 ...
+	FROM [nomBase.]nomTable1 [alias1], [nomBase.]nomTable2 [alias2] ...
+	WHERE conditionsDeJointure; 
+	
+	^ conditionsDeJointure : { [alias1.]nomColonne1 = [alias2.]nomColonne2 [ And ... ]}
+
+	C'est le clause la plus utilisé.Son avantage est de permettre au SGBD d'établir la meilleure stratégie d'accès (choix du premier index à utiliser, puis du deuxième, ...).
+	
+	
+	La jointure SQL2
+	
+	SELECT [ALL | DISTINCT | DISTINCTROW] listeColonnes
+	FROM [nomBase.]nomTable1 
+	[{ INNER | { LEFT | RIGHT | FULL } [OUTER] }]
+	JOIN [nomBase.]nomTable2 ON conditionsDeJointure
+	[{ INNER | { LEFT | RIGHT | FULL } [OUTER] }]
+	JOIN [nomBase.]nomTable2 } ON conditionsDeJointure 
+	...;
+
+	^ La distinction entre le mot clé INNER et OUTER sera précisé avec  l'exercice magasin.
+		
+	Cette manière de programmer est plus conforme à la norme SQL2 plus récente que la relationnelle, aussi plus verbale mais plus complexe.
+	
+	
+
+~ Ajout de ligne de données
+
+	INSERT [LOW_PRIORITY | DELAYED | HIGH_PRIORITY][IGNORE]
+	INTO [nomBase.]{nomTable | nomVue} [(nomColonne, ...)]
+	VALUES ({expression | DEFAULT}, ...), (...), ...
+	[ON DUPLICATE KEY UPDATE nomColonne = expression, ...]
+
+	
+	INSERT [LOW_PRIORITY | DELAYED | HIGH_PRIORITY][IGNORE]
+	INTO [nomBase.]{nomTable | nomVue}
+	SET nomColonne1 = expression1, nomColonne2 = expression2, ...
+	[ON DUPLICATE KEY UPDATE nomColonne = expression, ...]
+	
+	
+	INSERT [LOW_PRIORITY | HIGH_PRIORITY][IGNORE]
+	INTO [nomBase.]{nomTable | nomVue} [(nomColonne, ...)]
+	SELECT expression
+	[ON DUPLICATE KEY UPDATE nomColonne = expression, ...]
+	
+	^ DELAYED diffère l'exécution de l'insertion aux moment de non emploi de la table. 
+	^ LOW_PRIORITY similaire à DELAYED mais avec une priorité plus faible. Ne concerne que les moteurs MyISAM, MEMORY et MERGE.
+	^ HIGH_PRIORITY surpasse toutes les requêtes d'insertion.
+	^ ON DUPLICATE KEY UPDATE en cas de doublon de clé primaire ou d'index unique, on met à jour la ligne de données existante comme définit. 
+	
+	
+
+~ Mise à jour de données
+	
+	UPDATE [LOW_PRIORITY][IGNORE][nomBase.]nomTable
+	SET nomColonne1 = valeur1 [, nomColonne2 = valeur2 ] ...
+	[WHERE condition]
+	[LIMIT nbrLimite]
+	
+	^ LOW_PRIORITY diffère l'exécution de la commande tant qu'il existe un client qui accède à la table. Ne concerne que les moteurs MyISAM, MEMORY et MERGE.
+	^ IGNORE signifie que les lignes aux clés déjà existant ne sont pas insérés et les erreurs de MySQL ignorées.
+	^ WHERE filtre les lignes à modifier, sans toutes les lignes sont modifiés et si aucune ligne n'est trouvé, rien n'est modifié.
+	^ LIMIT restreind le nombre de ligne à modifier aux N premier
+	
+	
+~ Suppression de ligne de données
+
+	DELETE [LOW_PRIORITY][IGNORE]
+	FROM [nomBase.]nomTable
+	[WHERE condition]
+	[LIMIT nbreLimite]
+
+	^ LOW_PRIORITY, IGNORE et LIMIT ont la même signification que pour les instructions INSERT et UPDATE.
+	^ WHERE filtre les lignes à supprimer, sans toutes les lignes sont supprimé et si aucune ligne n'est trouvé, rien n'est supprimé.
+	^ LIMIT spécifie les N premier ligne à supprimer.
+	
+	
+	
+~ Vider une table
+	
+	TRUNCATE [TABLE][nomBase.]nomTable;
+	
+	Il n'est pas possible de tronquer une table contenant des clés étangères actives (table parents). La solution consiste à désactiver les contraintes puis procéder à la suppression. Ce qui est déconseillé car on risque de perder l'intégrité référentiel des tables parent-enfant.
+	
+
+
+	
+Mise en pratique :
+
+Créer / Insérer des données dans la base du Blog avec SQL
+
+
+personne_id 	personne_nom 	personne_prenom 	personne_login 	personne_passe 	personne_image
+1 		BOND 		James 			login1 		passe1 		admin.png
+2 		BALBOA 		Rocky 			login2 		passe2 		admin_2.jpg
+3 		PARICH 		Alan 			login2 		passe2 		admin_3.png
+
+
+theme_id 	theme_sujet 				theme_icone
+1 		JSON 					json160.gif
+2 		FirePHP 				firephp_large.png
+3 		Phostoshop export EPS 			psLogo.png
+4 		Google map API 				Google_Chrome_Icone_Logo-1.png
+5 		Modéliser un drone avec Blender 	blender.jpg
+6 		Ajouter une ombre portée avec CSS3 	CSS3-Logo.png
+7 		Colorimétrie des images 		rgb.jpg
+8 		Les bases de django 			django-icon-256.png
+9 		Overcloking 				Logo_AMD.png
+10 		Divers 					images_divers.jpg
+
+
+INSERT INTO `post` (
+`post_titre`, `post_desc`, `post_note`, `post_etat`, `post_date`, `post_fk_personne_id`, `post_fk_theme_id`, `post_image`, `post_slide`) 
+VALUES
+
+('Un post sur Bonjour', 'Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus.\r\n\r\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur', 8, '1', '2012-09-04 05:40:52', 1, 10, NULL, 1),
+
+('Un post sur JSON', 'Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus.\r\n\r\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur', 8, '1', '2012-09-04 05:40:52', 2, 1, NULL, 1),
+
+('Un post sur FirePHP', 'Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus.\r\n\r\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur', 7, '1', '2012-09-04 05:40:52', 3, 2, NULL, 1),
+
+('Un post sur Phostoshop export EPS', 'Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus.\r\n\r\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur', 6, '1', '2012-06-27 05:40:52', 2, 3, NULL, 1),
+
+('Un post sur Google map API', 'Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus.\r\n\r\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur', 5, '1', '2012-06-27 05:40:52', 3, 4, NULL, 1),
+
+('Un post sur Modéliser un drone avec Blender', 'Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus.\r\n\r\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur', 7, '1', '2012-06-27 05:40:52', 2, 5, NULL, 1),
+
+('Un post sur Ajouter une ombre portée avec CSS3', 'Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus.\r\n\r\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur', 6, '1', '2012-06-27 05:40:52', 1, 6, NULL, 1),
+
+('Un post sur Colorimétrie des images', 'Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus.\r\n\r\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur', 9, '1', '2012-06-27 05:40:52', 1, 7, NULL, 1),
+
+('Un post sur Les bases de django', 'Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus.\r\n\r\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur', 5, '1', '2012-06-27 05:40:52', 3, 8, NULL, 1),
+
+('Un post sur Overcloking', 'Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus.\r\n\r\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur', 7, '1', '2012-06-27 05:40:52', 1, 9, NULL, 1),
+
+('La typologie des nuanciers', 'Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur', 7, '', '2012-09-04 14:11:51', 2, 7, NULL, 2);
+
+
++ Requêtes de Sélection : 
+
+
+1) Afficher toutes les données de la table Post
+SELECT * FROM post
+
+2) Afficher le nom des catégories disponibles
+SELECT category_nom FROM category
+
+3) Afficher les Posts de James
+SELECT * FROM `post`, `persons`  WHERE fk_persons_id=persons_id AND persons_prenom='James'
+
+4) Afficher les titres de Posts par Personne
+SELECT persons_nom, persons_prenom, post_title
+FROM post, persons WHERE persons_id = fk_persons_id
+
+5) Afficher les Post noté à plus de 7
+SELECT post_title, post_note
+FROM post WHERE post_note>7
+
+6) Sauvegarder les données de la base Blog
+
+7) Procéder à des mise à jours, modifications et suppressions
+
+8) Péparer un script d'insertion des données à partir de la sauvegarde et Réinsérer les données uniquement supprimées.
+
+> voir pdf
+
+	
+
+
+	
+- Language de Control des données (GRANT, REVOKE, COMMIT, ROLLBACK)
+	
+	CREATE USER 
+	utilisateur [IDENTIFIED BY [PASSWORD]] 'motdePasse']
+	[, utilisateur2 [IDENTIFIED BY [PASSWORD] 'motdePasse'] ...];
+	
+	IDENTIFIED BY 'motdePasse' permet d'affecter un mot de passe (sensible à la casse) à un utilisateur (caractérisé par 16 caractères au maximum, sensible à la casse).
+	
+	
+	
+	
+	
+	
+Mise en pratique :
+
+En n'utilisant que le langage SQL (en ligne de commande ou sous l'onglet SQL de l'interphase PHPMyAdmin) :
+	- Créer un profil utilisateur n'ayant que les droits pour lire et insérer des données dans la base, soit LMD "Données" (SELECT, INSERT, UPDATE, DELETE, FILE) sans l'option DELETE ni FILE.
+	- Et créer un profil administrateur de site ayant que tout les droits du MLD.
+
+
+Réponse : 
+
+
+
+
+
+> Accès procédurale à MySQL avec PHP
+
+http://php.net/manual/fr/function.mysql-query.php
+
+
+- Présentation des fonctions
+
+	- connexion
+
+mysql_connect("localhost", "login", "password"); 
+mysql_select_db("nom de la base de donnée"); 
+
+	
+	- détection des erreurs
+
+$erreur_mysql = mysql_error();
+if(!empty($erreur_mysql)) echo 'Erreur de connexion à la base de données : '.$erreur_mysql;
+
+
+	- déconnexion
+
+mysql_close();
+
+
+	- intérogation
+
+$result = mysql_query("SELECT * FROM Persons");
+mysql_query($result);
+
+
+	- affichage
+
+while($row = mysql_fetch_array($result))
+  {
+  echo $row['persons_nom'] . " " . $row['persons_prenom'];
+  echo "<br />";
+  }	
+
+
+	- mysql_fetch_array()
+Retourne une ligne de résultat MySQL sous la forme d'un tableau associatif, d'un tableau indexé, ou les deux
+
+
+	- mysql_fetch_row()
+
+Retourne une ligne de résultat MySQL sous la forme d'un tableau
+
+
+	- mysql_num_rows()
+
+Récupère le nombre de lignes d'un jeu de résultat. Cette commande n'est disponible que pour les requêtes comme SELECT.
+
+
+	- insertion
+
+$result = "INSERT INTO Persons (persons_id, persons_nom, persons_prenom)
+VALUES (NULL, 'SIMPSON', 'Homer');";
+mysql_query($result);
+
+
+	- mise à jour
+
+$result = "UPDATE Persons SET  persons_prenom='Bart' WHERE persons_nom='SIMPSON';";
+mysql_query($result);
+
+
+	- suppression
+
+$result = "DELATE FROM Persons WHERE persons_id=4;";
+mysql_query($result);
+
+
+
+
+
+
+
+> Accès objet à MySQL avec PHP
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+Théorie et Code
+http://sqlpro.developpez.com/cours/modelisation/merise/
+http://cerig.efpg.inpg.fr/tutoriel/bases-de-donnees/sommaire.htm
+http://dev.ordi-facile.net/sql/index-4-2.php
+
+Injection de code :
+http://adsltele.free.fr/tutoriel-injection-sql.php
+http://php.net/manual/fr/security.database.sql-injection.php
+
+
+
+
+
+Mise en pratique :
+
+Exercie Magasin
+
+
+Mise en pratique :
+
+Exercie Blog
+Conception de la base + Moteur de recherche
+
+
+Mise en pratique :
+
+Exercice Mamographie
+Conception de la base de feuille Excel + Moteur de recherche
+
+
+Mise en pratique :
+
+Exercie CRM
+Conception de la base + Moteur de recherche
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

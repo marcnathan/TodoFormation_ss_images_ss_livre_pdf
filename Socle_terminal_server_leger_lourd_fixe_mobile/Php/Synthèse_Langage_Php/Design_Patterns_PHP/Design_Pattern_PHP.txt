@@ -1,0 +1,114 @@
+> Design Patterns PHP
+	- http://designpatternsphp.readthedocs.io/en/latest/README.html
+	- https://sourcemaking.com/design_patterns
+
+Design Patterns
+
+In software engineering, a design pattern is a general repeatable solution to a commonly occurring problem in software design. A design pattern isn't a finished design that can be transformed directly into code. It is a description or template for how to solve a problem that can be used in many different situations.
+Uses of Design Patterns
+
+Design patterns can speed up the development process by providing tested, proven development paradigms. Effective software design requires considering issues that may not become visible until later in the implementation. Reusing design patterns helps to prevent subtle issues that can cause major problems and improves code readability for coders and architects familiar with the patterns.
+
+Often, people only understand how to apply certain software design techniques to certain problems. These techniques are difficult to apply to a broader range of problems. Design patterns provide general solutions, documented in a format that doesn't require specifics tied to a particular problem.
+
+In addition, patterns allow developers to communicate using well-known, well understood names for software interactions. Common design patterns can be improved over time, making them more robust than ad-hoc designs.
+
+// ------------------------------------------------
+> GoF Creational Patterns
+
+In software engineering, creational design patterns are design patterns that deal with object creation mechanisms, trying to create objects in a manner suitable to the situation. The basic form of object creation could result in design problems or added complexity to the design. Creational design patterns solve this problem by somehow controlling this object creation.
+
+These design patterns are all about class instantiation. This pattern can be further divided into class-creation patterns and object-creational patterns. While class-creation patterns use inheritance effectively in the instantiation process, object-creation patterns use delegation effectively to get the job done.
+
+- Abstract Factory 				Sets of methods to make various objects.
+- Builder 						Make and return one object various ways.
+- Factory Method 				Methods to make and return components of one object various ways.
+- Multiton
+- Pool							Avoid expensive acquisition and release of resources by recycling objects that are no longer in use 
+- Prototype 					Make new objects by cloning the objects which you set as prototypes.
+- Simple Factory				
+- Singleton 					A class distributes the only instance of itself.
+- Static Factory
+
+
+// ------------------------------------------------
+> GoF Structural Patterns
+
+In Software Engineering, Structural Design Patterns are Design Patterns that ease the design by identifying a simple way to realize relationships between entities.
+
+These design patterns are all about Class and Object composition. Structural class-creation patterns use inheritance to compose interfaces. Structural object-patterns define ways to compose objects to obtain new functionality.
+
+- Adapter 						A class extends another class, takes in an object, and makes the taken object behave like the extended class.
+- Bridge 						An abstraction and implementation are in different class hierarchies.
+- Composite 					Assemble groups of objects with the same signature.
+- Data Mapper
+- Decorator 					One class takes in another class, both of which extend the same abstract class, and adds functionality.
+- Dependency Injection
+- Facade 						One class has a method that performs a complex process calling several other classes.
+- Fluent Interface
+- Flyweight 					The reusable and variable parts of a class are broken into two classes to save resources.
+- Private Class Data
+- Proxy 						One class controls the creation of and access to objects in another class.
+- Registry
+
+
+// ------------------------------------------------
+> GoF Behavorial Patterns
+
+These design patterns are all about Class's objects communication. Behavioral patterns are those patterns that are most specifically concerned with communication between objects.
+
+In software engineering, behavioral design patterns are design patterns that identify common communication patterns between objects and realize these patterns. By doing so, these patterns increase flexibility in carrying out this communication.
+
+- Chain Of Responsibility 		A method called in one class can move up a hierarchy to find an object that can properly execute the method.
+- Command 						An object encapsulates everything needed to execute a method in another object.
+- Interpreter 					Define a macro language and syntax, parsing input into objects which perform the correct opertaions.
+- Iterator 						One object can traverse the elements of another object.
+- Mediator 						An object distributes communication between two or more objects.
+- Memento 						One object stores another objects state.
+- Null Object					Designed to act as a default value of an object 
+- Observer 						An object notifies other object(s) if it changes.
+- Specification
+- State 						An object appears to change its` class when the class it passes calls through to switches itself for a related class.
+- Strategy 						An object controls which of a family of methods is called. Each method is in its` own class that extends a common base class.
+- Template Method				An abstract class defines various methods, and has one non-overridden method which calls the various methods.
+- Visitor 						One or more related classes have the same method, which calls a method specific for themselves in another class.
+
+
+// ------------------------------------------------
+> Other PHP Design Patterns
+
+- Non OO MVC 						MVC - Model View Controller - shown using procedural and not OO architecture.
+- Delegation
+- Service Locator
+- Repository
+- Entity-Attribute-Value (EAV)
+
+
+// ------------------------------------------------
+> Object Oriented PHP Basics
+
+PHP OO Class Basics 			The basics of creating a class with OO PHP.
+PHP OO Abstract Class Basics 	The basics of creating an abstract class with OO PHP.
+PHP OO Interface Basics 		The basics of creating an interface with OO PHP.
+PHP OO Static Basics 			The basics of using Statics with OO PHP.
+PHP OO This and Parent Basics 	The basics of using this and parent with OO PHP.
+
+
+Criticism
+
+The concept of design patterns has been criticized by some in the field of computer science.
+Targets the wrong problem
+
+The need for patterns results from using computer languages or techniques with insufficient abstraction ability. Under ideal factoring, a concept should not be copied, but merely referenced. But if something is referenced instead of copied, then there is no "pattern" to label and catalog. Paul Graham writes in the essay Revenge of the Nerds.
+
+Peter Norvig provides a similar argument. He demonstrates that 16 out of the 23 patterns in the Design Patterns book (which is primarily focused on C++) are simplified or eliminated (via direct language support) in Lisp or Dylan.
+Lacks formal foundations
+
+The study of design patterns has been excessively ad hoc, and some have argued that the concept sorely needs to be put on a more formal footing. At OOPSLA 1999, the Gang of Four were (with their full cooperation) subjected to a show trial, in which they were "charged" with numerous crimes against computer science. They were "convicted" by ⅔ of the "jurors" who attended the trial.
+Leads to inefficient solutions
+
+The idea of a design pattern is an attempt to standardize what are already accepted best practices. In principle this might appear to be beneficial, but in practice it often results in the unnecessary duplication of code. It is almost always a more efficient solution to use a well-factored implementation rather than a "just barely good enough" design pattern.
+Does not differ significantly from other abstractions
+
+Some authors allege that design patterns don't differ significantly from other forms of abstraction, and that the use of new terminology (borrowed from the architecture community) to describe existing phenomena in the field of programming is unnecessary. The Model-View-Controller paradigm is touted as an example of a "pattern" which predates the concept of "design patterns" by several years. It is further argued by some that the primary contribution of the Design Patterns community (and the Gang of Four book) was the use of Alexander's pattern language as a form of documentation; a practice which is often ignored in the literature.
+

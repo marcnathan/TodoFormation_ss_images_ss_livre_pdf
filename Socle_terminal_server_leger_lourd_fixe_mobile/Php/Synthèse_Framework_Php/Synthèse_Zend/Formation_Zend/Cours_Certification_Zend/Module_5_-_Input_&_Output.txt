@@ -1,0 +1,39 @@
+> Files
+- two types of functions
+	- that work with a file resource
+		- f*() (e.g., fopen(), ...)
+	- that work with a file name
+		- file*() (e.g., file_get_contents(), ...)
+- Setting
+	- allow_url_fopen
+
+- Functions
+	- stream_get_contents()
+	- fpassthru()
+	- File Operations
+		- copy()
+		- rename()
+		- delete()
+		- move()
+	- File Wrapper
+		- file://
+		- stream_wrapper_register()
+	- Sokets
+		- fsockopen()
+	- Streams
+		- Wrapper
+		- Pipeline(s)
+		- Transport
+		- Context
+		- Meta Data > stream_get_meta_data()
+		- Filters
+		- stream_context_set_default()
+	
+
+
+
+
+
+
+
+
