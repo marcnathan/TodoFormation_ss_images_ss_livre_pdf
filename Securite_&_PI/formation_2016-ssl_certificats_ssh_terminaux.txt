@@ -1,0 +1,74 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+	- 
+
+
+> ssl de certificat et ssh pour terminaux
+	- ssl pour apache (Transport Layer Security (TLS) and its predecessor, Secure Sockets Layer (SSL) <> Secure Shell (SSH) is a UNIX-based command interface and protocol for securely getting access to a remote computer)
+		- ressources
+			- net
+				- https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-16-04
+				- https://doc.ubuntu-fr.org/tutoriel/securiser_apache2_avec_ssl
+			- livre
+				- 
+		- lien indexe complet
+			- 
+		- procédées essentiels
+			- 
+		- outils
+			- 
+			
+	- ssh pour Git hub (Transport Layer Security (TLS) and its predecessor, Secure Sockets Layer (SSL) <> Secure Shell (SSH) is a UNIX-based command interface and protocol for securely getting access to a remote computer)
+		- ressources
+			- net
+				- https://help.github.com/articles/about-ssh/
+				- https://help.github.com/articles/checking-for-existing-ssh-keys/
+				- https://help.github.com/articles/working-with-ssh-key-passphrases/
+				- https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
+				- https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
+				- https://help.github.com/articles/testing-your-ssh-connection/
+			- livre
+				- 
+		- lien indexe complet
+			- 
+		- procédées essentiels
+			- can connect to GitHub without supplying your username or password at each visit.
+			- checking for existing SSH keys
+				- ls -al ~/.ssh
+				- By default, the filenames of the public keys are one of the following:
+
+					id_dsa.pub
+					id_ecdsa.pub
+					id_ed25519.pub
+					id_rsa.pub
+
+				- If you don't have an existing public and private key pair, or don't wish to use any that are available to connect to GitHub, then generate a new SSH key.
+				- If you see an existing public and private key pair listed (for example id_rsa.pub and id_rsa) that you would like to use to connect to GitHub, you can add your SSH key to the ssh-agent.
+			- généré de 
+				- shell
+					- ssh-keygen -t rsa -b 4096 -C "your_email@example.com" (mail git)
+					- 
+				- openssl
+					- 
+				- générateurs en ligne
+					- 
+			- ajout du ssh key au ssh-agent
+				- Before adding a new SSH key to the ssh-agent to manage your keys, you should have checked for existing SSH keys and generated a new SSH key.
+					- Start the ssh-agent in the background.
+						- eval "$(ssh-agent -s)"
+					- Add your SSH private key to the ssh-agent. If you created your key with a different name, or if you are adding an existing key that has a different name, replace id_rsa in the command with the name of your private key file.
+						- ssh-add ~/.ssh/id_rsa
+			- Add the SSH key to your GitHub account
+				- Copy the SSH key to your clipboard
+				- In the upper-right corner of any page, click your profile photo, then click Settings
+			- Test de connection
+				- ssh -T git@github.com
+		- outils
+			- 
+
+
+
+

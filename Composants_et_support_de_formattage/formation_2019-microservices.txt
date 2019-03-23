@@ -1,0 +1,31 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+	- 
+
+
+> microservices
+	- ressources
+		- net
+			- https://en.wikipedia.org/wiki/Microservices
+			- https://martinfowler.com/articles/microservices.html
+			- http://microservices.io/patterns/microservices.html
+			- https://www.nginx.com/blog/introduction-to-microservices/
+		- livre
+			- 
+	- lien indexe complet
+		- 
+	- procédées essentiels
+		- installation
+			- 
+		- paramétrage
+			- connexion aux servers (packagist, ...)
+				- 
+			- fichier  de configuration
+				- 
+		- commandes
+			- 
+		- outils
+			- 

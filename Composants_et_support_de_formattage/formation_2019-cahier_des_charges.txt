@@ -1,0 +1,34 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+	- 
+
+
+> cahier des charges
+	- ressources
+		- net
+			- 
+		- livre
+			- memento
+	- lien indexe complet
+		- cahier des charges
+			- 
+			- modélisation uml
+				- 
+			- 
+		- gantt
+			- 
+		- pert
+			- 
+		- cycles de développements et de tests
+			- V
+		- présentation
+			- 
+		- mise en production
+			- 
+	- procédées essentiels
+		- 
+	- outils
+		- 

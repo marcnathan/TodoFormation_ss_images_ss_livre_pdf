@@ -1,0 +1,34 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+	- 
+
+
+> solid
+	- ressources
+		- net
+			- 
+		- livre
+			- 
+	- lien indexe complet
+		- S.	Single responsibility principle[4]
+					a class should have only a single responsibility (i.e. changes to only one part of the software's specification should be able to affect the specification of the class)
+					une classe, une fonction ou une méthode doit avoir une et une seule responsabilité
+		- O.	Open/closed principle[5]
+					“software entities … should be open for extension, but closed for modification.”
+					une classe doit être ouverte à l'extension, mais fermée à la modification
+		- L.	Liskov substitution principle[6]
+					“objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program.” See also design by contract.
+					une instance de type T doit pouvoir être remplacée par une instance de type G, tel que G sous-type de T, sans que cela ne modifie la cohérence du programme
+		- I.	Interface segregation principle[7]
+					“many client-specific interfaces are better than one general-purpose interface.”
+					préférer plusieurs interfaces spécifiques pour chaque client plutôt qu'une seule interface générale
+		- D.	Dependency inversion principle[9]
+					one should “depend upon abstractions, [not] concretions.”
+					il faut dépendre des abstractions, pas des implémentations
+	- procédées essentiels
+		- 
+	- outils
+		- 

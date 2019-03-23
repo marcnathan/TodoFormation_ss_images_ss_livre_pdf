@@ -77,6 +77,42 @@
 			- livre
 				- 
 		1- native
+		
+			- divers (à traiter dans php 7)
+				- https://www.smashingmagazine.com/2009/01/50-extremely-useful-php-tools/
+				- http://php.net/manual/fr/wrappers.php
+				- http://php.net/manual/fr/context.php
+				- https://learnxinyminutes.com/docs/php/
+				- http://php.net/zend.assertions
+				- http://php.net/com.typelib-file
+				- cli ?
+				- comment est lié à php.ini
+					- des librairies php
+						- perl
+						
+				- si de par la résolution de la base de l'url par rapport aux alias si il y en a,
+				définit dans la conf,
+				apache passe le traitement de la requête pour une réponse,
+				à l'" index.php " définit comme DirectoryIndex d'un domaine,
+				qui est le front contrôleur d'une application,
+				et si les erreurs de pages d'erreur était traiter par lui,
+				peut il modifier le header ? Oui.
+				
+				- comment faire pour changer les paramètres php.ini ?
+					- default_mimetype
+					- default_charset
+					- include_path
+					- extension_dir
+					- max_execution_time
+					- error_reporting
+					- max_file_upload
+					- session.upload_progress.enabled
+					- soap.wsdl_cache_enabled
+					- opcache
+					- curl
+					- openssl
+					- ...
+		
 			
 			- Installation et configuration
 				- Considérations générales sur l'installation

@@ -1,0 +1,39 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+	- 
+
+
+> composer
+	- ressources
+		- net
+			- https://learnxinyminutes.com/docs/php-composer/
+		- livre
+			- 
+	- lien indexe complet
+		- 
+	- procédées essentiels
+		- installation
+			- de l'exécutable placé dans le répertoire du projet
+				- préfixer par php
+			- de l'intégration de l'exécutable au shell
+		- paramétrage
+			- mise à jour et diagnostique
+				- composer
+				- composer diagnose
+				- composer self-update
+			- fichier de configuration
+				- .json
+		- commandes
+			- composer ini
+			- composer install --no-dev
+			- composer require --dev phpunit/phpunit:~4.5.0
+			- composer update phpunit/phpunit
+			- composer remove --dev phpunit/phpunit et composer require --dev phpunit/phpunit: ^5.0
+			- composer show
+			- composer show --installed
+			- composer search mailgun
+		- outils
+			- 
