@@ -1,0 +1,67 @@
+> Notes
+	- 
+	- 
+	- 
+	- 
+	- 
+
+> scrum de agile 
+	- ressources
+		- net
+			- 
+		- livre
+			- pdf scrum sicave > super super super !!!! (sans i, pauve mot)
+	- lien indexe complet
+		- méthodes agiles
+			- Rapid Application Development (RAD, 1991)
+			- Intégration continue (1991)
+			- Dynamic systems development method (DSDM, 1995, consortium anglais commercialisant le RAD)
+			- Scrum (1996)
+				- Roles
+					- Product owner
+					- Scrum team
+					- Scrum master
+				- Workflow
+					- Sprint planning
+					- Product backlog
+					- Sprint backlog
+					- Sprint
+					- Daily scrum
+					- Shippable product
+					- Sprint review
+					- Sprint retrospective
+				- Artifacts
+					- Product backlog
+					- Sprint backlog
+					- Burndown chart
+					- Release Backlog
+					- Product increment
+			- Extreme programming (XP, 1999)
+			- Adaptive software development (ASD, 2000)
+			- Développement basé sur les fonctionnalités (FDD pour Feature Driven Development, 2003)
+			- Behavior-driven development (BDD, 2003)
+			- Crystal clear (2004)
+	- procédées essentiels
+		- Srcum
+			- Roles
+				- Product owner
+				- Scrum team
+				- Scrum master
+			- Workflow
+				- Sprint planning
+				- Product backlog
+				- Sprint backlog
+				- Sprint
+				- Daily scrum
+				- Release Backlog
+				- Shippable product
+				- Sprint review
+				- Sprint retrospective
+			- Artifacts
+				- Product backlog
+				- Sprint backlog
+				- Burndown chart
+				- Release Backlog
+	- outils
+		- 
+		

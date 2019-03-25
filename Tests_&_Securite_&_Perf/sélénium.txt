@@ -9,7 +9,9 @@
 > sélénium
 	- ressources
 		- net
-			- 
+			- http://www.objis.com/formation-java/Tuto-Selenium-PHP-Jenkins
+			- https://dzone.com/articles/selenium-2-php-code
+			- https://www.sitepoint.com/using-selenium-with-phpunit/
 		- livre
 			- 
 	- lien indexe complet
@@ -25,4 +27,5 @@
 			
 		- outils
 			- 
+				
 	

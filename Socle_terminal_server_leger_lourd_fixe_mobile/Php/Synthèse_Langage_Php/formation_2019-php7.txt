@@ -1194,7 +1194,7 @@
 						- Various PHP-related resources in a brief overview.
 					
 					
->>>		4- cli and batch														
+>>>		4- cli and batch
 			- cron de lancement plannifié
 				- proc
 					- access rwx to be set for files
@@ -1549,7 +1549,7 @@
 				de préproduction,
 				de production), ...
 >>>		8- Tests
-			- phUnit
+			- phpUnit
 				- tdd
 			- selenium
 				- 

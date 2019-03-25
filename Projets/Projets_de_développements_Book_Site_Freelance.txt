@@ -1,0 +1,1267 @@
+
+> Notes
+    -
+    -
+    -
+    -
+
+
+
+> Projets de développements	------------------------------------------------------------------------------------------------------------------------
+
+	- todo Rex Hanna
+			- tâches pesaro
+				- ouverture vendredi 12/01/18
+					- mettre l'annonce sur son compte Facebook
+						- créer un compe Pesaro
+							- mettre du contenus commercial
+								- les photos
+								- le menus
+								- les coordonnées
+						- inviter les clients du Petit Venise
+			- tâches le petit venise
+en-cours		- envoyer mail pour les annonces + après validation mettre en ligne sur le bon coins
+				- vente le petit venise
+				- vente matériel dario
+				- recherche cuisinier
+			- faire le point la fourchette, en fin de semaine, au rd pour photos avant mise en ligne la livraison
+				- petit venise
+				- pesaro
+			- faire les développements du site de Rex Hanna	- 1 sem
+				- back
+					- édition et affichage du menu (sans l'affluence) - 1 j
+					- mailing du menu - 1 j
+					- réservation en ligne - 2 j
+					- gestion du payement des charges (saisie pour plannification de payement + archi factures fournisseurs et admin public) - 2 j
+					- notifications et de plannification
+				- front
+					- menu semaine / réservation / précommande
+					- contenus
+						- design site
+						- message commercial de référencement + photos d'ambiances
+						- menus + photos de produits
+						- blog d'événements + photos
+						- coordonnées + plan de parking
+						- module diffusion du service de liens réseaux sociaux et pro
+				- prévoir compte spécifique sur fonctionnalité + ssh + protéger les pages ajax
+					- pour lui
+						- d'édition de page du site
+						- d'utilisation de l'assistant
+					- pour un tiers
+						- d'édition de page du site
+					- désactiver l'accès aux autres lien par autentification
+				- page (view + model + controler) (socle back|front appli -> interfases user back|front office)
+					- global
+						- ajouter scrollup en back et front si besoin
+							- 
+						- bug
+							- sur mobile, bt menu admin mènent directement à la première page de sa liste et non ouverture de la liste
+								- ajouter dans la première page une liste de bt aux autres sous pages de la liste
+						- faire en plus des tests de sécurités, les tests de dimensions moyenne des terminaux de clients légers
+							- 
+						- liste de fonctions et corrélations
+							- front
+								- 
+							- back
+								- 
+								
+								- reformater la page de fonction ajax
+									- agréger qu'une fonction js ajax
+										- 
+									- une page de librairies des fonctions, dont chemin définit dans une constant d'un fichier de config wordpress
+										- à inclure si token et alias fonction ajax ok
+									- repérer sur l'ancien code
+										- les éléments utiles
+										- agréger la logique pour le reste
+								
+								- fonction de gestion de l'intégrité des inputs de requêtes ajax
+									- 
+								- fonction de gestion des erreurs // en cours
+									- en back
+										- un collecteur d'erreurs des fonctions
+											- contrôle d'intétégrités 
+												- des inputs
+												- des dispositions des ressources
+												- des états des fonctions des ressources
+												- des outputs
+											- formattage des messages pour le modale de notifications d'erreurs
+									- en front
+										- doit pouvoir signaler l'erreur dans une modale
+										- fonction en front de d'aide à la localisation et de résolution d'erreurs
+								- 
+									- 	
+								- fonction d'affichage de l'aide // en cours
+									- 
+								- fonctions ajax par switch // en cours
+									- 
+								- fonction crud // en cours
+									- 
+					- back
+						- notification
+							- notes
+								- 
+							- template
+								- zone de notifictions
+									- de e-mailing
+										- demandes d'envoi du menu de la semaine
+									- de réservation
+										- nouvelles demandes de réservation et de vae
+										- rappelle des demandes de la semaine
+									- de gestion de charges
+										- rappelle des dates et sommes de payement du mois
+									- de notification libre par admin
+										- 
+								- zone de form de tri des notification du calandrier
+									- par type
+									- par mois / années
+								- zone de calandrier de notification
+									- bt de fermeture
+									- bt d'un modale d'un form de création de notification
+									- bt de basculement mois / années du tri
+							- liste de fonctions et corrélations
+								- front
+									- 
+								- back
+									- 
+									
+								- fonction d'affichage et de gestion des notifications
+									- 
+								- fonction de fermeture (transversal à notifications / édition / réservation en ligne)
+									- bt modal form avec nature de restriction de service
+									- affiché sur site et mail menu semaine
+								- fonction de tri des notifications du calandrier
+									- par type
+									- par mois / années
+								- fonction d'affichage du calandrier des notifications du tri
+									- 
+								- fonction de basculement mois / années suivant le tri
+									- lié à la fonction de tri des notifications du calandrier
+										- 
+								- fonction de création de notification admin
+									- avec choix pour la notification
+										- de couleur
+										- de type
+										- d'occurence [de fréquence]
+											- pas de plages de dates
+											- seulement un bt ajout champs datepicker
+							
+						- édition et affichage du menu (sans l'affluence)
+							- notes
+								- 
+							- template
+								- zone création formules menu semaine
+									- 
+								- zone consultation et attribution formule menu semaine
+									- 
+								- zone tri de notes formules services jours dates
+									a1- le graph doit être avant le tableau
+										- sur tablette et mobile
+											- élargir le tableau sur toute la largeur de l'écran
+							- liste de fonctions et corrélations
+								- back
+									- création formules menu semaine
+										- 
+									- consultation et attribution formule menu semaine
+										- 
+									- tri de notes formules services jours dates
+										- 
+								- front
+									- création formules menu semaine
+										- 
+									- consultation et attribution formule menu semaine
+										- 
+									- tri de notes formules services jours dates
+										- 
+								
+								- section 1
+									- fusionner les deux calandrier en un seul dans la zone d'édition
+										- reformater le formulaire
+											- modifier les champs en fonction de non service
+										- corriger le js en fonction
+											- 
+										- ne pouvoir supprimer des menus que de la semaine en cours ou à venir
+											- 
+									- contrôler et corriger les fonctions get, set, del
+										- 
+									- si token hs et session ok
+										- fonction ajax de récupération de token
+									- reformater la sélection de la page de dates
+										- 
+									- checker les bugs de scénarios
+										- de l'effectif de mon nominal
+											- 
+										- des autres effectifs
+											- 
+								- section 2
+									- attribution par formule
+										- note, état de diffusion
+									- impression pdf
+										- 
+								- section 3
+									- fonction de tri
+										- formulaire
+											- formule, note
+										- graphe
+									- fonction de chargement de liens du menu de la semaine
+										- 
+								
+								- fonction de notification de fermeture (transversal à notifications / édition / réservation en ligne)
+									- bt modal form avec
+										- plage[s] de date[s] 
+											- où pour chaque plage nature[s] de restriction de service
+								- fonction de création de formules, à répérition libre par service par jour, de semaine
+									- dans form
+										- titre avec prix
+											- des champs de détails
+										- en cas de collision avec formules existant, sans le cas d'une modification
+											- notifier l'ensemble des saisie jour pour confirmation sous modale
+									- dans calandrier d'édition
+										- pour chaque formule
+											- bt fonction modifier avec param de modification de formule
+												- pour dissocier de toute erreur de même titre lors de saisie de nouvelles formules
+												- au click supprimer l'ancienne formule et formater la nouvelle saisie
+								- fonction enregistrement des formules de la semaine
+									- en back
+										- 
+									- en front
+										- fonction de réinitialisation du canaldrier semaine
+										- fonction de chargement du menu de la semaine, enregistrée, dans la zone de consultation
+								- fonction de chargement du menu de la semaine
+									- dans la zone d'édition
+										- 
+									- dans la zone de consultation
+										- ajout des boutons
+											- d'état jour de formules
+											- de note par formule
+								- fonction de note par formule
+									- fonction ajax de fonction de modification de note de formule du jour de la date
+								- fontion de défition d'état jour de formules
+									- bt list 
+										- brouillon
+										- réservation
+										- fermeture
+										- en ligne
+										- hors ligne
+										- supprimer
+									- au select
+										- fonction ajax de fonction de modification d'état du jour de formules, de la plage de dates semaine
+								- fonction de modification d'état de formules du jour de la date
+									- 
+								- fonction d'édition de formule(s) d'une semaine enregistrée
+									- dans calandrier semaine de la zone de consultation
+										- enlever l'option édition / import formule semaine pour modification
+									- si besoin modification de formule(s) d'une semaine et si état formule(s) == [brouillon|date > now()]
+										- utiliser la fonction plage dates 1 de chargement de formule(s) semaine pour modification
+								- fonction impression
+									- dans modale permettre le choix
+										- des jours à imprimer
+								
+								- fonction de tri des formules par note(s)|formule(s)|service(s)|date(s)
+									- tempate
+										- a1
+									- liste de fonctions et corrélations
+										- fonction de tri
+											- fonction ajax de fonction de tri des enregistrements
+												- 
+											- form
+												-
+											- graphique
+												- 
+										- soit, fonction de chargement d'une formule d'une semaine dans la zone de consultation 
+											- 
+										- soit, afficher le détails des formules dans la zone d'affichage du tri
+											- 
+						
+						- e-mailing
+							- notes
+								- créer le mail contact@pesaro.fr
+									- paramétrer son client de messagerie
+							- template(s)
+								- zone de notifications
+									- 
+								- zone d'un form de tri des mails enregistreés
+									- 
+								- zone d'ffichage du tri
+									- 
+								- zone d'une liste des nouvelles demandes + fonction d'intégration
+									- 
+							- liste de fonctions et corrélations
+								- front
+									- 
+								- back
+									- 
+								
+								- fonction d'affichage et de gestion des notifications
+									- 
+								- fonction de fermeture (transversal à notifications / édition / réservation en ligne)
+									- bt modal form avec nature de restriction de service
+									- affiché sur site et mail menu semaine	
+								- fonction d'intégration de mail
+									- 
+									- fonction de notification d'intégration avec le menu de la semaine en cours/jointures/inner-join
+										- 
+								- une fonctionnalité de désactivation du mail du mailing list (précie ou groupé du tri)
+									- par demande client, 
+										- sur site 
+										- par lien du mail de menu
+											- d'où envoi de mail individualisé
+									- par admin
+										- 
+								- une fonction de teste d'envoie de mail du menu semaine
+									- 
+								- une fonction d'envoie, mail par mail, du menu semaine
+									- 
+									- voir si possible de détection de mail non reçus
+										- 
+								- dans le mail, en html + css + imges, 
+									- créer un lien menant à la fonctionnalité de réservation avec calcule du trajet sur google map
+									
+						- réservation en ligne
+							- notes
+								- 
+							- template(s)
+								- zone de notifications
+									- 
+								- zone d'option d'ajout de réservaion et de précommande par l'admin
+									- sous modale
+										- 
+								- zone de form de tri du calandrier semaine
+									- par réservation
+									- par précommandes
+									- par places disponibles
+								- zone d'affichage du calandrier semaine du tri
+									- 
+							- liste de fonctions et corrélations
+								- front
+									- 
+								- back
+									- 
+										
+								- fonction d'affichage et de gestion des notifications
+									- 
+								- fonction de fermeture (transversal à notifications / édition / réservation en ligne)
+									- bt modal form avec nature de restriction de service
+									- affiché sur site et mail menu semaine
+								- fonction d'ajout par admin
+									- fonction de réservation
+										- conditions
+											- au mini 24h à l'avance, sinon appeler directement
+										- voir éventuellement précommande de plâts
+									- fonction de précommande de vae
+										- conditions
+											- au mini 24h à l'avance, sinon appeler directement
+								- fonction de tri du calandirer semaine
+									- 
+								- fonction calandrier par semaine enregistrés
+									- fonction pour afficher
+										- les places disponibles
+										- les réservations
+											- avec déventuel précommande de formules|plats et délais
+										- les précommandes vae
+											- 
+									
+						- gestion du payement des charges (saisie pour plannification de payement + archi factures fournisseurs et admin public)
+							- calandrier mensuel / annuel
+								- bt modal de form d'ajout de factures
+								- au click lien label
+									- modal détails + visualisation document
+										- bt édition / archivage / suppression / impression
+							- notes
+								- 
+							- template(s)
+								- zone de notifications
+									- 
+								- zone d'option d'ajout de facture(s) par l'admin
+									- sous modale détails + visualisation document
+										- bt édition / archivage / suppression / impression
+								- zone de form de tri du calandrier mois / années
+									- par fournisseurs
+									- par types de factures
+									- par mois / années
+								- zone d'affichage du calandrier mois / années du tri
+									- 
+							- liste de fonctions et corrélations
+								- front
+									- 
+								- back
+									- 
+									
+								- fonction d'affichage et de gestion des notifications
+									- 
+								- fonction de fermeture (transversal à notifications / édition / réservation en ligne)
+									- bt modal form avec nature de restriction de service
+									- affiché sur site et mail menu semaine
+								- fonction de tri des factures du calandrier
+									- par type
+									- par mois / années
+								- fonction d'affichage du calandrier des factures du tri
+									-  avec les charges par natures notifié à la date de payement par label + couleur
+								- fonction de basculement mois / années suivant le tri
+									- lié à la fonction de tri des factures du calandrier
+										- 
+								- fonction d'ajout de facture(s) admin
+									-  avec les charges par natures notifié à la date de payement par label + couleur
+										- avec choix pour la notification
+											- de couleur
+											- de type
+											- d'occurence [de fréquence]
+												- pas de plages de dates
+												- seulement un bt ajout champs datepicker
+								- 
+					- front
+						- accueil
+							- 
+							- notification d'événements
+								- promotions
+								- fermetures
+								- ...
+							- plan de parkings
+							- google map
+								+ fonction itinéraire + envoi mail(s)
+						- a propos
+							- 
+						- cartes
+							- 
+						- menu / réservation, de la semaine, à venir et passées
+							- notes
+								- 
+							- template(s)
+								- zone d'option
+									- bt de demande [de désactivation] d'envoi du menu par mail
+									- bt de réservation
+										- nombre + heure + nom + tél
+										- avec option de spécification des plâts
+											- form + mail prise en compte de réservation + confirmation au jour
+									- bt de spécification des plâts
+										- form + mail prise en compte de réservation + confirmation au jour
+									- bt de lien de calcule du trajet sur google map
+										- si client léger sur terminal fixe ou tablette	
+											- en modale à imprimer
+										- si client léger sur terminal mobile
+											- envoyer sur google map
+								- zone de sélection et d'affichage de la semaine du calandrier du tir
+									- du menu
+									- des places dispos
+							- liste de fonctions et corrélations
+								- fonctionnalité d'affichage du menu de la semaine avec nombre de places disponibles
+									- 
+								- fonction de sélection de la semaine
+									- 
+								- fonction de demande [de désactivation] d'envoi du menu par mail
+									- sachant que un lien est dans le mail ?
+								- fonction de réservation
+									- nombre + heure + nom + tél
+									- avec option de spécification des plâts
+										- form + mail prise en compte de réservation + confirmation au jour
+								- fonction de spécification des plats
+									- mail prise en compte de réservation + confirmation au jour
+								- fonction de lien de calcule du trajet sur google map
+									- si client léger sur terminal fixe ou tablette	
+										- en modale à imprimer
+									- si client léger sur terminal mobile
+										- envoyer sur google map
+						- blog
+							- 
+						- contact
+							- coordonnées
+							- google map avec places de parkings + localisation resto
+							
+						
+				- référencement - 1 j
+					- google
+						- sitemap
+					- réseaux sociaux
+						- campagne de pub
+					- annuaires
+						- la fourchette
+						- allo resto
+			- enlever pub dariol et rediriger les liens sur pesaro
+				- de tout les sites
+				- de tous les backlinks
+			- après travaux finis, du rd avec Rex Hanna
+				- formater les éléments de communication sur le net et relayer à pierre sa partie
+				- résilier la fourchette
+				- déposer le nom à l'inpi
+				- valider la carte de visite
+				- commander l'enseigne
+				- finir autre tâches
+				
+				
+				
+				
+				
+				
+			- finir le projet du blog symfony - 5 j
+				- dèv - 4 j
+					- le front
+						- formattage des pages et fonctionnalités
+							- front du socle applicatif (reponsive CSS3 + bootstrap + jquery + angular)
+								ok- dans le cadre du contenu principal formater la page 
+									ok - 404 et le reste >15715
+										ok- à formater
+								ok- barre
+									ok- menu à refotmater
+										ok- positionnement
+										ok- liens
+											- ACCUEIL
+											- ARCHIVE
+											- DEFINITION POST
+											- CONTACT
+											- LANGUE
+											- CONNEXION
+												ok- gestion session
+													- bt profil (=>back)
+													- " profil : _ - speudo "
+													- bt connexion / deconnexion
+									désactivé- version beta à reformater
+										- positionnement
+										- changer le message de " Beta J-n " en " Nouvelle version Beta J-n "
+								ok- footer
+									ok- ajouter le bloc
+								ok- annonces
+									ok- images à uploader
+									ok- les bouton de tous profils
+										ok- définir l'url précédent de retour à la page de pagination
+								ok- reformater le side menu
+									ok- enlever ACCUEIL
+									ok- lien slug à définir
+								à retester - rendre le site responsive
+									- écran
+									- tablette
+									- mobile
+								ok- bug
+									ok- image bumbotron
+										- à réadapter ou changer
+									ok- étiquette langue
+										- à décaler
+									ok- si connecté
+										- icone profil
+											- à décaler
+									ok- rooter
+										ok- sur accueil 
+											ok- "platform/4" - pagination
+												- en prod 404
+												- en dèv exception
+													- on passe dans le controler avec 2 404 différent
+													- 
+											ok- "platform/" et "platform/-2" - pagination
+												- en prod 404
+												- en dèv exception
+													- erreur symfony
+													- 
+											ok- "platform/advert/{inexistant_slug}" - advert
+												- en prod 404
+												- en dèv exception
+													- on passe dans le controler avec erreur symfony
+													- 
+											ok- re écrire toutes les redirection et envoi de pages d'erreurs des contrôleurs
+											
+								1- front de l'application (créer tous les url)
+									(mettre en place un sitemap avec contrôle d'accès ressources 
+										- ok-bundle > route > controler > paramètres > twig > html/css/bootstrap(modale)/angular/jquery(ajax/json) pour une navigation complète 
+											- puis développement fonctionnalités + base en 4
+												- fonctionnalités (front/back) > définition des besoins de champs d'entités > création de données de w > implémentation des fonctions)
+										
+										- PLATFORM [a, b, c, d, e]
+											- anonyme (e)
+										- DASHBORD [a, b, c, d] / COMPTE [a, b, c, d] / PUBLISHER [a, b] / MODORATION [c] / SWITCH_PROFIL [d] / MAILING [a, b, c, d] 
+										  [OcDashbordorBundle  ]  [OcUserBundle     ]   [OcEditorBundle                 ]   [OcUserBundle   ]   [OcContactorBundle ]		bundle
+										  oc_dashbord_home        oc_dashbord_compte_   oc_dashbord_editor_                                     oc_dashbord_contactor_		route 	)-à compléter
+										  (/dashbord)/            (/dashbord)/compte/...(/dashbord)/editor/...                                  (/dashbord)/contactor/...	path	)	- OcUserBundle, OcContactorBundle
+										  (prefixe)
+																																											controller
+										
+										- front office du site																																	twig avec liaisons entre twigs
+																																											url
+											- >>>>> todo <<<<<
+												- 10h appeler
+													- Rex Hanna et demander pour quand il a besoin  > Rd lundi va m'appeler pour l'heure
+														- du site
+															- définir une date pour les éléments de communication
+														- les fonctionnalités du backoffice
+															- définir une date pour les éléments de fonctions étendus du site
+																- pouvoir faire 
+																	- des réservations à mini 24h à l'avance sinon appeler directement
+																	- des précommandes de vae à mini 24h à l'avance
+													- Maman pour passer chez elle avant le RD du médecin à 18h30 > ok
+														- 3h
+												ok- pour le dashbord
+													- si dashbord
+														- définir l'image en surbrillance
+												ok- pour la visualisation des paramètres de compte
+													- enlever le well
+												- finir l'édition des twigs
+													- dashbord
+														- liste de notification global + form de tri (post|get)
+															- les fonctionnalités back et front
+														- compte
+															- liste + form de tri (post|get)
+																- les fonctionnalités back et front
+																	- la création de compte
+																		- modifier tous les emails de la base + passe (pas de private joke d'une torture)
+																		- si front
+																			- enregistrer la demande en base
+																			- bloquer l'envoi de mail par validation de modérateur
+																	- switch
+																		- 
+															- les formulaires des fonctions étendues
+																- leurs fonctionnalités back et front
+															- pouvoir ajouter un avatar ou image d'annonce
+																- sur chargement de l'image
+																	- test format image, de taille min, max et poids
+																		- si ok, dans un modale
+																			- si taille y [exacte|plus grand] et x [exacte|plus grand]
+																				- canevas
+																					- en proportion sur la taille la plus faible de dimensions a ou b
+																						- définir la zone de dimensions a ou b du focal de l'image (top, left, zoom, type a ou b) + bt valide
+																- à l'affichage (avatar profil ou image annonce)
+																	- affichage d'un conteneur de dimensions a ou b avec overflow hidden
+																		- avec l'image avec css en absolute + dans son attribut style proportion de l'image + top [0,-y] et left [0,-x] [proportionné si définie]
+															- switch
+																- simplement en changeant de type de compte
+																- ou séléction dans la base d'une compte innactif
+														- publication
+															- liste + form de tri (post|get)
+																- les fonctionnalités back et front
+															- créer (intégrer tinymice)
+																- les fonctionnalités back et front
+															- détail (intégrer tinymice) + form de tri (post|get)
+																- les fonctionnalités back et front
+														- messagerie (intégrer tinymice)
+															- liste + form de tri (post|get)
+																- les fonctionnalités back et front
+															- créer
+																- les fonctionnalités back et front
+															- détail + form de tri (post|get)
+																- les fonctionnalités back et front
+													- platform
+														- acceuil/paramètres de recharche
+															- détail/paramètres de recharche
+																- créer un lightbox sur les images
+														- archive/paramètres de recharche
+															- détail/paramètres de recharche
+														- définition post/paramètres de recharche
+															- détail/paramètres de recharche
+														- contact
+															- 
+														- lang
+															- 
+														- footer
+															- 
+												ok- pour chaque " / " (_home) de bundle du back office, faire une page de notification
+													ok- OcUser
+													ok- MboEditor
+													ok- MboContactor
+												- copier le fonction page_undefinedAction() dans MboDashbordBundle ou chaque Bundle et en faire un service
+												- déplacer les fonction d'édition de Ocplatformbundle à Mboeditorbundle
+												
+												
+												- 
+												  _profiler_home                      ANY        ANY      ANY    /_profiler/                                           
+												  _profiler_search                    ANY        ANY      ANY    /_profiler/search                                     
+												  _profiler_search_bar                ANY        ANY      ANY    /_profiler/search_bar                                 
+												  _profiler_phpinfo                   ANY        ANY      ANY    /_profiler/phpinfo                                    
+												  _profiler_search_results            ANY        ANY      ANY    /_profiler/{token}/search/results                     
+												  _profiler_open_file                 ANY        ANY      ANY    /_profiler/open                                       
+												  _profiler                           ANY        ANY      ANY    /_profiler/{token}                                    
+												  _profiler_router                    ANY        ANY      ANY    /_profiler/{token}/router                             
+												  _profiler_exception                 ANY        ANY      ANY    /_profiler/{token}/exception                          
+												  _profiler_exception_css             ANY        ANY      ANY    /_profiler/{token}/exception.css                      
+												  _twig_error_test                    ANY        ANY      ANY    /_error/{code}.{_format}                              
+												  root                                ANY        ANY      ANY    /                                                     
+												  hello_the_world                     ANY        ANY      ANY    /platform/hello-world                                 
+												  byebye-world                        ANY        ANY      ANY    /platform/byebye-world                                
+												  oc_platform_home                    ANY        ANY      ANY    /platform/{page}                                      
+												  oc_platform_view                    ANY        ANY      ANY    /platform/advert/{id}                                 
+												  oc_platform_view_slug               ANY        ANY      ANY    /platform/advert/{slug}                               
+												  oc_platform_add                     ANY        ANY      ANY    /platform/add                                         
+												  oc_platform_edit                    ANY        ANY      ANY    /platform/edit/{id}                                   
+												  oc_platform_delete                  ANY        ANY      ANY    /platform/delete/{id}                                 
+												  oc_platform_view_slug_advanced      ANY        ANY      ANY    /platform/{year}/{slug}.{format}  
+												  
+																	  
+												  fos_user_security_login             GET|POST   ANY      ANY    /login                                                
+												  fos_user_security_check             POST       ANY      ANY    /login_check                                          
+												  fos_user_security_logout            GET|POST   ANY      ANY    /logout
+												                                            
+												  fos_user_profile_show               GET        ANY      ANY    /profile/                                             
+												  fos_user_profile_edit               GET|POST   ANY      ANY    /profile/edit                                         
+												  fos_user_registration_register      GET|POST   ANY      ANY    /register/                                            
+												  fos_user_registration_check_email   GET        ANY      ANY    /register/check-email                                 
+												  fos_user_registration_confirm       GET        ANY      ANY    /register/confirm/{token}                             
+												  fos_user_registration_confirmed     GET        ANY      ANY    /register/confirmed                                   
+												  fos_user_change_password            GET|POST   ANY      ANY    /profile/change-password
+												  
+												  
+													secret: portez_ce_vieux_whisky_au_juge_blond_qui_fume
+													app_webmaster: moi-même
+													
+										- Pages
+											- CONNEXION																			// Tous profils
+												- controleur
+													- 
+												- twig
+													- formater tous les forms des twigs 
+														- en bootstrap + contrôle des données en angular
+															- OcUserBundle
+																- /dashbord_compte/
+																- /dashbord_compte/login
+																	- [d'erreur 2] d'authentification 1
+																		- problème avec le titre " h2 "
+																- /dashbord_compte/profile/
+																- /dashbord_compte/profile/edit  
+																- /dashbord_compte/register/
+																- /dashbord_compte/register/check-email
+																- /dashbord_compte/register/confirm/{token}
+																- /dashbord_compte/register/confirmed
+																- /dashbord_compte/profile/change-password
+															- OcPlatformBundle
+																- bt_ back office (du click à signaler plus explicitement)
+																	- mettre à jour le lien " /dashbord_compte/ "
+																		- sans ocplatform
+																- Annonce
+																	- ajouter
+																		- titres
+																		- homogénéiser le formulaire avec ceux du compte
+																		- déplacer et formater le bouton " save "
+																		- bug
+																			- délais entre modifications
+																			- js bt " Ajouter " à enlever en fonction du type de mécanisame de choix de la catégorie
+																	- modifier
+																		- homogénéiser le formulaire avec ceux du compte
+																			- titres
+																			- mettre des " : " à chaque label
+																			- champs 
+																				- " content " vérouiller le resize à y
+																				- " file " définir les format vacceptés
+																			- déplacer et formater le bouton " save " + retour à l'annonce
+																		- bug
+																			- délais entre modifications
+																			- js bt " Ajouter " à enlever en fonction du type de mécanisame de choix de la catégorie
+													- créer profil dans la base (candidat, auteur, modérateur, admin)
+											- ACCUEIL (annonces actives) (ajax)													// Tous profils
+												- controleur
+													- 
+												- twig
+													- créer moteur de recherche (contrôle des donnes angular)
+														- de listes d'annonce (espacer les url du résultat de la recherche)
+															- Détail annonces
+																(- Bouton lien back édition, suppression et archivage annonce		// auteur)
+																(- Bouton lien back édition, suppression et archivage candidature	// candidats)
+																(- Bouton lien " S'authentifier pour postuler "						// anonyme)
+																- visualisation														// Tous profils
+																	- si auteur
+																		- avec toutes les candidatures message + cv + lettre
+																	- si candidat
+																		- avec sa candidature message + cv + lettre
+																	- si anonyme
+																		- nbr de candidature
+											- ARCHIVE (annonces fermées) (json)													// Tous profils
+												- controleur
+													- 
+												- twig
+													- créer moteur de recherche (contrôle des donnes html)
+														- de listes d'annonce
+															- visualisation															// Tous profils
+																- si auteur
+																	- avec toutes les candidatures message + cv + lettre
+																- si candidat
+																	- avec sa candidature message + cv + lettre
+																- si anonyme
+																	- nbr de candidature
+											- DEFINITION POST (web service api)													// Tous profils
+												- controleur
+													- 
+												- twig
+													- créer moteur de recherche d'une définition standard d'un post (contrôle des donnes jquery)
+														- de listes de définition
+															- définition détaillée
+											- CONTACT																			// Tous profils
+												- controleur
+													- 
+												- twig
+													- formulaire de contact (angular angular) (mail + messagerie compte) compte admin + éditeur par mail
+											3- LANGUE
+												- controleur
+													- 
+												- twig
+													- traduire le site en EN et FR
+														- formater 
+															- la fonctionnalité de traduction
+															- les url des routes avec un paramère de langue
+																- rechargeant au click la page actuelle
+											- divers 
+												- side menu
+													- controleur
+														- 
+													- twig
+														ok- enlever ACCUEIL
+														ok- lien slug à définir
+														- ajouter lien annonces par
+															ok- dernières annonces
+															- catégories
+															- lieu
+												- footer
+													- controleur
+														- 
+													- twig
+														- lien à faire
+														- a propos
+															- page de description de l'objet
+															- mode d'emploi
+																- des fonctionnalités par profil du site
+																- le top
+																	- faire une description animé en js
+																		- du front
+																		- du back
+																			- par profil de l'authentification
+														- sitemap
+															- page + lien à faire
+										
+									- back office du site
+										- img backoffice
+											- on('/a+(bi)/i') rebase toptoside {de la théorie des cercles du signe à l'environnement de vie sociologique dans une mesure physiologique,  
+                des (re)constituant et des (ré)organisant, des contenants des agrégations, équilibres, désagrégations de beaux fonctionnels de nomenclatures des formats des 
+                besoins d'organisations, de merveilles de structures de la logique de ses énergies de dimensions*** de consciences de corps d'un continuum** du continuum de la nature, 
+                en élément du projet industriel global d'organisations de normes de beaux**** des continuums du contiunuum d'une civilisation, des et aux, prédictions
+                des assertions de l'autorité de scène de l'estétique de profane**, de la logique suivant souvent le beau suivant souvent la nature d'une détresse du mot qui manque, 
+                des propriétés de la pierre angulaire des ombres banis de l'ombre de la présomption***** des bâtis des forts de la prédictions de la mémoire des concepteurs aux prédécesseurs,
+                des et aux, copies de sacrées*, du symbolisme d'initié** des radians des bases*** des cycles 365, des patterns du vide des origines aux fins*, des porteuses d'étalons de main****,
+                des et aux, décomptés des arts de l'univers à ses yeux*****...}
+											- git rebase "de la théorie des cercles du signe à l'environnement de vie sociologique dans une mesure physiologique,  
+										des (re)constituant et des (ré)organisant, des contenants des agrégations, équilibres, désagrégations de beaux fonctionnels de nomenclatures des formats des 
+										besoins d'organisations d'un genre de merveilles de structures de la logique de ses énergies de dimensions de consciences de corps du continuum de la nature, 
+										en élément du projet industriel global d'organisations de normes de beaux des continuums du contiunuum d'une civilisation, des et aux, prédictions
+										des assertions de l'autorité de scène de l'estétique de profane, de la logique suivant souvent le beau suivant souvent la nature d'une détresse du mot qui manque, 
+										des et aux, copies de sacrées, du symbolyse d'initié des origines des radians de bases des cycles de patterns du vide des fins de porteuses d'étalons de main..."
+										
+										
+										- DASHBORD_COMPTE [a, b, c, d] / _PUBLISHER [a, b] / _MODORATION [c] / _SWITCH_PROFIL [d] / _MAILING [a, b, c, d] 
+											(sous "/dashbord_compte/" dans la zone du contenu principal + menu sur la bare latéral)
+												
+										- DASHBORD [a, b, c, d] (menu d'onglets déroulants sur la bare latéral)
+											- controleur
+												- 
+											- twig
+												- /	-> notifications
+													- page de la liste des notification par bundles (à faire après toutes les autres pages pour avoir les tables des fonctions des zones de pages des natures des notifications)
+														- au click
+															- visualisation du message
+																- avec option bt de chargement de la page de contexte de la fonction|contenu en question
+																	- suivant la nature du bundle
+																		- compte (en tab)
+																			1.1- (dés)activation du compte
+																			1.2- paramètres de profil
+																				- mail (validation auto)
+																				- passe (validation auto)
+																				- pseudo (définition et validation différé)
+																				- avatar (définition et validation différé)
+																				- description (définition et validation différé)
+																			1.3- demande de validation (de paramètres) de compte
+																		- publication (en tab)
+																			2.1- advert
+																				- de modérateurs
+																					- validation
+																					- incident
+																					- archivage
+																				- de candidats
+																					- de candidatures
+																			2.2- application
+																				- de modérateurs
+																					- validation
+																					- incident
+																					- archivage
+																				- de auteurs
+																					- status candidatures
+																			2.3- messenger
+																			2.4- demande de validation d'un advert ou application
+																		- messagerie (en tab)
+																			3.1- message envoyé/reçu
+												- candidat (a)
+													- édition de son compte
+													- gestion de ses candidature (application)
+														- avec bt candidater à ajouter dans chaque détail de advert
+															- 
+														- page liste des annonces candidatés + form de tri (post)
+															- avec bt détail avec notification des mises en ligne et de status candidature
+																- de modérateurs
+																	- validation
+																	- incident
+																	- archivage
+																- de auteurs
+																	- status candidatures
+														- page de création
+															- 
+														- page détail
+															- avec bt édition pour publication si draft, contacter en massenger
+															- détail sous tabs
+																- annonce
+																- candidature + form de tri
+																	- avec si auteur et messages échangé un lien au messenger + paramètres de tri des messages relatifs à la candidature et annonce 
+																	générant la page détail du messenger
+																- messenger
+													- messenger orienté annuaire des utilisateur du site
+														- page liste + form de tri (post|get)
+															- avec bt création
+																- permettant de enregistrer dans une base, si token+auteur valide de mailer à sa boite, des requêtes|notifications à des utilisateurs du site
+															- avec bt détail avec notification
+														- page de création
+															- 
+														- page détail
+															- un form avec bt création, publication, suppression
+																- en dessous empilement de blocks avatar auteur et destinataire(s), date, objet, message, pièces jointes 
+														
+												- auteur (b)
+													- édition de son compte
+													- gestion de ses annonces (advert)
+														- page liste de ses annonces + form de tri (post)
+															- avec bt création d'annonce
+															- avec bt détail avec notification des mises en ligne
+																- de modérateurs
+																	- validation
+																	- incident
+																	- archivage
+																- de candidats
+																	- de candidatures
+														- page de création
+															- 
+														- page détail
+															- avec bt édition, publication, suppression
+															- détail sous tabs
+																- annonce
+																- candidatures + form de tri
+																	- avec si messages échangé un lien au messenger + paramètres de tri des messages relatifs à la candidature et annonce 
+																	générant la page détail du messenger
+																- messenger + form de tri
+													- messenger
+														- page liste + form de tri (post|get)
+															- avec bt création
+																- permettant de enregistrer dans une base, si token+auteur valide de mailer à sa boite, des requêtes|notifications à des utilisateurs du site
+															- avec bt détail avec notification
+														- page de création
+															- 
+														- page détail
+															- un form avec bt création, publication, suppression
+																- en dessous empilement de blocks avatar auteur et destinataire(s), date, objet, message, pièces jointes
+																
+												- modérateur (c)
+													- édition de (son) compte(s)
+														- + page de gestion de demande d'inscription, création, modification, (dés)activation et suppression de compte auteur et candidat
+													- validation
+														- demande d'annonces et de candidatures de mis en ligne
+															- page liste + formulaire de tri
+																- avec bt détail avec notification des mises en ligne
+																	- auteurs
+																		- status candidatures
+																	- de candidats
+																		- de candidatures
+															- page détail
+																- avec bt édition, publication, suppression
+																- détail sous tabs
+																	- annonce|candidature au messenger + paramètres de tri des messages relatifs à la candidature et annonce
+																	générant en modale la page détail du messenger
+													- messagerie
+														- page liste
+															- avec bt création
+																- permettant de enregistrer dans une base, si token+auteur valide de mailer à sa boite, des requêtes|notifications à des utilisateurs du site
+															- avec bt détail avec notification
+														- page de création
+															- 
+														- page détail
+															- un form avec bt création, publication, suppression
+																- en dessous empilement de blocks avatar auteur et destinataire(s), date, objet, message, pièces jointes
+																
+												- admin (d)
+													- édition de (son) compte(s)
+														- + page de gestion de demande d'inscription, création, modification, (dés)activation et suppression de compte admin et modérateur
+														- + bt switch de profils (^) pour navigation front et back (en déroulant sur l'icone du profil)
+															- admin
+																- affichage de toutes les notification + accès interfase fonctionnalités back et front
+															- modérateur
+																- affichage de toutes les notification + accès interfase fonctionnalités back et front
+															- auteur
+																- accès interfase fonctionnalités back et front
+															- candidat
+																- accès interfase fonctionnalités back et front
+													- messagerie
+														- page liste
+															- avec bt création
+																- permettant de enregistrer dans une base, si token+auteur valide de mailer à sa boite, des requêtes|notifications à des utilisateurs du site
+															- avec bt détail avec notification
+														- page de création
+															- 
+														- page détail
+															- un form avec bt création, publication, suppression
+																- en dessous empilement de blocks avatar auteur et destinataire(s), date, objet, message, pièces jointes 
+									
+									- front office du site
+										- ACCUEIL (annonces actives) (ajax) [a, b, c, d] - OcPlatformBundle - Oc_platform_[home|view|*] - (/platform)/[pagination[/param_moteur de tri]|add|[advert|edit]/slug_annonce]
+											- controleur
+												- 
+											- twig
+												- créer moteur de recherche (contrôle des donnes angular)
+													- de listes d'annonce (espacer les url du résultat de la recherche)
+														- Détail annonces
+															(- Bouton lien back édition, suppression et archivage annonce		// auteur)
+															(- Bouton lien back édition, suppression et archivage candidature	// candidats)
+															(- Bouton lien " S'authentifier pour postuler "						// anonyme)
+															- visualisation														// Tous profils
+																- si auteur
+																	- avec toutes les candidatures message + cv + lettre
+																- si candidat
+																	- avec sa candidature message + cv + lettre
+																- si anonyme
+																	- nbr de candidature
+										- ARCHIVE (annonces fermées) (json) [a, b, c, d] - OcPlatformBundle - Oc_platform_archive[_*]  - (/platform)/archive/[pagination[/param_moteur de tri]|slug_archive]
+											- controleur
+												- 
+											- twig
+												- créer moteur de recherche (contrôle des donnes html)
+													- de listes d'annonce
+														- visualisation															// Tous profils
+															- si auteur
+																- avec toutes les candidatures message + cv + lettre
+															- si candidat
+																- avec sa candidature message + cv + lettre
+															- si anonyme
+																- nbr de candidature
+										- DEFINITION POST (web service api) [a, b, c, d] - OcPlatformBundle - Oc_platform_library[_*] - (/platform)/library/[pagination[/param_moteur de tri]|slug_post]
+											- controleur
+												- 
+											- twig
+												- créer moteur de recherche d'une définition standard d'un post (contrôle des donnes jquery)
+													- de listes de définition
+														- définition détaillée
+										3- LANGUE [a, b, c, d]
+											- controleur
+												- 
+											- twig
+												- traduire le site en EN et FR
+													- formater 
+														- la fonctionnalité de traduction
+														- les url des routes avec un paramère de langue
+															- rechargeant au click la page actuelle
+										- divers 
+											- side menu
+												- controleur
+													- 
+												- twig
+													ok- enlever ACCUEIL
+													ok- lien slug à définir
+													- ajouter lien annonces par
+														ok- dernières annonces
+														- catégories
+														- lieu
+											- footer
+												- controleur
+													- 
+												- twig
+													- lien à faire
+													- a propos - OcPlatformBundle - Oc_platform_about - (/platform)/about > (/préfixe)/page[/paramètres][/slug_about*]
+														- page de description de l'objet
+														- mode d'emploi
+															- des fonctionnalités par profil du site
+															- le top
+																- faire une description animé en js
+																	- du front
+																		- de l'indexe par page de block de [fonctionnalités|des procédées]
+																			- au click
+																				- activer un paneau latéral d'aide, des indexes + options, rétractable ou désactivable
+																					- au click
+																						- charger la page du block de la fonction et faire un circuit
+																							- de présentation des éléments et fonctions
+																							- faire un exemple fictive
+																								- avec enregistrement des données fictives dans une base bis grâce à un tag*
+																	- du back
+																		- par profil de l'authentification
+													- sitemap - OcPlatformBundle - Oc_platform_sitemap - (/platform)/sitemap
+														- page + lien à faire
+										- CONTACT [a, b, c, d] - OcContactorBundle - Oc_platform_contact - (/platform)/contact!!!! (pas de problème, même schèma que le reste,
+											définir la route + path dans OcPlatformBundle et le contrôleur de OcContactorBundle
+											- controleur
+												- 
+											- twig
+												- formulaire de contact (angular angular) (mail + messagerie compte) compte admin + éditeur par mail
+										- CONNEXION [a, b, c, d]
+											- controleur
+												- 
+											- twig
+												- formater tous les forms des twigs 
+													- en bootstrap + contrôle des données en angular
+														- OcDashbordBundle
+															- oc_dashbord_home
+																- (/dashbord)/
+																	- 
+															- OcUserBundle
+																- (/dashbord)/compte/
+																	- oc_dashbord_compte
+																		- /
+																- /login (en front)
+																	- oc_dashbord_compte_login
+																		- simplifier le path -" (/dashbord)/compte "
+																		- mettre en place un timer pour bloquer le brute force
+																			- même ip
+																				- au bout de 5 essaie
+																				- repassez dans 1 jour, par rapport à son ip
+																			- ip pc ou server changeant > dénie de service
+																				- pas possible de changer l'ip du router
+																					- c'est lui qui envoi en second lieu la requête
+																		- si possible gérer le {% block title_h2 %}
+																			- problème avec le titre " h2 "
+																- (/dashbord)/compte/profile/
+																	- oc_dashbord_compte_profile
+																- (/dashbord)/compte/profile/edit
+																	- oc_dashbord_compte_profile_edit
+																- (/dashbord)/compte/register/
+																	- oc_dashbord_compte_register
+																- (/dashbord)/compte/register/check-email
+																	- oc_dashbord_compte_register_check-email
+																- (/dashbord)/compte/register/confirm/{token}
+																	- oc_dashbord_compte_register_confirm
+																- (/dashbord)/compte/register/confirmed
+																	- oc_dashbord_compte_register_confirmed
+																- (/dashbord)/compte/profile/change-password
+																	- oc_dashbord_compte_profile_change-password
+														- OcPlatformBundle
+															- bt_ back office (du click à signaler plus explicitement)
+																- mettre à jour le lien " /dashbord_compte/ "
+																	- sans ocplatform
+															- Annonce
+																- (/platform)/add
+																	- titres
+																	- homogénéiser le formulaire avec ceux du compte
+																	- déplacer et formater le bouton " save "
+																	- bug
+																		- délais entre modifications
+																		- js bt " Ajouter " à enlever en fonction du type de mécanisame de choix de la catégorie
+																- (/platform)/edit/[id|slug]_advert
+																	- homogénéiser le formulaire avec ceux du compte
+																		- titres
+																		- mettre des " : " à chaque label
+																		- champs 
+																			- " content " vérouiller le resize à y
+																			- " file " définir les format vacceptés
+																		- déplacer et formater le bouton " save " + retour à l'annonce
+																	- bug
+																		- délais entre modifications
+																		- js bt " Ajouter " à enlever en fonction du type de mécanisame de choix de la catégorie
+												
+							2- back du socle applicatif
+								3- fonctionnalités
+									- faire une analyse du socle applicatif avant dèv
+									- dèv
+										- créer les données de w en bases
+											- créer profil dans la base (candidat, auteur, modérateur, admin)
+										- de toutes les pages et options
+											- en cas de bug ou hack
+												- mailer des logs à l'admin
+												- mettre le site en maintenance
+												- avec un back door de réactivation
+										4- traduire toutes les pages
+								5- des tests
+									- unitaires
+									- fonctionnel
+									- applicatif
+										- crowler
+											- de tous les url avec le sitemap ou liste générée de la base par console et phpUnit
+									- bug
+										- http://localhost/dev/symfony/web/app_dev.php/register
+											- http://localhost/dev/symfony/web/app_dev.php/register/confirmed
+												- Variable "messages" does not exist.
+								- mettre les js dans les bundle intégrés aux twigs les appelant
+									- notamment pour les requêts json ou ajax
+										- définir des tokens
+					5'- ajouter
+						- apc
+						- doctrine migration - pas d'accès console
+						
+				
+				
+				- recréer l'auto-entreprise
+					- consultant / freelance en ingénierie en étude et développement d'application Web
+						- réadapter les sites en cachant le complexe et les lier explicitement
+							- mbo-dev
+								- site consultant / freelance en ingénierie en étude et développement d'application Web (Ingé Zend, Formation Symfony 3, Ingé iidee + lien linkedin et facebook)
+									- navigation et discourts adapté aux cibles clients
+										- suivant l'étude de la nomenclature des besoins par acteurs du marché
+											- description
+												- produit fini de solutions de problèmes métiers
+												- technique des technologies maitrisées
+										- avec un showroom
+										- éventuellement expérience
+							- mbo-wdesign
+								- 
+						- s'incrire sur des sites de portage et autres
+							- chez le client
+							- télé-travail
+						- démarché à partir du site et cartes de visites (liste à faire et à démarcher)
+							- annuaires d'auto-entreprise
+								- 
+							- marchés publique
+								- 
+							- sous-traitances
+								- ssii
+								- agences 
+									- de com / marketing
+								- projets entreprises
+									- atos
+									- ...
+						- recherche de projets (avec compte paypal)
+							- site spécialisées
+								- https://www.freelancer.com/job-search/web-developer-work-home/
+								- https://www.upwork.com/o/jobs/browse/c/web-mobile-software-dev/sc/web-development/
+							- sites génériques
+								- faire un bench des sites d'appels d'offres
+				
+				
+						
+						
+						
+				6- mettre en ligne - 1 j
+					- paramètre et configuration de bundle
+						- désactiver dans les paramètres de mail
+						- modifier les paramètres de bd
+					- faire un second répo avec le code nettoyé et commenté pour la documentation
+						- avec un lien 
+							- du site d'origine de ooc
+							- du site final
+					- créer un wiki de documentation (url sous authentification ou caché)
+						- faire une liste des fonctionnalités, de leurs formats et algorithmes
+					- sur l'url mbo-wdev.com/projets/ faire une page avec une liste des projets (url en _blank + description objets et fonctionnalités + paramètres de test (dans un fichier caché))
+					- pouvoir
+						- accéder au app_dev
+							- en cas de bugs
+								- logs à mailer
+						- lancer la console 
+							- pas d'accès console
+						- d'y faire des tests 
+							- pas d'accès console
+						- visualiser la code 
+							- sur répository
+				
+				
+				
+				- projet Antho - in 3 days max
+					- Cest pour lui faire une page de présentation en anglais, français, thai... pour son business de location de jetski, speedboat...
+					le plus simple pour l'instant gentre 1 fonction catalogue et 1 pour booking comme tripadvisor... 
+					et apres on pourra penser aux fonctions plus complexe comme création de compte user client ou paiement en avance...
+					- mi-fin-décembre
+					- pas beaucoup de rémunération, voir avec lui pour les coûts fixes et de rémunération
+					- sous wordpress		
+						
+					
+				
+				
+				- créer un sous réseau domicile
+					- de W
+						- 
+					- de loisir
+						- 
+					- d'un server d'application (sensibles comme des stats de besoins, protéger le prix de la diffusion d'un savoir de tuples de genres de signes comme l'art de l'humour) accessible depuis le net
+						- à [l'ip|url des interfases d'applis de connexion|identifiant+passe] changeant de manière organique en fonction d'un algo 
+						(fonction du timestamp ou/et autres paramètres) sur une plage du sous réseau du rooter et la machine d'un sous réseau séparé par un dmz
+							- dépendant d'un trriger en script bash de mise à jour de l'ip rooter
+						- et d'un appli keygen (sms depuis un appli serveur)permettant de générer les éléments de connexion
+			
+			
+			

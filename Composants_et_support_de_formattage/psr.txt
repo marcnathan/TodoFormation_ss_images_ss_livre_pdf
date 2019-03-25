@@ -1,0 +1,35 @@
+> Notes
+    -
+    -
+    -
+    -
+
+
+> psr
+		- ressources
+			- net
+				- 
+			- livre
+				- 
+		- lien indexe complet
+			- 1. 	Basic Coding Standard
+			- 2. 	Coding Style Guide
+			- 3. 	Logger Interface
+			- 4. 	Autoloading Standard
+			- 6. 	Caching Interface
+			- 7. 	HTTP Message Interface
+			- 11. 	Container Interface
+			- 13. 	Hypermedia Links
+			- 16. 	Simple Cache
+		- procédées essentiels
+			- 1. 	Basic Coding Standard
+			- 2. 	Coding Style Guide
+			- 3. 	Logger Interface
+			- 4. 	Autoloading Standard
+			- 6. 	Caching Interface
+			- 7. 	HTTP Message Interface
+			- 11. 	Container Interface
+			- 13. 	Hypermedia Links
+			- 16. 	Simple Cache
+		- outils
+			- 

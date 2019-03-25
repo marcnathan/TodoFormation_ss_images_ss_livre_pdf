@@ -9,6 +9,12 @@
 	- ressources
 		- net
 			- https://learnxinyminutes.com/docs/php-composer/
+			- https://getcomposer.org/doc/04-schema.md#autoload
+			- https://www.codementor.io/jadjoubran/php-tutorial-getting-started-with-composer-8sbn6fb6t
+			using https://security.sensiolabs.org/ as well that lets you upload your composer.lock file 
+			and warns you about possible known security vulnerabilities for the packages you’re using. 
+			You can also integrate it in your workflow by using their API.
+			- https://phpenthusiast.com/blog/how-to-autoload-with-composer	
 		- livre
 			- 
 	- lien indexe complet
